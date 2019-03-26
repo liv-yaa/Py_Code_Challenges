@@ -47,3 +47,18 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Word Lengths
 
 """
+
+def sum_list(num_list):
+    """Return the sum of all numbers in list."""
+    total = 0
+    for num in num_list:
+        total += num
+    return total
+
+
+
+def main():
+    return sum_list([5, 3, 6, 2, 1])
+    # 17
+
+print(main())
