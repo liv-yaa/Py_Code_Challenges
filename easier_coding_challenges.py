@@ -42,7 +42,7 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Sort Sorted Lists
 - Split a STring
 X Sum List
-- Sum List Recursively
+X Sum List Recursively
 - Word Count
 - Word Lengths
 
@@ -61,6 +61,7 @@ def sum_list_n(num_list):
     >>> sum_list_n([])
     0
 
+    ALL TESTS PASSED
     """
     total = 0
     for num in num_list:
@@ -80,6 +81,8 @@ def sum_list(nums):
     20
     >>> sum_list([])
     0
+
+    ALL TESTS PASSED
     """
     if len(nums) > 0:
         total = nums[0]
@@ -91,6 +94,44 @@ def sum_list(nums):
 
     else:
         return 0
+
+
+def word_count(phrase):
+    """Count words in a sentence, and print in ascending order.
+    >>> word_count("berry cherry cherry cherry berry apple")
+    apple: 1
+    berry: 2
+    cherry: 3
+
+    >>> word_count("hey hi hello")
+    hello: 1
+    hey: 1
+    hi: 1
+
+    >>> word_count("hi Hi hi")
+    Hi: 1
+    hi: 2
+
+    """
+
+    # Data structure = dictionary. In Python3 we can count on it being ordered
+    dictionary = {}
+
+    # Split string into list and sort:
+    lst = sorted(phrase.split())
+
+    for word in lst:
+        if word not in dictionary:
+            dictionary[word] = 1
+        else:
+            dictionary[word] += 1
+
+    for key,value in dictionary.items():
+        print(key + ":", value)
+
+
+
+
 
 
 
