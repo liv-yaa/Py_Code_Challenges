@@ -136,9 +136,25 @@ def word_lengths(sentence):
     * Note for Python3.6 we can count on order of dicts
 
     >>> answer = word_lengths("cute cats chase fuzzy rats")
-    {4: {'cute', 'cats', 'rats'}, 5: {'chase', 'fuzzy'}}
+    {4: {'cute', 'cats', 'rats'}, 5: {'fuzzy', 'chase'}}
 
+    *** Note: They did not recommend
+    lengths.setdefault(len(word), set()).add(word) 
+    ***   
     """
+
+    # Create a dict:
+    dct = {}
+
+    lst = sentence.split()
+
+    for word in lst:
+        if len(word) in dct:
+            dct[len(word)].add(word)
+        else:
+            dct[len(word)] = {word}
+
+    print( dct)
 
 
 
