@@ -41,14 +41,14 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Snake case to camel case
 - Sort Sorted Lists
 - Split a STring
-- Sum List
+X Sum List
 - Sum List Recursively
 - Word Count
 - Word Lengths
 
 """
 
-def sum_list(num_list):
+def sum_list_n(num_list):
     """Return the sum of all numbers in list."""
     total = 0
     for num in num_list:
@@ -56,9 +56,56 @@ def sum_list(num_list):
     return total
 
 
+def sum_list(nums):
+    """Using recursion, return the sum of numbers in a list.
+    >>> sum_list([5, 3, 6, 2, 1])
+    17
+    >>> sum_list([5, 5])
+    10
+    >>> sum_list([-5, 10, 4])
+    9
+    >>> sum_list([20])
+    20
+    >>> sum_list([])
+    0
+    """
+    if len(nums) > 0:
+        total = nums[0]
 
-def main():
-    return sum_list([5, 3, 6, 2, 1])
-    # 17
+        if len(nums) > 1:
+            return sum_list(nums[1:]) + total
+        else:
+            return total
 
-print(main())
+    else:
+        return 0
+
+
+
+# def main():
+#     # return sum_list([5, 3, 6, 2, 1])
+#     # 17
+
+
+#     print(sum_list([5, 5]))
+#     # 10
+
+#     print(sum_list([-5, 10, 4]))
+#     # 9
+
+#     print(sum_list([20]))
+#     # 20
+
+#     print(sum_list([]))
+#     # 0
+
+
+# main()
+
+# Doctest Section:
+if __name__ == '__main__':
+    import doctest
+
+    result = doctest.testmod()
+    if result.failed == 0:
+        print('ALL TESTS PASSED')
