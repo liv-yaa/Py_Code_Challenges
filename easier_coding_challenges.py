@@ -43,7 +43,7 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Split a STring
 X Sum List
 X Sum List Recursively
-- Word Count
+X Word Count
 - Word Lengths
 
 """
@@ -112,6 +112,7 @@ def word_count(phrase):
     Hi: 1
     hi: 2
 
+    ALL TESTS PASSED
     """
 
     # Data structure = dictionary. In Python3 we can count on it being ordered
@@ -130,7 +131,14 @@ def word_count(phrase):
         print(key + ":", value)
 
 
+def word_lengths(sentence):
+    """Get dictionary of word-length: {words}.
+    * Note for Python3.6 we can count on order of dicts
 
+    >>> answer = word_lengths("cute cats chase fuzzy rats")
+    {4: {'cute', 'cats', 'rats'}, 5: {'chase', 'fuzzy'}}
+
+    """
 
 
 
