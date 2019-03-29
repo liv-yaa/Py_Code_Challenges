@@ -49,7 +49,19 @@ X Sum List
 """
 
 def sum_list_n(num_list):
-    """Return the sum of all numbers in list."""
+    """Return the sum of all numbers in list.
+    >>> sum_list_n([5, 3, 6, 2, 1])
+    17
+    >>> sum_list_n([5, 5])
+    10
+    >>> sum_list_n([-5, 10, 4])
+    9
+    >>> sum_list_n([20])
+    20
+    >>> sum_list_n([])
+    0
+
+    """
     total = 0
     for num in num_list:
         total += num
@@ -81,26 +93,6 @@ def sum_list(nums):
         return 0
 
 
-
-# def main():
-#     # return sum_list([5, 3, 6, 2, 1])
-#     # 17
-
-
-#     print(sum_list([5, 5]))
-#     # 10
-
-#     print(sum_list([-5, 10, 4]))
-#     # 9
-
-#     print(sum_list([20]))
-#     # 20
-
-#     print(sum_list([]))
-#     # 0
-
-
-# main()
 
 # Doctest Section:
 if __name__ == '__main__':
