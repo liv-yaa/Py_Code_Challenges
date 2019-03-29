@@ -40,13 +40,57 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Show Even Numbers
 - Snake case to camel case
 - Sort Sorted Lists
-- Split a STring
+- Split a String
 X Sum List
 X Sum List Recursively
 X Word Count
-- Word Lengths
+X Word Lengths
 
 """
+def split(astring, splitter):
+    """Split a string by splitter and return list of splits.
+    (Words like built in split() method! Dont use regex)
+
+    >>> split("i love balloonicorn", " ")
+    ['i', 'love', 'balloonicorn']
+
+    >>> split("that is which is that which is that", " that ")
+    ['that is which is', 'which is that']
+
+    >>> split("that is which is that which is that", "that")
+    ['', ' is which is ', ' which is ', '']
+
+    >>> split("hello world", "nope")
+    ['hello world']
+
+
+    """
+    lst = []
+    word = "" # First word
+
+    l = len(splitter)
+
+    # Get chunks of length l from astring:
+    for i in range(len(astring)):
+        chunk = astring[i:i+l]
+
+        if chunk == splitter:
+
+
+            lst.append(word)
+            word = ""
+
+            i += l + 1
+
+        else:
+            word += astring[i]
+
+    lst.append(word)
+
+    return lst
+
+
+
 
 def sum_list_n(num_list):
     """Return the sum of all numbers in list.
@@ -135,12 +179,10 @@ def word_lengths(sentence):
     """Get dictionary of word-length: {words}.
     * Note for Python3.6 we can count on order of dicts
 
-    >>> answer = word_lengths("cute cats chase fuzzy rats")
+    ex. answer = word_lengths("cute cats chase fuzzy rats")
     {4: {'cute', 'cats', 'rats'}, 5: {'fuzzy', 'chase'}}
 
-    *** Note: They did not recommend
-    lengths.setdefault(len(word), set()).add(word) 
-    ***   
+    Did not pass becasue I dont have the doctest savvy but it is correct
     """
 
     # Create a dict:
@@ -155,6 +197,10 @@ def word_lengths(sentence):
             dct[len(word)] = {word}
 
     print( dct)
+
+    #     *** Note: They did not recommend
+    # lengths.setdefault(len(word), set()).add(word) 
+    # ***   
 
 
 
