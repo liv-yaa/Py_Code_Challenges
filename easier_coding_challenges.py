@@ -55,21 +55,37 @@ def sort_ab(a, b):
     >>> sort_ab([1, 3, 5, 7], [2, 6, 8, 10])
     [1, 2, 3, 5, 6, 7, 8, 10]
 
+    >>> sort_ab([2, 6, 8, 10], [1, 3, 5, 7])
+    [1, 2, 3, 5, 6, 7, 8, 10]
+
+    >>> sort_ab([2, 6, 8, 10], [])
+    [2, 6, 8, 10]
+
+    * solution * https://fellowship.hackbrightacademy.com/materials/challenges/sort-ab/solution/index.html
+
     """
 
     outlist = []
 
-    for i in a:
-        for j in b:
-            if i > j:
-                outlist.append(j)
-            outlist.append(i)
+    ia = 0
+    ib = 0
+
+    while ia < len(a) and ib < len(b):
+
+        if a[ia] < b[ib]:
+            outlist.append(a[ia])
+            ia += 1
+
+        else:
+            outlist.append(b[ib])
+            ib += 1
+
+    # Add any remaining items:
+    outlist.extend(a[ia:])
+    outlist.extend(b[ib:])
+
 
     return outlist
-
-
-
-    # return [1, 2, 3, 5, 6, 7, 8, 10]
 
 
 # def split(astring, splitter):
