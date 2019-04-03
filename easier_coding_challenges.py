@@ -47,7 +47,22 @@ X Word Count
 X Word Lengths
 
 """
-def split(astring, splitter):
+def sort_ab(a, b):
+    """Given already-sorted lists, `a` and `b`, return sorted list of both.
+
+    You may not use sorted() or .sort().
+    
+    >>> sort_ab([1, 3, 5, 7], [2, 6, 8, 10])
+    [1, 2, 3, 5, 6, 7, 8, 10]
+
+    """
+
+
+
+    return [1, 2, 3, 5, 6, 7, 8, 10]
+
+
+# def split(astring, splitter):
     """Split a string by splitter and return list of splits.
     (Words like built in split() method! Dont use regex)
 
@@ -65,31 +80,29 @@ def split(astring, splitter):
 
 
     """
-    lst = []
-    word = "" # First word
+    # lst = []
+    # word = "" # First word
 
-    l = len(splitter)
+    # l = len(splitter)
 
-    # Get chunks of length l from astring:
-    for i in range(len(astring)):
-        chunk = astring[i:i+l]
+    # # Get chunks of length l from astring:
+    # for i in range(len(astring)):
+    #     chunk = astring[i:i+l]
 
-        if chunk == splitter:
-
-
-            lst.append(word)
-            word = ""
-
-            i += l + 1
-
-        else:
-            word += astring[i]
-
-    lst.append(word)
-
-    return lst
+    #     if chunk == splitter:
 
 
+    #         lst.append(word)
+    #         word = ""
+
+    #         i += l + 1
+
+    #     else:
+    #         word += astring[i]
+
+    # lst.append(word)
+
+    # return lst
 
 
 def sum_list_n(num_list):
