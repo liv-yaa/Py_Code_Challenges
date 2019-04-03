@@ -38,7 +38,7 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Reverse LinkedList In Place
 - Reverse a String Recursively
 - Show Even Numbers
-- Snake case to camel case
+X Snake case to camel case
 !X Sort Sorted Lists
 !X Split a String
 X Sum List
@@ -47,6 +47,27 @@ X Word Count
 X Word Lengths
 
 """
+def show_evens(nums):
+    """Given list of ints, return list of *indices* of even numbers in list.
+
+    >>> show_evens([1, 2, 3, 4, 6, 8])
+    [1, 3, 4, 5]
+
+    >>> show_evens([])
+    []
+
+    >>> show_evens([1, 3, 5])
+    []
+    
+    """
+    outlist = []
+    for num in nums:
+        if num % 2 == 0:
+            outlist.append(num)
+
+    return outlist
+
+
 def snake_to_camel(variable_name):
     """Given a variable name in snake_case, return camelCase of name.
 
@@ -86,6 +107,7 @@ def snake_to_camel(variable_name):
         return ""
         
     return variable_name
+
 
 def snake_to_camel2(variable_name):
     """
