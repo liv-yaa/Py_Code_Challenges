@@ -40,13 +40,58 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Show Even Numbers
 - Snake case to camel case
 !X Sort Sorted Lists
-(!!) Split a String
+!X Split a String
 X Sum List
 X Sum List Recursively
 X Word Count
 X Word Lengths
 
 """
+def snake_to_camel(variable_name):
+    """Given a variable name in snake_case, return camelCase of name.
+
+    >>> snake_to_camel("hi_balloonicorn")
+    'hiBalloonicorn'
+
+    >>> snake_to_camel("_")
+    ''
+    
+    >>> snake_to_camel("L_L")
+    'LL'
+
+    >>> snake_to_camel("")
+    ''
+
+    """
+    
+        
+    if "_" in variable_name:
+
+        if len(variable_name) > 0:
+
+            index = variable_name.index("_")
+            # print(index)
+
+            if index > 0:
+
+                before = variable_name[:index]
+                after = variable_name[index + 1:]
+
+                if len(after) > 0:
+
+                    after = after[0].upper() + after[1:]
+
+                return (before + after)
+  
+        return ""
+        
+    
+    return variable_name
+
+
+
+
+
 def sort_ab(a, b):
     """Given already-sorted lists, `a` and `b`, return sorted list of both.
 
