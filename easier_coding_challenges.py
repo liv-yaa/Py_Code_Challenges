@@ -40,7 +40,7 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Show Even Numbers
 - Snake case to camel case
 - Sort Sorted Lists
-- Split a String
+(!!) Split a String
 X Sum List
 X Sum List Recursively
 X Word Count
