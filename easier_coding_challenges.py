@@ -61,9 +61,10 @@ def show_evens(nums):
     
     """
     outlist = []
-    for num in nums:
-        if num % 2 == 0:
-            outlist.append(num)
+    for i in range(len(nums)):
+        if nums[i] % 2 == 0:
+            outlist.append(i)
+
 
     return outlist
 
