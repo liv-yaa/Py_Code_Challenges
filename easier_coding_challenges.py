@@ -39,7 +39,7 @@ https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboa
 - Reverse a String Recursively
 - Show Even Numbers
 - Snake case to camel case
-- Sort Sorted Lists
+!X Sort Sorted Lists
 (!!) Split a String
 X Sum List
 X Sum List Recursively
@@ -88,7 +88,7 @@ def sort_ab(a, b):
     return outlist
 
 
-# def split(astring, splitter):
+def split(astring, splitter):
     """Split a string by splitter and return list of splits.
     (Words like built in split() method! Dont use regex)
 
@@ -106,29 +106,24 @@ def sort_ab(a, b):
 
 
     """
-    # lst = []
-    # word = "" # First word
+    lst = []
+    index = 0
 
-    # l = len(splitter)
+    # Get chunks of length l from astring:
+    while index <= len(astring):
 
-    # # Get chunks of length l from astring:
-    # for i in range(len(astring)):
-    #     chunk = astring[i:i+l]
+        curr = index
+        index = astring.find(splitter, index)
 
-    #     if chunk == splitter:
+        if index != -1:
+            lst.append(astring[curr:index])
+            index += len(splitter)
 
+        else:
+            lst.append(astring[curr:])
+            break
 
-    #         lst.append(word)
-    #         word = ""
-
-    #         i += l + 1
-
-    #     else:
-    #         word += astring[i]
-
-    # lst.append(word)
-
-    # return lst
+    return lst
 
 
 def sum_list_n(num_list):
