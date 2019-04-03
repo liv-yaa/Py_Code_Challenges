@@ -57,9 +57,19 @@ def sort_ab(a, b):
 
     """
 
+    outlist = []
+
+    for i in a:
+        for j in b:
+            if i > j:
+                outlist.append(j)
+            outlist.append(i)
+
+    return outlist
 
 
-    return [1, 2, 3, 5, 6, 7, 8, 10]
+
+    # return [1, 2, 3, 5, 6, 7, 8, 10]
 
 
 # def split(astring, splitter):
