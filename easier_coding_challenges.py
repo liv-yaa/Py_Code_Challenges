@@ -85,11 +85,32 @@ def snake_to_camel(variable_name):
   
         return ""
         
-    
     return variable_name
 
+def snake_to_camel2(variable_name):
+    """
+    This is their more succinct solution https://fellowship.hackbrightacademy.com/materials/challenges/snake-to-camel/solution/index.html
+    Given a variable name in snake_case, return camelCase of name.
 
+    >>> snake_to_camel2("hi_balloonicorn")
+    'hiBalloonicorn'
 
+    >>> snake_to_camel2("_")
+    ''
+    
+    >>> snake_to_camel2("L_L")
+    'LL'
+
+    >>> snake_to_camel2("")
+    ''
+
+    """ 
+    words = variable_name.split("_")
+
+    for i in range(1, len(words)):
+        words[i] = words[i].capitalize()
+
+    return "".join(words)
 
 
 def sort_ab(a, b):
