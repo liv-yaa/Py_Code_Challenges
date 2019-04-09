@@ -330,7 +330,7 @@ def word_lengths(sentence):
 
 
 
-def numJewelsInStones(self, J: str, S: str) -> int:
+def numJewelsInStones(J: str, S: str) -> int:
     """
     Leetcode #771
     You're given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.
@@ -351,23 +351,44 @@ def numJewelsInStones(self, J: str, S: str) -> int:
     return count
 
 
-def repeatedNTimes(self, A: List[int]) -> int:
+
+
+
+def repeatedNTimes(A) -> int:
     """
     Leetcode problem 961
+    In a array A of size 2N, there are N+1 unique elements, and exactly one of these elements is repeated N times.
+
+    Return the element repeated N times.
+
+
+    >>> repeatedNTimes([1,2,3,3])
+    3
+
+    >>> repeatedNTimes([2,1,2,5,3,2])
+    2
+
+    >>> repeatedNTimes([5,1,5,2,5,3,5,4])
+    5
+
     """
-    dct = {}
-    n = len(A) // 2 # Array given is length 2n
+    # dct = {}
+    # n = len(A) // 2 # Array given is length 2n
     
-    for item in A:
-        if item in dct:
-            dct[item] += 1
-        else:
-            dct[item] = 1
+    # for item in A:
+    #     if item in dct:
+    #         dct[item] += 1
+    #     else:
+    #         dct[item] = 1
     
-    for k, v in dct.items():
-        # print(k, v)
-        if v == n:
-            return(k)
+    # for k, v in dct.items():
+    #     # print(k, v)
+    #     if v == n:
+    #         return(k)
+
+    # print(sum(A) - sum(set(A))) # the sum() function 
+
+    return int((sum(A)-sum(set(A))) // (len(A)//2-1))
             
 
 
