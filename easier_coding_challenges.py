@@ -46,6 +46,9 @@ X Sum List Recursively
 X Word Count
 X Word Lengths
 
+Leetcode problems:
+
+
 """
 def show_evens(nums):
     """Given list of ints, return list of *indices* of even numbers in list.
@@ -324,6 +327,48 @@ def word_lengths(sentence):
     #     *** Note: They did not recommend
     # lengths.setdefault(len(word), set()).add(word) 
     # ***   
+
+
+
+def numJewelsInStones(self, J: str, S: str) -> int:
+    """
+    Leetcode #771
+    You're given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.
+
+    The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A".
+
+    Example 1:
+    >>> numJewelsInStones("aA", "aAAbbbb")
+    3
+
+    Input: J = "z", S = "ZZ"
+    Output: 0
+    """
+    count = 0
+    for letter in S:
+        if letter in J:
+            count = count + 1
+    return count
+
+
+def repeatedNTimes(self, A: List[int]) -> int:
+    """
+    Leetcode problem 961
+    """
+    dct = {}
+    n = len(A) // 2 # Array given is length 2n
+    
+    for item in A:
+        if item in dct:
+            dct[item] += 1
+        else:
+            dct[item] = 1
+    
+    for k, v in dct.items():
+        # print(k, v)
+        if v == n:
+            return(k)
+            
 
 
 
