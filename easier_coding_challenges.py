@@ -372,23 +372,14 @@ def repeatedNTimes(A) -> int:
     5
 
     """
-    # dct = {}
-    # n = len(A) // 2 # Array given is length 2n
-    
-    # for item in A:
-    #     if item in dct:
-    #         dct[item] += 1
-    #     else:
-    #         dct[item] = 1
-    
-    # for k, v in dct.items():
-    #     # print(k, v)
-    #     if v == n:
-    #         return(k)
-
-    # print(sum(A) - sum(set(A))) # the sum() function 
-
-    return int((sum(A)-sum(set(A))) // (len(A)//2-1))
+        
+    counts = dict()
+        for i in A:
+            counts[i] = counts.get(i, 0) + 1 # Study!
+        
+        for k, v in counts.items():
+            if v == len(A) // 2:
+                return(k)
             
 
 
