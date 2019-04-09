@@ -1,7 +1,7 @@
 """
-https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboard-easier
 
-"Easier":
+"Easier" https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboard-easier
+:
 - Add to Zero
 - Anagram of Palindrome
 - Binary Search
@@ -47,6 +47,8 @@ X Word Count
 X Word Lengths
 
 Leetcode problems:
+X numJewelsInStones
+X repeatedNTimes
 
 
 """
@@ -329,7 +331,6 @@ def word_lengths(sentence):
     # ***   
 
 
-
 def numJewelsInStones(J: str, S: str) -> int:
     """
     Leetcode #771
@@ -351,9 +352,6 @@ def numJewelsInStones(J: str, S: str) -> int:
     return count
 
 
-
-
-
 def repeatedNTimes(A) -> int:
     """
     Leetcode problem 961
@@ -371,15 +369,18 @@ def repeatedNTimes(A) -> int:
     >>> repeatedNTimes([5,1,5,2,5,3,5,4])
     5
 
-    """
-        
+    """    
     counts = dict()
-        for i in A:
-            counts[i] = counts.get(i, 0) + 1 # Study!
-        
-        for k, v in counts.items():
-            if v == len(A) // 2:
-                return(k)
+    for i in A:
+        counts[i] = counts.get(i, 0) + 1 # Study!
+    
+    for k, v in counts.items():
+        if v == len(A) // 2:
+            return(k)
+
+def sortedSquares(A: List[int]) -> List[int]:
+    
+        return sorted(item ** 2 for item in A)
             
 
 
