@@ -381,8 +381,12 @@ def repeatedNTimes(A) -> int:
 def sortedSquares(A: List[int]) -> List[int]:
     
         return sorted(item ** 2 for item in A)
-            
-
+        
+def sortArrayByParity(A: List[int]) -> List[int]:
+    
+    out = [even for even in A if even % 2 == 0]
+    out.extend([odd for odd in A if odd % 2 == 1])
+    return out
 
 
 
