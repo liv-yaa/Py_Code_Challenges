@@ -437,6 +437,26 @@ def numUniqueEmails(emails) -> int:
     return len(uniques)
 
 
+
+def addStrings(num1: str, num2: str) -> str:
+    summer = 0
+    ints = "0123456789"
+    
+    for num in [num1, num2]:
+
+        i = 0
+        j = 1
+        while i < len(num):
+            z = num[len(num) - 1 - i]
+            x = ints.index(z)
+            summer += x * j
+
+            # Increment
+            i += 1
+            j *= 10
+                
+    return str(summer)
+
 # Doctest Section:
 if __name__ == '__main__':
     import doctest
