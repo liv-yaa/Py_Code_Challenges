@@ -516,11 +516,11 @@ def diStringMatch(S: str):
             ans.append(hi)
             hi -= 1
         
-    return ans + [lo]
+    return ans + [lo] # Study
         
 
 
-""" NOTABLE FUNCTIONS!!! 
+""" NOTABLE PY Built In FUNCTIONS!!! 
 >>> bin(4) # convert decimal to binary
 '0b100'            
 """
