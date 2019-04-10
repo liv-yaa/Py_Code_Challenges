@@ -546,6 +546,8 @@ def minDeletionSize(A) -> int:
     Explanation: D = {}
     
     ** Looked up answer **https://leetcode.com/problems/delete-columns-to-make-sorted/submissions/
+
+
     """
     ans = 0
     
@@ -563,6 +565,30 @@ def minDeletionSize(A) -> int:
                 
     return ans
     
+
+def sortArrayByParityII(A):
+    
+    """
+    Given an array A of non-negative integers, half of the integers in A are odd, and half of the integers are even.
+
+    Sort the array so that whenever A[i] is odd, i is odd; and whenever A[i] is even, i is even.
+
+    You may return any answer array that satisfies this condition.
+    Example 1:
+    Input: [4,2,5,7]
+    Output: [4,5,2,7]
+    """
+    out = []
+    evens = [a for a in A if a % 2 == 0]
+    odds = [a for a in A if a % 2 == 1]
+    
+    for i in range(len(evens)):
+        
+        out.append(evens[i])
+        out.append(odds[i])
+        
+    return out
+            
 
 
 """ NOTABLE PY Built In FUNCTIONS!!! 
