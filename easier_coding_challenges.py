@@ -480,10 +480,51 @@ def flipAndInvertImage(A):
         
     return out
         
+
 def judgeCircle(moves: str) -> bool:
+    """
+    https://leetcode.com/problems/robot-return-to-origin/
+    """
     
     return (moves.count('D') == moves.count('U') and moves.count('L') == moves.count('R'))     
-            
+
+
+def diStringMatch(S: str):
+    """
+        
+    Given a string S that only contains "I" (increase) or "D" (decrease), let N = S.length.
+
+    Return any permutation A of [0, 1, ..., N] such that for all i = 0, ..., N-1:
+
+    If S[i] == "I", then A[i] < A[i+1]
+    If S[i] == "D", then A[i] > A[i+1]
+
+
+    ** I looked up solution https://leetcode.com/problems/di-string-match/solution/
+    """
+    # Initialize indices:
+    lo = 0
+    hi = len(S)
+    ans = []
+
+    # Add to ans list, taking from highest and lowest each time depending on what is specified:
+    for x in S:
+        if x == "I":
+            ans.append(lo)
+            lo += 1
+        else:
+            ans.append(hi)
+            hi -= 1
+        
+    return ans + [lo]
+        
+
+
+""" NOTABLE FUNCTIONS!!! 
+>>> bin(4) # convert decimal to binary
+'0b100'            
+"""
+
 
 # Doctest Section:
 if __name__ == '__main__':
