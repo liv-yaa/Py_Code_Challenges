@@ -602,6 +602,9 @@ def canPlaceFlowers(flowerbed, n) -> bool:
     False
     
     """
+    print(n)
+
+
     return False
     
         
