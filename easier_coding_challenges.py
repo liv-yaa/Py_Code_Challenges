@@ -611,11 +611,45 @@ def canPlaceFlowers(flowerbed, n) -> bool:
         
             
 
+class InterestingCodingNotes:
+    pass        
+    """ NOTABLE PY Built In FUNCTIONS!!! 
 
-""" NOTABLE PY Built In FUNCTIONS!!! 
->>> bin(4) # convert decimal to binary
-'0b100'            
-"""
+
+
+
+    >>> bin(4) # convert decimal to binary
+    '0b100'
+
+
+
+
+
+
+    ## "Boolean Logical "Short Circuiting" - an interesting idomatic way to use "or" in python:
+    def __init__(self, data, children=None):
+        self.data = data
+        self.children = children or [] 
+
+
+    ## Equivalent to:
+    def __init__(self, data, children=None):
+        self.data = data
+        if children is None:
+            # make sure we make a new, separate empty list
+            self.children = []
+        else:
+            self.children = children
+
+
+
+
+
+
+
+
+
+    """
 
 
 # Doctest Section:
