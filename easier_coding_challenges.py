@@ -678,6 +678,32 @@ def jumpingOnClouds(c):
         
     return jumps
 
+def repeatedString(s, n):
+    """ 
+    Count the occurances of 'a' in string s, repeated infinitely,
+    for the chunk up to n total.
+
+    >>> repeatedString('aba', 10)
+    7
+
+    >>> repeatedString('a', 1000000000000)
+    1000000000000
+
+    Looked up answer :/
+    https://www.hackerrank.com/challenges/repeated-string/forum
+    """
+    count = 0
+
+    count = s.count("a") * (n // len(s)) + s[:n % len(s)].count("a")
+    # print(n % len(s)) # 10 % 3 = 1, AND # 1000000000000 % 1 = 0 
+
+    # chunk = s[:n % len(s)] # [a] AND [], respectively
+    # print(list(chunk))
+
+    # print(chunk.count('a'))
+
+    # print(n // len(s))
+    return count
 
 
 
