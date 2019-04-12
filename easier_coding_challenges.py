@@ -650,6 +650,7 @@ def jumpingOnClouds(c):
     >>> jumpingOnClouds(c=[0, 0, 0, 0, 1, 0])
     3
 
+    https://www.hackerrank.com/challenges/jumping-on-the-clouds/
     """
 
     avoid = [i for i in range(len(c)) if c[i] == 1]
