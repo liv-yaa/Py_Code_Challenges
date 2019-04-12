@@ -596,10 +596,10 @@ def canPlaceFlowers(flowerbed, n) -> bool:
     Given a flowerbed (represented as an array containing 0 and 1, where 0 means empty and 1 means not empty), and a number n, return if n new flowers can be planted in it without violating the no-adjacent-flowers rule.
 
     Examples:
-    >>> canPlaceFlowers([1,0,0,0,1], n = 1)
-    Output: True
-    >>> canPlaceFlowers([1,0,0,0,1], n = 2)
-    False
+    # >>> canPlaceFlowers([1,0,0,0,1], n = 1)
+    # Output: True
+    # >>> canPlaceFlowers([1,0,0,0,1], n = 2)
+    # False
     
     """
     print(n)
@@ -608,8 +608,46 @@ def canPlaceFlowers(flowerbed, n) -> bool:
     return False
     
         
-        
+def countingValleys(n, s):
+    """
+    return an integer that denotes the number of valleys Gary traversed
+
+    n: the number of steps Gary takes
+    s: a string describing his path
+
+    >>> countingValleys(8, 'UDDDUDUU')
+    1
+
+    >>> countingValleys(12, 'DDUUDDUDUUUD')
+    2
+
+    >>> countingValleys(5, 'UUDUU')
+    0
+
+    """
+    L=0
+    V=0
+    for st in s:
+        if st == 'U':
+            L += 1
+            if L == 0:
+                V += 1
+        else:
+            L -= 1
             
+    return V
+       
+            
+
+
+
+
+
+
+
+
+
+
 
 class InterestingCodingNotes:
     pass        
