@@ -632,7 +632,7 @@ class InterestingCodingNotes:
         self.children = children or [] 
 
 
-    ## Equivalent to:
+    -- Equivalent to:
     def __init__(self, data, children=None):
         self.data = data
         if children is None:
@@ -640,6 +640,69 @@ class InterestingCodingNotes:
             self.children = []
         else:
             self.children = children
+
+
+
+
+
+
+    ## 'is' operator for boolean
+    >>> snape.children is flitwick.children
+    False
+
+
+
+
+
+
+
+
+    ## In trees:
+
+    ## - a "Depth First Search" uses a STACK
+            - This is because we want to get First In First Out
+            - Search through all chilren recursively before we move to the next sibling 
+
+    ## - a "Breadth First Search" uses a QUEUE
+            - We want to get Last In First Out
+            - Search through all siblings before going on to the next child.
+
+
+
+
+
+
+    ## Q: Which methods are in Node class? Which methods are in Tree class?
+    You may find it useful to make a Tree class sometimes, though – but you’ll 
+    often delegate methods like find onto the root node. This lets you use them 
+    for the entire tree, while also being able to search directly on a lower-level node.
+
+        class Tree(object):  # ...
+        def find_in_tree(self, data):
+            ## Return node object with this data.
+            ## Start at root. Return None if not found.
+        
+            return self.root.find(data)
+
+
+        class Node(object):  # ...
+        def find(self, data):
+            # Return node object with this data.
+            # Start here. Return None if not found.
+
+            to_visit = [self]
+
+            while to_visit:
+                current = to_visit.pop()
+
+                if current.data == data:
+                    return current
+
+                to_visit.extend(current.children)
+
+
+
+
 
 
 
