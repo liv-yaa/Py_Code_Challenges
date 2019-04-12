@@ -706,8 +706,30 @@ def repeatedString(s, n):
     return count
 
 
+# from collections import Counter
 
+def checkMagazine(magazine, ransom):
+    """
+    https://www.hackerrank.com/challenges/ctci-ransom-note/problem?isFullScreen=true
+    
+    >>> checkMagazine('two times three is not four', 'two times two is four')
+    'No'
 
+    >>> checkMagazine('ive got a lovely bunch of coconuts', 'ive got some coconuts')
+    'No'
+
+    >>> checkMagazine('give me one grand today night', 'give one grand today')
+    'Yes'
+
+    """
+
+    result = True
+
+    for word in ransom.split():
+        if (word not in magazine.split()) or (ransom.split().count(word) != magazine.split().count(word)):
+            result = False
+
+    return 'Yes' if result else 'No'
 
 
 
