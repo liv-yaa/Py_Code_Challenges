@@ -638,7 +638,44 @@ def countingValleys(n, s):
     return V
        
             
+def jumpingOnClouds(c):
+    """
+    return the minimum number of jumps req'd to traverse array.
+    c: an array of binary integers, 0 is legal and 1 is illegal
+    jumps can be +2 or +1 only.
 
+    >>> jumpingOnClouds(c=[0, 0, 1, 0, 0, 1, 0])
+    4
+
+    >>> jumpingOnClouds(c=[0, 0, 0, 0, 1, 0])
+    3
+
+    """
+
+    avoid = [i for i in range(len(c)) if c[i] == 1]
+    l = len(c)
+
+    jumps = 0
+    j = 0 # First index has to be legal
+    while j < len(c):
+        # Try to jump 2
+        if (j + 2) not in avoid and (j + 2) < len(c):
+            j = j + 2
+            jumps += 1
+            if j == len(c):
+                break
+        
+        # Try to jump 1
+        elif (j + 1) not in avoid and (j + 1) < len(c):
+            j = j + 1
+            jumps += 1
+            if j == len(c):
+                break
+
+        else:
+            break
+        
+    return jumps
 
 
 
