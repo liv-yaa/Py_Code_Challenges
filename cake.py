@@ -51,7 +51,7 @@ def binary_search(target, nums):
 
 def merge_sort(list_to_sort):
     """
-    
+    https://www.interviewcake.com/article/python/logarithms?course=fc1&section=algorithmic-thinking
     """
     # Base case: lists with fewer than 2 elements are sorted
     if len(list_to_sort) < 2:
@@ -85,6 +85,72 @@ def merge_sort(list_to_sort):
             sorted_list.append(sorted_right[current_index_right])
             current_index_right += 1
     return sorted_list
+
+
+
+def merge_ranges(meetings):
+    """
+    A feature to see the times in a day when everyone is available.
+    In HiCal, a meeting is stored as a tuple ↴ of integers (start_time, end_time). 
+    These integers represent the number of 30-minute blocks past 9:00am.
+    https://www.interviewcake.com/question/python3/merging-ranges?course=fc1&section=array-and-string-manipulation    
+    
+    >>> merge_ranges([(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)])
+    [(0, 1), (3, 8), (9, 12)]
+
+    """
+
+    # Merge meeting ranges
+    # Want to do O(n) - What if we sorted our list of meetings by start time?
+
+    sort_meetings = sorted(meetings)
+    
+
+    merged_meetings = [sort_meetings[0]]
+    
+    
+    for curr_start, curr_end in sort_meetings[1:]:
+        last_merged_start, last_merged_end = merged_meetings[-1]
+        
+        if (curr_start <= last_merged_end):
+            merged_meetings[-1] = (last_merged_start, max(last_merged_end, curr_end))
+            
+        else:
+            merged_meetings.append((curr_start, curr_end))
+    
+
+
+    return merged_meetings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# overlap = [0, 0] # Tuples are immutable but we can change at end
+
+# if tup[0] > 0:
+#     overlap[0] += tup[0]
+
+# if tup[1] > 0:
+#     overlap[1] += tup[1]
+
+# outList.append(tuple(overlap))    
+
+
+
+
 
 
 
