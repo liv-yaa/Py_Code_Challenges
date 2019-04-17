@@ -140,42 +140,57 @@ def reverse_list(lst):
     ['c']
 
     """
-    if len(lst) > 2:
-        for i in range(len(lst)):
-            temp1 = lst[i]
-            temp2 = lst[-1 - i]
-            lst[i] = temp2 
-            lst[-1 - i ] = temp1
 
-    # print(lst)
+    left = 0
+    right = len(lst) - 1
+
+    while left < right:
+
+        # Swap, move toward middle:
+
+        lst[left], lst[right] = lst[right], lst[left]
+        left += 1
+        right -= 1
     
 
     return lst
 
+def reverse_characters(message, left_index, right_index):
+    # Walk towards the middle, from both sides
+    while left_index < right_index:
+        # Swap the left char and right char
+        message[left_index], message[right_index] = \
+            message[right_index], message[left_index]
+        left_index  += 1
+        right_index -= 1
 
+def reverse_words(message):
+    """
+    Takes a message as a list of characters and reverses the order of the words in place
+    * Space separated
+    
+    >>> reverse_words(['a', ' ', 'c', 'a', 't'])
+    ['c', 'a', 't', ' ', 'a']
 
+    >>> reverse_words(['c', 'a', 't'])
+    ['c', 'a', 't']
 
+    >>> reverse_words([])
+    []
 
+    """
+    # Use above fxn
+    reverse_characters(message, 0, len(message)-1)
 
+    # Un-scramble each word
+    # current word start index
+    index = 0
 
+    for i in range(len(lst) + 1):
+        if i == len(message) or message[i] == ' ':
+            reverse_characters(message, index, i - 1)
 
-
-
-
-# overlap = [0, 0] # Tuples are immutable but we can change at end
-
-# if tup[0] > 0:
-#     overlap[0] += tup[0]
-
-# if tup[1] > 0:
-#     overlap[1] += tup[1]
-
-# outList.append(tuple(overlap))    
-
-
-
-
-
+            index += 1
 
 
 
