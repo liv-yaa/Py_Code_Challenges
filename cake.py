@@ -124,9 +124,33 @@ def merge_ranges(meetings):
 
 
 
+def reverse_list(lst):
+    """
+    Write a function that takes a list of characters and reverses the letters in place. ↴
 
+    (note lists are mutable but strings are not)
 
+    >>> reverse_list(['a', 'b', 'c'])
+    ['c', 'b', 'a']
+    >>> reverse_list(['a', 'b'])
+    ['b', 'a']
+    >>> reverse_list([])
+    []
+    >>> reverse_list(['c'])
+    ['c']
 
+    """
+    if len(lst) > 2:
+        for i in range(len(lst)):
+            temp1 = lst[i]
+            temp2 = lst[-1 - i]
+            lst[i] = temp2 
+            lst[-1 - i ] = temp1
+
+    # print(lst)
+    
+
+    return lst
 
 
 
