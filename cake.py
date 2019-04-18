@@ -450,14 +450,9 @@ def word_cloud(string):
 
         for item in listo:
 
-            val = counts.get(item, 0)
+            counts[item] = counts.get(item, 0) + 1
 
 
-            counts[item] = val + 1
-
-
-
-    # print(counts)
     return counts
 
 
