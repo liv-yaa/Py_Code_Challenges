@@ -422,7 +422,7 @@ def has_pal_perm(string):
     return len(unpaired) <= 1
 
 
-def is_palindrome(str):
+def is_palindrome(string):
     """ 
     Helper fxn for perm_palin; keeps two "pointers" and walks through string:
     
@@ -472,6 +472,62 @@ def is_palindrome(str):
                 # print("Not a match ")
 
                 return False
+
+
+
+def word_cloud(string):
+    """
+    Build a word cloud, an infographic where the size of a word corresponds 
+    to how often it appears in the body of text.
+    Return a word count dictionary.
+    
+    >>> word_cloud("cloudy cloudy day")
+    {'cloudy':2, 'day':2}
+
+    """ 
+    counts = {}
+
+    for char in string:
+
+        print counts.get(char)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
