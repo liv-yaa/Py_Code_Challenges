@@ -422,58 +422,6 @@ def has_pal_perm(string):
     return len(unpaired) <= 1
 
 
-def is_palindrome(string):
-    """ 
-    Helper fxn for perm_palin; keeps two "pointers" and walks through string:
-    
-    >>> is_palindrome("")
-    True
-    >>> is_palindrome("a")
-    True
-    >>> is_palindrome("aa")
-    True
-    >>> is_palindrome("aba")
-    True
-    >>> is_palindrome("ba")
-    False
-    >>> is_palindrome("bba")
-    False
-    
-    
-     
-    """
-
-
-    l = len(str)
-    mid = l // 2
-    start = 0
-
-    if l < 2:
-        return True
-
-    else:
-        end = l - 1
-
-        while start <= mid:
-
-            if start == mid:
-
-                # Got to middle! Success
-                return True
-
-
-            if str[start] == str[end]:
-                start += 1
-                end -= 1
-
-                # print("New ", str[start], str[end])
-
-            else:
-                # print("Not a match ")
-
-                return False
-
-
 
 def word_cloud(string):
     """
@@ -482,14 +430,38 @@ def word_cloud(string):
     Return a word count dictionary.
     
     >>> word_cloud("cloudy cloudy day")
-    {'cloudy':2, 'day':2}
+    {'cloudy': 2, 'day': 1}
+
+    >>> word_cloud("cloudy cloudy day day day")
+    {'cloudy': 2, 'day': 3}
+
+    >>> word_cloud("")
+    {}
 
     """ 
     counts = {}
+    listo = string.split(" ")
 
-    for char in string:
+    # This method returns the value for the given key, if present in the 
+    # dictionary. If not, then it will return None (if get() is used with 
+    # only one argument).
 
-        print counts.get(char)
+    if len(listo) > 1:
+
+        for item in listo:
+
+            val = counts.get(item, 0)
+
+
+            counts[item] = val + 1
+
+
+
+    # print(counts)
+    return counts
+
+
+
 
 
 
