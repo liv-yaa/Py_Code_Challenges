@@ -435,6 +435,9 @@ def word_cloud(string):
     >>> word_cloud("cloudy cloudy day day day")
     {'cloudy': 2, 'day': 3}
 
+    >>> word_cloud("Cloudy cloudy Day day day")
+    {'cloudy': 2, 'day': 3}
+
     >>> word_cloud("")
     {}
 
