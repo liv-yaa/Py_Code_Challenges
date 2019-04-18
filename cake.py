@@ -155,42 +155,211 @@ def reverse_list(lst):
 
     return lst
 
-def reverse_characters(message, left_index, right_index):
-    # Walk towards the middle, from both sides
-    while left_index < right_index:
-        # Swap the left char and right char
-        message[left_index], message[right_index] = \
-            message[right_index], message[left_index]
-        left_index  += 1
-        right_index -= 1
+# def reverse_characters(message, left_index, right_index):
+#     # Walk towards the middle, from both sides
+#     while left_index < right_index:
+#         # Swap the left char and right char
+#         message[left_index], message[right_index] = \
+#             message[right_index], message[left_index]
+#         left_index  += 1
+#         right_index -= 1
 
-def reverse_words(message):
-    """
-    Takes a message as a list of characters and reverses the order of the words in place
-    * Space separated
+# def reverse_words(message):
+#     """
+#     Takes a message as a list of characters and reverses the order of the words in place
+#     * Space separated
     
-    >>> reverse_words(['a', ' ', 'c', 'a', 't'])
-    ['c', 'a', 't', ' ', 'a']
+#     >>> reverse_words(['a', ' ', 'c', 'a', 't'])
+#     ['c', 'a', 't', ' ', 'a']
 
-    >>> reverse_words(['c', 'a', 't'])
-    ['c', 'a', 't']
+#     >>> reverse_words(['c', 'a', 't'])
+#     ['c', 'a', 't']
 
-    >>> reverse_words([])
-    []
+#     >>> reverse_words([])
+#     []
+
+#     """
+#     # Use above fxn
+#     reverse_characters(message, 0, len(message)-1)
+
+#     # Un-scramble each word
+#     # current word start index
+#     index = 0
+
+#     for i in range(len(message) + 1):
+#         if i == len(message) or message[i] == ' ':
+#             reverse_characters(message, index, i - 1)
+
+#             index += 1
+
+
+def merge_lists(l1, l2):
+    """
+    Not done!
+    We have our lists of orders sorted numerically already, in lists. 
+    Write a function to merge our lists of orders into one sorted list.
+
+    # >>> merge_lists([3, 4, 6, 10, 11, 15], [1, 5, 8, 12, 14, 19])
+    # [1, 3, 4, 5, 6, 8, 10, 11, 12, 14, 15, 19]
 
     """
-    # Use above fxn
-    reverse_characters(message, 0, len(message)-1)
 
-    # Un-scramble each word
-    # current word start index
-    index = 0
+    out = [None] * (len(l1) + len(l2))
 
-    for i in range(len(lst) + 1):
-        if i == len(message) or message[i] == ' ':
-            reverse_characters(message, index, i - 1)
+    print(l1, len(l1))
+    print(l2, len(l2))
+    print(out, len(out))
 
-            index += 1
+
+    i = 0
+    idx1 = 0
+    idx2 = 0
+
+    while i < len(out):
+        print(i)
+        curr1 = l1[idx1]
+        curr2 = l2[idx2]
+        print(curr1, curr2)
+
+        if i < len(out):
+
+            if curr1 < curr2:
+
+                out[i] = curr1
+                print("Out", out)
+                i += 1
+                idx1 += 1
+
+            else:
+
+                out[i] = curr2
+                print("Out", out)
+                i += 1
+                idx2 += 1       
+
+    print(out)
+    return out
+
+def is_riffle(half1, half2, deck):
+    """
+    Write a RECURSIVE function that takes a deck and checks if it has been shuffled in a "riffle" way
+
+    ## If deck is a "riffle" of half1 and half2, the first card from deck
+    ## should be either the same as the first card from half1 or the same as the 
+    ## first card from half 2.
+
+    ## Go through the deck, matching and throwing out as you match
+    ## If we get to the end, return True
+
+    Note this version is bad! Better version keeps track of indexes...
+
+
+    """
+    if len(deck) == 0:
+        return True # Base case
+
+    # If it exists, is the top of deck the same as the the top of half1?
+    if len(half1) and half1[0] == deck[0]:
+        # Take the tops off both and recurse
+        return is_riffle(half[1:], half2[1:], deck[1:])
+
+    # If it doesn't match, we know it's not:
+    else:
+        return False
+
+
+
+def is_riffle_iter(half1, half2, deck, deck_ix=0, half1_ix=0, half2_ix=0):
+    """
+    Write a Better iterative RECURSIVE function that takes a deck and 
+    checks if it has been shuffled in a "riffle" way
+
+    Note this has better time complexity than the previous recursive version! 
+    Instead of slicing the list, it just keeps track of indexes.
+
+    """
+    # base case is still the same, we have hit the end
+    if deck_ix == len(deck):
+        return True
+
+    # If we still have cards in half1 and the top card is the same
+    # as the top card in deck,
+    if half1_ix < len(half1) and half1[half1_ix] == deck[deck_ix]:
+        half1_ix += 1
+
+
+    # If we still have cards in half2 and the top card is the same
+    # as the top card in deck,
+    elif half2_ix < len(half2) and half2[half2_ix] == deck[deck_ix]:
+        half2_ix += 1
+
+    # If either half is depleted OR there are not matches,
+    else:
+        return False
+
+    #Move on to the next card:
+    deck_ix += 1
+
+    return is_riffle_iter(half1, half2, deck, deck_ix, half1_ix, half2_ix)
+
+
+def is_riffle_best(half1, half2, deck):
+    half1_ix = 0
+    half2_ix = 0
+    half1_max_ix = len(half1) - 1
+    half2_max_ix = len(half2) - 1
+
+    for card in deck:
+        # If we still have cards in half1 and the "top" card in half1 is the same,
+        if half1_ix <= half1_max_ix and card == half1[half1_ix]:
+            half1_ix += 1
+
+        # If we still have cards in half1 and the "top" card in half1 is the same,
+        elif half2_ix <= half2_max_ix and card == half2[half2_ix]:
+            half2_ix += 1
+
+        else:
+            return False
+
+    # If all cards in shuffled deck have been accounted for, this is a riffle!
+    return True
+
+
+def time_equal(flight_length, movie_lengths):
+    """Write a function that takes an integer flight_length (in minutes) and a
+    list of integers movie_lengths (in minutes) and returns a
+    boolean indicating whether there are two numbers in movie_lengths whose
+    sum equals flight_length.
+
+    >>> time_equal(0, [3, 3, 4])
+    False
+    >>> time_equal(10, [3, 7, 4])
+    True
+    >>> time_equal(100, [30, 70])
+    True
+    >>> time_equal(100, [])
+    False
+
+    """
+
+    if len(movie_lengths) > 1:
+
+        for m in movie_lengths:
+
+            for n in movie_lengths:
+
+                if m + n == flight_length:
+
+                    return True
+
+    return False
+
+
+
+
+
+
+
 
 
 
