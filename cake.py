@@ -340,23 +340,138 @@ def time_equal(flight_length, movie_lengths):
     >>> time_equal(100, [])
     False
 
+    Time is O(n) 
+
+    Are you sure your function won’t give a false positive if the 
+    list has one element that is half flight_length? 
+    >> Solution : Pop the item once you get it
+
     """
 
-    if len(movie_lengths) > 1:
+    while len(movie_lengths) > 1:
 
-        for m in movie_lengths:
+        # Get the first item of movie_lengths:
+        m1 = movie_lengths[0]
 
-            for n in movie_lengths:
+        # Create a set with the remaining elements:
+        others = set(movie_lengths[1:]) # Oo this slice is bad, takes O(n)?
 
-                if m + n == flight_length:
-
-                    return True
+        # Get the value we are looking for:
+        delta = flight_length - m1
+        
+        return delta in others # This takes O(n)
 
     return False
 
 
+def perm_palin(string):
+    """
+    Write an efficient function that checks whether 
+    any permutation ↴ of an input string is a palindrome. ↴
+
+    >>> perm_palin("civic")
+    True
+    >>> perm_palin("ivicc")
+    True
+    >>> perm_palin("civil")
+    False
+    >>> perm_palin("livci")
+    False
+
+    HINT:
+    - Check that each character left of the middle has a corresponding 
+    copy right of the middle
+    - Then check each character appears an even number of times
+    - ONE char appears an odd number of times!
+    - Data structure to use: DICTIONARY (with the char : boolean )
+
+    # Overall time is O(n) + O(n) so still linear
+
+    """
+
+    # Create dict for characts:bools
+    dic = {}
+
+    # Iterate and add to dict: O(n)
+    for char in string:
+        parity = True # Stand in for Even Parity
+
+        if string.count(char) % 2 == 1:
+            parity = False # Stand in for Odd Parity
+
+        dic[char] = parity
 
 
+    # see if count of odd parity != 1 or 0 ... O(m)
+    odd_count = [v for v in dic.values()].count(False)
+    return odd_count == 1 or odd_count == 0
+
+
+def has_pal_perm(string):
+    # Their implementation. Faster?
+    unpaired = {} # All unpaired characters
+
+    for char in string:
+
+        if char in unpaired:
+            unpaired.remove(char)
+
+        else:
+            unpaired.add(char)
+
+    return len(unpaired) <= 1
+
+
+def is_palindrome(str):
+    """ 
+    Helper fxn for perm_palin; keeps two "pointers" and walks through string:
+    
+    >>> is_palindrome("")
+    True
+    >>> is_palindrome("a")
+    True
+    >>> is_palindrome("aa")
+    True
+    >>> is_palindrome("aba")
+    True
+    >>> is_palindrome("ba")
+    False
+    >>> is_palindrome("bba")
+    False
+    
+    
+     
+    """
+
+
+    l = len(str)
+    mid = l // 2
+    start = 0
+
+    if l < 2:
+        return True
+
+    else:
+        end = l - 1
+
+        while start <= mid:
+
+            if start == mid:
+
+                # Got to middle! Success
+                return True
+
+
+            if str[start] == str[end]:
+                start += 1
+                end -= 1
+
+                # print("New ", str[start], str[end])
+
+            else:
+                # print("Not a match ")
+
+                return False
 
 
 
