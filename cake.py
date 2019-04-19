@@ -3,6 +3,9 @@ Interview Cake - probs
 
 """
 
+import os
+import hashlib # Used in dup files prob
+
 def binary_search(target, nums):
     """See if target appears in nums, Recursively
 
@@ -443,11 +446,9 @@ def word_cloud(string):
 
     """ 
     counts = {}
-    listo = string.split(" ")
+    listo = [s.lower() for s in string.split(" ")]
 
-    # This method returns the value for the given key, if present in the 
-    # dictionary. If not, then it will return None (if get() is used with 
-    # only one argument).
+    # Create word counter for lowercase list:
 
     if len(listo) > 1:
 
@@ -461,44 +462,206 @@ def word_cloud(string):
 
 
 
+def sort_scores(scores, highest):
+    """
+    Write a function that takes:
+    - scores; a list of unsorted scores
+    - highest: the highest_possible_score in the game
+    and returns a sorted list of scores in less than O(nlgn) time.
+    (where n = len(scores))
+
+    >>> sort_scores([37, 89, 41, 65, 91, 53], 100)
+    [91, 89, 65, 53, 41, 37]
+
+    """
+
+    dic = {}
+
+    if len(scores) > 1:
+
+        for s in scores:
+
+            dic[s] = dic.get(s, 0) + 1
+
+            # add the score to a new list sorted_scores as many times as count of appearances.
+    sort = []
+
+    sorted_keys = sorted(dic.keys) 
+    for key in range(len(sorted_keys), -1, -1):
+
+        for n in dic[key]: 
+            sort[0] = key * dic[key]
+
+    # print("sorted_scores", sorted_scores)
+
+    return sort
 
 
 
+def rem_duplicate_files(directory):
+    """
+    Not hte final solution
+    Write a function that returns a list of all the duplicate files. 
+    We'll check them by hand before actually deleting them, since 
+    programmatically deleting files is really scary. To help us confirm that 
+    two files are actually duplicates, return a list of tuples ↴ where:
+
+        the first item is the duplicate file
+        the second item is the original file
+
+    >>> rem_duplicate_files()
+
+    3 data struectures:
+    - a dictionary to hold the files we've already seen
+    - a stack ↴ (we'll implement ours with a list) to hold directories and files as we go through them
+    - a list to hold our output tuples
+      
+    """
+    seen_already = {}
+    stack = [directory] # starting directory, as list
+    dups = [] # duplicates - tuples of (dup file, orig file)
+
+    while len(stack) > 0:
+        current_path = stack.pop()
+
+        # If it's a directory, put the contents in our stack
+        if os.path.isdir(current_path):
+            for path in os.listdir(current_path, path):
+                full_path = os.path.join(current_path, path)
+
+        # If it's a file,
+        else:
+
+            # Get contents of file
+            with open(current_path) as file:
+                file_contents = file.read()
+
+            # Get the time it was edited
+            edit_time = os.path.getmtime(current_path)
+
+            # If we've seen it before
+            if file_contents in seen_already:
+                existing_time = seen_already[file_contents]
+                existing_path = seen_already[file_contents]
+
+                if edit_time > existing_time:
+
+                    # Current file is the dup!
+                    duplicates.append((current_path, existing_path))
+
+                else:
+
+                    # Delete the old file cuz it's the dup
+                    duplicates.append((existing_path, current_path))
+
+                    seen_already[file_contents] = ((edit_time, current_path))
+
+
+            else:
+
+                # If it's a new file, throw it in seen_already & record the path
+                seen_already[file_contents] = ((edit_time, current_path))
 
 
 
+    return duplicates
+
+
+    # Heruistic: the more recently added file will be the duplicate
 
 
 
+""" Final Solution! to dup file finder """  
+
+def find_dups(starting_dir):
+    """ https://www.interviewcake.com/question/python3/find-duplicate-files?course=fc1&section=hashing-and-hash-tables """
+    files_seen_already = {}
+    stack = [starting_dir]
+
+    duplicates = [] # List of tuples (dup file, orig )
+
+    while len(stack):
+        current_path = stack.pop()
+
+        if os.path.isdir(current_path):
+            for path in os.listdir(current_path):
+                full_path = os.path.join(current_path, path)
+                stack.append(full_path)
+
+        else:
+            # Get it's hash & time if its a file
+            file_hash = sample_hash_file(current_path)
+            last_edit = os.path.getmtime(current_path)
+
+            if file_hash in files_seen_already:
+
+                prev_edit, prev_path = files_seen_already[file_hash]
+
+                # If the current time is greater, it is dup!
+                if last_edit > prev_edit:
+                    duplicates.append((current_path, prev_path))
+
+                else:
+                    duplicates.append((prev_path, current_path))
+
+                    # Update files_seen_already w/ new info
+                    files_seen_already[file_hash] = (last_edit, current_path)
+
+            else:
+                # If it's a new file, throw it in files_seen
+                files_seen_already[file_hash] = (last_edit, current_path)
+
+    return duplicates
 
 
 
+def sample_hash_file(path):
+    # Helper function
+    byte_size = 4000
+    total_bytes = os.path.getsize(path)
+    hasher = hashlib.sha512()
+
+    with open(path, 'rb') as file:
+
+        if total_bytes < byte_size * 3:
+            hasher.update(file.read())
+
+        else:
+            bytes_btw_each = (total_bytes - byte_size * 3) / 2
+
+            # Read first, middle, and last blocks:
+            for x in range(3):
+                start = x * (bytes_btw_each + byte_size)
+                file.seek(start)
+                sample = file.read(byte_size)
+                hasher.update(sample)
+
+    return hasher.hexdigest() 
 
 
+""" Greedy algo for the max profit finder """  
+def get_max_profit(stock_prices):
+    """ stock_prices is a list of stocks from that day
+    note: you can only sell AFTER you buy, and profit could be negative
+    """  
 
+    if len(stock_prices) < 2:
+        raise ValueError('Err, profits require at least 2 prices')
 
+    # Initialize
+    min_price = stock_prices[0]
+    max_profit = stock_prices[1] - stock_prices[0]
 
+    for i in range(1, len(stock_prices)):
+        price = stock_prices[i]
 
+        profit = price - min_price # Potential profit
 
+        max_profit = max(max_profit, profit) # Update if we did better
 
+        min_price = min(min_price, price) # Update if we found lower
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return max_profit
 
 
 
