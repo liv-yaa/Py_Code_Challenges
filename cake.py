@@ -718,8 +718,6 @@ def prod_finder(ints):
         raise IndexError('Getting the product of numbers at other indices requires at least 2 numbers')
 
 
-    # print('ints', ints) #     ints [3, 1, 2, 5, 6, 4]
-
     products = [None] * len(ints)    
 
     # Forward traversal:
