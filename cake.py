@@ -5,6 +5,7 @@ Interview Cake - probs
 
 import os
 import hashlib # Used in dup files prob
+import random
 
 def binary_search(target, nums):
     """See if target appears in nums, Recursively
@@ -688,7 +689,7 @@ def max_prod_of_3(ints):
 
     return hi_of_3
 
-
+""" Greedy algo for TWO passes through a list of ints """  
 def prod_finder(ints):
     """ You have a list of integers, and for each index you want to find 
     the product of every integer except the integer at that index.
@@ -738,7 +739,22 @@ def prod_finder(ints):
     return products
 
 
+""" Greedy algo for an inplace shuffle """  
+def inplace_shuffle(deck):
+    """
+    Write a function for doing an in-place ↴ shuffle (random ordering) of a list.
 
+    The shuffle must be "uniform," meaning each item in the original list must have the same probability of ending up in each spot in the final list.
+
+    Assume that you have a function get_random(floor, ceiling) for getting a random integer that is >= floor and <= ceiling.
+
+    >>> inplace_shuffle([1, 2, 3, 4, 5, 6])
+    []
+
+
+    """
+
+    print(random.randint(1, 111))
 
 
 
