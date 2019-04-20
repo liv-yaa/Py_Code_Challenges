@@ -701,21 +701,22 @@ def prod_finder(ints):
     [24, 0, 0, 0]
 
     >>> prod_finder([1, 7, 3, 4])
-    [84, 12, 28, 21]⁄
+    [84, 12, 28, 21]
 
 
     """
+    # print('ints', ints)
     out = []
 
     for i in ints:
         new = [x for x in ints if x != i]
-        # print(new)
+        # print('new', new)
 
         n = 1
         for m in new:
             n *= m 
 
-        print(n)
+        # print(n)
 
         out.append(n)
 
@@ -731,8 +732,8 @@ def prod_finder(ints):
 if __name__ == '__main__':
     import doctest
 
-    print(prod_finder([1, 2, 3]))
-    print(prod_finder([-3, -5, -7]))
+    # print(prod_finder([1, 2, 3]))
+    # print(prod_finder([-3, -5, -7]))
 
     result = doctest.testmod()
     if result.failed == 0:
