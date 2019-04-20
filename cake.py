@@ -694,6 +694,11 @@ def prod_finder(ints):
     the product of every integer except the integer at that index.
     * No division allowed! *
 
+    Strategy:  
+    The product of all the integers except the integer at each index can be broken down into two pieces:
+        1- the product of all the integers before each index, and
+        2- the product of all the integers after each index.
+
     >>> prod_finder([1, 2, 3, 4])
     [24, 12, 8, 6]
 
@@ -703,24 +708,36 @@ def prod_finder(ints):
     >>> prod_finder([1, 7, 3, 4])
     [84, 12, 28, 21]
 
+    >>> prod_finder([3, 1, 2, 5, 6, 4])
+    [240, 720, 360, 144, 120, 180]
+
+
 
     """
-    # print('ints', ints)
-    out = []
+    if len(ints) < 2:
+        raise IndexError('Getting the product of numbers at other indices requires at least 2 numbers')
 
-    for i in ints:
-        new = [x for x in ints if x != i]
-        # print('new', new)
 
-        n = 1
-        for m in new:
-            n *= m 
+    # print('ints', ints) #     ints [3, 1, 2, 5, 6, 4]
 
-        # print(n)
+    products = [None] * len(ints)    
 
-        out.append(n)
+    # Forward traversal:
+    p = 1 # Product so far, before index
+    for i in range(len(ints)):
 
-    return out
+        products[i] = p
+        p *= ints[i] 
+
+    # Reverse traversal:
+    p = 1 # Re-initialize product so far, for after index
+    for i in range(len(ints) - 1, -1, -1):
+
+        products[i] *= p
+        p *= ints[i]
+
+
+    return products
 
 
 

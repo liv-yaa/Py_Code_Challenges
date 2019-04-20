@@ -2,7 +2,7 @@
 
 "Easier" https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboard-easier
 :
-- Add to Zero
+X Add to Zero
 - Anagram of Palindrome
 - Binary Search
 - Concatenate Lists
@@ -75,7 +75,24 @@ def add_to_zero(nums):
     return False
 
 
+def is_anagram_of_palindrome(word):
+    """Is the word an anagram of a palindrome?
 
+    >>> is_anagram_of_palindrome("a")
+    True
+
+    >>> is_anagram_of_palindrome("ab")
+    False
+
+    >>> is_anagram_of_palindrome("aab")
+    True
+
+    >>> is_anagram_of_palindrome("arceace")
+    True
+
+    >>> is_anagram_of_palindrome("arceaceb")
+    False
+    """
 
 
 def show_evens(nums):
