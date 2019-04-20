@@ -51,7 +51,6 @@ def binary_search(target, nums):
     return False
 
 
-
 def merge_sort(list_to_sort):
     """
     https://www.interviewcake.com/article/python/logarithms?course=fc1&section=algorithmic-thinking
@@ -90,7 +89,6 @@ def merge_sort(list_to_sort):
     return sorted_list
 
 
-
 def merge_ranges(meetings):
     """
     A feature to see the times in a day when everyone is available.
@@ -126,7 +124,6 @@ def merge_ranges(meetings):
     return merged_meetings
 
 
-
 def reverse_list(lst):
     """
     Write a function that takes a list of characters and reverses the letters in place. ↴
@@ -158,42 +155,46 @@ def reverse_list(lst):
 
     return lst
 
-# def reverse_characters(message, left_index, right_index):
-#     # Walk towards the middle, from both sides
-#     while left_index < right_index:
-#         # Swap the left char and right char
-#         message[left_index], message[right_index] = \
-#             message[right_index], message[left_index]
-#         left_index  += 1
-#         right_index -= 1
 
-# def reverse_words(message):
-#     """
-#     Takes a message as a list of characters and reverses the order of the words in place
-#     * Space separated
+def reverse_characters(message, left_index, right_index):
+    # Walk towards the middle, from both sides
+    while left_index < right_index:
+        # Swap the left char and right char
+        message[left_index], message[right_index] = \
+            message[right_index], message[left_index]
+        left_index  += 1
+        right_index -= 1
+
+
+def reverse_words(message):
+    """
+    Takes a message as a list of characters and reverses the order of the words in place
+    * Space separated
+
+    # Need to debug!!
     
-#     >>> reverse_words(['a', ' ', 'c', 'a', 't'])
-#     ['c', 'a', 't', ' ', 'a']
+    # >>> reverse_words(['a', ' ', 'c', 'a', 't'])
+    # ['c', 'a', 't', ' ', 'a']
 
-#     >>> reverse_words(['c', 'a', 't'])
-#     ['c', 'a', 't']
+    # >>> reverse_words(['c', 'a', 't'])
+    # ['c', 'a', 't']
 
-#     >>> reverse_words([])
-#     []
+    # >>> reverse_words([])
+    # []
 
-#     """
-#     # Use above fxn
-#     reverse_characters(message, 0, len(message)-1)
+    """
+    # Use above fxn
+    reverse_characters(message, 0, len(message)-1)
 
-#     # Un-scramble each word
-#     # current word start index
-#     index = 0
+    # Un-scramble each word
+    # current word start index
+    index = 0
 
-#     for i in range(len(message) + 1):
-#         if i == len(message) or message[i] == ' ':
-#             reverse_characters(message, index, i - 1)
+    for i in range(len(message) + 1):
+        if i == len(message) or message[i] == ' ':
+            reverse_characters(message, index, i - 1)
 
-#             index += 1
+            index += 1
 
 
 def merge_lists(l1, l2):
@@ -243,6 +244,7 @@ def merge_lists(l1, l2):
     print(out)
     return out
 
+
 def is_riffle(half1, half2, deck):
     """
     Write a RECURSIVE function that takes a deck and checks if it has been shuffled in a "riffle" way
@@ -269,7 +271,6 @@ def is_riffle(half1, half2, deck):
     # If it doesn't match, we know it's not:
     else:
         return False
-
 
 
 def is_riffle_iter(half1, half2, deck, deck_ix=0, half1_ix=0, half2_ix=0):
@@ -425,7 +426,6 @@ def has_pal_perm(string):
     return len(unpaired) <= 1
 
 
-
 def word_cloud(string):
     """
     Build a word cloud, an infographic where the size of a word corresponds 
@@ -460,8 +460,6 @@ def word_cloud(string):
     return counts
 
 
-
-
 def sort_scores(scores, highest):
     """
     Write a function that takes:
@@ -470,8 +468,8 @@ def sort_scores(scores, highest):
     and returns a sorted list of scores in less than O(nlgn) time.
     (where n = len(scores))
 
-    >>> sort_scores([37, 89, 41, 65, 91, 53], 100)
-    [91, 89, 65, 53, 41, 37]
+    # >>> sort_scores([37, 89, 41, 65, 91, 53], 100)
+    # [91, 89, 65, 53, 41, 37]
 
     """
 
@@ -497,7 +495,6 @@ def sort_scores(scores, highest):
     return sort
 
 
-
 def rem_duplicate_files(directory):
     """
     Not hte final solution
@@ -508,8 +505,6 @@ def rem_duplicate_files(directory):
 
         the first item is the duplicate file
         the second item is the original file
-
-    >>> rem_duplicate_files()
 
     3 data struectures:
     - a dictionary to hold the files we've already seen
@@ -570,7 +565,6 @@ def rem_duplicate_files(directory):
     # Heruistic: the more recently added file will be the duplicate
 
 
-
 """ Final Solution! to dup file finder """  
 
 def find_dups(starting_dir):
@@ -612,7 +606,6 @@ def find_dups(starting_dir):
                 files_seen_already[file_hash] = (last_edit, current_path)
 
     return duplicates
-
 
 
 def sample_hash_file(path):
@@ -664,6 +657,72 @@ def get_max_profit(stock_prices):
     return max_profit
 
 
+""" Greedy algo for the max profit finder """  
+def max_prod_of_3(ints):
+
+    if len(ints) < 3:
+        raise ValueError('Error, less than 3')
+
+    # Initialize
+    hi = max(ints[0], ints[1])
+    lo = min(ints[0], ints[1])
+    hi_of_2 = ints[0] * ints[1] # highest product of 2
+    lo_of_2 = ints[0] * ints[1] # lowest 
+    hi_of_3 = ints[0] * ints[1] * ints[2] # highest product of 3
+
+    # Iter through, updating any of the variables:
+    for i in range(2, len(ints)):
+        curr = ints[i]
+
+        hi_of_3 = max(hi_of_3,
+                        curr * hi_of_2,
+                        curr * lo_of_2)
+        hi_of_2 = max(hi_of_2,
+                        curr * hi,
+                        curr * lo)
+        lo_of_2 = min(lo_of_2,
+                        curr * hi,
+                        curr * lo)
+        hi = max(hi, curr)
+        lo = min(lo, curr)
+
+    return hi_of_3
+
+
+def prod_finder(ints):
+    """ You have a list of integers, and for each index you want to find 
+    the product of every integer except the integer at that index.
+    * No division allowed! *
+
+    >>> prod_finder([1, 2, 3, 4])
+    [24, 12, 8, 6]
+
+    >>> prod_finder([0, 2, 3, 4])
+    [24, 0, 0, 0]
+
+    >>> prod_finder([1, 7, 3, 4])
+    [84, 12, 28, 21]⁄
+
+
+    """
+    out = []
+
+    for i in ints:
+        new = [x for x in ints if x != i]
+        # print(new)
+
+        n = 1
+        for m in new:
+            n *= m 
+
+        print(n)
+
+        out.append(n)
+
+    return out
+
+
+
 
 
 
@@ -671,6 +730,9 @@ def get_max_profit(stock_prices):
 # Doctest Section:
 if __name__ == '__main__':
     import doctest
+
+    print(prod_finder([1, 2, 3]))
+    print(prod_finder([-3, -5, -7]))
 
     result = doctest.testmod()
     if result.failed == 0:
