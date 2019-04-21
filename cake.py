@@ -781,11 +781,28 @@ def inplace_shuffle(deck):
     return out
 
 
-""" Greedy algo for an inplace shuffle """  
-def binary_search():
+""" Given: Binary search, iterative - works on a SORTED list """  
+def binary_search_iter(target, nums):
     """ 
     A binary search algorithm finds an item in a sorted list in O(log(n)) time.
+
+    https://www.interviewcake.com/concept/python3/binary-search?course=fc1&section=sorting-searching-logarithms
+    
+    >>> binary_search_iter(6, [1, 4, 5, 6, 10, 14, 18, 22, 99])
+    True
+
+    >>> binary_search_iter(99, [1, 4, 5, 6, 10, 14, 18, 22, 99])
+    True
+
+    >>> binary_search_iter(66, [1, 4, 5, 6, 10, 14, 18, 22, 99])
+    False
+
+    >>> binary_search_iter(6, [])
+    False
+
     """  
+
+    return False 
 
 
 
