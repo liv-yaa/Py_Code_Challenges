@@ -887,12 +887,56 @@ def rotation_point(words):
 def dup_finder(ints):
     """
     We have a list of integers, where:
-    - the integers are in the range 1..n1.., and the list has a length of n+1n+1
+    - the integers are in the range 1...n, and the list has a length of n+1
     - our list has at least one integer which appears at least twice. 
-     But it may have several duplicates, and each duplicate may appear more than twice.
+    - but it may have several duplicates, and each duplicate may appear more than twice.
+
+
+    Write a function which finds an integer that appears more than once in our 
+    list. (If there are multiple duplicates, you only need to find one of them.)
     
-    
+    ** Optimize for space **
+
+    >>> dup_finder([1, 1, 2, 3])
+    1
+    >>> dup_finder([1, 2, 3])
+    None   
+    >>> dup_finder([1, 1, 2, 2, 3])
+    1
+
+    Strategy: 
     """
+    floor = 1
+    ceil = len(ints) - 1
+
+    while floor < ceil:
+
+        # Divide our range into upper and lower nonoverlapping range
+        mid = floor + ((ceil - floor) // 2)
+        low_floor, low_ceil = floor, mid
+        upp_floor, upp_ceil = mid + 1, ceil 
+
+        # Count the number of items in lower range
+        low_items = 0
+        for item in ints:
+            if item >= low_floor and item <= low_ceil:
+                low_items += 1
+
+        # What is the distict possible number of integers in lower range?
+        low_max = low_ceil - low_floor + 1
+    
+        if low_items > low_max:
+            # There must be duplicate in the lower range by pigeonhole principle
+            # So, iteratively use that range now
+            floor, ceil = low_floor, low_ceil
+
+        else:
+            # There must be duplicate in the hi range by pigeonhole principle
+            # So, iteratively use that range now
+            floor, ceil = upp_floor, upp_ceil
+
+    # When floor and ceil have converged, we found our repeating number!
+    return floor
 
 
 
