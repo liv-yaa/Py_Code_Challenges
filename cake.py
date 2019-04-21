@@ -739,7 +739,7 @@ def prod_finder(ints):
     return products
 
 
-""" Greedy algo for an inplace shuffle """  
+""" Greedy algo for an inplace random shuffle """  
 def inplace_shuffle(deck):
     """
     Write a function for doing an in-place ↴ shuffle (random ordering) of a list.
@@ -748,13 +748,46 @@ def inplace_shuffle(deck):
 
     Assume that you have a function get_random(floor, ceiling) for getting a random integer that is >= floor and <= ceiling.
 
-    >>> inplace_shuffle([1, 2, 3, 4, 5, 6])
-    []
+    # >>> inplace_shuffle([1, 2, 3, 4, 5, 6])
+    # []
 
+    Strategy:
+    - We choose a random item to move to the first index, then we choose a 
+    random other item to move to the second index, etc. We "place" an item 
+    in an index by swapping it with the item currently at that index.
+
+    O(n) time and O(1) space
 
     """
 
     print(random.randint(1, 111))
+
+    if len(deck) <= 1:
+        return deck 
+
+    last_index = len(deck) - 1
+
+    # Iterate through deck, chosing two random items and swapping them.
+    # Must be AFTER current item
+    for i in range(0, len(deck) - 1):
+
+        random_i = random.randint(i, last_index)
+
+        if random_i != i:
+
+            deck[i], deck[random_i] = deck[random_i], deck[i] # Swap!
+
+
+    return out
+
+
+""" Greedy algo for an inplace shuffle """  
+def binary_search():
+    """ 
+    A binary search algorithm finds an item in a sorted list in O(log(n)) time.
+    """  
+
+
 
 
 
