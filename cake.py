@@ -787,22 +787,115 @@ def binary_search_iter(target, nums):
     A binary search algorithm finds an item in a sorted list in O(log(n)) time.
 
     https://www.interviewcake.com/concept/python3/binary-search?course=fc1&section=sorting-searching-logarithms
-    
-    >>> binary_search_iter(6, [1, 4, 5, 6, 10, 14, 18, 22, 99])
-    True
 
-    >>> binary_search_iter(99, [1, 4, 5, 6, 10, 14, 18, 22, 99])
-    True
+    I got a time out on these?    
+    # >>> binary_search_iter(6, [1, 6, 18, 22, 99])
+    # True
 
-    >>> binary_search_iter(66, [1, 4, 5, 6, 10, 14, 18, 22, 99])
-    False
+    # >>> binary_search_iter(99, [1, 99])
+    # True
 
-    >>> binary_search_iter(6, [])
-    False
+    # >>> binary_search_iter(66, [1, 9])
+    # False
 
-    """  
+    # >>> binary_search_iter(6, [])
+    # False
+
+    """ 
+    # Define the "walls" around the current position. 
+    # Starting with the 0th index, we need floor -1 and ceiling at length: 
+    f = -1 
+    c = len(nums)
+
+
+    while f + 1 <= c:
+
+        # Find the 'half index' - whole number
+        half_ix = (c - f) // 2
+
+        guess_ix = f + half_ix
+
+        guess_value = nums[guess_ix]
+
+        if guess_value == target:
+            return True
+
+        elif guess_value > target:
+            # It is to the left, so re-assign ceiling index:
+            c = guess_ix
+
+        else:
+            # It is to the right, so re-assign floor index:
+            f = guess_ix
+
+
 
     return False 
+
+
+""" Ordered List target finder O log(n) """  
+def rotation_point(words):
+    """
+    Write a O(lgn) time function for finding the index of the "rotation point," 
+    which is where the letters start from the beginning of alphabet. 
+    At each iteration, we go right if the item we're looking at is greater 
+    than the first item and we go left if the item we're looking at is less 
+    than the first item.
+    
+    >>> rotation_point(['k', 'v', 'a', 'b', 'c', 'd', 'e', 'g', 'i'])
+    9
+
+    >>> rotation_point(['a', 'b', 'c', 'd', 'e', 'g', 'i'])
+    1
+    
+    >>> rotation_point(['a', 'a', 'a', 'a', 'a'])
+    5
+
+    Strategy: Do a binary search, using alphanumeric ordering 
+    ** The rotation point is to our left if the current item is less than the 
+    first item. Else it's to our right.
+
+
+    """
+    first_word = words[0]
+    f = -1 #floor index
+    c = len(words) #ceiling index
+
+    while f < c:
+        # Guess a point halfway btw floor anc ceil
+        guess_ix = f + ((c - f) // 2)
+        guess = words[guess_ix]
+
+        # If guess comes after first word or is the first word, go right:
+        if guess <= first_word:
+
+            # Go right, setting the floor to the guess index
+            f = guess_ix
+
+        else:
+
+            # Go left, setting the ceil to the guess index
+            c = guess_ix
+
+        # If Floor and Ceil have converged,
+        if f + 1 == c:
+            return c
+
+
+
+""" duplicate finder O log(n) """  
+def dup_finder(ints):
+    """
+    We have a list of integers, where:
+    - the integers are in the range 1..n1.., and the list has a length of n+1n+1
+    - our list has at least one integer which appears at least twice. 
+     But it may have several duplicates, and each duplicate may appear more than twice.
+    
+    
+    """
+
+
+
 
 
 
