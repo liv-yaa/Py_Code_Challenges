@@ -1090,21 +1090,31 @@ def find_unique_int(dups):
     """ 
     Given the list of IDs, which contains many duplicate integers 
     and one unique integer, find the unique integer.
+    Not ordered or sequential
     https://www.interviewcake.com/question/python3/find-unique-int-among-duplicates?course=fc1&section=bit-manipulation
     
     >>> find_unique_int([1, 2, 2, 3, 3, 4, 4])
     1
     >>> find_unique_int([1, 1, 2, 2, 3, 3, 4, 4])
-    None
+    'None'
     >>> find_unique_int([1, 2, 3, 4, 1, 2, 3, 4, 5])
     5
 
 
     """
+    # Create occurance dictionary
+    counts = {} 
 
-    return None
+    for i in dups:
+        counts[i] = counts.get(i, 0) + 1
 
+    # Create a set of values with count of 1
+    s = {k for k in counts.keys() if counts[k] == 1}
 
+    if len(s) != 1:
+        return 'None'
+
+    return s.pop() # Assuming there is only one value
 
 
 
