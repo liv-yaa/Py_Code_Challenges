@@ -1037,8 +1037,15 @@ def is_bst(root):
     return True
 
 
+""" Recursive formula for finding the 'rightmost' element in a BST"""
+def find_largest(root_node):
 
+    if root_node.right:
+        # Recurse with next root node
+        return find_largest(root_node.right)
 
+    else:
+        return root_node.data 
 
 
 
