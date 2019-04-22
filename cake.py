@@ -1073,6 +1073,63 @@ def find_2nd_largest(root_node):
 
 
 
+""" Graph coloring - NOT done! """
+class GraphNode:
+
+    def __init__(self, label):
+        self.label = label
+        self.neighbors = set() # All neighbors are GraphNode objects
+        self.color = None # This will be set as we traverse the graph
+
+
+
+
+
+""" Bitwise Functions """
+def find_unique_int(dups):
+    """ 
+    Given the list of IDs, which contains many duplicate integers 
+    and one unique integer, find the unique integer.
+    https://www.interviewcake.com/question/python3/find-unique-int-among-duplicates?course=fc1&section=bit-manipulation
+    
+    >>> find_unique_int([1, 2, 2, 3, 3, 4, 4])
+    1
+    >>> find_unique_int([1, 1, 2, 2, 3, 3, 4, 4])
+    None
+    >>> find_unique_int([1, 2, 3, 4, 1, 2, 3, 4, 5])
+    5
+
+
+    """
+
+    return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Doctest Section:
 if __name__ == '__main__':
