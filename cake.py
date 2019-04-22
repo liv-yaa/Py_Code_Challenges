@@ -939,6 +939,34 @@ def dup_finder(ints):
     return floor
 
 
+""" Given: Binary Tree demo """  
+class BinaryTreeNode(object):
+    """ https://www.interviewcake.com/concept/python3/binary-tree?course=fc1&section=trees-graphs"""  
+
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+    def insert_right(self, data):
+        self.right = BinaryTreeNode(data)
+        return self.right 
+
+
+    def insert_left(self, data):
+        self.left = BinaryTreeNode(data)
+        return self.left  
+
+
+""" BFS: write a 'superbalanced' binary tree """
+def superbalanced():
+    """ https://www.interviewcake.com/question/python3/balanced-binary-tree 
+    Write a BinaryTree where the difference between the depths of any two
+    leaf nodes is no greater than one. 
+
+    
+    """
 
 
 
