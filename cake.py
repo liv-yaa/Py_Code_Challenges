@@ -897,12 +897,12 @@ def dup_finder(ints):
     
     ** Optimize for space **
 
-    >>> dup_finder([1, 1, 2, 3])
-    1
-    >>> dup_finder([1, 2, 3])
-    None   
-    >>> dup_finder([1, 1, 2, 2, 3])
-    1
+    # >>> dup_finder([1, 1, 2, 3])
+    # 1
+    # >>> dup_finder([1, 2, 3])
+    # None   
+    # >>> dup_finder([1, 1, 2, 2, 3])
+    # 1
 
     Strategy: 
     """
@@ -965,10 +965,12 @@ def superbalanced(root):
     Write a BinaryTree where the difference between the depths of any two
     leaf nodes is no greater than one. 
 
+    # >>> superbalanced - how do you test?
     
     """
     # A tree w/o nodes is superbalanced
-    return True if root is None
+    if root is None:
+        return True 
 
     # This will short-circuit if it reaches more than 2
     depths = []
@@ -981,7 +983,7 @@ def superbalanced(root):
 
     while len(nodes):
         # Pop tuple from top of stack
-        node, depth nodes.pop()
+        node, depth = nodes.pop()
 
         # If we found a leaf
         if (not node.left) and (not node.right):
@@ -1001,6 +1003,41 @@ def superbalanced(root):
                 nodes.append((node.right, depth + 1))
 
     return True
+
+""" is it a Binary Search Tree (BST)? """
+def is_bst(root):
+    """ https://www.interviewcake.com/question/python3/bst-checker?course=fc1&section=trees-graphs 
+    Write a function that checks if a tree is a Binary Search Tree (BST)? 
+
+    """
+
+    # Start at root, initializing Nodes, low & hi bounds
+    stack = [(root, -float('inf'), float('inf'))]
+
+    # Depth-first traversal
+    while len(stack):
+
+        # Get the first item from top of stack
+        node, lo_bound, hi_bound = stack.pop()
+
+        # If node is invalid, return False right away
+        if (node.data <= lo_bound) or (node.data >= hi_bound):
+            return False
+
+        if node.left:
+            # This node must be less than the current node
+            stack.append((node.left, lo_bound, node.data))
+
+
+        if node.right:
+            # This node must be greater than the current node
+            stack.append((node.right, node.data. hi_bound))
+
+    # If we have checked all nodes
+    return True
+
+
+
 
 
 
