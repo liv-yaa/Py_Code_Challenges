@@ -1041,13 +1041,35 @@ def is_bst(root):
 def find_largest(root_node):
 
     if root_node.right:
-        # Recurse with next root node
+
         return find_largest(root_node.right)
 
     else:
         return root_node.data 
 
+""" Recursive formula for finding the 'rightmost' element in a BST"""
+def find_2nd_largest(root_node):
 
+    if (root_node is None or
+            (root_node.left is None and root_node.right is None)):
+        raise ValueError('Tree must have at least 2 nodes')
+
+    # This saves space, making it O(1) instead of O(h)
+    current = root_node
+    while current:
+        # If current is largest and has a left subtree,
+        # 2nd largest is thus the largest in that subtree
+        if current.left and not current.right:
+            return find_largest(current.right)
+
+        # Else if current is parent of largest, and largest has no children,
+        # Current is 2nd largest
+        if (current.right and 
+                not current.right.left and
+                not current.right.right):
+            return current.value
+
+        current = current.right
 
 
 
