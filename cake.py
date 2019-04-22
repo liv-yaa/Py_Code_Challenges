@@ -960,13 +960,47 @@ class BinaryTreeNode(object):
 
 
 """ BFS: write a 'superbalanced' binary tree """
-def superbalanced():
+def superbalanced(root):
     """ https://www.interviewcake.com/question/python3/balanced-binary-tree 
     Write a BinaryTree where the difference between the depths of any two
     leaf nodes is no greater than one. 
 
     
     """
+    # A tree w/o nodes is superbalanced
+    return True if root is None
+
+    # This will short-circuit if it reaches more than 2
+    depths = []
+
+    # Create a stack that will store tuples (node, depth)
+    nodes = []
+    nodes.append((root, 0))
+
+
+
+    while len(nodes):
+        # Pop tuple from top of stack
+        node, depth nodes.pop()
+
+        # If we found a leaf
+        if (not node.left) and (not node.right):
+
+            if depth not in depths:
+                depths.append(depth)
+
+                # Check if it is unbalanced
+                if ((len(depths) > 2) or (len(depths) == 2 and abs(depths[0] - depths[1]) > 1)):
+                    return False
+
+        # If this is not a leaf, keep stepping down
+        else:
+            if node.left:
+                nodes.append((node.left, depth + 1))
+            if node.right:
+                nodes.append((node.right, depth + 1))
+
+    return True
 
 
 
