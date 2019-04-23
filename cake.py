@@ -107,21 +107,21 @@ def merge_ranges(meetings):
 
     sort_meetings = sorted(meetings)
     
-
+    # Create a list with the first tuple
     merged_meetings = [sort_meetings[0]]
     
-    
+    # For the rest of the tuples,
     for curr_start, curr_end in sort_meetings[1:]:
         last_merged_start, last_merged_end = merged_meetings[-1]
         
+        # Either replace that item with the max end time, or
         if (curr_start <= last_merged_end):
             merged_meetings[-1] = (last_merged_start, max(last_merged_end, curr_end))
             
+        # Add tuple to list
         else:
             merged_meetings.append((curr_start, curr_end))
     
-
-
     return merged_meetings
 
 
@@ -1140,6 +1140,7 @@ def find_unique_int(delivery_ids):
 
 
 
+""" Given """
 
 class Stack(object):
 
@@ -1164,6 +1165,26 @@ class Stack(object):
 
         else:
             return self.items[-1]
+
+
+""" Write a MaxStack class """
+class MaxStack(Stack):
+
+    def get_max(self):
+        """Return the LARGEST item without removing it"""
+
+        if not self.items:
+            return None
+
+        else:
+            # Search for max
+            maxx = self.items[0]
+            for i in self.items:
+                if i > maxx:
+                    maxx == i 
+            return maxx
+
+
 
 
 
