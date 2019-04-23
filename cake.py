@@ -1086,18 +1086,18 @@ class GraphNode:
 
 
 """ Bitwise Functions """
-def find_unique_int(dups):
+def find_unique_int_slow(dups):
     """ 
     Given the list of IDs, which contains many duplicate integers 
     and one unique integer, find the unique integer.
     Not ordered or sequential
     https://www.interviewcake.com/question/python3/find-unique-int-among-duplicates?course=fc1&section=bit-manipulation
     
-    >>> find_unique_int([1, 2, 2, 3, 3, 4, 4])
+    >>> find_unique_int_slow([1, 2, 2, 3, 3, 4, 4])
     1
-    >>> find_unique_int([1, 1, 2, 2, 3, 3, 4, 4])
+    >>> find_unique_int_slow([1, 1, 2, 2, 3, 3, 4, 4])
     'None'
-    >>> find_unique_int([1, 2, 3, 4, 1, 2, 3, 4, 5])
+    >>> find_unique_int_slow([1, 2, 3, 4, 1, 2, 3, 4, 5])
     5
 
 
@@ -1117,17 +1117,53 @@ def find_unique_int(dups):
     return s.pop() # Assuming there is only one value
 
 
+def find_unique_int(delivery_ids):
+
+    """ 
+    Faster version using XOR operation!    
+    >>> find_unique_int([1, 2, 2, 3, 3, 4, 4])
+    1
+    >>> find_unique_int([1, 1, 2, 2, 3, 3, 4, 4])
+    0
+    >>> find_unique_int([1, 2, 3, 4, 1, 2, 3, 4, 5])
+    5
+
+
+    """
+
+    unique_id = 0 # Flag
+
+    for idd in delivery_ids:
+        unique_id ^= idd
+
+    return unique_id
 
 
 
 
+class Stack(object):
 
+    def __init__(self):
+        self.items = []
 
+    def push(self, item):
+        self.items.append(item)
 
+    def pop(self):
+        """Return and remove the last item"""
 
+        if not self.items:
+            return None
 
+        return self.items.pop()
 
+    def peek(self):
+        """Return the last item without removing it"""
+        if not self.items:
+            return None
 
+        else:
+            return self.items[-1]
 
 
 
