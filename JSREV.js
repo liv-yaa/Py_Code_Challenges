@@ -190,17 +190,23 @@ function jsLoops(input) {
 
     }
 
-    // for-of
-    // Create a Monster object:
+    // for-in with a Monster object:
     var monster = new Monster('Fred', 'Canada', 'Frightening');
 
     // This representation is an array
     console.log(monster);
 
-    // Use a for-of loop to print each element on a new line:
+    // Use a for-in loop to print each element on a new line:
     for (let property in monster) {
         console.log(property + ": " + monster[property]);
     }
+
+    // Creat an array (an interable)
+    var array = input.split(new RegExp["[ \n]+"));
+    console.log(array);
+
+    // for-of  for (let variable of iterable)
+    for (let )
 
 
 }
