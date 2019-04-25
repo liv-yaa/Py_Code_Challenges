@@ -533,6 +533,79 @@ def find_second_largest(root_node):
 
 
 
+# https://www.interviewcake.com/question/python3/graph-coloring?course=fc1&section=trees-graphs
+class GraphNode:
+
+    def __init__(self, label):
+        self.label = label
+        self.neighbors = set()
+        self.color = None
+
+
+a = GraphNode('a')
+b = GraphNode('b')
+c = GraphNode('c')
+
+a.neighbors.add(b)
+b.neighbors.add(a)
+b.neighbors.add(c)
+c.neighbors.add(b)
+
+graph = [a, b, c]
+
+
+
+
+
+
+
+
+
+""" https://www.interviewcake.com/question/python3/find-unique-int-among-duplicates?course=fc1&section=bit-manipulation """
+def find_unique_delivery_id(delivery_ids):
+    unique_delivery_id = 0
+
+    for delivery_id in delivery_ids:
+        unique_delivery_id ^= delivery_id
+
+    return unique_delivery_id
+
+
+
+
+
+
+
+""" https://www.interviewcake.com/question/python3/find-unique-int-among-duplicates?course=fc1&section=bit-manipulation """
+
+class Stack(object):
+
+    def __init__(self):
+        """Initialize an empty stack"""
+        self.items = []
+
+    def push(self, item):
+        """Push a new item onto the stack"""
+        self.items.append(item)
+
+    def pop(self):
+        """Remove and return the last item"""
+        # If the stack is empty, return None
+        # (it would also be reasonable to throw an exception)
+        if not self.items:
+            return None
+
+        return self.items.pop()
+
+    def peek(self):
+        """Return the last item without removing it"""
+        if not self.items:
+            return None
+        return self.items[-1]
+
+
+
+
 
 
 
