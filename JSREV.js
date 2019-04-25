@@ -231,6 +231,51 @@ function jsLoops(input) {
 
 }
 
+/* Passed - https://www.hackerrank.com/challenges/js10-loops/problem?h_r%5B%5D%5B%5D=next-challenge&h_r%5B%5D%5B%5D=next-challenge&h_v%5B%5D%5B%5D=zen&h_v%5B%5D%5B%5D=zen&isFullScreen=true
+ * Complete the vowelsAndConsonants function.
+ * Print your output using 'console.log()'.
+ */
+function vowelsAndConsonants(s) {
+    let vows = [ 'a', 'e', 'i', 'o', 'u' ];
+
+    for (let letter of s) {
+
+        if (vows.indexOf(letter) != -1) { 
+            console.log(letter);
+        }
+
+    }
+    for (let letter of s) {
+
+        if (vows.indexOf(letter) === -1) {
+            console.log(letter);
+        }
+
+    }
+}
+
+/* Better - Loops only once! found on discussions
+ */
+function vowelsAndConsonants2(s) {
+    let vows = 'aeiou';
+    let cons = '';
+
+    for (let i = i; i < s.length; i += 1) {
+        if (vowels.includes(s[i])) {
+            console.log(s[i]);
+
+        }
+        else {
+            cons += s[i] + '\n';
+        }
+
+    }
+
+    console.log(cons.trim());
+
+}
+
+
 
 function main() {
     /**
@@ -250,7 +295,9 @@ function main() {
 
     // namedParamSim({ color: 'red', letter: 'Z' });
 
-    jsLoops(99);
+    // jsLoops(99);
+
+    vowelsAndConsonants2('sotlkjeidcksldkgtyroekf');
 
 
 }
