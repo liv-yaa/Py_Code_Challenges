@@ -120,6 +120,51 @@ function namedParamSim(opt={}) {
 }
 
 
+/*
+JS Loops - demo of for, while, do-while, for-in, for-of
+*/
+function jsLoops(input) {
+    var actress = {
+        firstName: "Julia",
+        lastName: "Roberts",
+        dateOfBirth: "October 28, 1967",
+        nationality: "American",
+        firstMovie: "Satisfaction"
+    };
+    
+    // for (initialization; condition; finalExpression) { ... }
+    for (let i=0; i < input; i += 1) {
+        process.stdout.write(i + " ");
+    }
+
+    let j = 8;
+    for (; j > 0; j -= 1) {
+        process.stdout.write(j + " ");
+    }
+
+    // Infinite for loop with a break
+    let k = 0;
+    for (;;) {
+        if (k > input) {
+            break;
+        }
+        process.stdout.write(k + " ");
+        k ++;
+    }
+
+    // while
+
+
+
+    // do...while
+
+    // for-in
+
+    // for-of
+
+}
+
+
 function main() {
     /**
     *   main function reads input with readLine(), and calls greeting
@@ -136,7 +181,9 @@ function main() {
     
     // performOperation(secondInteger, secondDecimal, secondString);
 
-    namedParamSim({ color: 'red', letter: 'Z' });
+    // namedParamSim({ color: 'red', letter: 'Z' });
+
+    jsLoops(99);
 
 
 }
