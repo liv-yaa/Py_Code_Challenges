@@ -135,13 +135,21 @@ function namedParamSim(opt={}) {
 JS Loops - demo of for, while, do-while, for-in, for-of
 */
 function jsLoops(input) {
-    var actress = {
+    let actress = {
         firstName: "Julia",
         lastName: "Roberts",
         dateOfBirth: "October 28, 1967",
         nationality: "American",
         firstMovie: "Satisfaction"
     };
+
+    let actressMap = new Map([
+        ["firstName", "Julia"],
+        ["lastName", "Roberts"],
+        ["dateOfBirth", "October 28, 1967"],
+        ["nationality", "American"],
+        ["firstMovie", "Satisfaction"]
+    ]);
     
     // for (initialization; condition; finalExpression) { ... }
     for (let i=0; i < input; i += 1) {
@@ -202,11 +210,23 @@ function jsLoops(input) {
     }
 
     // Creat an array (an interable)
-    var array = input.split(new RegExp["[ \n]+"));
+    var array = [1, 2, 3, 4, 4];
     console.log(array);
 
     // for-of  for (let variable of iterable)
-    for (let )
+    for (let int of array) {
+        console.log(int);
+    }
+
+    // for-of  to iterate over the Map {k:[v, v], k: [v, v], ...}
+    for (let info of actressMap) {
+        console.log(info);
+    }
+
+    // Use indexing to access values in the map
+    for (let info of actressMap) {
+        console.log(info[0] + ": " + info[1]);
+    }
 
 
 }
