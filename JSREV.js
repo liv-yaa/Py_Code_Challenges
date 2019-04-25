@@ -1,9 +1,8 @@
 
 /**
 Demo for some basic JS stuff, copied from Hackerrank's 
-10 days of JS demo (https://www.hackerrank.com/challenges/js10-data-types/problem?h_r=next-challenge&h_v=zen&isFullScreen=false)
-- function organization
-- Number Type conversions
+10 days of JS demo (https://www.hackerrank.com/domains/tutorials/10-days-of-javascript)
+
 **/
 
 'use strict';
@@ -12,6 +11,8 @@ Demo for some basic JS stuff, copied from Hackerrank's
 let inputString = '';
 let currentLine = 0;
 
+
+/* Simple JS class */
 class Monster {
 
     // Used in the for-of loop in function jsLoops
@@ -23,7 +24,9 @@ class Monster {
     }
 }
 
-
+/* Warm Up 
+JS Basics Day ): https://www.hackerrank.com/challenges/js10-hello-world/topics/javascript-basics
+*/
 function readLine() {
     /**
     *   helper function reads input (not totally working)
@@ -45,6 +48,10 @@ function greeting(parameterVariable) {
 
 }
 
+/* 
+DataTypes demo
+https://www.hackerrank.com/challenges/js10-data-types/topics/javascript-data-types
+*/
 function dataTypes() {
     /* 
     Demo for all 7 JS datatypes 
@@ -97,7 +104,11 @@ function dataTypes() {
 
 }
 
-
+/* 
+Day1: Arithmetic operators
+https://www.hackerrank.com/challenges/js10-arithmetic-operators/topics/javascript-arithmetic-operators
+DataTypes Conversion
+*/
 function performOperation(secondInteger, secondDecimal, secondString) {
     // https://www.hackerrank.com/challenges/js10-data-types/problem?h_r=next-challenge&h_v=zen&isFullScreen=true
     // Declare a variable named 'firstInteger' and initialize with integer value 4.
@@ -122,7 +133,67 @@ function performOperation(secondInteger, secondDecimal, secondString) {
 
 }
 
- /**JavaScript does not allow named parameters, but you can simulate named
+/*  Calculate the area of a rectangle. */
+function getArea(length, width) {
+    let area;
+    // Write your code here
+
+    area = length * width;
+    
+    return area;
+}
+
+/* Calculate the perimeter of a rectangle. */
+function getPerimeter(length, width) {
+    let perimeter;
+    // Write your code here
+
+    perimeter = (2 * length) + (2 * width);
+    
+    return perimeter;
+}
+
+
+
+/* Non-Identity or Strict Inequality (!==)
+*/
+function nonIdentity() {
+    console.log(1 !== 1); // False
+    console.log(1 !== "1"); // True
+    console.log('1' !== 1); // True
+    console.log(0 !== false); //True
+    console.log(0 !== null); // True
+    console.log(0 !== undefined); // True
+    console.log(null !== undefined); // True
+
+    // These evaluate to False: and are 'falsy'
+    // false
+    // undefined
+    // null
+    // 0
+    // NaN
+    // "" (i.e., the empty string)
+}
+
+/* Switch conditional */
+function switchConditional() {
+    // switch (expression) {
+    // case label1:
+    //     statement1;
+    //     break;
+    // case label2:
+    //     statement2;
+    //     break;
+    // case label3:
+    //     statement3;
+    //     statement4;
+    //     break;
+    // default:
+    //     statement;
+
+}
+
+/**JavaScript does not allow named parameters, but you can simulate named
 parameters using an object:**/
 function namedParamSim(opt={}) {
     const{ color, letter } = opt;
@@ -133,6 +204,7 @@ function namedParamSim(opt={}) {
 
 /*
 JS Loops - demo of for, while, do-while, for-in, for-of
+https://www.hackerrank.com/challenges/js10-loops/topics/javascript-loops
 */
 function jsLoops(input) {
     let actress = {
@@ -228,7 +300,6 @@ function jsLoops(input) {
         console.log(info[0] + ": " + info[1]);
     }
 
-
 }
 
 /* Passed - https://www.hackerrank.com/challenges/js10-loops/problem?h_r%5B%5D%5B%5D=next-challenge&h_r%5B%5D%5B%5D=next-challenge&h_v%5B%5D%5B%5D=zen&h_v%5B%5D%5B%5D=zen&isFullScreen=true
@@ -260,8 +331,8 @@ function vowelsAndConsonants2(s) {
     let vows = 'aeiou';
     let cons = '';
 
-    for (let i = i; i < s.length; i += 1) {
-        if (vowels.includes(s[i])) {
+    for (let i = 0; i < s.length; i += 1) {
+        if (vows.includes(s[i])) {
             console.log(s[i]);
 
         }
@@ -272,6 +343,15 @@ function vowelsAndConsonants2(s) {
     }
 
     console.log(cons.trim());
+
+}
+
+/*
+https://www.hackerrank.com/challenges/js10-regexp-1/topics/javascript-regex
+A regular expression literal is a RegEx pattern encosed within forward slashes:
+const re = /ab+c/;
+*/
+function regEx() {
 
 }
 
