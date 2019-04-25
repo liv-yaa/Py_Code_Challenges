@@ -12,6 +12,17 @@ Demo for some basic JS stuff, copied from Hackerrank's
 let inputString = '';
 let currentLine = 0;
 
+class Monster {
+
+    // Used in the for-of loop in function jsLoops
+    constructor(name, home, description) {
+        this.name = name;
+        this.home = home;
+        this.description = description;
+
+    }
+}
+
 
 function readLine() {
     /**
@@ -153,14 +164,44 @@ function jsLoops(input) {
     }
 
     // while
+    let x = input;
+    while (x===input) {
+        console.log(x);
+        x ++;
 
-
+        if (x != input) {
+            break;
+        }
+    }
 
     // do...while
+    var y = 1;
+
+    do {
+        process.stdout.write(y + " ");
+
+        y ++;
+    } while (y <= input);
+    console.log();
 
     // for-in
+    for (var property in actress) {
+        console.log('actress.' + property + " = " + actress[property]);
+
+    }
 
     // for-of
+    // Create a Monster object:
+    var monster = new Monster('Fred', 'Canada', 'Frightening');
+
+    // This representation is an array
+    console.log(monster);
+
+    // Use a for-of loop to print each element on a new line:
+    for (let property in monster) {
+        console.log(property + ": " + monster[property]);
+    }
+
 
 }
 
