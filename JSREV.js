@@ -493,7 +493,32 @@ function array() {
 
 /* Passed - https://www.hackerrank.com/challenges/js10-arrays/problem
  */
-function getSecondLargest() {
+function getSecondLargest(a) {
+
+
+
+    if (a.length < 2) {
+        return 'None';
+    }
+
+    else {
+        let max = a[0];
+
+        console.log('max ' + max);
+        
+
+        for (let e of a) {
+            console.log(e);
+            if (e > max) {
+                max = e;
+            }
+        }
+        console.log('max ' + max);
+
+    }
+
+    console.log();
+
 
 }
 
@@ -558,7 +583,12 @@ function main() {
     *   main function reads input with readLine(), and calls greeting
     **/
 
-    getSecondLargest();
+    getSecondLargest([1, 3, 5, 7, 9]); // 7
+    getSecondLargest([1]); // None
+    getSecondLargest([1, 1, 1, 1]); // None 
+    getSecondLargest([1, -1, 3, -1]); // 1 
+
+    
 
     // array()
 

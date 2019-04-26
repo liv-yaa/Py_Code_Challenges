@@ -77,6 +77,8 @@ def add_to_zero(nums):
 
 def is_anagram_of_palindrome(word):
     """Is the word an anagram of a palindrome?
+    - A palindrome is a word that reads the same forward and backwards (eg, “racecar”, “tacocat”). 
+    - An anagram is a rescrambling of a word (eg for “racecar”, you could rescramble this as “arceace”).
 
     >>> is_anagram_of_palindrome("a")
     True
@@ -93,6 +95,26 @@ def is_anagram_of_palindrome(word):
     >>> is_anagram_of_palindrome("arceaceb")
     False
     """
+    # Create a word count dictionary
+    d = {}
+    for char in word:
+        d[char] = d.get(char, 0) + 1
+
+
+    # A palindrome will have a dic that is (all even counts; 0 or 1 only odd count)
+    # not a palindrome will have 2 or more odd counts
+    odd_counts = 0
+
+    for count in d.values():
+        if count % 2 == 1:
+            odd_counts += 1
+
+
+    return (odd_counts < 2)
+
+
+
+
 
 
 def show_evens(nums):
