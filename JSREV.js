@@ -425,14 +425,70 @@ https://www.hackerrank.com/challenges/js10-arrays/topics/javascript-arrays
 The JavaScript Array object:
 - a global object used in the construction of arrays; which are high-level, 
 - list-like objects.
-- has attributes CONTENTS and LENGTH (because it is an object)
+- has attributes a.length (because it is an object)
 
 */
 function array() {
     // Create
-    var a = ['a', 'r', 'r', 'a', 'y'];
-    console.log(a.contents); // attribute
-    console.log(a.length); // attribute
+    var a = ['a', 'r', 'r', 'a', 'y']; // create Array object
+    console.log(a); // attribute 
+    console.log(a.length); // attribute - not a function
+
+    // Same as Python?
+    console.log(a[0]);
+    console.log(a[a.length - 1]); 
+
+    // Loop over array using forEach() function inside - how does this work???
+    a.forEach(function(e, i, array) {
+        // 'i' is index
+        // 'e' is element
+        console.log(i + ' ' + e);
+    });
+
+    // Append 'third' to array 'a'
+    a.push('third');
+    console.log(a);
+
+    // Remove the last element from the array and save it 
+    let rem1 = a.pop();
+    console.log(a);
+    console.log(rem1);
+
+    // Remove the first element from the array
+    let rem2 = a.shift();
+    console.log(a);
+    console.log(rem2);
+
+    // Insert element at the beginning of the array
+    a.unshift('xxx');
+    console.log(a);
+
+    //  Find the Index of an Item in the Array
+    let position = a.indexOf('xxx');
+    console.log(position);
+
+    // Remove an Item by Index Position
+    a.splice(1, 2) // position=1, elements to remove=2
+    console.log(a);
+
+    // Copy an array
+    let b = a.slice();
+    console.log(b);
+
+    // Sort in ascending lexicographical order using a built-in
+    var c = ['c', 'a', 'd', 'b', 'aa'];
+    var d = [9, 2, 13, 7, 1, 12, 123];
+    c.sort();
+    d.sort()
+    console.log(c);
+    console.log(d);
+
+    // Iterate over an array
+    for (let e of c) {
+        console.log(e);
+
+    }
+
     
 
 }
@@ -499,7 +555,7 @@ function main() {
     *   main function reads input with readLine(), and calls greeting
     **/
 
-    array();
+    array()
 
     // console.log(getGrade(44));
     // console.log(getGrade(4));
