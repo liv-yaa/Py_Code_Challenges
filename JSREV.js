@@ -325,7 +325,9 @@ function jsLoops(input) {
 
 }
 
-/* Passed - factorial for loop */
+/* Passed - factorial for loop 
+https://www.hackerrank.com/challenges/js10-function/problem?isFullScreen=true
+*/
 function factorial(n) {
     let f = 1;
 
@@ -335,6 +337,51 @@ function factorial(n) {
     }
     return f;
 }
+
+/* Day1: declaration of variables (let, const, var) 
+https://www.hackerrank.com/challenges/js10-let-and-const/topics/javascript-let-const-var
+
+const : to create a read-only reference to a value, meaning the value referenced
+ by this variable cannot be reassigned. Because the value referenced by a 
+ constant variable cannot be reassigned, JavaScript requires that constant 
+ variables always be initialized.
+
+let : We use the let keyword to declare variables that are limited in scope to 
+the block, statement, or expression in which they are used. This is unlike the 
+var keyword, which defines a variable globally or locally to an entire function 
+regardless of block scope.
+
+
+*/
+function letConst(input) {
+    let a = input;
+
+    // This will throw "SyntaxError: Identifier 'a' has already been declared"
+    let a = input + 1;
+
+    console.log(a); 
+}
+
+/* Const demo 
+https://www.hackerrank.com/challenges/js10-let-and-const/problem?isFullScreen=true
+*/
+function constDemo() {
+
+    try {    
+        // Attempt to redefine the value of constant variable PI
+        PI = 0;
+        // Attempt to print the value of PI
+        console.log(PI);
+    } catch(error) {
+        console.error("You correctly declared 'PI' as a constant.");
+    }
+}
+
+
+
+
+
+
 
 /* Passed - https://www.hackerrank.com/challenges/js10-loops/problem?h_r%5B%5D%5B%5D=next-challenge&h_r%5B%5D%5B%5D=next-challenge&h_v%5B%5D%5B%5D=zen&h_v%5B%5D%5B%5D=zen&isFullScreen=true
  * Complete the vowelsAndConsonants function.
@@ -396,7 +443,9 @@ function main() {
     *   main function reads input with readLine(), and calls greeting
     **/
 
-    console.log(factorial(5));
+    constDemo();
+
+    // console.log(factorial(5));
 
 
     // const parameterVariable = readLine();
