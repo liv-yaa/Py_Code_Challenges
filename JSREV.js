@@ -420,7 +420,7 @@ function getGrade(score) {
 }
 
 
-/* Demo - Arrays Day 3
+/* Demo - Arrays Methods Day 3
 https://www.hackerrank.com/challenges/js10-arrays/topics/javascript-arrays
 The JavaScript Array object:
 - a global object used in the construction of arrays; which are high-level, 
@@ -489,10 +489,13 @@ function array() {
 
     }
 
-    
-
 }
 
+/* Passed - https://www.hackerrank.com/challenges/js10-arrays/problem
+ */
+function getSecondLargest() {
+
+}
 
 
 /* Passed - https://www.hackerrank.com/challenges/js10-loops/problem?h_r%5B%5D%5B%5D=next-challenge&h_r%5B%5D%5B%5D=next-challenge&h_v%5B%5D%5B%5D=zen&h_v%5B%5D%5B%5D=zen&isFullScreen=true
@@ -555,7 +558,9 @@ function main() {
     *   main function reads input with readLine(), and calls greeting
     **/
 
-    array()
+    getSecondLargest();
+
+    // array()
 
     // console.log(getGrade(44));
     // console.log(getGrade(4));
