@@ -362,7 +362,7 @@ function letConst(input) {
     console.log(a); 
 }
 
-/* Const demo 
+/* Demo - Const demo 
 https://www.hackerrank.com/challenges/js10-let-and-const/problem?isFullScreen=true
 */
 function constDemo(r) {
@@ -382,6 +382,41 @@ function constDemo(r) {
     } catch(error) {
         console.error("You correctly declared 'PI' as a constant.");
     }
+}
+
+/* Passed - Complete the getGrade(score) function in the editor. It has one parameter: an integer, , denoting the number of points Julia earned on an exam. It must return the letter corresponding to her  according to the following rules...
+https://www.hackerrank.com/challenges/js10-if-else/problem?isFullScreen=true
+*/
+function getGrade(score) {
+    let grade;
+    // Write your code here
+
+    
+    return grade;
+}
+
+/* Passed - Complete the getGrade(score) function in the editor. It has one 
+parameter: an integer, score, denoting the number of points Julia earned on an exam. 
+It must return the letter corresponding to her  according to the following rules...
+https://www.hackerrank.com/challenges/js10-if-else/problem?isFullScreen=true
+*/
+function getGrade(score) {
+    let grade;
+    if (25 < score && score <= 30) {
+        grade = 'A';
+    } else if (20 < score && score <= 25) {
+        grade = 'B';
+    } else if (15 < score && score <= 20) {
+        grade = 'C';
+    } else if (10 < score && score <= 15) {
+        grade = 'D';
+    } else if (5 < score && score <= 10) {
+        grade = 'E';
+    } else  {
+        grade = 'F';
+    } 
+    
+    return grade;
 }
 
 
@@ -450,7 +485,12 @@ function main() {
     *   main function reads input with readLine(), and calls greeting
     **/
 
-    constDemo(8);
+    // console.log(getGrade(44));
+    // console.log(getGrade(4));
+    // console.log(getGrade(14));
+    // console.log(getGrade(28));
+    
+    // constDemo(8);
 
     // console.log(factorial(5));
 
