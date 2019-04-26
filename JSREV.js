@@ -153,6 +153,28 @@ function getPerimeter(length, width) {
     return perimeter;
 }
 
+/* Day1: Functions https://www.hackerrank.com/challenges/js10-function/topics/javascript-function */
+function recursiveFactorial(n) {
+    /**
+    *   Defines a named recursive function referenced by the fib variable. 
+    *   @param {Number} n
+    *   @returns {Number} The value of fibonacci(n).         
+    **/
+    var fib = function fibonacci(n){
+        if (n > 2) {
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+        else if (n < 1) {
+            return 0;
+        }
+        // else, return 1
+        return 1;
+    }
+    return fib;
+}
+
+
+
 
 
 /* Non-Identity or Strict Inequality (!==)
@@ -192,6 +214,7 @@ function switchConditional() {
     //     statement;
 
 }
+
 
 /**JavaScript does not allow named parameters, but you can simulate named
 parameters using an object:**/
@@ -302,6 +325,17 @@ function jsLoops(input) {
 
 }
 
+/* Passed - factorial for loop */
+function factorial(n) {
+    let f = 1;
+
+    for (let i=1; i <= n; i += 1) {
+        process.stdout.write(i + " ");
+        f *= i;
+    }
+    return f;
+}
+
 /* Passed - https://www.hackerrank.com/challenges/js10-loops/problem?h_r%5B%5D%5B%5D=next-challenge&h_r%5B%5D%5B%5D=next-challenge&h_v%5B%5D%5B%5D=zen&h_v%5B%5D%5B%5D=zen&isFullScreen=true
  * Complete the vowelsAndConsonants function.
  * Print your output using 'console.log()'.
@@ -361,6 +395,10 @@ function main() {
     /**
     *   main function reads input with readLine(), and calls greeting
     **/
+
+    console.log(factorial(5));
+
+
     // const parameterVariable = readLine();
 
     // greeting(parameterVariable);
@@ -377,10 +415,27 @@ function main() {
 
     // jsLoops(99);
 
-    vowelsAndConsonants2('sotlkjeidcksldkgtyroekf');
+    // vowelsAndConsonants2('sotlkjeidcksldkgtyroekf');
+
+    // console.log(recursiveFactorial(4));
+
+    // let n = 9;
+    // let fib = function fibonacci(n){
+    //     if (n > 2) {
+    //         return fibonacci(n - 1) + fibonacci(n - 2);
+    //     }
+    //     else if (n < 1) {
+    //         return 0;
+    //     }
+    //     // else, return 1
+    //     return 1;
+    // }
+    // console.log(fib);
+
 
 
 }
+
 
 
 main()
