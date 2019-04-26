@@ -365,7 +365,14 @@ function letConst(input) {
 /* Const demo 
 https://www.hackerrank.com/challenges/js10-let-and-const/problem?isFullScreen=true
 */
-function constDemo() {
+function constDemo(r) {
+
+    const PI = Math.PI;
+    // const r = readLine();
+    
+    // Print the area, perimeter of the circle:
+    console.log(r ** 2 * PI);
+    console.log(2 * PI * r);
 
     try {    
         // Attempt to redefine the value of constant variable PI
@@ -443,7 +450,7 @@ function main() {
     *   main function reads input with readLine(), and calls greeting
     **/
 
-    constDemo();
+    constDemo(8);
 
     // console.log(factorial(5));
 
