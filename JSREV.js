@@ -420,8 +420,22 @@ function getGrade(score) {
 }
 
 
+/* Demo - Arrays Day 3
+https://www.hackerrank.com/challenges/js10-arrays/topics/javascript-arrays
+The JavaScript Array object:
+- a global object used in the construction of arrays; which are high-level, 
+- list-like objects.
+- has attributes CONTENTS and LENGTH (because it is an object)
 
+*/
+function array() {
+    // Create
+    var a = ['a', 'r', 'r', 'a', 'y'];
+    console.log(a.contents); // attribute
+    console.log(a.length); // attribute
+    
 
+}
 
 
 
@@ -484,6 +498,8 @@ function main() {
     /**
     *   main function reads input with readLine(), and calls greeting
     **/
+
+    array();
 
     // console.log(getGrade(44));
     // console.log(getGrade(4));
