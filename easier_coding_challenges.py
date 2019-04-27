@@ -5,8 +5,8 @@
 X Add to Zero
 X Anagram of Palindrome
 !X Binary Search
-- Concatenate Lists
-- Count List Recursively
+X Concatenate Lists
+X Count List Recursively
 - Days in Month
 - Decimal to Binary
 - Decode a String
@@ -188,6 +188,23 @@ def concat_lists(list1, list2):
     return list1
 
 
+def count_recursively(lst):
+    """Return number of items in a list, using recursion.
+    >>> count_recursively([])
+    0
+    >>> count_recursively([1, 2, 3])
+    3
+    >>> count_recursively([1])
+    1
+    >>> count_recursively([1, 3])
+    2
+
+    """
+
+    if len(lst) == 0:
+        return 0
+
+    return count_recursively(lst[1:]) + 1
 
 
 
