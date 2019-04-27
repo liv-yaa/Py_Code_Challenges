@@ -3,7 +3,7 @@
 "Easier" https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#whiteboard-easier
 :
 X Add to Zero
-- Anagram of Palindrome
+X Anagram of Palindrome
 - Binary Search
 - Concatenate Lists
 - Count List Recursively
@@ -111,6 +111,65 @@ def is_anagram_of_palindrome(word):
 
 
     return (odd_counts < 2)
+
+
+def binary_search(val):
+    """
+    Using binary search, find val in range 1-100. Return # of guesses.
+
+    Search a sorted list in O(log n) time, a large improvement over scanning every item in the list (which would be O(n) time).
+    To do this, you examine the middle item and, 
+    - if the sought-for value is smaller, move halfway to the left. 
+    - If the sought-after value is larger, move halfway to the right.
+
+    >>> binary_search(50)
+    1
+
+    >>> binary_search(25)
+    2
+
+    >>> binary_search(75)
+    2
+
+    >>> binary_search(31) <= 7
+    True
+
+    >>> max([binary_search(i) for i in range(1, 101)])
+    7
+    """
+    assert 0 < val < 101, "Val must be between 1-100"
+
+    # Initialize the guess counter
+    num_guesses = 0
+
+    # Set ceiling and floor. and the 'guess' variable
+    higher_than = 0
+    lower_than = 101
+    guess = None
+
+    # 
+    while guess != val:
+
+        # Increment counter
+        num_guesses += 1
+
+        # Guess a guess
+        guess = (lower_than - higher_than) // 2 + higher_than
+
+        if val > guess:
+            higher_than = guess
+
+        elif val < guess:
+            lower_than = guess
+
+        # When val == guess, it will break
+
+
+    return num_guesses
+
+
+
+
 
 
 
