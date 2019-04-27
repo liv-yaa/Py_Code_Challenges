@@ -4,7 +4,7 @@
 :
 X Add to Zero
 X Anagram of Palindrome
-- Binary Search
+!X Binary Search
 - Concatenate Lists
 - Count List Recursively
 - Days in Month
@@ -168,6 +168,24 @@ def binary_search(val):
     return num_guesses
 
 
+def concat_lists(list1, list2):
+    """Combine lists.
+    https://fellowship.hackbrightacademy.com/materials/challenges/concat-lists/index.html#concat-lists
+
+    >>> concat_lists([1, 2], [3, 4])
+    [1, 2, 3, 4]
+    >>> concat_lists([], [1, 2])
+    [1, 2]
+    >>> concat_lists([1, 2], [])
+    [1, 2]
+    >>> concat_lists([], [])
+    []
+
+    """
+
+    for item in list2:
+        list1.append(item)
+    return list1
 
 
 
