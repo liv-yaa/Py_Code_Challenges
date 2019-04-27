@@ -206,8 +206,89 @@ def count_recursively(lst):
 
     return count_recursively(lst[1:]) + 1
 
+def is_leap_year(year):
+    """ HELPER FUNC GIVEN FOR DAYS_IN_MONTH
+    Is this year a leap year?
+
+    Every 4 years is a leap year::
+
+        >>> is_leap_year(1904)
+        True
+
+    Except every hundred years::
+
+        >>> is_leap_year(1900)
+        False
+
+    Except-except every 400::
+
+        >>> is_leap_year(2000)
+        True
+    """
+    try:
+        year = int(year)
+        # print('type conversion int', year)
+
+        if year % 400 == 0:
+            return True
+
+        if year % 100 == 0:
+            return False
+
+        if year % 4 == 0:
+            return True
+
+    except:
+        return 'Cannot convert year to int'
 
 
+
+def days_in_month(date):
+    """How many days are there in a month?
+
+    >>> days_in_month("02 2015")
+    28
+    >>> days_in_month("02 2016")
+    29
+    >>> days_in_month("03 2016")
+    31
+    >>> days_in_month("04 2016")
+    30
+    >>> days_in_month("")
+    0
+    >>> days_in_month("05 2019 999 45")
+    0
+
+
+    
+    """
+
+    # Create sets with matching numbers
+    l31 = {'01', '03', '05', '07', '08', '10', '12'}
+    l30 = {'04', '06', '09', '11'}
+
+    # Try to split input into a list
+    monthyear = date.split(" ")
+    if len(monthyear) != 2:
+        # Invalid format for input
+        return 0
+
+    month = monthyear[0]
+    year = monthyear[1]   
+
+    if month == '02':
+        if (is_leap_year(year)):
+            return 29
+        else:
+            return 28
+
+    elif month in l31:
+        return 31
+
+    elif month in l30:
+        return 30
+
+    return 0
 
 
 
