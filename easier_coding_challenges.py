@@ -11,10 +11,10 @@ X Days in Month
 - Decode a String # COME BACK TO THIS
 X Find Lucky Numbers
 X Find the Range
-- FizzBuzz
-- Has More Vowels
-- Has Unique Characters
-- Is Number Prime?
+X FizzBuzz
+X Has More Vowels
+X Has Unique Characters
+X Is Number Prime?
 - Is Palindrome?
 - Largest Smaller Than
 - Lazy Lemmings
@@ -592,6 +592,27 @@ def is_prime2(num):
 
     return True
 
+
+def is_palindrome(word):
+    """ Return True/False if this word is a palindrome. 
+
+    >>> is_palindrome("a")
+    True
+    >>> is_palindrome("noon")
+    True
+    >>> is_palindrome("racecar")
+    True
+    >>> is_palindrome("porcupine")
+    False
+    >>> is_palindrome("Racecar")
+    False
+
+    """
+    for i in range((len(word) // 2) + 1):
+        if word[i] != word[-1 - i]:
+            return True
+
+    return False 
 
 
 def show_evens(nums):
