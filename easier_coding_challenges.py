@@ -7,9 +7,8 @@ X Anagram of Palindrome
 !X Binary Search
 X Concatenate Lists
 X Count List Recursively
-- Days in Month
-- Decimal to Binary
-- Decode a String
+X Days in Month
+- Decode a String # COME BACK TO THIS
 - Find Lucky Numbers
 - Find the Range
 - FizzBuzz
@@ -52,6 +51,9 @@ X repeatedNTimes
 
 
 """
+
+import random, math
+
 def add_to_zero(nums):
     """ Given a list of ints, return true if any two nums in list sum to 0.
     >>> add_to_zero([])
@@ -206,6 +208,7 @@ def count_recursively(lst):
 
     return count_recursively(lst[1:]) + 1
 
+
 def is_leap_year(year):
     """ HELPER FUNC GIVEN FOR DAYS_IN_MONTH
     Is this year a leap year?
@@ -242,7 +245,6 @@ def is_leap_year(year):
         return 'Cannot convert year to int'
 
 
-
 def days_in_month(date):
     """How many days are there in a month?
 
@@ -277,7 +279,7 @@ def days_in_month(date):
     year = monthyear[1]   
 
     if month == '02':
-        if (is_leap_year(year)):
+        if is_leap_year(year):
             return 29
         else:
             return 28
@@ -289,6 +291,82 @@ def days_in_month(date):
         return 30
 
     return 0
+
+# COME BACK TO THIS
+# def decode(s):
+#     """ Decode a string. A valid code is a sequence of numbers and letters, 
+#     always starting with a number and ending with letter(s).
+#     Each number tells you how many characters to skip before finding a good letter. 
+#     After each good letter should come the next next number.
+
+#     >>> decode("0h")
+#     'h'
+#     >>> decode("2abh")
+#     'h'
+#     >>> decode("0h1ae2bcy")
+#     'hey'
+#     >>> decode("h1ae2bcy")
+#     'Invalid'
+#     >>> decode("7h1ae277")
+#     'Invalid'
+#     >>> decode("")
+#     'Invalid'
+#     >>> decode("h")
+#     'Invalid'
+#     >>> decode("h1ae2bcy")
+#     'Cannot convert integer, Invalid '
+
+#     """
+#     decoded = ""
+
+
+#     if len(s) < 2:
+#         return 'Invalid'
+#     # Else, if len is 2 or more,
+
+#     # Initialize i (index of number) and j (index of letter)
+#     i = 0
+#     j = 1
+
+#     while i < len(s) - 1:
+
+#         numb = int(s[i])
+#         char = s[i + j]
+
+#         if type(char) == chr:
+#             decoded += char
+
+#         i += numb
+#         j = 1
+
+
+
+#     return decoded
+
+
+def lucky_numbers(n):
+    """ Return n unique random numbers from 1-10 (inclusive).
+    # >>> lucky_numbers(2)
+    # [3, 7]
+    >>> lucky_numbers(0)
+    []
+    >>> sorted(lucky_numbers(10))
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+    """
+    out = set() # A set will not allow duplicate objects
+
+    while len(out) <= n and n > 0:
+
+        # Generate a random number and add to set
+        out.add(random.randrange(1, 11))
+
+        if len(out) == n:
+            break
+
+    return list(out) # Type conversion - O(n)
+
 
 
 
