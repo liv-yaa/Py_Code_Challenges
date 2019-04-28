@@ -548,8 +548,8 @@ def is_prime(num):
     False
 
     """
-    if num == 0 or num == 1:
-        return False
+    if num < 2:
+        return False # Not good for negative numbers
 
     elif num == 2:
         return True
@@ -565,6 +565,32 @@ def is_prime(num):
 
 
 
+def is_prime2(num):
+    """Is a number a prime number?
+    >>> is_prime2(0)
+    False
+    >>> is_prime2(1)
+    False
+    >>> is_prime2(2)
+    True
+    >>> is_prime2(3)
+    True
+    >>> is_prime2(4)
+    False
+    >>> is_prime2(11)
+    True
+    >>> is_prime2(999)
+    False
+
+    """
+    if num < 2:
+        return False # Not good for negative numbers
+
+    for n in range(2, num):
+        if num % 2 == 0:
+            return False
+
+    return True
 
 
 
