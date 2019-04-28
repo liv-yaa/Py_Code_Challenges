@@ -9,7 +9,7 @@ X Concatenate Lists
 X Count List Recursively
 X Days in Month
 - Decode a String # COME BACK TO THIS
-- Find Lucky Numbers
+X Find Lucky Numbers
 - Find the Range
 - FizzBuzz
 - Has More Vowels
@@ -292,56 +292,53 @@ def days_in_month(date):
 
     return 0
 
-# COME BACK TO THIS
-# def decode(s):
-#     """ Decode a string. A valid code is a sequence of numbers and letters, 
-#     always starting with a number and ending with letter(s).
-#     Each number tells you how many characters to skip before finding a good letter. 
-#     After each good letter should come the next next number.
 
-#     >>> decode("0h")
-#     'h'
-#     >>> decode("2abh")
-#     'h'
-#     >>> decode("0h1ae2bcy")
-#     'hey'
-#     >>> decode("h1ae2bcy")
-#     'Invalid'
-#     >>> decode("7h1ae277")
-#     'Invalid'
-#     >>> decode("")
-#     'Invalid'
-#     >>> decode("h")
-#     'Invalid'
-#     >>> decode("h1ae2bcy")
-#     'Cannot convert integer, Invalid '
+def decode(s):
+    #     """ Decode a string. A valid code is a sequence of numbers and letters, 
+    #     always starting with a number and ending with letter(s).
+    #     Each number tells you how many characters to skip before finding a good letter. 
+    #     After each good letter should come the next next number.
 
-#     """
-#     decoded = ""
+    #     >>> decode("0h")
+    #     'h'
+    #     >>> decode("2abh")
+    #     'h'
+    #     >>> decode("0h1ae2bcy")
+    #     'hey'
+    #     >>> decode("h1ae2bcy")
+    #     'Invalid'
+    #     >>> decode("7h1ae277")
+    #     'Invalid'
+    #     >>> decode("")
+    #     'Invalid'
+    #     >>> decode("h")
+    #     'Invalid'
+    #     >>> decode("h1ae2bcy")
+    #     'Cannot convert integer, Invalid '
 
-
-#     if len(s) < 2:
-#         return 'Invalid'
-#     # Else, if len is 2 or more,
-
-#     # Initialize i (index of number) and j (index of letter)
-#     i = 0
-#     j = 1
-
-#     while i < len(s) - 1:
-
-#         numb = int(s[i])
-#         char = s[i + j]
-
-#         if type(char) == chr:
-#             decoded += char
-
-#         i += numb
-#         j = 1
+    #     """
+    #     decoded = ""
 
 
+    #     if len(s) < 2:
+    #         return 'Invalid'
+    #     # Else, if len is 2 or more,
 
-#     return decoded
+    #     # Initialize i (index of number) and j (index of letter)
+    #     i = 0
+    #     j = 1
+
+    #     while i < len(s) - 1:
+
+    #         numb = int(s[i])
+    #         char = s[i + j]
+
+    #         if type(char) == chr:
+    #             decoded += char
+
+    #         i += numb
+    #         j = 1
+    pass # COME BACK TO THIS
 
 
 def lucky_numbers(n):
@@ -367,6 +364,39 @@ def lucky_numbers(n):
 
     return list(out) # Type conversion - O(n)
 
+
+def find_range(nums):
+    """ Given list of numbers, return smallest & largest number as a tuple.
+
+    >>> find_range([3, 4, 2, 5, 10])
+    (2, 10)
+    >>> find_range([43, 3, 44, 20, 2, 1, 100])
+    (1, 100)
+    >>> find_range([])
+    (None, None)
+    >>> find_range([7])
+    (7, 7)
+
+    """
+
+    smallest = None
+    largest = None
+
+    if len(nums) == 1:
+        smallest, largest = nums[0], nums[0]
+
+    elif len(nums) > 1:
+        smallest = nums[0]
+        largest = nums[1] 
+
+        for n in nums:
+            if n < smallest:
+                smallest = n 
+
+            if n > largest:
+                largest = n
+
+    return (smallest, largest)
 
 
 
