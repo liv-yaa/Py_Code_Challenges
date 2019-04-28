@@ -10,7 +10,7 @@ X Count List Recursively
 X Days in Month
 - Decode a String # COME BACK TO THIS
 X Find Lucky Numbers
-- Find the Range
+X Find the Range
 - FizzBuzz
 - Has More Vowels
 - Has Unique Characters
@@ -397,6 +397,39 @@ def find_range(nums):
                 largest = n
 
     return (smallest, largest)
+
+
+def fizzbuzz(n):
+    """ Count from 1 to 20 in fizzbuzz fashion.
+
+    >>> fizzbuzz(20)
+    1
+    2
+    fizz
+    4
+    buzz
+    fizz
+    7
+    8
+    fizz
+    buzz
+    11
+    fizz
+    13
+    14
+    fizzbuzz
+    16
+    17
+    fizz
+    19
+    buzz
+
+    """
+    if n > 0:
+
+        for i in range(1, n + 1):
+            print(n)
+
 
 
 
