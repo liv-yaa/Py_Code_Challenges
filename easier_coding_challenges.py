@@ -478,6 +478,7 @@ def has_more_vowels(word):
 
     return vow_count > con_count
 
+
 def has_unique_chars(word):
     """ Does word contains unique set of characters? 
 
@@ -503,6 +504,7 @@ def has_unique_chars(word):
 
     return True
 
+
 def has_unique_chars2(word):
     """ Does word contains unique set of characters? 
 
@@ -520,6 +522,40 @@ def has_unique_chars2(word):
     uni = set(word)
 
     return len(uni) == len(word)
+
+
+def is_prime(num):
+    """Is a number a prime number?
+    >>> is_prime(0)
+    False
+
+    >>> is_prime(1)
+    False
+
+    >>> is_prime(2)
+    True
+
+    >>> is_prime(3)
+    True
+
+    >>> is_prime(4)
+    False
+
+    >>> is_prime(11)
+    True
+
+    >>> is_prime(999)
+    False
+
+    """
+    if num == 0 or num == 1:
+        return False
+
+    elif num > 2:
+
+        divisors = {i for i in range(1, num / 2) if num % i == 0}
+
+        print(divisors)
 
 
 
