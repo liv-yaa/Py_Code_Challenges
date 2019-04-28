@@ -454,43 +454,29 @@ def has_more_vowels(word):
 
     >>> has_more_vowels("moose")
     True
-    If it’s half vowels (or less), it’s false:
-
     >>> has_more_vowels("mice")
     False
-
     >>> has_more_vowels("graph")
     False
-    Don’t consider “y” as a vowel:
-
     >>> has_more_vowels("yay")
     False
-    Uppercase vowels are still vowels:
-
     >>> has_more_vowels("Aal")
     True
 
     """
-    vowels = 'aeiou'
-    consts = 'bcdfghjklmnpqrstvwxyz'
 
     vow_count = 0 
     con_count = 0
 
     for char in word:
 
-        if char in vowels:
-
+        if char.lower() in 'aeiou':
             vow_count += 1
 
-        elif char in consts:
-
+        elif char.lower() in 'bcdfghjklmnpqrstvwxyz':
             con_count += 1
 
     return vow_count > con_count
-
-
-
 
 
 
