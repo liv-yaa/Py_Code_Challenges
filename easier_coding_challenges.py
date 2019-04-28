@@ -551,11 +551,17 @@ def is_prime(num):
     if num == 0 or num == 1:
         return False
 
+    elif num == 2:
+        return True
+
     elif num > 2:
 
-        divisors = {i for i in range(1, num / 2) if num % i == 0}
+        divisors = [i for i in range(1, num + 1) if num % i == 0]
 
-        print(divisors)
+        return (len(divisors) == 2)  
+
+    else:
+        return False
 
 
 
