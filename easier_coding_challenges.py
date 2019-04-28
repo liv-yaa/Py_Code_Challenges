@@ -579,8 +579,7 @@ def is_prime2(num):
     False
     >>> is_prime2(11)
     True
-    >>> is_prime2(999)
-    False
+
 
     """
     if num < 2:
@@ -608,11 +607,14 @@ def is_palindrome(word):
     False
 
     """
-    for i in range((len(word) // 2) + 1):
-        if word[i] != word[-1 - i]:
-            return True
+    flag = True
 
-    return False 
+    for i in range((len(word) // 2) + 1):
+
+        if word[i] != word[-1 - i]:
+            flag = False
+
+    return flag
 
 
 def show_evens(nums):
