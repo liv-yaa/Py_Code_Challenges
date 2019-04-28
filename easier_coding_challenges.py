@@ -478,6 +478,52 @@ def has_more_vowels(word):
 
     return vow_count > con_count
 
+def has_unique_chars(word):
+    """ Does word contains unique set of characters? 
+
+    >>> has_unique_chars("Monday")
+    True
+    >>> has_unique_chars("Moonday")
+    False
+    >>> has_unique_chars("")
+    True
+    >>> has_unique_chars("Bob")
+    True
+
+    """
+
+    uni = {}
+
+    for char in word:
+        uni[char] = uni.get(char, 0) + 1
+
+    for val in uni.values():
+        if val != 1:
+            return False 
+
+    return True
+
+def has_unique_chars2(word):
+    """ Does word contains unique set of characters? 
+
+    >>> has_unique_chars2("Monday")
+    True
+    >>> has_unique_chars2("Moonday")
+    False
+    >>> has_unique_chars2("")
+    True
+    >>> has_unique_chars2("Bob")
+    True
+
+    """
+
+    uni = set(word)
+
+    return len(uni) == len(word)
+
+
+
+
 
 
 def show_evens(nums):
