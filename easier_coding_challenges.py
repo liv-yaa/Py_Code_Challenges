@@ -401,6 +401,12 @@ def find_range(nums):
 
 def fizzbuzz(n):
     """ Count from 1 to 20 in fizzbuzz fashion.
+    Each time through, if the number is evenly divisible by 3, say ‘fizz’. 
+    If the number is evenly divisible by 5, say ‘buzz’. 
+    If the number is evenly divisible by both 3 and 5, say ‘fizzbuzz’. 
+    Otherwise, say the number.
+
+
 
     >>> fizzbuzz(20)
     1
@@ -428,8 +434,19 @@ def fizzbuzz(n):
     if n > 0:
 
         for i in range(1, n + 1):
-            print(n)
+            # print(i)
 
+            if i % 15 == 0:
+                print('fizzbuzz')
+
+            elif i % 5 == 0:
+                print('buzz')
+
+            elif i % 3 == 0:
+                print('fizz')
+
+            else:
+                print(i)
 
 
 
