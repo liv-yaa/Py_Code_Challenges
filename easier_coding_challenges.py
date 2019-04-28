@@ -617,6 +617,60 @@ def is_palindrome(word):
     return flag
 
 
+def find_largest_smaller_than(nums, xnumber):
+    """ Find largest number in sorted list that is smaller than given number. 
+    
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 10)
+    2
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 33)
+    4
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], -1)
+    1
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 8)
+    1
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], -10) is None
+    True
+
+    """
+
+    # Find midpoint
+    lo = 0
+    hi = len(nums)
+
+    mid = len(nums) // 2
+
+    while nums[mid] != xnumber:
+
+        if nums[mid] < xnumber:
+            pass
+
+        elif nums[mid] > xnumber:
+            pass
+
+        else:
+
+            return nums[mid - 1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def show_evens(nums):
     """Given list of ints, return list of *indices* of even numbers in list.
 
