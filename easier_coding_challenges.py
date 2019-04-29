@@ -656,11 +656,42 @@ def find_largest_smaller_than(nums, xnumber):
 
     return None
 
+def find_largest_smaller_than_bisect(nums, xnumber):
+    """ 
+    ** Their 'advanced solution' :
+        Since we have a list, we can search it quickly using binary search.
+        Python has a nice library, `bisect`, that can do that.
 
+    Find INDEX OF the number in sorted list that is smaller than given number. 
+    
+    >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], 10)
+    2
+    >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], 33)
+    4
+    >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], -1)
+    1
+    >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], 8)
+    1
+    >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], -10) is None
+    True
 
+    """
 
+    from bisect import bisect
 
+    if nums[0] > xnumber:
+        return None
 
+    # Use Python built in library to quickly find insertion point
+    insertion_point = bisect_left(nums, xnumber)
+
+    return insertion_point - 1
+
+    if nums[insertion_point] == xnumber:
+        return insertion_point - 1
+
+    else:
+        return insertion_point
 
 
 
