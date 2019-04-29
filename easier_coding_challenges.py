@@ -564,7 +564,6 @@ def is_prime(num):
         return False
 
 
-
 def is_prime2(num):
     """Is a number a prime number?
     >>> is_prime2(0)
@@ -656,6 +655,7 @@ def find_largest_smaller_than(nums, xnumber):
 
     return None
 
+
 def find_largest_smaller_than_bisect(nums, xnumber):
     """ 
     ** Their 'advanced solution' :
@@ -677,7 +677,7 @@ def find_largest_smaller_than_bisect(nums, xnumber):
 
     """
 
-    from bisect import bisect
+    from bisect import bisect_left
 
     if nums[0] > xnumber:
         return None
@@ -692,6 +692,29 @@ def find_largest_smaller_than_bisect(nums, xnumber):
 
     else:
         return insertion_point
+
+
+def translate_leet(phrase):
+    """Translates input into "leet-speak".
+
+    >>> translate_leet("Hi Balloonicorn")
+    'Hi B@1100nic0rn'
+
+    >>> translate_leet("Hackbright is the Shizzle")
+    'H@ckbrigh7 i5 7h3 5hizz13'
+
+    """
+    leet = {'a' : '@', 'o' : 0, 'e' : 3, 'l'  : 1, 's'  : 5, 't' :  7 }
+
+    out = ""
+    for char in phrase:
+        if char.lower() in leet:
+            out += str(leet[char.lower()])
+
+        else:
+            out += char
+
+    return out 
 
 
 
