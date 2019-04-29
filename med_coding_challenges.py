@@ -97,7 +97,51 @@ def has_balanced_parens(phrase):
 
     return countL == countR
 
+def has_balanced_parens2(phrase):
+    """ HB SOLUTION
+    Does a string have balanced parentheses?
+    
+    >>> has_balanced_parens2("()")
+    True
+    >>> has_balanced_parens2("")
+    True
+    >>> has_balanced_parens2("(Oh Noes!)(")
+    False
+    >>> has_balanced_parens2("((There's a bonus open paren here.)")
+    False
+    >>> has_balanced_parens2(")")
+    False
+    >>> has_balanced_parens2("(")
+    False
+    >>> has_balanced_parens2("(This has (too many closes.) ) )")
+    False
+    >>> has_balanced_parens2("Hey...there are no parens here!")
+    True
 
+    """
+
+    parens = 0
+
+    for char in phrase:
+
+        if char == '(':
+            parens += 1
+
+        elif char == ')':
+            parens -= 1
+
+            if parens < 0:
+                # We can never close more than we open
+                return False
+
+    # Make sure we have none left
+    # if parens > 0:
+    #     return False
+
+    # else:
+    #     return True 
+
+    return (parens <= 0)
 
 
 
@@ -291,3 +335,10 @@ def sum_list(nums):
         return 0
 
 
+# Doctest Section:
+if __name__ == '__main__':
+    import doctest
+
+    result = doctest.testmod()
+    if result.failed == 0:
+        print('ALL TESTS PASSED')
