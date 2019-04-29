@@ -735,6 +735,20 @@ def find_longest_word(words):
     return longest
 
 
+def max_num(num_list):
+    """Returns largest integer from given list
+    >>> max_num([5, 3, 6, 2, 1])
+    6
+    """
+    longest = 0
+    for n in num_list:
+        if n > longest:
+            longest = n
+
+    return longest
+
+
+
 def show_evens(nums):
     """Given list of ints, return list of *indices* of even numbers in list.
 
