@@ -147,4 +147,67 @@ def find_largest_smaller_than_bisect(nums, xnumber):
     else:
         return insertion_point
 
-            
+
+   
+def rev_list_in_place(lst):
+    """Reverse list in place.
+
+    You cannot do this with reversed(), .reverse(), or list slice
+    assignment!
+    """
+
+    # START SOLUTION
+
+    for i in range(len(lst) // 2):
+        lst[i], lst[-i - 1] = lst[-i - 1], lst[i]
+
+
+# Medium
+def has_balanced_parens(phrase):
+    """Does a string have balanced parentheses?"""
+
+    # START SOLUTION
+
+    parens = 0
+
+    for char in phrase:
+
+        if char == "(":
+            parens = parens + 1
+
+        elif char == ")":
+            parens = parens - 1
+
+            if parens < 0:
+                # We can never close more than we have open
+                return False
+
+    # Make sure we have none left
+
+    if parens > 0:
+        return False
+
+    else:
+        return True
+
+
+def lemur(branches):
+    """Return number of jumps needed."""
+
+    assert branches[0] == 0, "First branch must be alive"
+    assert branches[-1] == 0, "Last branch must be alive"
+
+    # START SOLUTION
+
+    at = 0
+    n_jumps = 0
+
+    while at < len(branches) - 1:
+        at += 2
+        if at >= len(branches) or branches[at] == 1:
+            # We can jump this far, so only jump 1
+            at -= 1
+        n_jumps += 1
+
+    return n_jumps
+

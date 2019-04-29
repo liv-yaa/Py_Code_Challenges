@@ -3,7 +3,7 @@
 https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#medium
 
 X Anagram of Palindrome
-- Balanced Parentheses
+X Balanced Parentheses
 !X Binary Search - still in prog
 X Count List Recursively
 !X Decode a String - still in prog
@@ -97,6 +97,7 @@ def has_balanced_parens(phrase):
 
     return countL == countR
 
+
 def has_balanced_parens2(phrase):
     """ HB SOLUTION
     Does a string have balanced parentheses?
@@ -142,6 +143,62 @@ def has_balanced_parens2(phrase):
     #     return True 
 
     return (parens <= 0)
+
+
+def lemmings():
+
+
+
+    pass
+
+
+def lemur(branches):
+    """ Return number of jumps needed.
+    A lemur wants to jump across a span in the forest on branches. 
+    She can jump 1 or 2 branches at a time. 
+    >>> lemur([0])
+    0
+    >>> lemur([0, 0])
+    1
+    >>> lemur([0, 0, 0])
+    1
+    >>> lemur([0, 1, 0])
+    1
+    >>> lemur([0, 0, 1, 0])
+    2
+    >>> lemur([0, 0, 0, 0, 1, 0, 0, 1, 0])
+    5
+    """
+
+    assert branches[0] == 0, "First branch must be alive"
+    assert branches[-1] == 0, "Last branch must be alive"
+
+
+    at = 0
+    jumps = 0
+
+    while at < len(branches) - 1:
+
+        # Try to jump 2
+        at += 2
+
+        if at >= len(branches) or branches[at] == 1:
+
+            # illegal to jump 2 so jump 1
+            at -= 1
+
+        # Increment
+        jumps += 1
+
+    return jumps
+
+
+
+
+        
+
+
+
 
 
 
