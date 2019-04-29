@@ -41,4 +41,65 @@ def count_recursively(lst):
 
     return 1 + count_recursively(lst[1:])
 
-    
+
+def has_unique_chars(word):
+    """Does word contains unique set of characters?"""
+
+    # START SOLUTION
+
+    unique_word = set(word)
+
+    return len(unique_word) == len(word)
+
+
+def is_prime(num):
+    """Is a number a prime number?"""
+
+    # START SOLUTION
+
+    if num < 2:
+        return False
+
+    # This is a very naive check -- firstly, we could check once
+    # for even numbers and then count up by twos. Secondly, we
+    # only have to check up to sqrt(num) -- since if a number is
+    # divisible by a number > its square root, the other divisor
+    # would be definition be less than its square root.
+    #
+    # For our purposes, though, this is a reasonable answer for
+    # an easy whiteboarding question.
+
+    for n in range(2, num):
+        if num % n == 0:
+            return False
+
+    return True 
+
+
+def find_largest_smaller_than(nums, xnumber):
+    """Find largest number in sorted list that is smaller than given number."""
+
+    # START SOLUTION
+
+    # Fail-fast optimization: since our list is sorted, if the first number
+    # is bigger, a smaller number isn't in our list
+
+    if nums[0] >= xnumber:
+        return None
+
+    # Optimization: if the last number isn't too big, it's the answer
+
+    if nums[-1] < xnumber:
+        return len(nums) - 1
+
+    # Else, loop through and return the index right before the first number
+    # that is too big
+
+    for i, num in enumerate(nums):
+        if num >= xnumber:
+            return i-1
+
+
+
+
+            

@@ -618,7 +618,7 @@ def is_palindrome(word):
 
 
 def find_largest_smaller_than(nums, xnumber):
-    """ Find largest number in sorted list that is smaller than given number. 
+    """ Find INDEX OF the number in sorted list that is smaller than given number. 
     
     >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 10)
     2
@@ -633,33 +633,28 @@ def find_largest_smaller_than(nums, xnumber):
 
     """
 
-    # Find midpoint
-    lo = 0
-    hi = len(nums)
-
-    mid = len(nums) // 2
-
-    while nums[mid] != xnumber:
-
-        if nums[mid] < xnumber:
-            pass
-
-        elif nums[mid] > xnumber:
-            pass
-
-        else:
-
-            return nums[mid - 1]
+    i = 0
 
 
+    while i < len(nums):
+
+        
+        # print('i', i)
+        # print('nums[i]', nums[i])
+        if nums[0] >= xnumber:
+            return None
+
+        if nums[-1] < xnumber:
+            return len(nums) - 1
+
+        if nums[i] >= xnumber:
+            return i - 1
 
 
+        i += 1
 
 
-
-
-
-
+    return None
 
 
 
