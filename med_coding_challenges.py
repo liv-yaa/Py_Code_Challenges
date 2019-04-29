@@ -62,6 +62,41 @@ def is_anagram_of_palindrome(word):
     return (odd_counts < 2)
 
 
+def has_balanced_parens(phrase):
+    """Does a string have balanced parentheses?
+    
+    >>> has_balanced_parens("()")
+    True
+    >>> has_balanced_parens("")
+    True
+    >>> has_balanced_parens("(Oh Noes!)(")
+    False
+    >>> has_balanced_parens("((There's a bonus open paren here.)")
+    False
+    >>> has_balanced_parens(")")
+    False
+    >>> has_balanced_parens("(")
+    False
+    >>> has_balanced_parens("(This has (too many closes.) ) )")
+    False
+    >>> has_balanced_parens("Hey...there are no parens here!")
+    True
+
+    """
+
+    countL = 0
+    countR = 0
+
+    for char in phrase:
+        if char == '(':
+            countL += 1
+
+        elif char == ')':
+            countR += 1
+
+
+    return countL == countR
+
 
 
 

@@ -23,7 +23,6 @@ X Print List Recursively
 X Remove Duplicates
 X Replace Vowels
 X Snake case to camel case
-!X Sort Sorted Lists
 !X Split a String
 X Sum List
 X Sum List Recursively
@@ -838,45 +837,6 @@ def snake_to_camel2(variable_name):
     return "".join(words)
 
 
-def sort_ab(a, b):
-    """Given already-sorted lists, `a` and `b`, return sorted list of both.
-
-    You may not use sorted() or .sort().
-    
-    >>> sort_ab([1, 3, 5, 7], [2, 6, 8, 10])
-    [1, 2, 3, 5, 6, 7, 8, 10]
-
-    >>> sort_ab([2, 6, 8, 10], [1, 3, 5, 7])
-    [1, 2, 3, 5, 6, 7, 8, 10]
-
-    >>> sort_ab([2, 6, 8, 10], [])
-    [2, 6, 8, 10]
-
-    * solution * https://fellowship.hackbrightacademy.com/materials/challenges/sort-ab/solution/index.html
-
-    """
-
-    outlist = []
-
-    ia = 0
-    ib = 0
-
-    while ia < len(a) and ib < len(b):
-
-        if a[ia] < b[ib]:
-            outlist.append(a[ia])
-            ia += 1
-
-        else:
-            outlist.append(b[ib])
-            ib += 1
-
-    # Add any remaining items:
-    outlist.extend(a[ia:])
-    outlist.extend(b[ib:])
-
-
-    return outlist
 
 
 def split(astring, splitter):
