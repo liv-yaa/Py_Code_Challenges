@@ -100,6 +100,51 @@ def find_largest_smaller_than(nums, xnumber):
             return i-1
 
 
+def find_largest_smaller_than_bisect(nums, xnumber):
+    """Find largest number in sorted list that is smaller than given number.
 
+    Advanced version:
+        Since we have a list, we can search it quickly using binary search.
+        Python has a nice library, `bisect`, that can do that.
+
+    For example:
+
+        >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], 10)
+        2
+
+        >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], 33)
+        4
+
+        >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], -1)
+        1
+
+    Never find xnumber --- it's not smaller than itself!
+
+        >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], 8)
+        1
+
+    If no such number exists, return None:
+
+        >>> find_largest_smaller_than_bisect([-5, -2, 8, 12, 32], -10) is None
+        True
+    """
+
+    from bisect import bisect_left
+
+    # Fail-fast optimization: since our list is sorted, if the first number
+    # is bigger, a smaller number isn't in our list
+
+    if nums[0] > xnumber:
+        return None
+
+    insertion_point = bisect_left(nums, xnumber)
+
+    return insertion_point - 1
+
+    if nums[insertion_point] == xnumber:
+        return insertion_point - 1
+
+    else:
+        return insertion_point
 
             

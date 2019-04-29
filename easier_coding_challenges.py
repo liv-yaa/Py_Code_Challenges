@@ -747,6 +747,61 @@ def max_num(num_list):
 
     return longest
 
+def max_of_three(num1, num2, num3):
+    """Returns the largest of three integers
+    >>> max_of_three(1, 5, 2)
+    5
+    >>> max_of_three(10, 1, 11)
+    11
+    """
+
+    return max(max(num1, num2), num3)
+
+
+def is_pangram(sentence):
+    """Given a string, return True if it is a pangram, False otherwise.
+    >>> is_pangram("The quick brown fox jumps over the lazy dog!")
+    True
+    >>> is_pangram("I like cats, but not mice")
+    False
+    """
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+    # find if there are any letters in alphabet that are not in sentence
+    for letter in alphabet:
+        if letter.lower() not in sentence:
+            return False
+
+    return True
+
+def pig_latin(phrase):
+    """Turn a phrase into pig latin.
+    There will be no uppercase letters or punctuation in the phrase.
+
+    >>> pig_latin('hello awesome programmer')
+    'ellohay awesomeyay rogrammerpay'
+    """
+    words = phrase.split(" ")
+
+    vowels = 'aeiou'
+
+    out = ""
+
+    for word in words:
+        if len(word) > 1:
+            if word[0] in vowels:
+                out += word + 'yay'
+            else:
+
+                out += word[1:] + word[0] + 'ay'
+
+        out += " "
+
+    return out[:-1]
+
+
+
+
 
 
 def show_evens(nums):
