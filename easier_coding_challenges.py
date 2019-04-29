@@ -783,13 +783,13 @@ def pig_latin(phrase):
     """
     words = phrase.split(" ")
 
-    vowels = 'aeiou'
+    vowels = 
 
     out = ""
 
     for word in words:
         if len(word) > 1:
-            if word[0] in vowels:
+            if word[0] in 'aeiou':
                 out += word + 'yay'
             else:
 
@@ -798,6 +798,8 @@ def pig_latin(phrase):
         out += " "
 
     return out[:-1]
+
+    # return " ".join(pl_words)
 
 
 
