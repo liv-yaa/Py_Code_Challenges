@@ -20,12 +20,12 @@ X Largest Smaller Than
 - Lazy Lemmings
 - Leaping Lemur
 X Leet Speak
-- Longest Word
-- Max Number
-- Max of Three
+X Longest Word
+X Max Number
+X Max of Three
 - Missing Number
-- Pangram
-- Pig Latin
+X Pangram
+X Pig Latin
 - Prime Number Generator
 - Print Digits Backwards
 - Print List Recursively
@@ -747,6 +747,7 @@ def max_num(num_list):
 
     return longest
 
+
 def max_of_three(num1, num2, num3):
     """Returns the largest of three integers
     >>> max_of_three(1, 5, 2)
@@ -774,6 +775,7 @@ def is_pangram(sentence):
 
     return True
 
+
 def pig_latin(phrase):
     """Turn a phrase into pig latin.
     There will be no uppercase letters or punctuation in the phrase.
@@ -800,6 +802,38 @@ def pig_latin(phrase):
     return out[:-1]
 
     # return " ".join(pl_words)
+
+
+def deduped(items):
+    """ Return new list from items with duplicates removed.
+    Keep items in the order where they first appeared:
+    A list with no duplicates would return the same:
+    This should return a new list, not mutate the existing list:
+    An empty list should return an empty list:
+
+    >>> deduped([1, 1, 1])
+    [1]
+    >>> deduped([1, 2, 1, 1, 3])
+    [1, 2, 3]
+    >>> deduped([1, 2, 3])
+    [1, 2, 3]
+    >>> a = [1, 2, 3]
+    >>> b = deduped(a)
+    >>> a == b
+    True
+    >>> a is b
+    False
+    >>> deduped([])
+    []
+
+    """
+
+    outlist = []
+
+    for i in items:
+        if i not in outlist:
+            outlist.append(i)
+
 
 
 
