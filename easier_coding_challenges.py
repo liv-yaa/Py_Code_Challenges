@@ -15,11 +15,11 @@ X FizzBuzz
 X Has More Vowels
 X Has Unique Characters
 X Is Number Prime?
-- Is Palindrome?
-- Largest Smaller Than
+X Is Palindrome?
+X Largest Smaller Than
 - Lazy Lemmings
 - Leaping Lemur
-- Leet Speak
+X Leet Speak
 - Longest Word
 - Max Number
 - Max of Three
@@ -696,6 +696,7 @@ def find_largest_smaller_than_bisect(nums, xnumber):
 
 def translate_leet(phrase):
     """Translates input into "leet-speak".
+    Note runtime is O(n^2) exponentail, very bad
 
     >>> translate_leet("Hi Balloonicorn")
     'Hi B@1100nic0rn'
@@ -718,7 +719,20 @@ def translate_leet(phrase):
     return out 
 
 
+def find_longest_word(words):
+    """Return longest word in list of words.
+    >>> find_longest_word(["hi", "hello"])
+    5
+    >>> find_longest_word(["Balloonicorn", "Hackbright"])
+    12
+    """
+    longest = 0
 
+    for word in words:
+        if len(word) > longest:
+            longest = len(word)
+
+    return longest
 
 
 def show_evens(nums):
