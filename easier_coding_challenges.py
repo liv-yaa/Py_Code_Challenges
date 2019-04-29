@@ -17,26 +17,16 @@ X Has Unique Characters
 X Is Number Prime?
 X Is Palindrome?
 X Largest Smaller Than
-- Lazy Lemmings
-- Leaping Lemur
 X Leet Speak
 X Longest Word
 X Max Number
 X Max of Three
-- Missing Number
 X Pangram
 X Pig Latin
-- Prime Number Generator
-- Print Digits Backwards
-- Print List Recursively
-- Recursive Index
-- Remove Duplicates
-- Remove Linked List Node
-- Replace Vowels
-- Reverse LinkedList
-- Reverse LinkedList In Place
-- Reverse a String Recursively
-- Show Even Numbers
+X Print List Recursively
+X Remove Duplicates
+X Replace Vowels
+
 X Snake case to camel case
 !X Sort Sorted Lists
 !X Split a String
@@ -48,6 +38,7 @@ X Word Lengths
 Leetcode problems:
 X numJewelsInStones
 X repeatedNTimes
+
 
 
 """
@@ -906,9 +897,15 @@ def rev_list_in_place(lst):
     return lst
 
 
+def rev_string(astring):
+    """Return reverse of string.
 
+    You may NOT use the reversed() function!
+    >>> rev_string("porcupine")
+    'enipucrop'
+    """
 
-
+    return astring[::-1]
 
 
 def show_evens(nums):
@@ -1537,6 +1534,7 @@ def jumpingOnClouds(c):
         
     return jumps
 
+
 def repeatedString(s, n):
     """ 
     Count the occurances of 'a' in string s, repeated infinitely,
@@ -1589,9 +1587,6 @@ def checkMagazine(magazine, ransom):
             result = False
 
     return 'Yes' if result else 'No'
-
-
-
 
 
 class InterestingCodingNotes:
