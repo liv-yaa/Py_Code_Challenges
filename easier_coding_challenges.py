@@ -785,8 +785,6 @@ def pig_latin(phrase):
     """
     words = phrase.split(" ")
 
-    vowels = 
-
     out = ""
 
     for word in words:
@@ -833,6 +831,79 @@ def deduped(items):
     for i in items:
         if i not in outlist:
             outlist.append(i)
+    return outlist
+
+
+def deduped2(items):
+    """
+    solution with faster runtime - use a set!
+    Return new list from items with duplicates removed."""
+    
+    # START SOLUTION
+
+    # keep track of items we've seen
+    seen = set()
+
+    # list to hold our answer
+    result = []
+
+    for item in items:
+        if item not in seen:
+            result.append(item)
+            seen.add(item)
+
+    return result
+
+
+def replace_vowels(chars):
+    """Given list of chars, return a new copy, but with vowels replaced by '*'.
+
+    >>> replace_vowels(['h', 'i'])
+    ['h', '*']
+    >>> replace_vowels(['o', 'o', 'o'])
+    ['*', '*', '*']
+    >>> replace_vowels(['z', 'z', 'z'])
+    ['z', 'z', 'z']
+    >>> replace_vowels([])
+    []
+    >>> replace_vowels(["A", "b"])
+    ['*', 'b']
+    >>> replace_vowels(["y", "a", "y"])
+    ['y', '*', 'y']
+
+    """
+    out = []
+
+    for c in chars:
+        if c.lower() not in 'aeiou':
+            out.append(c.lower())
+
+        else:
+            out.append('*')
+
+    return out
+
+
+def rev_list_in_place(lst):
+    """Reverse list in place.
+
+    You cannot do this with reversed(), .reverse(), or list slice
+    assignment!
+
+    >>> rev_list_in_place([1, 2, 3])
+    [3, 2, 1]
+    >>> rev_list_in_place([1, 2])
+    [2, 1]
+    >>> rev_list_in_place([1])
+    [1]
+    >>> rev_list_in_place([])
+    []
+    """
+
+    for i in range(len(lst) // 2):
+        lst[i], lst[-i - 1] = lst[-i - 1], lst[i]
+
+    return lst
 
 
 
