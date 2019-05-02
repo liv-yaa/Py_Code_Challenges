@@ -8,7 +8,7 @@ X Balanced Parentheses
 X Count List Recursively
 !X Decode a String - still in prog
 - Lazy Lemmings
-- Leaping Lemur
+!X Leaping Lemur
 - Missing Number
 - Mode
 - Print Digits Backwards
@@ -145,11 +145,72 @@ def has_balanced_parens2(phrase):
     return (parens <= 0)
 
 
-def lemmings():
+def lemmings(num_holes, cafes):
+    """
+    @num_holes - how many holes there are (there is a lemming in each hole)
+    @cafes - a sorted list of the indices of the cafes in num_holes, with each num appearing
+    at least once.
+    Find out maximum distance any given lemming needs to travel to get to a cafe
+
+    # >>> lemmings(1, [0]) # l = [1]
+    # 0
+    # >>> lemmings(2, [1]) # l = [0, 1]
+    # 1    
+    # >>> lemmings(2, [0, 1]) # l = [1, 1]
+    # 0    
+    # >>> lemmings(3, [2]) # l = [0, 0, 1]
+    # 2   
+    # >>> lemmings(3, [1]) # l = [0, 1, 0]
+    # 1
+    # >>> lemmings(3, [0, 1, 2]) # l = [1, 1, 1]
+    # 0
+    # >>> lemmings(4, [2]) # l = [0, 0, 1, 0]
+    # 2   
+    # >>> lemmings(4, [3]) # l = [0, 0, 0, 1]
+    # 3
+    # >>> lemmings(4, [0, 1, 2, 3]) # l = [1, 1, 1, 1]
+    # 0
+
+
+    """
+    # Create list of lemmings and cafes (l)
+    l = [0 for i in range(0, num_holes)]
+    for cafe in cafes:
+        l[cafe] = 1
+
+    print('l', l)
+
+
+    # Iterate through it, saving max of all min distances
+    max_of_min_dist = 0
+
+    for lem1 in l:
+
+        # For each lemming, find the closest cafe:
+
+        for lem2 in l:
+
+            if lem2 == 1:
+            
+                dist = abs(lem1 - lem2)
+                print('dist', dist)
+                if dist > min_dist:
+                    min_dist = dist 
+
+                    print('new min_dist', min_dist)
+
+        print('Overall min_dist', min_dist)
+
+
+        if min_dist > max_of_min_dist:
+            max_of_min_dist = min_dist
+
+            print('new max_dist', max_of_min_dist)
 
 
 
-    pass
+
+    return max_of_min_dist
 
 
 def lemur(branches):
@@ -191,15 +252,6 @@ def lemur(branches):
         jumps += 1
 
     return jumps
-
-
-
-
-        
-
-
-
-
 
 
 def binary_search(val):
@@ -276,52 +328,72 @@ def count_recursively(lst):
     return count_recursively(lst[1:]) + 1
 
 
-def decode(s):
-    #     """ Decode a string. A valid code is a sequence of numbers and letters, 
-    #     always starting with a number and ending with letter(s).
-    #     Each number tells you how many characters to skip before finding a good letter. 
-    #     After each good letter should come the next next number.
+# def decode(s):
+#     """ Decode a string. A valid code is a sequence of numbers and letters, 
+#     always starting with a number and ending with letter(s).
+#     Each number tells you how many characters to skip before finding a good letter. 
+#     After each good letter should come the next next number.
 
-    #     >>> decode("0h")
-    #     'h'
-    #     >>> decode("2abh")
-    #     'h'
-    #     >>> decode("0h1ae2bcy")
-    #     'hey'
-    #     >>> decode("h1ae2bcy")
-    #     'Invalid'
-    #     >>> decode("7h1ae277")
-    #     'Invalid'
-    #     >>> decode("")
-    #     'Invalid'
-    #     >>> decode("h")
-    #     'Invalid'
-    #     >>> decode("h1ae2bcy")
-    #     'Cannot convert integer, Invalid '
-
-    #     """
-    #     decoded = ""
+#     >>> decode("0h")
+#     'h'
+#     >>> decode("2abh")
+#     'h'
+#     >>> decode("0h1ae2bcy")
+#     'hey'
 
 
-    #     if len(s) < 2:
-    #         return 'Invalid'
-    #     # Else, if len is 2 or more,
 
-    #     # Initialize i (index of number) and j (index of letter)
-    #     i = 0
-    #     j = 1
+#     # >>> decode("h1ae2bcy")
+#     # 'Invalid'
+#     # >>> decode("7h1ae277")
+#     # 'Invalid'
+#     # >>> decode("")
+#     # 'Invalid'
+#     # >>> decode("h")
+#     # 'Invalid'
+#     # >>> decode("h1ae2bcy")
+#     # 'Cannot convert integer, Invalid '
 
-    #     while i < len(s) - 1:
+#     """
+#     decoded = ""
 
-    #         numb = int(s[i])
-    #         char = s[i + j]
 
-    #         if type(char) == chr:
-    #             decoded += char
+#     if len(s) < 2:
+#         return 'Invalid'
+#     # Else, if len is 2 or more,
 
-    #         i += numb
-    #         j = 1
-    pass # COME BACK TO THIS # Come back
+#     # Initialize i (index of number) and j (index of letter)
+#     i = 0
+    
+
+#     while i < len(s) - 1:
+#         numb = s[i]
+#         char = s[i + 1]
+
+#         print('numb', numb)
+#         print('char', char)
+
+#         # Find the next int
+#         try:
+#             numb = int(numb)
+#             print('numb', numb)
+
+#             # i += numb
+#             # j += numb
+
+#             # print('new numb ', s[i])
+
+
+#         except TypeError:
+
+        
+#             print('type error')
+            
+#             gi += 1
+#         decoded += char
+
+#     return decoded
+
 
 
 def sort_ab(a, b):
@@ -390,6 +462,30 @@ def sum_list(nums):
 
     else:
         return 0
+
+
+import math
+import os
+import random
+import re
+import sys
+
+# From hackerranke - https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+# Complete the diagonalDifference function below.
+def diagonalDifference(arr):
+    """ calculate the absolute difference between the sums of its diagonals. 
+        so, you just need the abs diff of four corners
+    """
+    d1 = 0 #[0][0], [1][1], [2][2], ...
+    d2 = 0 #[0][n - 1], [1][n - 2], [2][n - 3], [n - 1][0]
+
+    for i in range(n):
+        d1 += arr[i][i]
+        d2 += arr[i][n - 1 - i]
+
+    return abs(d1 - d2)
+
+
 
 
 # Doctest Section:
