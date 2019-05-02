@@ -1365,6 +1365,27 @@ def checkMagazine(magazine, ransom):
     return 'Yes' if result else 'No'
 
 
+
+# https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen=true&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+def plusMinus(arr):
+    l = len(arr)
+
+    # Count positive integers
+    pos = sum([1 for i in range(l) if arr[i] > 0])
+
+    # Count positive integers
+    neg = sum([1 for i in range(l) if arr[i] < 0])
+
+    # Count positive integers
+    zer = sum([1 for i in range(l) if arr[i] == 0])
+
+    print(float(pos / l))
+    print(float(neg / l))
+    print(float(zer / l))
+
+
+
+
 class InterestingCodingNotes:
     pass        
     """ NOTABLE PY Built In FUNCTIONS!!! 
