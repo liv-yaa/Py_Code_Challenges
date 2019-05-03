@@ -1383,6 +1383,17 @@ def plusMinus(arr):
     print(float(neg / l))
     print(float(zer / l))
 
+def timeConversion(s):
+    """ Return a new string representing the input time in 24 hour format. """
+    
+    hour = int(s[:2])
+    mid = s[2:-2]
+    ampm = s[-2:]
+
+    if ampm == 'PM':
+        hour += 12
+    
+    return str(hour) + mid
 
 
 
