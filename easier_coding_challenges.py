@@ -1395,6 +1395,43 @@ def timeConversion(s):
     
     return str(hour) + mid
 
+def countApplesAndOranges(s, t, a, b, apples, oranges):
+    """Given the value of d for m apples and n oranges, determine how many apples and oranges will fall on inclusive range [s, t]
+    s: integer, starting point of Sam's house location.
+    t: integer, ending location of Sam's house location.
+    a: integer, location of the Apple tree.
+    b: integer, location of the Orange tree.
+    apples: integer array, distances at which each apple falls from the tree.
+    oranges: integer array, distances at which each orange falls from the tree.
+    """
+
+    num_apples = 0
+    # Iterate through apples:
+    for i in apples:
+        # Get loc, determin if in range [s, t]
+
+        location = a + i 
+
+        if location >= s and location <= t:
+            num_apples += 1
+
+
+    num_orans = 0
+    # Iterate through oranges:
+    for i in oranges:
+        # Get loc, determin if in range [s, t]
+
+        location = a + i 
+
+        if location >= s and location <= t:
+            num_orans += 1
+
+
+    print(num_apples)
+    print(num_orans)
+
+
+
 
 
 class InterestingCodingNotes:
