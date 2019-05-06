@@ -1421,7 +1421,7 @@ def countApplesAndOranges(s, t, a, b, apples, oranges):
     for i in oranges:
         # Get loc, determin if in range [s, t]
 
-        location = a + i 
+        location = b + i 
 
         if location >= s and location <= t:
             num_orans += 1
