@@ -655,6 +655,29 @@ class Node:
 
 
 
+def to_roman(num):
+    """Converts positive integers to Roman numeral equivalent using Old-school style.
+    >>> to_roman(99)
+    'LXXXXVIIII'
+    >>> to_roman(51)
+    'LI'
+    >>> to_roman(9)
+    'VIIII'
+
+    """
+
+    if num != int(num) or num > 4999 or num < 1:
+        raise ValueError("Cannot convert")
+
+
+
+
+
+
+
+
+
+
 
 
 
