@@ -661,13 +661,118 @@ def to_roman(num):
     'LXXXXVIIII'
     >>> to_roman(51)
     'LI'
-    >>> to_roman(9)
-    'VIIII'
+    >>> to_roman(3999)
+    'MMMDCCCCLXXXXVIIII'
+    >>> to_roman(4001)
+    'MMMMI'
 
     """
+    DIGITS = {1 :'I',
+                    5 :'V',
+                    10 : 'X',
+                    50 : 'L',
+                    100: 'C',
+                    500: 'D',
+                    1000:'M'}
 
     if num != int(num) or num > 4999 or num < 1:
         raise ValueError("Cannot convert")
+
+
+    roman = ""
+    num_str = str(num)
+
+    if len(num_str) == 4:
+        roman += DIGITS[1000] * int(num_str[0])
+        num_str = num_str[1:]
+
+    if len(num_str) == 3:
+        curr_digit = int(num_str[0])
+        if curr_digit >= 5:
+            roman += DIGITS[500]
+            curr_digit -= 5
+
+        roman += DIGITS[100] * curr_digit
+        num_str = num_str[1:]
+
+    if len(num_str) == 2:
+        curr_digit = int(num_str[0])
+        
+        if curr_digit >= 5:
+            roman += DIGITS[50]
+            curr_digit -= 5
+
+        roman += DIGITS[10] * curr_digit
+        num_str = num_str[1:]
+
+    if len(num_str) == 1:
+        curr_digit = int(num_str[0])
+        if curr_digit >= 5:
+            roman += DIGITS[5]
+            curr_digit -= 5
+
+        roman += DIGITS[1] * curr_digit
+
+
+
+
+    return roman
+
+
+def best(price_list):
+    """
+    Given a list of prices from a day, calc the maximum profit for the stock
+    for that day.
+    * Buy-sell must be in chronological order
+    >>> best([1, 1, 1, 2])
+    1
+    >>> best([2, 1, 1, 2])
+    1
+    >>> best([10, 1, 1, 2])
+    1
+    >>> best([2, 1, 1, 10])
+    9
+    >>> best([7, 9, 5, 6, 3, 2])
+    2
+    >>> best([15, 10, 20, 22, 1, 9])
+    12
+    >>> best([1, 2, 3, 4, 5])
+    4
+    >>> best([2, 3, 10, 6, 4, 8, 1])
+    8
+    >>> best([7, 9, 5, 6, 3, 2])
+    2
+    >>> best([0, 100])
+    100
+
+    """
+    best = 0
+
+    # Calc best for all before it
+    for i in range(len(price_list)):
+        for j in range(i + 1, len(price_list)):
+            delta = price_list[j] - price_list[i]
+            
+            # print(price_list[j], '-', price_list[i], '=', delta)
+
+
+            if delta > best and best >= 0:
+                best = delta
+                # print('new best', best)
+
+    return best
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
