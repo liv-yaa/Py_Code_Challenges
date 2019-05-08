@@ -46,6 +46,7 @@ class Ship(object):
         ''' Is this ship sunk? '''        
         return self.hits == self._length
 
+
     def place(self, col, row, direction):
         ''' Place ship.
         Given a row & column direction, determine coordinates ship will occupy
@@ -81,6 +82,55 @@ class Ship(object):
         '''
 
 
+class AircraftCarrier(Ship):
+    _length = 5
+    name = 'AircraftCarrier'
+
+
+class Destroyer(Ship):
+    _length = 5
+    name = 'AircraftCarrier'    
+
+
+class Submarine(Ship):
+    _length = 5
+    name = 'AircraftCarrier'
+
+
+class Battleship(Ship):
+    _length = 5
+    name = 'AircraftCarrier'
+
+
+# List of ship types
+SHIP_TYPES = [AircraftCarrier, Battleship, Submarine, Destroyer]
+
+
+
+class Player(object):
+    '''
+    Object for a player
+
+    Players have a board with their opponents moves, ships name, and link to their component
+
+    '''
+
+    name = "" # Name of player
+    opponent = None # Will be the opponent object
+
+    _board = None # List of 10x10 matrix (list-of-lists) for board
+    _ships = None # List of living ships for user
+
+    def __init__(self, name):
+        '''
+        Create player:
+        - set up their board
+        - set up their initially empty list of ships
+
+        
+        
+
+        '''
 
 
 
