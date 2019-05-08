@@ -501,39 +501,155 @@ class Node:
     def is_valid(self):
         """Is this tree a valid BST?
 
-        >>> t = Node(4,
-        ...       Node(2, Node(1), Node(3)),
-        ...       Node(6, Node(5), Node(7))
-        ... )
+        The rule is “left child must value must be less-than parent-value” and 
+        “right child must be greater-than-parent value”.
 
-        >>> t.is_valid()
-        True
+        This rule is recursive, so everything left of a parent must less than 
+        that parent (even grandchildren or deeper) and everything right of a 
+        parent must be greater than the parent
 
-        >>> t = Node(4,
-        ...       Node(2, Node(3), Node(3)),
-        ...       Node(6, Node(5), Node(7))
-        ... )
+        Write a method that, given a node in a binary search tree, returns True
+        or False depending on whether the tree rooted at that node is valid.
 
-        >>> t.is_valid()
-        False
 
-        >>> t = Node(4,
-        ...       Node(2, Node(1), Node(3)),
-        ...       Node(6, Node(1), Node(7))
-        ... )
+        # >>> t = Node(4,
+        # ...       Node(2, Node(1), Node(3)),
+        # ...       Node(6, Node(5), Node(7))
+        # ... )
 
-        >>> t.is_valid()
-        False
+        # >>> t.is_valid()
+        # True
+        # >>> t = Node(4,
+        # ...       Node(2, Node(3), Node(3)),
+        # ...       Node(6, Node(5), Node(7))
+        # ... )
+
+        # >>> t.is_valid()
+        # False
+
+        # >>> t = Node(4,
+        # ...       Node(2, Node(1), Node(3)),
+        # ...       Node(6, Node(1), Node(7))
+        # ... )
+
+        # >>> t.is_valid()
+        # False
 
         """
 
+        # Recursive inner fxn
+
+        def _ok(n, lt, gt):
+            """ Check this node and recurse
+            lt : left children must be <= this
+            gt : right children must be >= this
+            """
+
+            if n is None:
+                # Base case: this isn't a node
+                return True
+
+            if lt is not None and n.data > lt:
+                # base case: bigger than allowed
+                # Could also raise ValueError
+                return False
+
+            if gt is not None and n.data < gt:
+                # base case: smaller than allowed
+                return False
+
+            if not _ok(n.left, n.data, gt):
+                # General case: check all left child descendants
+                return False
+
+            # If we reach here, we're either a leaf node with
+            # Valid data for lt/gt, of we're higher up, but our 
+            # recursive calls downward succeed. Either way, wins!
+            return True
 
 
+        # Call our recursive function startin here
+        # Initialize with right=None and left=None
+        return _ok(self, None, None)
 
 
+    def __iter__(self):
+        """
+        Alternate solution to recursive above. 
+
+        *** uses GENERATOR **************************************************
+        A function that returns a generator iterator (an object we can
+        iterate over) by calling 'yield'.
+
+        'yield' may be called with a value, in which case that value is
+        treated as the 'generated' value.
+
+        The next time next() is called on the generator iterator, the generator
+        resumes execution from where it called yield, not from the beginning
+        of the function. 
+
+        All of the state, like the values of local variables, is recovered 
+        and the generator coninues to execute until the next call to yield.
+
+        ** WHY **
+        to 'save its work', instead of like a noraml function, just starting
+        over every time it is called
+        *********************************************************************
+
+        """
+
+        for n in self.left or []:
+            yield n
+
+        # hand back this node
+        yield self
+
+        # walk the right descendants recursively:
+        for n in self.right or []:
+            yield n
+
+        # Now we have to call another function, to check is_valid_using_iter_sort
+        
+    def is_valid_using_iter_sort(self):
+        """ Is tree a valid BST?
+
+        Compare the iteration order with the sorted order; if they are diff,
+        it's not a valid tree.
+
+        PROS: short 
+        CONS: ineffficient - O(n log n)
+
+        Also does not have a 'fail fast' - it has to do the whole tree!
+
+        """
+        values = [n.data for n in self]
+
+        return values == sorted(values)
 
 
+    def is_valid_using_iter_check(self):
+        """ Is tree a valid BST?
 
+        PROS: Instead of - O(n log n), it is O(n) if we do a manual sort.
+        CONS: gotta write a long sorter 
+
+        """
+        
+        last = None
+
+        for n in self:
+            if last is not None and n.data < last:
+                return False
+
+            last = n.data
+
+        # If we made it through w/o probs, it's in the right order
+        return True
+
+
+        # Or, another O(log n) solution using list()
+        ns = list(self)
+        return all(ns[i] >= ns[i - 1] for i in range(1, len(ns)))
 
 
 
