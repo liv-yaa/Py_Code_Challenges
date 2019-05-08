@@ -3,7 +3,7 @@
 https://fellowship.hackbrightacademy.com/materials/challenges/_all.html#medium
 
 X Anagram of Palindrome
-X Balanced Parentheses
+X Balanced Parentheses          
 !X Binary Search - still in prog
 X Count List Recursively
 !X Decode a String - still in prog
@@ -14,7 +14,7 @@ X Count List Recursively
 - Print Digits Backwards
 - Print List Recursively
 - Recursive Index
-- Remove Linked List Node
+- Remove Linked List Node       
 - Reverse Linked List
 - Reverse a String Recursively
 !X Sort Sorted Lists
@@ -484,6 +484,61 @@ def diagonalDifference(arr):
         d2 += arr[i][n - 1 - i]
 
     return abs(d1 - d2)
+
+
+""" BST Validator is it valid? https://fellowship.hackbrightacademy.com/materials/challenges/bst-valid/index.html#bst-valid
+"""
+class Node:
+    """Binary search tree node."""
+
+    def __init__(self, data, left=None, right=None):
+        """Create node, with data and optional left/right."""
+
+        self.left = left
+        self.right = right
+        self.data = data
+
+    def is_valid(self):
+        """Is this tree a valid BST?
+
+        >>> t = Node(4,
+        ...       Node(2, Node(1), Node(3)),
+        ...       Node(6, Node(5), Node(7))
+        ... )
+
+        >>> t.is_valid()
+        True
+
+        >>> t = Node(4,
+        ...       Node(2, Node(3), Node(3)),
+        ...       Node(6, Node(5), Node(7))
+        ... )
+
+        >>> t.is_valid()
+        False
+
+        >>> t = Node(4,
+        ...       Node(2, Node(1), Node(3)),
+        ...       Node(6, Node(1), Node(7))
+        ... )
+
+        >>> t.is_valid()
+        False
+
+        """
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
