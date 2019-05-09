@@ -687,6 +687,11 @@ class NodeLL(object):
 def remove_node(node):
     ''' In place removal of a node in a linked list (NodeLL)
         Runtime is O(1) linear!
+
+    >>> one_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
+    >>> remove_node(one_node)
+    >>> one_node.as_string()
+    '234'
     '''
 
     if not node.next:
@@ -694,6 +699,30 @@ def remove_node(node):
 
     node.data = node.next.data
     node.next = node.next.next 
+
+
+def reverse_linked_list(head):
+    """Given LL head node, return head node of new, reversed linked list.
+
+    >>> ll = NodeLL(1, NodeLL(2, NodeLL(3)))
+    >>> reverse_linked_list(ll).as_string()
+    '321'
+    """
+
+    # Create a blank node for the head, once we find it
+    out_head = None
+
+    # Create a curr node
+    curr = head
+
+    while curr:
+        # Move through linked list, duplicating each node and creating 
+        # a new node with next equal to out_head
+        # This effectively switches the direction of our pointers
+        out_head = NodeLL(curr.data, out_head)
+        curr = curr.next 
+
+    return out_head
 
 
 def to_roman(num):
@@ -986,7 +1015,21 @@ def recursive_search(needle, haystack):
     return _recursive_index(needle, haystack, 0)
 
 
+def rev_string(astring):
+    """Return reverse of string using recursion.
 
+    You may NOT use the reversed() function!
+
+    >>> rev_string('scott')
+    'ttocs'
+
+    """
+    # Go through, putting the first char at the last position
+    if len(astring) <= 1:
+        return astring
+
+    else:
+        return rev_string(astring[1:]) + astring[0]
 
 
 
@@ -996,13 +1039,9 @@ def recursive_search(needle, haystack):
 # Doctest Section:
 if __name__ == '__main__':
     import doctest
-    one_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
-    remove_node(one_node)
-    one_node.as_string()
 
-    # One liner way to create a LinkedList! (1) -> (2) -> (3) -> (4)
-    five_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
 
+   
     result = doctest.testmod()
     if result.failed == 0:
         print('ALL TESTS PASSED')
