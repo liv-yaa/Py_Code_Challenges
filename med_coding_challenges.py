@@ -9,8 +9,8 @@ X Count List Recursively
 !X Decode a String - still in prog
 - Lazy Lemmings
 !X Leaping Lemur
-- Missing Number
-- Mode
+X Missing Number
+X Mode
 - Print Digits Backwards
 - Print List Recursively
 - Recursive Index
@@ -24,6 +24,14 @@ X Sum List Recursively
 
 
 """
+
+
+import math
+import os
+import random
+import re
+import sys
+
 
 def is_anagram_of_palindrome(word):
     """Is the word an anagram of a palindrome?
@@ -465,12 +473,6 @@ def sum_list(nums):
         return 0
 
 
-import math
-import os
-import random
-import re
-import sys
-
 # From hackerranke - https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
 # Complete the diagonalDifference function below.
 def diagonalDifference(arr):
@@ -653,9 +655,6 @@ class Node:
         return all(ns[i] >= ns[i - 1] for i in range(1, len(ns)))
 
 
-
-
-
 def to_roman(num):
     """Converts positive integers to Roman numeral equivalent using Old-school style.
     >>> to_roman(99)
@@ -783,7 +782,6 @@ def missing_number_simple(nums, max_num):
     return seen.index(False) + 1
 
 
-
 def missing_number_med(nums, max_num):
     '''
     ** DEMO FOR RUNTIME - O(n log n) and no additional storage**   
@@ -807,7 +805,6 @@ def missing_number_med(nums, max_num):
     raise Exception('None are missing!')
 
 
-
 def missing_number_advanced(nums, max_num):
     '''
     ** DEMO FOR RUNTIME - O(n) and no additional storage !! wow **   
@@ -824,7 +821,6 @@ def missing_number_advanced(nums, max_num):
 
 
     # Note, the sum of 1...n is (n+1)*(n/2) for an "Arithmetic Progression"
-
 
 
 def mode(nums):
@@ -852,9 +848,42 @@ def mode(nums):
     return {num for num in a_dic if a_dic[num] == max_count}
 
 
+def print_digits(num):
+    """Given int, print digits in reverse order, starting with the ones place.
+    >>> print_digits(1)
+    1
+    >>> print_digits(314)
+    4
+    1
+    3
+    >>> print_digits(12)
+    2
+    1
+
+    """
+    s = str(num)
+    for i in range(len(s)-1, -1, -1):
+        # print(i)
+        print(s[i])
 
 
+def print_digits_math(num):
+    """Given int, print digits in reverse order, starting with the ones place.
+    >>> print_digits_math(1)
+    1
+    >>> print_digits_math(314)
+    4
+    1
+    3
+    >>> print_digits_math(12)
+    2
+    1
 
+    """
+    while num:
+        next_digit = num % 10
+        print(next_digit)
+        num = (num - next_digit) // 10
 
 
 
