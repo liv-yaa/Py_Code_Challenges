@@ -915,7 +915,7 @@ def print_recursively_soln(lst):
 
 
 
-def recursive_index(needle, haystack):
+def recursive_search(needle, haystack):
     """Given list (haystack), return index (0-based) of needle in the 
     list.
 
@@ -926,12 +926,30 @@ def recursive_index(needle, haystack):
     >>> lst = ["hey", "there", "you"]
     >>> recursive_search("hey", lst)
     0
-    >>> recursive_search("you")
+    >>> recursive_search("you", lst)
     2
     >>> recursive_search("porcupine", lst) is None
     True
     """
-    return True
+    # Create inner function!
+    def _recursive_index(needle, haystack, start_at):
+
+        # Check if not found & we made it to the end
+        if start_at == len(haystack):
+            return None
+
+        elif haystack[start_at] == needle:
+            return start_at
+
+        return _recursive_index(needle, haystack, start_at + 1)
+
+    return _recursive_index(needle, haystack, 0)
+
+
+
+
+
+
 
 
 
