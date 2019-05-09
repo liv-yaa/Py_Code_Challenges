@@ -337,71 +337,56 @@ def count_recursively(lst):
     return count_recursively(lst[1:]) + 1
 
 
-# def decode(s):
-#     """ Decode a string. A valid code is a sequence of numbers and letters, 
-#     always starting with a number and ending with letter(s).
-#     Each number tells you how many characters to skip before finding a good letter. 
-#     After each good letter should come the next next number.
+def decode(s):
+    """ Decode a string. A valid code is a sequence of numbers and letters, 
+    always starting with a number and ending with letter(s).
+    Each number tells you how many characters to skip before finding a good letter. 
+    After each good letter should come the next next number.
 
-#     >>> decode("0h")
-#     'h'
-#     >>> decode("2abh")
-#     'h'
-#     >>> decode("0h1ae2bcy")
-#     'hey'
-
-
-
-#     # >>> decode("h1ae2bcy")
-#     # 'Invalid'
-#     # >>> decode("7h1ae277")
-#     # 'Invalid'
-#     # >>> decode("")
-#     # 'Invalid'
-#     # >>> decode("h")
-#     # 'Invalid'
-#     # >>> decode("h1ae2bcy")
-#     # 'Cannot convert integer, Invalid '
-
-#     """
-#     decoded = ""
+    >>> decode("0h")
+    'h'
+    >>> decode("2abh")
+    'h'
+    >>> decode("0h1ae2bcy")
+    'hey'
 
 
-#     if len(s) < 2:
-#         return 'Invalid'
-#     # Else, if len is 2 or more,
 
-#     # Initialize i (index of number) and j (index of letter)
-#     i = 0
+    # >>> decode("h1ae2bcy")
+    # 'Invalid'
+    # >>> decode("7h1ae277")
+    # 'Invalid'
+    # >>> decode("")
+    # 'Invalid'
+    # >>> decode("h")
+    # 'Invalid'
+    # >>> decode("h1ae2bcy")
+    # 'Cannot convert integer, Invalid '
+
+    """
+    word = ""
+
+
+    if len(s) < 2:
+        return 'Invalid'
+    # Else, if len is 2 or more,
+
+    # Initialize i (index of number) and j (index of letter)
+    i = 0
     
 
-#     while i < len(s) - 1:
-#         numb = s[i]
-#         char = s[i + 1]
+    while i < len(s):
+        num_to_skip = int(s[i])
 
-#         print('numb', numb)
-#         print('char', char)
+        i += num_to_skip + 1
 
-#         # Find the next int
-#         try:
-#             numb = int(numb)
-#             print('numb', numb)
+        word += s[i]
 
-#             # i += numb
-#             # j += numb
-
-#             # print('new numb ', s[i])
+        i += 1
 
 
-#         except TypeError:
 
-        
-#             print('type error')
-            
-#             gi += 1
-#         decoded += char
-
-#     return decoded
+    return word
 
 
 
