@@ -11,7 +11,7 @@ X Count List Recursively
 !X Leaping Lemur
 X Missing Number
 X Mode
-- Print Digits Backwards
+X Print Digits Backwards
 - Print List Recursively
 - Recursive Index
 - Remove Linked List Node       
@@ -886,6 +886,32 @@ def print_digits_math(num):
         num = (num - next_digit) // 10
 
 
+
+def print_recursively(lst):
+    """Print items in the list, using recursion.
+    >>> print_recursively([1, 2, 3])
+    1
+    2
+    3
+    """
+
+    if len(lst) <= 1:
+        print(lst[0])
+    else:
+        print(lst[0])
+        return print_recursively(lst[1:])
+
+def print_recursively_soln(lst):
+    """Print items in the list, using recursion. 
+    * Their elegant solution, similar to mine though **
+    >>> print_recursively_soln([1, 2, 3])
+    1
+    2
+    3
+    """
+    if lst:
+        print(lst[0])
+        print_recursively(lst[1:])
 
 
 
