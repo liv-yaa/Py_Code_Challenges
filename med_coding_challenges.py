@@ -12,11 +12,11 @@ X Count List Recursively
 X Missing Number
 X Mode
 X Print Digits Backwards
-- Print List Recursively
+X Print List Recursively
 X Recursive Index
-- Remove Linked List Node       
+X Remove Linked List Node       
 - Reverse Linked List
-- Reverse a String Recursively
+X Reverse a String Recursively
 !X Sort Sorted Lists
 X Stock Prices
 - Split a String
@@ -473,10 +473,11 @@ def sum_list(nums):
         return 0
 
 
-# From hackerranke - https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
-# Complete the diagonalDifference function below.
 def diagonalDifference(arr):
-    """ calculate the absolute difference between the sums of its diagonals. 
+    """ 
+    # From hackerranke - https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+        # Complete the diagonalDifference function below.
+        calculate the absolute difference between the sums of its diagonals. 
         so, you just need the abs diff of four corners
     """
     d1 = 0 #[0][0], [1][1], [2][2], ...
@@ -489,10 +490,11 @@ def diagonalDifference(arr):
     return abs(d1 - d2)
 
 
-""" BST Validator is it valid? https://fellowship.hackbrightacademy.com/materials/challenges/bst-valid/index.html#bst-valid
-"""
 class NodeBST:
-    """Binary search tree node."""
+    """Binary search tree node.
+
+    BST Validator is it valid? https://fellowship.hackbrightacademy.com/materials/challenges/bst-valid/index.html#bst-valid
+    """
 
     def __init__(self, data, left=None, right=None):
         """Create node, with data and optional left/right."""
@@ -682,11 +684,8 @@ class NodeLL(object):
         return "".join(out)
 
 
-
-# If we deleted '3' node, we would get (1) -> (2) -> (4)
-# Write function to delete any node that is not the tail node
 def remove_node(node):
-    ''' In place removal of a node in a linked list
+    ''' In place removal of a node in a linked list (NodeLL)
         Runtime is O(1) linear!
     '''
 
@@ -695,17 +694,6 @@ def remove_node(node):
 
     node.data = node.next.data
     node.next = node.next.next 
-
-
-one_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
-remove_node(one_node)
-one_node.as_string()
-
-# One liner way to create a LinkedList! (1) -> (2) -> (3) -> (4)
-five_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
-
-
-
 
 
 def to_roman(num):
@@ -939,7 +927,6 @@ def print_digits_math(num):
         num = (num - next_digit) // 10
 
 
-
 def print_recursively(lst):
     """Print items in the list, using recursion.
     >>> print_recursively([1, 2, 3])
@@ -954,6 +941,7 @@ def print_recursively(lst):
         print(lst[0])
         return print_recursively(lst[1:])
 
+
 def print_recursively_soln(lst):
     """Print items in the list, using recursion. 
     * Their elegant solution, similar to mine though **
@@ -965,7 +953,6 @@ def print_recursively_soln(lst):
     if lst:
         print(lst[0])
         print_recursively(lst[1:])
-
 
 
 def recursive_search(needle, haystack):
@@ -1009,6 +996,12 @@ def recursive_search(needle, haystack):
 # Doctest Section:
 if __name__ == '__main__':
     import doctest
+    one_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
+    remove_node(one_node)
+    one_node.as_string()
+
+    # One liner way to create a LinkedList! (1) -> (2) -> (3) -> (4)
+    five_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
 
     result = doctest.testmod()
     if result.failed == 0:
