@@ -915,6 +915,23 @@ def print_recursively_soln(lst):
 
 
 
+def recursive_index(needle, haystack):
+    """Given list (haystack), return index (0-based) of needle in the 
+    list.
+
+    Return None if needle is not in haystack.
+
+    Do this with recursion. You MAY NOT USE A `for` OR `while` LOOP.
+    
+    >>> lst = ["hey", "there", "you"]
+    >>> recursive_search("hey", lst)
+    0
+    >>> recursive_search("you")
+    2
+    >>> recursive_search("porcupine", lst) is None
+    True
+    """
+    return True
 
 
 
