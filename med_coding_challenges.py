@@ -13,7 +13,7 @@ X Missing Number
 X Mode
 X Print Digits Backwards
 - Print List Recursively
-- Recursive Index
+X Recursive Index
 - Remove Linked List Node       
 - Reverse Linked List
 - Reverse a String Recursively
@@ -491,7 +491,7 @@ def diagonalDifference(arr):
 
 """ BST Validator is it valid? https://fellowship.hackbrightacademy.com/materials/challenges/bst-valid/index.html#bst-valid
 """
-class Node:
+class NodeBST:
     """Binary search tree node."""
 
     def __init__(self, data, left=None, right=None):
@@ -653,6 +653,59 @@ class Node:
         # Or, another O(log n) solution using list()
         ns = list(self)
         return all(ns[i] >= ns[i - 1] for i in range(1, len(ns)))
+
+
+class NodeLL(object):
+    """Class in a linked list."""
+
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+    def as_string(self):
+        """Represent data for this node and it's successors as a string.
+
+        >>> NodeLL(3).as_string()
+        '3'
+
+        >>> NodeLL(3, NodeLL(2, NodeLL(1))).as_string()
+        '321'
+        """
+
+        out = []
+        n = self
+
+        while n:
+            out.append(str(n.data))
+            n = n.next
+
+        return "".join(out)
+
+
+
+# If we deleted '3' node, we would get (1) -> (2) -> (4)
+# Write function to delete any node that is not the tail node
+def remove_node(node):
+    ''' In place removal of a node in a linked list
+        Runtime is O(1) linear!
+    '''
+
+    if not node.next:
+        raise ValueError('Cannot remove tail node')
+
+    node.data = node.next.data
+    node.next = node.next.next 
+
+
+one_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
+remove_node(one_node)
+one_node.as_string()
+
+# One liner way to create a LinkedList! (1) -> (2) -> (3) -> (4)
+five_node = NodeLL(1, NodeLL(2, NodeLL(3, NodeLL(4))))
+
+
+
 
 
 def to_roman(num):
