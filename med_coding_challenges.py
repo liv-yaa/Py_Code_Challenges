@@ -18,6 +18,7 @@ X Count List Recursively
 - Reverse Linked List
 - Reverse a String Recursively
 !X Sort Sorted Lists
+X Stock Prices
 - Split a String
 X Sum List Recursively
 
@@ -763,17 +764,92 @@ def best(price_list):
     return best
 
 
+def missing_number_simple(nums, max_num):
+    '''
+    ** DEMO FOR RUNTIME - O(n) and requires additional storage (a list of n) **   
+    Takes this list of numbers, 
+    as well as the max_num, and it should return the missing number.
+    >>> missing_number_simple([1, 2, 3, 4, 5, 6, 7, 9, 10], 10)
+    8
+    >>> missing_number_simple([2, 1, 4, 3, 6, 5, 7, 10, 9], 10)
+    8
+    '''
+    seen = [False] * max_num
+
+    for n in nums:
+        seen[n - 1] = True
+
+    # The False value is the only one we have not seen!
+    return seen.index(False) + 1
 
 
 
+def missing_number_med(nums, max_num):
+    '''
+    ** DEMO FOR RUNTIME - O(n log n) and no additional storage**   
+
+    >>> missing_number_med([1, 2, 3, 4, 5, 6, 7, 9, 10], 10)
+    8
+    >>> missing_number_med([2, 1, 4, 3, 6, 5, 7, 10, 9], 10)
+    8
+    '''
+    
+    nums.append(max_num + 1)
+    nums.sort()
+    last = 0
+
+    for i in nums:
+        if i != last + 1:
+            return last + 1
+
+        last += 1
+
+    raise Exception('None are missing!')
 
 
 
+def missing_number_advanced(nums, max_num):
+    '''
+    ** DEMO FOR RUNTIME - O(n) and no additional storage !! wow **   
+
+    >>> missing_number_advanced([1, 2, 3, 4, 5, 6, 7, 9, 10], 10)
+    8
+    >>> missing_number_advanced([2, 1, 4, 3, 6, 5, 7, 10, 9], 10)
+    8
+    '''
+    
+    expected = sum(range(max_num + 1))
+
+    return expected - sum(nums)
+
+
+    # Note, the sum of 1...n is (n+1)*(n/2) for an "Arithmetic Progression"
 
 
 
+def mode(nums):
+    """Find the most frequent num(s) in nums.
+    Return a SET of the mode, more items if there's a tie
+    >>> mode([1]) == {1}
+    True
+    >>> mode([1, 2, 2, 2]) == {2}
+    True
+    >>> mode([1, 1, 2, 2]) == {1, 2}
+    True
 
+    """
+    a_dic = {}
+    max_count = 1
 
+    for num in nums:
+        this_count = nums.count(num)
+
+        a_dic[num] = this_count
+
+        if this_count > max_count:
+            max_count = this_count
+
+    return {num for num in a_dic if a_dic[num] == max_count}
 
 
 
