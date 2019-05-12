@@ -6,7 +6,7 @@ X Anagram of Palindrome
 X Balanced Parentheses          
 !X Binary Search - still in prog
 X Count List Recursively
-!X Decode a String - still in prog
+X Decode a String - still in prog
 - Lazy Lemmings
 !X Leaping Lemur
 X Missing Number
@@ -387,7 +387,6 @@ def decode(s):
 
 
     return word
-
 
 
 def sort_ab(a, b):
@@ -1015,6 +1014,61 @@ def rev_string(astring):
 
     else:
         return rev_string(astring[1:]) + astring[0]
+
+
+def split(astring, splitter):
+    """ Split a string by splitter and return list of splits.
+    >>> split("i love balloonicorn", " ")
+    ['i', 'love', 'balloonicorn']
+    >>> split("that is which is that which is that", " that ")
+    ['that is which is', 'which is that']
+    >>> split("that is which is that which is that", "that")
+    ['', ' is which is ', ' which is ', '']
+    >>> split("hello world", "nope")
+    ['hello world']
+
+    """
+    l = []
+
+    i = 0 # Index of astring
+    j = len(splitter) # Index of sub-word 
+
+    while i <= len(astring) - len(splitter) :
+
+        word = astring[i : i + j]
+        
+        print('word', word)
+
+        if word == splitter:
+            # When we find it, want to update floor to be i + len(splitter) - 1
+            print('skip')
+
+            l.append(astring[floor:i+1])
+            i += j 
+
+
+        else:
+            i += 1  
+
+        floor = len(splitter)
+
+
+    print(l)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
