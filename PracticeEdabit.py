@@ -101,7 +101,13 @@ def matrixElementsSum(matrix):
     print(s)
 
 
+def allLongestStrings(inputArray):
+    # return Array of the longest strings, stored in the same order
+    
+    ml = max([len(item) for item in inputArray])    
+    out = [item for item in inputArray if len(item) == ml]
 
+    return out
 
 
 if __name__ == "__main__":
