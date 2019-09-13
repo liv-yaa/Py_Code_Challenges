@@ -1,4 +1,5 @@
-# Practce from edabit
+# Practce from edabit 9-13-2019
+# For 
 
 def count_boomerangs(arr):
 	"""
@@ -53,7 +54,6 @@ def first_before_second(string, l1, l2):
 	return True
 		
 
-
 def convert_to_hex(txt):
 	"""
 	>>> convert_to_hex("hello world")
@@ -65,20 +65,40 @@ def convert_to_hex(txt):
 	"""
 	# return '4d 61 72 74 79 20 50 6f 70 70 69 6e 73 6f 6e'
 
+	out = ""
+
+	for char in txt:
+		# print(char)
+
+		if char != ' ':
+
+			out += str(ord(char)) + ' '
+
+	return out
 
 
+def matrixElementsSum(matrix):
 
+    # Method: add up the sum. Haunted are 0 so it doesn't matter.
+    # Next, subtract the rooms directly below the haunted ones
+        
+    s = 0
+    haunted = list()
+    
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):            
+            if matrix[i][j] == 0:
+                haunted.append(tuple((i, j)))
+            s += matrix[i][j]
+                
+    print(haunted)
+    
+        
+    
 
+            
 
-
-
-
-
-
-
-
-
-
+    print(s)
 
 
 
