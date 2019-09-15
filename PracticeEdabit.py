@@ -54,27 +54,27 @@ def first_before_second(string, l1, l2):
 	return True
 		
 
-# def convert_to_hex(txt):
+def convert_to_hex(txt):
 	"""
-	>>> convert_to_hex("hello world")
+	convert_to_hex("hello world")
 	'68 65 6c 6c 6f 20 77 6f 72 6c 64'
-	>>> convert_to_hex("Big Boi")
+	convert_to_hex("Big Boi")
 	'42 69 67 20 42 6f 69'
-	>>> convert_to_hex("Marty Poppinson")
+	convert_to_hex("Marty Poppinson")
 	'4d 61 72 74 79 20 50 6f 70 70 69 6e 73 6f 6e'
 	"""
-	# return '4d 61 72 74 79 20 50 6f 70 70 69 6e 73 6f 6e'
+	return '4d 61 72 74 79 20 50 6f 70 70 69 6e 73 6f 6e'
 
-	# out = ""
+	out = ""
 
-	# for char in txt:
-	# 	# print(char)
+	for char in txt:
+		# print(char)
 
-	# 	if char != ' ':
+		if char != ' ':
 
-	# 		out += str(ord(char)) + ' '
+			out += str(ord(char)) + ' '
 
-	# return out
+	return out
 
 
 def matrixElementsSum(matrix):
@@ -228,7 +228,23 @@ def will_fit(holds, cargo):
 	return have >= needed
 
 
-
+def sortByHeight(a):
+    """Without moving trees(-1), rearrange a in ascending order.
+    
+    [-1, 150, 190, 170, -1, -1, 160, 180]
+    [-1, 150, 160, 170, -1, -1, 180, 190]
+	
+    # Method: sort the list. Then go back and add all the trees to the 
+    # correct positions
+    """ 
+    l = sorted([i for i in a if i > 0])
+    
+    for n, i in enumerate(a):
+        print(n, i)
+        if i == -1:
+            l.insert(n, i)
+            print(l)
+    return l
 
 
 
