@@ -199,6 +199,38 @@ def is_prim_pyth_triple(lst):
 	return (a**2 + b**2 == c**2) and (common == [1])
 
 
+def will_fit(holds, cargo):
+	""" 
+	# "S" means 50 cargo space.
+	# "M" means 100 cargo space.
+	# "L" means 200 cargo space.
+
+	>>> will_fit(["M", "L", "L", "M"], [56, 62, 84, 90])
+	True
+	>>> will_fit(["S", "S", "S", "S", "L"], [40, 50, 60, 70 , 80, 90, 200])
+	False
+	>>> will_fit(["L", "L", "M"], [56, 62, 84, 90])
+	True
+	"""
+
+	needed = sum(cargo)
+
+	have = 0
+	for h in holds:
+		if h == 'S':
+			have += 50
+		elif h == 'M':
+			have += 100
+		elif h == 'L':
+			have += 200
+
+
+	return have >= needed
+
+
+
+
+
 
 if __name__ == "__main__":
     import doctest
