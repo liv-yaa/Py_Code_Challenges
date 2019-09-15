@@ -247,6 +247,24 @@ def sortByHeight(a):
     return l
 
 
+def sortByHeight2(a):
+	"""Without moving trees(-1), rearrange a in ascending order.
+    
+    >>> [-1, 150, 190, 170, -1, -1, 160, 180]
+    [-1, 150, 160, 170, -1, -1, 180, 190]
+	
+    """
+    people = [n for n in a if n != -1]
+    people.sort()
+    for i in range(len(a)):
+        a[i] = people.pop(0) if a[i] != -1 else a[i]
+    return a
+
+
+
+
+
+
 
 if __name__ == "__main__":
     import doctest
