@@ -247,19 +247,55 @@ def sortByHeight(a):
     return l
 
 
-def sortByHeight2(a):
-	"""Without moving trees(-1), rearrange a in ascending order.
+def sortByHt(a):
+	"""
+	Without moving trees(-1), rearrange a in ascending order.
     
-    >>> [-1, 150, 190, 170, -1, -1, 160, 180]
+    [-1, 150, 190, 170, -1, -1, 160, 180]
     [-1, 150, 160, 170, -1, -1, 180, 190]
-	
-    """
-    people = [n for n in a if n != -1]
-    people.sort()
-    for i in range(len(a)):
-        a[i] = people.pop(0) if a[i] != -1 else a[i]
-    return a
 
+    """ 
+	people = sorted(filter(lambda x: x != -1, a))
+	return [people.pop(0) if i != -1 else -1 for i in a]
+
+
+def squish(lst, d):
+	""" Write a function that squishes a list from the left or the right.
+	>>> squish([1, 2, 3, 4, 5], "left") 
+	[[1, 2, 3, 4, 5], [3, 3, 4, 5], [6, 4, 5], [10, 5], [15]]
+	>>> squish([1, 2, 3, 4, 5], "right")
+	[[1, 2, 3, 4, 5], [1, 2, 3, 9], [1, 2, 12], [1, 14], [15]]
+	>>> squish([1, 0, 2, -3], "left")
+	[[1, 0, 2, -3], [1, 2, -3], [3, -3], [0]]
+	>>> squish([1, 0, 2, -3], "right")
+	[[1, 0, 2, -3], [1, 0, -1], [1, -1], [0]]
+	"""
+
+	if lst == []:
+		return lst
+
+	# Start out with copy of lst
+	alls = [lst[:]]
+
+	while True:
+		prev = alls[-1] # Get the last item in lst
+
+		if len(prev) == 1:
+			break
+
+		if d == 'left':
+			l = prev[:] # Create a copy of the last item in the array
+			l[1] = prev[0] + prev[1] # Squish (add)
+			del l[0]
+			alls.append(l)
+
+		elif d == 'right':
+			l = prev[:]
+			l[-2] = prev[-2] + prev[-1]
+			del l[-1]
+			alls.append(l)
+
+	return alls
 
 
 
