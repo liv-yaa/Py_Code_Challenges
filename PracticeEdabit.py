@@ -298,9 +298,110 @@ def squish(lst, d):
 	return alls
 
 
+def hourglassSum(arr):
+    #[[1, 1, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 2, 4, 4, 0], [0, 0, 0, 2, 0, 0], [0, 0, 1, 2, 4, 0]]
+
+    maxSum = sum(arr[0][:3]) + arr[1][1] + sum(arr[2][:3])
+
+    for i in range(len(arr) - 2): # row
+        for j in range(len(arr) - 2): # item in row
+            s = sum(arr[i][j:j+3]) + arr[i+1][j+1] + sum(arr[i+2][j:j+3])
+            if s > maxSum:
+                maxSum = s
+        
+    return maxSum
+
+
+def rotLeft(a, d):
+	""" a - an array; d - number of shifts left to do 
+	 if d = 0 , no shift
+	 if d = 1, shift left 1 so [1, 2, 3] = [2, 3, 1]
+	 if d = 2, shift left 2 so [1, 2 ,3] = [3, 1, 2]
+	 if d = 3, shift left 3 so [1, 2, 3] = [1, 2, 3] == 3 % 3 == 0
+
+	"""
+    s = d % len(a)  # Shift value
+    return a[s:] + a[:s]
+
+
+def reverseInParentheses(inputString):
+	# Not my solution, but a good one to practice.
+    stack = []
+    for x in inputString:
+        if x == ")":
+            tmp = ""
+            while stack[-1] != "(":
+                tmp += stack.pop()
+            stack.pop() # pop the (
+            for item in tmp:
+                stack.append(item)
+        else:
+            stack.append(x)
+    
+    return "".join(stack)
+
+
+def addBorder(picture):
+    out = []
+    s = len(picture[0]) if len(picture) > 0 else 0
+    
+    out.append('*' * (s + 2))
+    for i in range(len(picture)):
+        picture[i] = '*' + picture[i] + '*'
+        out.append(picture[i])
+    out.append('*' * (s + 2))
+    
+    return out
+
+
+def areSimilar(A, B):
+
+    r = []
+    for i in range(len(A)):
+        if A[i] != B[i]:
+            r.append([A[i],B[i]])
+            
+    if len(r) == 0 or len(r) == 2 and r[0]==r[1][::-1]:
+        return True
+    return False
+
+
+def arrayChange(a):
+    """ Find the minimal number of moves required to obtain a strictly increasing sequence from the input.
+	This is my clunky answer
+    """
+    
+    moves = 0
+    i = 0
 
 
 
+    while True:
+        
+        if a[i] >= a[i + 1]:
+            
+            n = a[i] - a[i + 1] + 1            
+            a[i + 1] = a[i + 1] + n
+            moves += n
+            
+        if a[i] < a[i + 1]:
+            i += 1
+            
+        if i == len(a) - 1:
+            break
+       
+    return moves
+
+
+def arrayChangeBetter(arr):
+    x = 0
+    for i in range(1, len(arr)):
+    	if arr[i] <= arr[i - 1]:
+    		f = arr[i - 1] - arr[i] + 1
+    		arr[i] = arr[i - 1] + 1
+    		x += f
+	return x
+            
 
 if __name__ == "__main__":
     import doctest
