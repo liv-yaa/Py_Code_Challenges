@@ -402,9 +402,78 @@ def arrayChangeBetter(arr):
     		x += f
 	return x
             
+import itertools
+
+def palindromeRearranging(inputString):
+
+    counts = createCountDict(inputString)    
+        
+    x = [val % 2 == 0 for val in counts.values()] # list of True if even count
+    
+    # Case 1: length is even; must have all even counts
+    if len(inputString) % 2 == 0:
+        return all(x)
+    
+    # Case 2: length is odd; has one odd count and the rest evens
+    elif len(inputString) % 2 == 1:
+        odd_1 = x.count(False)
+        return(odd_1 == 1)
+    
+    return False
+
+        
+    
+# Helper function ^ 
+def createCountDict(string):
+    d = dict()
+    for letter in string:         
+        d[letter] = d.get(letter, 0) + 1    
+    
+    return d
+    
+    
+def isPalindrome(list1):
+    return list1 == list1[::-1]
+
+def palindromeRearranging2(inputString):
+	# Not my answer
+    # count the number of each individual character
+    # can form a palindrome only if:
+    #   at most one of the character counts is odd, all others must be even
+
+    l = list(inputString)
+    chars = set(l)
+    counts = sum([l.count(x) % 2 for x in chars])
+    return counts <= 1
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
     # print("All Tests Passed!")
+def arrayMaximalAdjacentDifference(inputArray):
+
+	if len(inputArray) >= 2:
+		mad = abs(inputArray[0] - inputArray[1])
+
+		print(mad)
+
+		for i in range(1, len(inputArray) - 1):
+			if (abs(inputArray[i] - inputArray[i + 1] > mad)):
+				mad = abs(inputArray[i] - inputArray[i + 1]
+
+
+                          
+
+
+
+
+
+
+
+
+
+
+
+
+
