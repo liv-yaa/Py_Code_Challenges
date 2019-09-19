@@ -451,25 +451,53 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # print("All Tests Passed!")
+
 def arrayMaximalAdjacentDifference(inputArray):
 
-	if len(inputArray) >= 2:
-		mad = abs(inputArray[0] - inputArray[1])
+	# if len(inputArray) >= 2:
+	# 	mad = abs(inputArray[0] - inputArray[1])
 
-		print(mad)
+	# 	print(mad)
 
-		for i in range(1, len(inputArray) - 1):
-			if (abs(inputArray[i] - inputArray[i + 1] > mad)):
-				mad = abs(inputArray[i] - inputArray[i + 1]
-
-
-                          
+	# 	for i in range(1, len(inputArray) - 1):
+	# 		if (abs(inputArray[i] - inputArray[i + 1] > mad)):
+	# 			mad = abs(inputArray[i] - inputArray[i + 1]
 
 
+def avoidObstacles(inputArray):
+	# Had to look up answer
+	j = 2
+	while True:
+		if sorted([i % c for i in inputArray])[0] > 0:
+			return j
+		j += 1
 
 
 
+def firstDuplicate(a):
+	# Had to look up answer
+	  s = set()
+	  
+	  for i in a:
+	    if i in s:
+	      return i
+	  
+	    s.add(i)
+	  return -1
 
+def rotateImage(a):
+    # I finally did it!!
+    out = []
+    l = len(a)
+    for i in range(l):
+        sub = []   
+        for j in range(l):
+                subsub = a[l - 1 - j][i] # a[2][i], a[1][i], a[0][i]]
+                sub.append(subsub)
+
+        out.append(sub)
+    return out
+    
 
 
 
