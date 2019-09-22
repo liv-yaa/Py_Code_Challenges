@@ -597,7 +597,39 @@ def minesweeper(matrix):
 
 
 
+def minesweeper(matrix):
 
+    r = []
+    
+    for i in range(len(matrix)):
+        r.append([])
+        for j in range(len(matrix[0])):
+            l = -matrix[i][j]
+            for x in [-1,0,1]:
+                for y in [-1,0,1]:
+                    if 0<=i+x<len(matrix) and 0<=j+y<len(matrix[0]):
+                        l += matrix[i+x][j+y]
+
+            r[i].append(l)
+    return r
+
+
+def arrayReplace(inputArray, elemToReplace, substitutionElem):
+    for i in range(len(inputArray)):
+        if inputArray[i] == elemToReplace:
+            print(elemToReplace)
+            inputArray[i] = substitutionElem
+            
+    return inputArray
+
+
+def evenDigitsOnly(n):
+    
+    return all([int(n) % 2 == 0 for n in str(n)])
+
+
+
+                    
 
 
 
