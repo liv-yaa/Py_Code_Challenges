@@ -499,6 +499,146 @@ def rotateImage(a):
     return out
     
 
+def sudoku2(grid):
+    gl = len(grid)
+    # allRowsUnique = True
+    # allColsUnique = True
+    allSubgridUniqe = True
+    
+    
+    allRowsUnique = all([allInSetUnique(grid[i]) for i in range(gl)])
+    
+    print('allRowsUnique', allRowsUnique)
+    
+    # Get all columns
+    allColsUnique = all([allInSetUnique([grid[j][i] for j in range(gl) for i in range(gl)])])
+    
+    print('Columns ')
+    columns = []
+    for j in range(gl):
+        for i in range(gl):
+            c.append(grid[j][i])
+        print(c, j)
+        
+    
+    print('allColsUnique',allColsUnique)
+        
+    subgridTruths = []
+    # Get 3 x 3 chunks:
+    for x in range(3):
+        subgrid1 = grid[x + 0][0:3] + grid[x + 1][0:3] + grid[x + 2][0:3]
+        subgrid2 = grid[x + 0][3:6] + grid[x + 1][3:6] + grid[x + 2][3:6]
+        subgrid3 = grid[x + 0][6:9] + grid[x + 1][6:9] + grid[x + 2][6:9]
+        
+        subgridTruths += [allInSetUnique(subgrid1)]
+        subgridTruths += [allInSetUnique(subgrid2)]
+        subgridTruths += [allInSetUnique(subgrid3)]
+        print(x, 'subgrid1', subgrid1)
+        print(x, 'subgrid2', subgrid2)
+        print(x, 'subgrid3', subgrid3)
+
+
+            
+    print('subgridTruths', subgridTruths)  
+    
+    allSubgridUniqe = all(subgridTruths)
+    
+    print('allSubgridUniqe', allSubgridUniqe)
+            
+    return allRowsUnique and allColsUnique and allSubgridUniqe
+
+
+
+def allInSetUnique(arr):
+    # Takes an array and checks if all nums are uniqe.
+    l = len(arr)
+    # Check that all numbers in row are unique
+    numset = [int(n) for n in set(arr) if n != '.']
+    numslist = [int(n) for n in arr if n != '.']
+
+    if len(numset) != len(numslist):
+            # print(arr, ' is False')
+            return False
+            
+    return True
+    
+
+def boxBlur(image):
+	hend = len(image[0]) - 2
+    vend = len(image) - 2
+    return [[sum(sum(x[i: i + 3]) for x in image[j: j + 3]) // 9 for i in range(hend)]
+           for j in range(vend)] 1
+
+
+def minesweeper(matrix):
+	# Had to look up answer :(
+	r = []
+	l = len(matrix) #length
+	h = len(matrix[0]) #height
+
+	for i in range(l):
+		r.append([])
+
+		for j in range(h):
+
+			l = -matrix[i][j]
+			print('l', l)
+
+			for x in [-1, 0, 1]:
+				for y in [-1, 0, 1]:
+					if 0 <= i + x < l and 0 <= j + y < h:
+						l += matrix[i + x][j + y]
+
+			r[i].append(l)
+
+	return r
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
