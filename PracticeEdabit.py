@@ -628,7 +628,64 @@ def evenDigitsOnly(n):
     return all([int(n) % 2 == 0 for n in str(n)])
 
 
+def variableName(name):
+    # Correct variable names consist only of English letters, digits and underscores and they can't start with a digit.
+    
+    digits = '0123456789'
+    letters = 'abcdefghijklmnopqrstuvwxyz0123456789_'
+    
+    if name[0] in digits:
+        return False
+    
+   
+    return all([l.lower() in letters for l in name])
 
+
+def alphabeticShift(inputString):
+    
+    alpha = 'abcdefghijklmnopqrstuvwxyz'
+    out = ''
+
+    for i in range(len(inputString)):
+        x = alpha.index(inputString[i])
+        
+        if x == 25:
+            out += alpha[0]
+        
+        else:
+        
+            out += alpha[x + 1]
+        
+    return out
+        
+        
+def chessBoardCellColor(cell1, cell2):
+    # Determine whether cell1, cell2 have the same color or not.
+    # Weird beause numbering of rows starts with 1 not 0
+    d = {}
+        
+    for l in 'ABCDEFGH':
+        
+        if l in ['A', 'C', 'E', 'G']:
+            d[l] = ['1', '3', '5', '7']
+            
+        if l in ['B', 'D', 'F', 'H']:
+            d[l] = ['2', '4', '6', '8']
+
+    
+    return (cell1[1] in d.get(cell1[0])) == (cell2[1] in d.get(cell2[0]))      
+
+            
+            
+            
+            
+        
+        
+            
+       
+
+                
+            
                     
 
 
