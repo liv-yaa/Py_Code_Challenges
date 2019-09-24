@@ -217,8 +217,126 @@ def findEmailDomain(address):
     return a[-1] # domain
     
 
-        
-        
-        
+def buildPalindromeLU1(st):
+    for i in range(0,len(st)):
+        if(st[i:len(st)] == st[i:len(st)][::-1]):
+            return st[0:i] + st[i:len(st)] + st[0:i][::-1]
+
+
+def buildPalindromeLU2(st):
+    n = len(st)
+    a = ""
+    if st == st[::-1]:
+        return st
+    a = st + st[::-1][1:]
+    counter = len(a)
+    while counter > n:
+        if a[n:counter] == st[n-counter+n:n]:
+            return a[0:n] + a[counter:]
+        counter -= 1
+    return a 
+
+def BADelectionsWinners(votes, k):
+    # find the number of candidates who still have a chance to win the election.
+
+    print(votes, k)
+    if k == 0:
+        if len([x for x in votes if x == max(votes)]) == 1:
+            return 1
+        else:
+            return 0
+    
+    winnable = []
+    for i in range(len(votes)):
+
+        if votes[i] + k > max(votes):
+            winnable.append(i)
+            
+        elif votes[i] == max(votes):
+            # Try distributing the votes evenly and see if they are still the max
+            avail = k
+            for j in range(len(votes)):
+                if j != i:
+                    votes[j] + 1
+                    k -= 1
+                    print('avail', avail, 'k', k, 'votes', votes)
+                    
+     
     
     
+    print('winnable', winnable)
+    return len(winnable)
+
+        
+ 
+def LU1electionsWinners(v, k):
+    c, mv = 0, max(v)
+    if k==0 and v.count(mv)==1: c=1
+    for i in v: 
+        if i+k>mv: c+=1
+    return c
+
+def LU2electionsWinners(votes, k):
+    votes_req = max(votes)
+    if not k:
+        front_runners = votes.count(votes_req)
+        if front_runners >= 2:
+            return 0
+        return 1
+    return sum(1 for v in votes if v+k > votes_req)
+
+def BAD1isMAC48Address(inputString):
+
+    l = inputString.split('-')
+
+    print(l)
+    
+    if len(l) != 6:
+        return False
+    
+    for sub in l:
+        try:
+            hexa = int(sub, 16)
+            print('sub', sub, 'hexa', hexa)
+        except:
+            print('Cant convert to integer')
+            return False
+        
+    return True
+        
+def LUisMAC48Address(inputString):
+    try:
+        l = inputString.split('-')
+
+        if len(l) != 6:
+            return False
+
+        for sub in l:
+            if len(sub) != 2:
+                return False
+            
+            hexa = int(sub, 16)        
+
+
+        return True
+    except:
+        return False
+   
+
+
+
+def isDigit(symbol):
+    return symbol in '0123456789'
+
+
+
+
+
+
+
+
+
+
+
+
+
