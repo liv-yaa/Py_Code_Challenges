@@ -330,7 +330,56 @@ def isDigit(symbol):
 
 
 
+def lineEncodingSOLVED(s):
 
+    # First, the string is divided into the least possible number of disjoint substrings consisting of identical characters
+    lst = []
+    i = 0
+    j = 1
+    while True:
+        x = s[i:i + j]
+        print(x)
+        print('i, j', i, j)
+        
+        if i+j == len(s):
+            if len(set(x)) != 1:
+                lst.append(s[i:i+j - 1])
+                lst.append(s[i+j - 1:])
+                print('break2')
+                break
+            else:
+                lst.append(s[i:i+j])
+                print('break2')
+                break
+
+        if len(set(x)) != 1:    # nonhomogenous list found
+            lst.append(s[i:i+j - 1])  # append the one before
+            i += j - 1            # increment i by len of newly added sublist 
+            print('lst',lst)
+            
+            
+            j = 1               # Reset j
+        else:                   # homogenous list
+            j += 1
+        
+        
+        
+    print(lst)
+    
+   
+
+    # Next, each substring with length greater than one is replaced with a concatenation of its length and the repeating character
+    for i in range(len(lst)):
+        if len(lst[i]) > 1:
+            lst[i] = str(len(lst[i])) + lst[i][0]
+        
+    print(lst)
+    
+    return ''.join(lst)
+    
+    
+        
+        
 
 
 
