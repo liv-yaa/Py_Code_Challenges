@@ -455,10 +455,28 @@ def chessKnightANS(c):
     return len(l) // 2 # to account for double counting
 
     
+def deleteDigitSOLV(n):
+
+    # find the maximal number you can obtain by deleting exactly one digit of the given number.
+    maxx = int(str(n)[1:])
+    for i in range(1, len(str(n))):
+        x = str(n)[i]
+        z = int(str(n)[:i] + str(n)[i+1:])
+                
+        if z > maxx:
+            maxx = z
+            
+    return maxx   
     
     
+import re
+def longestWord(text):
+    words = re.split('[^a-zA-Z]', text)
     
+    x = max([len(w) for w in words])
     
+    return [r for r in words if len(r) == x][0]
+
     
 
 
