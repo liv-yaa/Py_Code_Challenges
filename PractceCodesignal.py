@@ -468,7 +468,7 @@ def deleteDigitSOLV(n):
             
     return maxx   
     
-    
+   
 import re
 def longestWord(text):
     words = re.split('[^a-zA-Z]', text)
@@ -477,13 +477,50 @@ def longestWord(text):
     
     return [r for r in words if len(r) == x][0]
 
+def longestWordANS(text):
+    return max(re.split('[^a-zA-Z]', text), key=len) # didnt know about this additional parameter for max() func
+
+def validTime(time):
+    #Check if the given string is a correct time representation of the 24-hour clock.
     
+    t = time.split(':')
+    return (0 <= int(t[0]) <= 23) and (0 <= int(t[1]) <= 59)
 
+def sumUpNumbersANS(inputString):
+    l = re.findall(r"\d+",inputString)
+    return sum([int(i) for i in l])
 
+def sumUpNumbersSOLN(inputString):
+    ns = re.split('[^0-9]', inputString)    
+    
+    x = []
+    for n in ns:
+        try:
+            n = int(n)
+            x.append(n)
+        except:
+            pass
+    return sum(x)
 
-
-
-
+def differentSquaresANS(matrix):
+    #Given a rectangular matrix containing only digits, calculate the number of different 2 × 2 squares in it.
+    uniqueSquares = []
+    
+    if len(matrix) < 2 or len(matrix[0]) < 2:
+        return 0
+    
+    
+    for i in range(len(matrix) - 1):
+        for j in range(len(matrix[0]) - 1):
+            b = [] 
+            b.append(matrix[i][j:j+2])
+            b.append(matrix[i+1][j:j+2])
+            
+            
+            if b not in uniqueSquares:
+                uniqueSquares.append(b)
+             
+    return len(uniqueSquares)
     
     
     
