@@ -378,10 +378,74 @@ def lineEncodingSOLVED(s):
     return ''.join(lst)
     
     
+from itertools import groupby
+def lineEncodingLU(s):
+    x = ''
+    for k,g in groupby(s):
+        y = len((list(g)))
+        if y==1:
+            x += k
+        else:
+            x += str(y) + k
+    return x        
         
+def lineEncodingLU2(s):
+    counted = re.findall(r'((\w)\2*)', s)
+    return "".join([ str(len(count[0])) + count[1] if len(count[0]) > 1 else str(count[0]) for count in counted])
+
+def chessKnightSOLVED(cell):
+    # check how many valid L-shpaed moves a knight can perform
+    # In the center it is 8, but on the edge it might be 2 or 3 or 4 or 6
+    
+    # First convert the letters to numbers - both x and y now from int 1-8, inclusive
+    cx = ord(cell[0]) - 96 # X-axis is letters 'abcdefgh'
+    cy = int(cell[1])
+    
+    def mv1(x, y):
+        # x: Right 2; y: Up 1
+        return (x + 2, y + 1)
+    def mv2(x, y):
+        # x: Right 1; y: Up 2
+        return (x + 1, y + 2)
+    def mv3(x, y):
+        # x: Left 2; y: Up 1
+        return (x - 2, y + 1)
+    def mv4(x, y):
+        # x: Left 1; y: Up 2
+        return (x - 1, y + 2)
+    def mv5(x, y):
+        # x: Right 2; y: Down 1
+        return (x + 2, y - 1)
+    def mv6(x, y):
+        # x: Right 1; y: Down 2
+        return (x + 1, y - 2)
+    def mv7(x, y):
+        # x: Left 2; y: Down 1
+        return (x - 2, y - 1)
+    def mv8(x, y):
+        # x: Left 1; y: Down 2
+        return (x - 1, y - 2)
         
-
-
+    ans1 = mv1(cx, cy)
+    ans2 = mv2(cx, cy)
+    ans3 = mv3(cx, cy)
+    ans4 = mv4(cx, cy)
+    ans5 = mv5(cx, cy)
+    ans6 = mv6(cx, cy)
+    ans7 = mv7(cx, cy)
+    ans8 = mv8(cx, cy)
+    
+    answers = [ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8]
+    nums = [1, 2, 3, 4, 5, 6, 7, 8]
+    ok = [a for a in answers if a[0] in nums and a[1] in nums]
+    
+    return len(ok)
+    
+    
+    
+    
+    
+    
 
 
 
