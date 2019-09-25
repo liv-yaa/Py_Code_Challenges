@@ -440,6 +440,104 @@ def chessKnightSOLVED(cell):
     ok = [a for a in answers if a[0] in nums and a[1] in nums]
     
     return len(ok)
+
+
+def chessKnightANS(c):
+
+    x , y = ord(c[0]) - 96, int(c[i])
+
+    l = []
+    for i in [-2, -1, 1, 2]:
+        for j in [-2, -1, 1, 2]:
+            if 1 <= x + i <= 8 and 1 <= y + j <= 8:
+                l.append(x, y)
+
+    return len(l) // 2 # to account for double counting
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
     
     
     
