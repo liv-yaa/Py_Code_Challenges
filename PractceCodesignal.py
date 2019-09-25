@@ -523,7 +523,68 @@ def differentSquaresANS(matrix):
     return len(uniqueSquares)
     
     
+def getPrimeFactors(n):
+    pf = []
     
+    for p in [2, 3, 5, 7]: # single digit primes
+        if n % p == 0:
+            pf.append(p)
+            
+    print(pf)
+    
+    f = []
+
+def digitsProduct(p):
+    #find the smallest positive (i.e. greater than 0) integer the product 
+    #of whose digits is equal to p. If there is no such integer, return -1
+        
+    i = 0
+    while True:
+        i += 1
+        
+        iproduct = getProductOfDigits(i)
+        print('i', i, iproduct)
+        
+        if iproduct == p:
+            return i 
+        elif i == 10000:
+            break
+
+    return -1
+
+def getProductOfDigits(x):
+    # Takes integer x and returns product of its digits
+    # return x
+    
+    st = str(x)
+    
+    r = 1
+    for i in range(len(st)):
+        r = r * int(st[i])
+        
+    return r
+
+
+def digitsProductANS(p):
+    if p == 0:
+        return 10
+    elif p == 1:
+        return 1
+    
+    n = []
+
+    while 1 < p:
+        for d in range(9, 1, -1):
+            if p % d == 0:
+                p /= d
+                n.append(d)
+                break
+        else:
+            return -1
+
+    return int(''.join(map(str, sorted(n))))
+
+        
     
     
     
