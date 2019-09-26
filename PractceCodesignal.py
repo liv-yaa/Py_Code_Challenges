@@ -584,18 +584,48 @@ def digitsProductANS(p):
 
     return int(''.join(map(str, sorted(n))))
 
+   
+def fileNamingBAD(names):
+    seen = []
+    
+    def findUnique(o):
+        # Checks `seen` for o
+        if o in seen:
+            print('test')
+            
+        return '0'
+   
+
+
+    for name in names:
+        if name in seen:
+            n = findUnique(name)
+            seen.append(n)
+            print('seen', seen)
         
+        else:
+            seen.append(name)
+            print('seen', seen)
+
+            
+    return seen     
     
-    
-    
+def fileNaming(names):
+    for i in range(len(names)):
+        if names[i] in names[:i]:
+            j=1
+            while names[i]+"("+str(j)+")" in names[:i]:
+                j+=1
+            names[i]+="("+str(j)+")"
+    return names
 
 
+def messageFromBinaryCode(c):
+    return ''.join([chr(int(c[i:i + 8], 2)) for i in range(0, len(c), 8)])
 
 
-
-
-    
-    
+        
+        
     
     
     
