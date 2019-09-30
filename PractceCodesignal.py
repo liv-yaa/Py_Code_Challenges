@@ -625,24 +625,170 @@ def messageFromBinaryCode(c):
 
 
         
+def BADspiralNumbers(n):
+    #Construct a square matrix with a size N × N containing integers from 1 to N * N in a spiral order, starting from top-left and in clockwise direction.
+    
+    
+    # spiral = [[0] * n for i in range(n)]
+    spiral = []
+    
+    print(spiral)
+    
+    
+    i, j, m = 0, 0, 1
+    while True:
         
-    
-    
-    
-    
+        if i == 0:
+            spiral.append([x for x in range(1, n + 1)])
+            i += 1
+            m += n
+            print('m',m)
+            
+        elif 0 < i < n - 1:
+            spiral.append([n*n - 1, n*n, m])
+            i += 1
+            m += 1
+            
+        elif i == n - 1:
+            spiral.append([m + 2, m + 1, m])
+            break
+                
+                
 
+    return spiral
+        
+def BAD2spiralNumbers(n):
+    #Construct a square matrix with a size N × N containing integers from 1 to N * N in a spiral order, starting from top-left and in clockwise direction.
+    
+    # Strategy: Start from the middle, count the number of "full loops" around the middle. 
+    
+    
+    spiral = [[0] * n for i in range(n)]    
+    
+    i, j, m = n // 2, n // 2, n*n
+    while True:
+        spiral[i][j] = m
+        m -= 1
+        if j > 0:
+            j -= 1
+            spiral[i][j] = m
+            m -= 1
+        if j == 0 and i != 0 and i != n - 1:
+            i += 1
+            spiral[i][j] = m
+            j += 1
+            m -= 1
+        if j <= n and i == n - 1:
+            spiral[i][j] = m
+            m -= 1
+            j += 1
+        
+        else:
+        # if m == 0:
+            break
+        
+        
+    return spiral
 
+def ANSspiralNumbers(n):
+    m = [[0] * n for i in range(n)]
+    dx, dy = [0, 1, 0, -1], [1, 0, -1, 0]
+    x, y, c = 0, -1, 1
+    for i in range(n + n - 1):
+        for j in range((n + n - i) // 2):
+            x += dx[i % 4]
+            y += dy[i % 4]
+            m[x][y] = c
+            c += 1
+    return m
 
+def ANSspiralNumbers(n):
+    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    curDir = 0
+    curPos = (0, 0)
+    res = [[0 for i in range(n)] for i in range(n)]
+    for i in range(1, n * n + 1):
+        res[curPos[0]][curPos[1]] = i
+        nextPos = curPos[0] + dirs[curDir][0], curPos[1] + dirs[curDir][1]
+        if not (0 <= nextPos[0] < n and
+                0 <= nextPos[1] < n and
+                res[nextPos[0]][nextPos[1]] == 0):
+            curDir = (curDir + 1) % 4
+            nextPos = curPos[0] + dirs[curDir][0], curPos[1] + dirs[curDir][1]
+        curPos = nextPos
+    return res
 
+def sudoku(grid):
+    # Check if the given grid of numbers represents a correct solution to Sudoku.
+    nums = [x for x in range(1, 10)]
+    print(nums)
+    def allRows():
+        return all([(sorted(grid[i]) == nums) for i in range(9)])
 
+    
+    def allCols():
+        return all([(nums == sorted([grid[j][i] for j in range(9)])) for i in range(9)])
 
+    
+    def allSubgrids():
+        allgrids = []
+        for i in [0, 3, 6]:
+            for j in [0, 3, 6]:
+                g = []
+                for k in [0, 1, 2]:
+                    g.extend(grid[i+k][j:j+3])
+                
+                allgrids.append(sorted(g) == nums)
+        return all(allgrids)
     
     
     
+    return allRows() and allCols() and allSubgrids()
     
     
+# ~~~ PRACTICE TEST CODESIGNAL ~~~   
     
+    
+# PROBLEM1  
+# Given an integer n and an array a of length n, your task is to apply the following mutation to a:
 
+# Array a mutates into a new array b of length n.
+# For each i from 0 to n - 1, b[i] = a[i - 1] + a[i] + a[i + 1].
+# If some element in the sum a[i - 1] + a[i] + a[i + 1] does not exist, it should be set to 0. For example, b[0] should be equal to 0 + a[0] + a[1].
+# Example
+
+# For n = 5 and a = [4, 0, 1, -2, 3], the output should be mutateTheArray(n, a) = [4, 5, -1, 2, 1].
+
+# b[0] = 0 + a[0] + a[1] = 0 + 4 + 0 = 4
+# b[1] = a[0] + a[1] + a[2] = 4 + 0 + 1 = 5
+# b[2] = a[1] + a[2] + a[3] = 0 + 1 + (-2) = -1
+# b[3] = a[2] + a[3] + a[4] = 1 + (-2) + 3 = 2
+# b[4] = a[3] + a[4] + 0 = (-2) + 3 + 0 = 1
+# So, the resulting array after the mutation will be [4, 5, -1, 2, 1].
+
+# Input/Output
+
+# [execution time limit] 4 seconds (py3)
+
+# [input] integer n
+
+# An integer representing the length of the given array.
+
+# Guaranteed constraints:
+# 1 ≤ n ≤ 103.
+
+# [input] array.integer a
+
+# An array of integers that needs to be mutated.
+
+# Guaranteed constraints:
+# a.length = n,
+# -103 ≤ a[i] ≤ 103.
+
+# [output] array.integer
+
+# The resulting array after the mutation.
+# [Python3] Syntax Tips
 
 
 
