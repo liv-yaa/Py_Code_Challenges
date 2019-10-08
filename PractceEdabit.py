@@ -660,7 +660,15 @@ def relPrime(p, q):
     return sum(numpy.gcd(range(n), n) < 2)
 
 
-
+from itertools import permutations
+def equationTemplate(values):
+    #try fill the template that will result in a correct equation. - return boolean if possible
+    
+    for p in permutations(values):  
+        if bool(p[0] == p[1] * p[2] * p[3]) == True or bool(p[0] * p[1] == p[2] * p[3]) == True:
+            return True
+          
+    return False
 
 
 
