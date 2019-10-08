@@ -619,19 +619,45 @@ def isDiagonalMatrix(matrix):
     return True
         
     
-
 def mainDiag(m):
-    # Takes a matrix m and returns the `main diagonal` - goes from the upper left corner of a matrix to its lower right corner.
+    # helper function - Takes a matrix m and returns the `main diagonal` - goes from the upper left corner of a matrix to its lower right corner.
     return [(i, i) for i in range(len(m))]
     
+#numpy solution
+    p = numpy
+    i, j = p.nonzero(*eval(dir()[0]))
+    return p.any(i - j) ^ 1
 
 
+def kthDivisor(n, k):
+    try:
+        return [i for i in range(1, n + 1) if n % i == 0][k - 1]
+    except:
+        return -1
+
+# concise solution ^^
+    n, k = eval(dir()[0])
+    t = -1,
+    i = n
+    while n:
+      if i % n < 1:
+        t += n,
+      n -= 1
+    return t[-k]
 
 
-
-
-
-
+def eulersTotientFunction(n):
+    #Given an integer n, find the value of phi(n), where phi is Euler's totient function.
+    #Euler’s totient or phi function is an arithmetic function that counts the positive integers less than or equal to n that are relatively prime to n.
+    return len([i for i in range(1, n+1) if relPrime(i, n)]) 
+    
+def relPrime(p, q):
+    #Two integers are said to be relatively prime (or coprime) if the only positive integer that evenly divides both of them is 1.
+    return [i for i in range(1, min(p, q) + 1) if p % i == 0 and q % i == 0] == [1]    
+    
+# Concise solution ^^
+    n, = eval(dir()[0])
+    return sum(numpy.gcd(range(n), n) < 2)
 
 
 
