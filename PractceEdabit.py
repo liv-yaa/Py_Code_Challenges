@@ -533,35 +533,97 @@ def evenNumbersBeforeFixed(sequence, fixedElement):
         return -1
 
 
+from itertools import combinations 
+def countIncreasingSequences(n, k):
+    
+    return len([c for c in list(combinations(range(1, k + 1), n)) if list(c) == sorted(c)])
 
 
+def decipher(cipher):
+
+    out = ""
+    i = 0
+    
+    while True:
+        if i < len(cipher) - 1:
+            n = int(cipher[i:i+2])
+            
+            if n in [n for n in range(97, 123)]:
+                i += 2
+            else:
+                if i < len(cipher) - 2:
+                    n = int(cipher[i:i+3])
+                    i += 3            
+            out += chr(n)
+        else:
+            break
+    return out
+            
+        
+def fullName(first, last):
+
+    return first + ' ' + last
 
 
+def shapeAreaRecursive(n):
+    
+    if n == 1:
+        return 1
+    
+    else:
+        return shapeArea(n - 1) + (4 * (n - 1))
 
 
+def shapeAreaIter(n):
+    area = 1
+    for i in range(1, n + 1):
+        area += 4*(i - 1)
+        
+    return area
 
 
+def properOrImproper(a):
+    #if the absolute value of the fraction is strictly less than one.
+    
+    if abs(a[0] / a[1]) >= 1:
+        return "Improper"
+    return "Proper"
 
 
+def findTheRemainder(a, b):
+
+    return a % b
 
 
+def hailstoneSequence(n):
+    steps = 0
+    while True:
+        if n == 1:
+            break
+        elif n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3 * n + 1
+        steps += 1
+            
+    return steps
 
 
+def isDiagonalMatrix(matrix):
+    #In linear algebra, a square matrix is called a diagonal matrix if all entries outside the main diagonal are zero.
 
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] != 0 and (i, j) not in mainDiag(matrix):
+                return False
+    return True
+        
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+def mainDiag(m):
+    # Takes a matrix m and returns the `main diagonal` - goes from the upper left corner of a matrix to its lower right corner.
+    return [(i, i) for i in range(len(m))]
+    
 
 
 
