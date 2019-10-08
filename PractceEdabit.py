@@ -670,9 +670,13 @@ def equationTemplate(values):
           
     return False
 
+#Super concise:
+    a, b, c, d = sorted(*eval(dir()[0]), key=abs)
+    return a*b*c == d or a*d == b*c
 
-
-
+def adjacentElementsProduct(inputArray):
+    return max([inputArray[i] * inputArray[i+1] for i in range(len(inputArray) - 1)])
+    # return max([b*c for (b,c) in zip(a,a[1:])])
 
 
 
