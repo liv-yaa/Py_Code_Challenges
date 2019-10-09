@@ -685,17 +685,39 @@ def isInfiniteProcess(a, b):
     #   increase a by 1
     #   decrease b by 1
 
-    def isInfiniteProcess(a, b):
+def isInfiniteProcess(a, b):
     #Given integers a and b, determine whether the following pseudocode results in an infinite loop
 
     # while a is not equal to b do
     #   increase a by 1
     #   decrease b by 1
 
-    return (a != b) and (a >= b or ((a % 2 == 1 or b % 2 == 1) and (a % 2 == 1 or b % 2 == 1)))
+def isInfiniteProcess(a, b):
+    #Given integers a and b, determine whether the following pseudocode results in an infinite loop
+
+    # while a is not equal to b do
+    #   increase a by 1
+    #   decrease b by 1
+
+    return (a != b) and (a >= b or ((a % 2 == 0 or b % 2 == 0) and (a % 2 == 1 or b % 2 == 1)))
 
 
 
+def divisorsPairs(sequence):
+    # Find num of unique pairs such that second elem is divis by first one and they are !=
+    # for each, use number as many times as you wish
+    
+    return len([(n, m) for n in sequence for m in sequence if n != m and m % n == 0])
+
+def applesDistribution(apples, boxCapacity, maxResidue):
+    #distribute them between some gift boxes in such a way that all the boxes will contain an equal number of apples. 
+    #maxResidue is max leftover
+    #number of left out apples should be less than x apples in each box
+    #infinite number of boxes . with boxCapacity
+    # How mnay ways to distribute the apples? maximum is boxCapacity ways because they're all the same
+     
+    return len([i for i in range(1, boxCapacity + 1) if apples % i <= maxResidue])
+    
 
 
 
