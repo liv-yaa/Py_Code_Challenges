@@ -678,6 +678,54 @@ def adjacentElementsProduct(inputArray):
     return max([inputArray[i] * inputArray[i+1] for i in range(len(inputArray) - 1)])
     # return max([b*c for (b,c) in zip(a,a[1:])])
 
+def isInfiniteProcess(a, b):
+    #Given integers a and b, determine whether the following pseudocode results in an infinite loop
+
+    # while a is not equal to b do
+    #   increase a by 1
+    #   decrease b by 1
+
+    def isInfiniteProcess(a, b):
+    #Given integers a and b, determine whether the following pseudocode results in an infinite loop
+
+    # while a is not equal to b do
+    #   increase a by 1
+    #   decrease b by 1
+
+    return (a != b) and (a >= b or ((a % 2 == 1 or b % 2 == 1) and (a % 2 == 1 or b % 2 == 1)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
