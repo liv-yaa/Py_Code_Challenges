@@ -737,13 +737,34 @@ def higherVersion(ver1, ver2):
     return False
         
 
+def parabole(a, b, c, x):
+    #A parabole is a curve defined by the equation y = ax2 + bx + c where a, b, c are given integer parameters a, b, and c
+    #Given the x-coordinate of a point on the parabole with specified coefficients, find the y-coordinate of that point.
+    
+    return a * x ** 2 + b * x + c
+
+def differentSubstringsTrie(iS):
+    #Given a string, find the number of different non-empty *substrings* in it.
+     
+    ol = []
+    for i in range(0, len(iS)):
+        ol.extend([iS[i:i + j + 1] for j in range(0, len(iS) - i)])
+            
+    return len(set(ol))
 
 
-
-
-
-
-
+def josephusProblem(n, k):
+    # Start at person 1 through n in clockwise direction circle. In each step, k-1 people are skipped and the person you land on is removed from the circle. Who is last remaining person
+    people = [n for n in range(1, n + 1)]
+    i = 0
+    
+    while True:
+        # Skip k-1 people after curr and delete the person at the index. 
+        i = (i + k - 1) % len(people)
+        del people[i]
+        
+        if len(people) == 1:
+            return people[0]
 
 
 
