@@ -720,7 +720,22 @@ def applesDistribution(apples, boxCapacity, maxResidue):
     
 
 
+def higherVersion(ver1, ver2):
 
+    # `semver` - semantic versioning
+    # Each point compared with its respective point, independently and in order of operations
+    # return bool if first is greater than second
+    
+    v1, v2 = ver1.split("."), ver2.split(".")
+            
+    for i in range(len(v1)):
+        if int(v1[i]) > int(v2[i]):
+            return True
+        if int(v1[i]) < int(v2[i]):
+            return False
+        
+    return False
+        
 
 
 
