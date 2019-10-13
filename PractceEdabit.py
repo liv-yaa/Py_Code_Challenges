@@ -702,7 +702,6 @@ def isInfiniteProcess(a, b):
     return (a != b) and (a >= b or ((a % 2 == 0 or b % 2 == 0) and (a % 2 == 1 or b % 2 == 1)))
 
 
-
 def divisorsPairs(sequence):
     # Find num of unique pairs such that second elem is divis by first one and they are !=
     # for each, use number as many times as you wish
@@ -717,7 +716,6 @@ def applesDistribution(apples, boxCapacity, maxResidue):
     # How mnay ways to distribute the apples? maximum is boxCapacity ways because they're all the same
      
     return len([i for i in range(1, boxCapacity + 1) if apples % i <= maxResidue])
-    
 
 
 def higherVersion(ver1, ver2):
@@ -757,7 +755,7 @@ def josephusProblem(n, k):
     # Start at person 1 through n in clockwise direction circle. In each step, k-1 people are skipped and the person you land on is removed from the circle. Who is last remaining person
     people = [n for n in range(1, n + 1)]
     i = 0
-    
+
     while True:
         # Skip k-1 people after curr and delete the person at the index. 
         i = (i + k - 1) % len(people)
@@ -767,18 +765,85 @@ def josephusProblem(n, k):
             return people[0]
 
 
+def digitsProduct(product):
+
+    #find the smallest positive (i.e. greater than 0) integer the product of whose digits is equal to product
+    
+    under10 = [1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+    primes = []
+    
+    nums = [] #all nums that * digits = product
+    
+    p = dpRecurse(product)
+
+    
+    if nums:
+        return min(nums)
+    else:
+        return -1
+            
+        
+    
+def dpRecurse(num):
+    # Splits up num into prime factors, then sort it! 
+    
+    facs = [i for i in range(1, num + 1) if num % i == 0]
+    
+    print(facs)
+    
+    try:
+        x = facs[len(facs) // 2]
+        y = int(num / x)
+        
+        m = []
+
+        while True:
+            if x < 10:
+                if y < 10:
+                    m.append(int(str(x) + str(y)))
+        print
 
 
+def minimalMultiple(n, l):
+    #Find the smallest multiple of the given number n that's not less (>=) than a specified lower bound l
+    if n > l:
+        return n
+    m = n
+    while True:
+        m += n 
+        
+        if m >= l:
+            return m
 
 
+# def minimalMultipleANS
+    n, l, r = eval(dir()[0])
+    return max(0, 1 + n//2 - max(l, n-r))
+
+    n, l, r = eval(dir()[0])
+
+    a, c = l, 0
+    while l <= a <= r:
+        if a <= n - a <= r:
+            c += 1
+        a += 1
+        
+    return c
 
 
+def countSumOfTwoRepresentations2(n, l, r):
 
-
-
-
-
-
+    # find num of ways n = A + B such that l <= A <= B <= r    
+    
+    a, c = l, 0
+    
+    while l <= a <= r:
+        if a <= n-a <= r:
+            c += 1
+            
+        a += 1
+        
+    return c
 
 
 
