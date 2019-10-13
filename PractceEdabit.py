@@ -846,9 +846,28 @@ def countSumOfTwoRepresentations2(n, l, r):
     return c
 
 
+def pointInLine(p, l):
+    #line : a set of such points (x, y) that A * x + B * y + C = 0 for specified A, B and C.
+    
+    return l[0] * p[0] + l[1] * p[1] + l[2] == 0
+    
 
+def comfortableNumbers(l, r):
+    # Got help
+    # Define s(x)
+    def s(x):
+        # sum of x's digits
+        s = sum([int(d) for d in str(x)])
 
-
+        return range(x - s, x + s + 1)
+ 
+    t = 0
+    for i in range(l, r):
+        for j in range(i + 1, r + 1):
+            t += i in s(j) and j in s(i)
+                
+    
+    return t
 
 
 
