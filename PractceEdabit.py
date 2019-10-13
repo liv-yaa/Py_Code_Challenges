@@ -870,6 +870,15 @@ def comfortableNumbers(l, r):
     return t
 
 
+def lastDigit(a, b):
+    return pow(a,b,10)
 
 
+def matrixTransposition(matrix):
+    # from m x n get transpose, n x m
+    return [[matrix[i][j] for i in range(len(matrix))] for j in range(len(matrix[0]))]
 
+
+def firstDigit(inputString):
+    
+    return re.findall('\d', inputString)[0]
