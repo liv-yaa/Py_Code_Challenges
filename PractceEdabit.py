@@ -882,3 +882,18 @@ def matrixTransposition(matrix):
 def firstDigit(inputString):
     
     return re.findall('\d', inputString)[0]
+
+
+def strangeCode(s, e):
+    out = ''
+    while True:
+        if s < e - 1:
+            s += 1
+            e -= 1
+
+            if len(out) > 0 and out[-1] == 'a':
+                out += 'b'
+            else:
+                out += 'a'
+        else:
+            return out
