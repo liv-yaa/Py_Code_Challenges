@@ -897,3 +897,90 @@ def strangeCode(s, e):
                 out += 'a'
         else:
             return out
+
+def dfsComponentSize(matrix, vertex):
+    # matrix[i][j] = true if there is an edge from the ith to the jth vertex, and false otherwise. 
+    # Graph given is 'undirected'-- it is guaranteed that for each i and j matrix[i][j] = matrix[j][i]. Visually, this looks like Symmetry on the Diagonal.
+    
+    # Given Adjacency matrix of undirected graph & a vertex in it,
+    ### Return the size of the 'connected component'
+    ### -- a set of all nodes which can be reached from each other and cannot be reached from any other node of this graph.
+    
+    cc = dict() # connected components
+    print(cc)
+    
+    for i in range(len(matrix[vertex])):
+        # if matrix[vertex][i] == True:
+        cc[i] = matrix[vertex][i]
+
+    print(cc)
+    
+    # return len(cc)
+
+
+def graphEdges(matrix):
+    #Count the number of different edges in a given undirected graph with no loops and multiple edges.
+    
+    # Cut graph in half diagonally
+    return sum([1 for i in range(len(matrix)) for j in range(len(matrix[i])) if matrix[i][j] == True ])//2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import copy
+def volleyballPositions(formation, k):
+    forms = {
+        0: (0, 1), # Player5
+        1: (1, 0), # Player4
+        2: (3, 0), # Player6
+        3: (2, 1), # Player3
+        4: (3, 2), # Player1
+        5: (1, 2), # Player2
+    }
+
+    out = copy.deepcopy(formation)
+    
+    for i, f in forms.items():
+        o = forms.get((i + k) % 6) # Get original position
+        out[o[0]][o[1]] = formation[f[0]][f[1]] # Put player name at orig position
+
+    return out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
