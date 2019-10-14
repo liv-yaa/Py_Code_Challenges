@@ -969,6 +969,13 @@ def volleyballPositions(formation, k):
     return out
 
 
+def whoseMove(lastPlayer, win):
+
+    if win == True:
+        return lastPlayer
+    if lastPlayer == "white":
+        return "black"
+    return "white"
 
 
 
@@ -983,4 +990,48 @@ def volleyballPositions(formation, k):
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
