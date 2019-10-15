@@ -992,10 +992,50 @@ def whoseMove(lastPlayer, win):
 
 
 
+def differentDigitsNumberSearch(inputArray):
+    
+    for item in inputArray:
+        if len(set(str(item))) == len(str(item)):
+            return item
+    
+    return -1
+
+
+import copy
+def primeFactors2(n):
+    def isPrime(m):
+        f = [i for i in range(1, m + 1) if m % i == 0]
+        return m == 1 or m == 2 or len(f) == 2 and f[0] == 1 and f[1] == m
+
+    def getFacs(k):
+        # provide list of k's factors
+        return [i for i in range(1, k + 1) if k % i == 0]
+    
+    if n == 1:
+        return []
+    
+    facs = [n]
+    
+    # create a list, dividing continuously until all are prime (check isPrime)
+    while True:
+        if all([isPrime(i) for i in facs]):
+            return facs
+        else:        
+            newFacs = []
+            for fac in facs:
+                if isPrime(fac):
+                    newFacs.append(fac)
+                else:
+                    f = getFacs(fac)
+                    newFacs.extend([f[1], fac//f[1]])
+            facs = sorted(set(newFacs))
 
 
 
 
+
+
+    
 
 
 
