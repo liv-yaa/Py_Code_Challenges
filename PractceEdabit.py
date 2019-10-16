@@ -1057,18 +1057,63 @@ def digitSum(n):
     return s
     
 
+def coolString(ss):
+    
+    ss = ''.join([i for i in ss if i != ' '])
+
+    
+    if len(ss) < 2:
+        if not ss[0].isalpha():
+            return False 
+        if ss[0].isalpha():
+            return True 
+    
+    for i in range(len(ss) - 1):
+        
+        if ss[i].isdigit():
+            return False
+        
+        if ss[i + 1].isdigit():
+            return False
+        
+        if ord('a') <= ord(ss[i]) <= ord('z'):
+            # if ord('A') <= ord(ss[i + 1]) <= ord('Z'):
+            #     print('True')
+            if ord('a') <= ord(ss[i + 1]) <= ord('z'):
+                print('False')
+                return False
+            
+        if ord('A') <= ord(ss[i]) <= ord('Z'):
+            # if ord('a') <= ord(ss[i + 1]) <= ord('z'):
+            #     print('True')
+            if ord('A') <= ord(ss[i + 1]) <= ord('Z'):
+                print('False')
+                return False
+            
+    return True
+
+coolString = lambda i: not re.search('[A-Z]{2}|[a-z]{2}|[\W\d_]', i)
 
 
 
+def longestString(iA):
+    return [j for j in iA if len(j) == max([len(i) for i in iA])][0]
 
 
-
-
-
-
-
-
-
+def stringsCrossover(inputArray, result):
+    #result = string of same length as A, B, such that result[i] = A[i] or B[i]
+    #how man ypairs of strings could potentially give you result?
+    
+    def possible(a, b):
+        x = []
+        for i in range(len(result)):
+            if a[i] == result[i] or b[i] == result[i]:
+                x.append(True)
+            else:
+                x.append(False)
+        return all(x)
+            
+    return sum([1 for com in combinations(inputArray, 2) if possible(com[0], com[1])]) 
 
 
 
