@@ -1116,6 +1116,21 @@ def stringsCrossover(inputArray, result):
     return sum([1 for com in combinations(inputArray, 2) if possible(com[0], com[1])]) 
 
 
+def reduceString(iS):
+    while True:
+
+        if len(iS) == 0 or len(iS) == 1:
+            return ""
+        if len(iS) >= 2:
+            if (iS[-1] == iS[0]):
+                iS = iS[1:-1]
+            else:
+                return iS
+
+    # Solution
+    # while s and s[0] == s[-1]:
+    #     s = s[1:-1]
+    # return s
 
 
 
