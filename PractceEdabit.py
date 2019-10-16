@@ -1031,10 +1031,30 @@ def primeFactors2(n):
             facs = sorted(set(newFacs))
 
 
+def domainType(domains):
+    tps = {
+        '.com': "commercial",
+        '.org': "organization",
+        '.net': "network",
+        '.info': "information"  
+    }
+    
+    out = []
+    for d in domains:
+        try:
+            end = '.' + d.split('.')[-1]
+            out.append(tps[end])
+            
+        except:
+            print("error")
+            
+    return out
 
-
-
-
+def digitSum(n):
+    s = 0
+    for dig in str(n):
+        s += int(dig)
+    return s
     
 
 
