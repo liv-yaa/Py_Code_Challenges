@@ -1095,7 +1095,6 @@ def coolString(ss):
 coolString = lambda i: not re.search('[A-Z]{2}|[a-z]{2}|[\W\d_]', i)
 
 
-
 def longestString(iA):
     return [j for j in iA if len(j) == max([len(i) for i in iA])][0]
 
@@ -1133,10 +1132,18 @@ def reduceString(iS):
     # return s
 
 
+def minimalNumberOfCoins(coins, price):
+    #go backward through array and count coins used
 
+    count = 0
+    
+    while price > 0:
+        for i in range(len(coins) - 1, -1, -1):
+            p = price // coins[i]
+            count += p
+            price = price - p * coins[i]
 
-
-
+    return count
 
 
 
