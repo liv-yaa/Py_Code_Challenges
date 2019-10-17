@@ -1146,11 +1146,25 @@ def minimalNumberOfCoins(coins, price):
     return count
 
 
+def sumOfMultiples(n, k):
+    #For given n and k find the sum of all multiples of k that are not greater than n.
+    return sum([k*i for i in range(1, n + 1) if k*i <= n])
 
+# Prime factors - mine worked, but this solution was faster for 1/29 test cases.
+# I buess its faster to use eval(dir()[0])
+n, = eval(dir()[0])
+i = 2
+r = []
 
+while i * i < n:
+    j = 1
+    while n % i < 1:
+        r += [i] * j
+        j = 0
+        n /= i
+    i += i % 2 + 1
 
-
-
+return r + [n] * (n > 1)
 
 
 
