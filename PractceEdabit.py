@@ -1167,7 +1167,36 @@ while i * i < n:
 return r + [n] * (n > 1)
 
 
-
+def neighbouringElements(a):
+    # Not working yet
+    #Two elements of a matrix are considered neighboring if their indices are equal on one axis and DIFFER BY ONE on the other axis.
+    
+    # set of sets unordered
+    s = {}
+    print(s)
+    
+    count = 0
+    
+    # count row elems that are same
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            try:
+                print(i, j, 'and', i, j+1, 'have valueS:', a[i][j], a[i][j+1])
+                if a[i][j] == a[i][j+1]:
+                    print('are equal')
+                    count += 1
+            except:
+                print('error')
+            try:
+                print(j, i, 'and', j+1, i, 'have valueS:', a[j][i], a[j+1][i])
+                if a[j][i] == a[j+1][i]:
+                    print('are equal')
+                    count += 1
+            except:
+                print('error')
+                
+    return count
+                
 
 
 
