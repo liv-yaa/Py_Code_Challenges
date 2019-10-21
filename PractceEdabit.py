@@ -1208,14 +1208,17 @@ def extractEachKth(inputArray, k):
     return inputArray
 
 #looked up answer for this
-s=eval(dir()[0])[0]
-q=1
-while s >= q:
-    s-=q
-    q+=1
-return q-1
+    s=eval(dir()[0])[0]
+    q=1
+    while s >= q:
+        s-=q
+        q+=1
+    return q-1
 
 
+def sumOfSquares(n):
+    
+    return sum([i**2 for i in range(1, n+1)])
 
 
 
