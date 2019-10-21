@@ -1220,5 +1220,9 @@ def sumOfSquares(n):
     
     return sum([i**2 for i in range(1, n+1)])
 
+def add(param1, param2):
+    return param1 + param2
 
-
+def countWaysToChangeDigit(v):
+            
+    return sum([9 - int(str(v)[i]) for i in range(len(str(v))) if int(str(v)[:i] + str((9 - int(str(v)[i])) + int(str(v)[i])) + str(v)[i+1:]) > v ])
