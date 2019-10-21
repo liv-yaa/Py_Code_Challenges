@@ -1197,9 +1197,23 @@ def neighbouringElements(a):
                 
     return count
                 
+def extractEachKth(inputArray, k):
+    if k < 2:
+        return []
+    i = k - 1
+    while i < len(inputArray):
+        inputArray.pop(i)
+        i += k - 1
+        
+    return inputArray
 
-
-
+#looked up answer for this
+s=eval(dir()[0])[0]
+q=1
+while s >= q:
+    s-=q
+    q+=1
+return q-1
 
 
 
