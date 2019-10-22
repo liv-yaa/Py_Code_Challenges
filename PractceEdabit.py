@@ -1226,3 +1226,45 @@ def add(param1, param2):
 def countWaysToChangeDigit(v):
             
     return sum([9 - int(str(v)[i]) for i in range(len(str(v))) if int(str(v)[:i] + str((9 - int(str(v)[i])) + int(str(v)[i])) + str(v)[i+1:]) > v ])
+
+
+def lateRide(n):
+    
+    ans = [0, 0, 0, 0]
+    
+    hr = int(n) // 60
+    mn = int(n) % 60
+    
+    if hr > 9:
+        ans[0] = hr // 10
+    ans[1] = hr % 10
+    
+    if mn > 9:
+        ans[2] = mn // 10
+    ans[3] = mn % 10
+    
+    return sum(ans)
+
+
+def splitAddress(address):
+    s = address.split('://')    
+    w1, w2 = None, None
+    w0 = s[0]
+    
+    if len(s) > 1:
+        s2 = s[1].split('.com')        
+        w1 = s2[0]
+        
+        if len(s2) > 1:
+            w2 = s2[1][1:]
+            if w2 != "":
+                return [w0, w1, w2]
+    return [w0, w1]  
+
+
+
+
+
+
+
+    
