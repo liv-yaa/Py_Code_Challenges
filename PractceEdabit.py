@@ -1304,8 +1304,10 @@ def candies(n, m):
 
 
 
-
-
+def isCaseInsensitivePalindrome(o):
+    #Given a string, check if it can become a palindrome through a case change of some (possibly, none) letters.
+    new = ''.join([o[i].lower() for i in range(len(o))])
+    return new == new[::-1]
 
 
 
