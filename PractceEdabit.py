@@ -1262,7 +1262,6 @@ def splitAddress(address):
     return [w0, w1]  
 
 
-
 def circleOfNumbers(n, firstNumber):
     
     return (firstNumber + (n // 2)) % n
@@ -1270,4 +1269,55 @@ def circleOfNumbers(n, firstNumber):
 
 
 
-    
+
+
+
+def areSimilarNumbers(a, b, d):
+
+    return (a % d == 0 and b % d == 0) or (a % d != 0 and b % d != 0)
+
+
+def isSumOfConsecutive(n):
+    ## THis was hard!!!
+    # False - 1, 8, 128, 256 
+    # True - 9, 42, 45, 55, 400
+    # 2*i + 1      # 1
+    # 3*i + 3      # 1 + 2
+    # 4*i + 5      # 1 + 2 + 3
+    # 5*i + 10     # 1 + 2 + 3 + 4
+    # 6*i + 15     # 1 + 2 + 3 + 4 + 5
+
+    for i in range(1, n // 2 + 1): 
+        j, m, b = 2, 2, 1
+        while j < n // 2:            
+            if m * i + b == n:
+                return True
+            b += j
+            m += 1
+            j += 1
+
+    return False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
