@@ -1407,13 +1407,14 @@ def knapsackLight(value1, weight1, value2, weight2, maxW):
     return 0
 
 
-
-
-
-
-
-
-
+def caseUnification(iS):
+    
+    lc = len([l for l in iS if l.islower()])
+    uc = len([l for l in iS if l.isupper()])
+        
+    if uc == min(lc, uc):
+        return ''.join([l.lower() for l in iS])
+    return ''.join([l.upper() for l in iS])
 
 
 
