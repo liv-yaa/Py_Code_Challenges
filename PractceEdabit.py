@@ -1417,9 +1417,8 @@ def caseUnification(iS):
     return ''.join([l.upper() for l in iS])
 
 
-
-
-
+def isLucky(n):
+    return sum([int(l) for l in str(n)[:len(str(n)) // 2]]) == sum([int(l) for l in str(n)[len(str(n)) // 2:]])
 
 
 
