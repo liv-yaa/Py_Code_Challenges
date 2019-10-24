@@ -1426,7 +1426,12 @@ def latinLettersSearchRegExp(input):
     #Determine if the given string contains at least one English letter.
     return bool(re.search('[A-Za-z]', input))
 
-
+def metroCard(lnod):
+    # Find out number of days you might be extended, given most recent month number of days
+    
+    if lnod == 31:
+        return [28, 30, 31]
+    return [31]
 
 
 
