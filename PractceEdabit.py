@@ -1385,13 +1385,58 @@ def isHorizSym(ar):
 
 
 
-
-
-
-
 def dotProduct(v1, v2):
     # Find : A dot product is defined as the sum of the products of the corresponding entries of the two arrays.
     return sum([v1[i] * v2[i] for i in range(3)])
+
+
+def knapsackLight(value1, weight1, value2, weight2, maxW):
+    # Find total max value
+    if weight1 + weight2 <= maxW:
+        return value1 + value2
+
+    if weight1 <= maxW and weight2 <= maxW:
+        return max(value1, value2)
+    
+    if weight1 > maxW and weight2 <= maxW:
+        return value2
+    
+    if weight2 > maxW and weight1 <= maxW:
+        return value1
+        
+    return 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
