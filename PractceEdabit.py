@@ -1313,6 +1313,65 @@ def isCaseInsensitivePalindrome(o):
 
 
 
+#BAD
+def fastSymmetrization(a):
+    #the minimum possible number of replacements to make the array symmetric
+        
+    count = 0
+    while True:
+        if isHorizSym(a) == False:
+            horizPossible = []
+            for i in range(len(a)):
+                row = a[i]
+                j = 0
+                while True:
+                    if row == list(reversed(row)):
+                        horizPossible.append(True)
+                        break
+                        
+                    
+
+                    if row[j] != list(reversed(row))[j]:
+                        if row[j] == '*':
+                            row[j] = list(reversed(row))[j]
+
+                            if row == list(reversed(row)):
+                                horizPossible.append(True)
+                                break
+                        else:
+                            break
+                            
+                    if j == (len(row) // 2 ) + 1:
+                        horizPossible.append(False)
+                        break
+
+                    j += 1
+
+            print('horizPossible', horizPossible)
+            print('a is now ', a)
+            # if horizPossible == False:
+            #     return []
+            #     # break
+        
+        
+            
+            print('Vert Already', isVertSym(a))
+            if isVertSym(a):
+                return a
+                
+
+        break
+
+    
+    
+    
+def isVertSym(ar):
+    #Checks if array looks the same when flipped vertically.    
+    return all([ar[i] == list(reversed(ar[i])) for i in range(len(ar))])
+
+def isHorizSym(ar):
+    #Checks if array looks the same when flipped horizontally.    
+    return all([ar[i] == ar[len(ar) - 1 - i] for i in range(len(ar) // 2)])
 
 
 
@@ -1330,7 +1389,9 @@ def isCaseInsensitivePalindrome(o):
 
 
 
-
+def dotProduct(v1, v2):
+    # Find : A dot product is defined as the sum of the products of the corresponding entries of the two arrays.
+    return sum([v1[i] * v2[i] for i in range(3)])
 
 
 
