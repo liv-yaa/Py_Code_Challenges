@@ -1421,6 +1421,10 @@ def isLucky(n):
     return sum([int(l) for l in str(n)[:len(str(n)) // 2]]) == sum([int(l) for l in str(n)[len(str(n)) // 2:]])
 
 
+import re
+def latinLettersSearchRegExp(input):
+    #Determine if the given string contains at least one English letter.
+    return bool(re.search('[A-Za-z]', input))
 
 
 
