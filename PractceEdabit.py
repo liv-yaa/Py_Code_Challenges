@@ -1442,7 +1442,16 @@ def metroCard(lnod):
 
 
 
-
+def equationSolutions(l, r):
+    #find pairs of ints A, B such that 1 <= A <= r and 
+    pairs = []
+    for A in range(l, r + 1):
+        for B in range(l, r + 1):
+            if A ** 3 == B ** 2:
+                pairs.append((A, B))
+                
+    print(pairs)
+    return len(pairs)
 
 
 
