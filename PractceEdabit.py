@@ -1439,29 +1439,79 @@ def metroCard(lnod):
 
 
 
+def isCorrectSentence(inputString):
+    return inputString[0].isupper() and inputString[-1] == '.'
 
+
+#BAD
+def arrayChange(iA):
+    
+    count = 0
+    i = 0
+    # print(iA[-1 - i]) 
+    
+    while True:
+             
+        print(iA[-1 - i]) 
+        a = [True for i in range(len(iA) - 1) if iA[i] - iA[i + 1] == -1]
+        print('b', a)
+        
+        iB = [1, 2, 3]
+        b = [True for i in range(len(iB) - 1) if iB[i] - iB[i + 1] == -1]
+        print('b', b)
+        if len(a) == len(iA) - 1 and all(a):
+            print('success, a')
+            break
+        # else:
+        #     print('not yet, a', a)
+            
+            
+        if i >= len(iA) - 1:
+            print('fail')
+            break
+    
+        iA[-1 - i] = iA[-1 - i] + 1
+        print('new', iA)
+        i += 1
+        # break
+    
+    
+    
+    
+    
+    return count
+    
+    
+
+def alphabetSubsequence(s):
+    # can you find s in a, by deleting things form & and not changing order?    
+    return list(s) == sorted(s) and len(set(s)) == len(s)
 
 
 def equationSolutions(l, r):
     #find pairs of ints A, B such that 1 <= A <= r and 
-    pairs = []
-    for A in range(l, r + 1):
-        for B in range(l, r + 1):
-            if A ** 3 == B ** 2:
-                pairs.append((A, B))
-                
-    print(pairs)
-    return len(pairs)
+    return sum([1 for A in range(l, r + 1) for B in range(l, r + 1) if A ** 3 == B ** 2])
 
 
+def parkingCost(tI, tO):
+    # round the number of minutes spent in the parking lot up to the nearest multiple of 10
+    cost = 0
+    
+    hI, mI = int(tI.split(':')[0]), int(tI.split(':')[1])
+    hO, mO = int(tO.split(':')[0]), int(tO.split(':')[1])
+    
+    tm = int(math.ceil(((hO - hI) * 60 + mO - mI) / 10)) * 10
+    
+    if tm >= 120:
+        cost += (tm - 120) * 2 // 10
 
-
-
-
-
-
-
-
+    if 31 <= tm:
+        if tm >= 120:
+            cost += 9 #max
+        else:
+            cost += (tm - 30) // 10
+    
+    return cost
 
 
 
