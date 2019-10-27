@@ -1519,7 +1519,17 @@ def fractionDivision(a, b):
 
 
 
-
+def factorialTrailingZeros(n):
+    fac = 1
+    for i in range(1, n + 1):
+        fac *= i 
+    
+    count = 0
+    for z in reversed(str(fac)):
+        if z != '0':
+            return count
+        if z == '0':
+            count += 1
 
 
 
