@@ -1374,17 +1374,6 @@ def isHorizSym(ar):
     return all([ar[i] == ar[len(ar) - 1 - i] for i in range(len(ar) // 2)])
 
 
-
-
-
-
-
-
-
-
-
-
-
 def dotProduct(v1, v2):
     # Find : A dot product is defined as the sum of the products of the corresponding entries of the two arrays.
     return sum([v1[i] * v2[i] for i in range(3)])
@@ -1434,11 +1423,6 @@ def metroCard(lnod):
     return [31]
 
 
-
-
-
-
-
 def isCorrectSentence(inputString):
     return inputString[0].isupper() and inputString[-1] == '.'
 
@@ -1479,8 +1463,7 @@ def arrayChange(iA):
     
     
     
-    return count
-    
+    return count  
     
 
 def alphabetSubsequence(s):
@@ -1512,6 +1495,68 @@ def parkingCost(tI, tO):
             cost += (tm - 30) // 10
     
     return cost
+
+
+def fractionDivision(a, b):
+    # Divide two fracitons a and b and produce a reduced fraction such that num,denom, are relatively prime (or coprime) if the only positive integer that evenly divides both of them is 1.
+    
+    # flip, and multiply by each ohter- not as good as get_GCF but idc
+        
+    a[0] *= b[1]
+    a[1] *= b[1]
+    b[0] *= a[1]
+    b[1] *= a[1]
+    
+    new = [a[0] * b[1], a[1] * b[0]]
+    
+    lcd = max([i for i in range(1, new[0] + 1) if new[0] % i == 0 and new[1] % i == 0])
+    
+    new[0] /= lcd
+    new[1] /= lcd
+    
+    return new
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
