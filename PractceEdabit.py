@@ -1534,9 +1534,24 @@ def factorialTrailingZeros(n):
 
 
 
+def isGeometricProgression(seq):
+    #A geometric progression is a sequence of numbers where each term after the first is found by multiplying the previous one by a fixed, non-zero number.
+    return all([True if seq[i + 1] / seq[i] == seq[1] / seq[0] else False for i in range(len(seq) - 1)])
+
+def myConcat(strings, separator):
+    return separator.join(strings) + separator
 
 
-
+def swapDiagonals(matrix):
+    # swap its longest diagonals by exchanging their elements at the corresponding positions.
+    
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if i == j:
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[i][len(matrix) - 1 - j]
+                matrix[i][len(matrix) - 1 - j] = temp
+    return matrix
 
 
 
