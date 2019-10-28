@@ -1554,11 +1554,36 @@ def swapDiagonals(matrix):
     return matrix
 
 
+def oneTwoMany(n):
+    if n == 1:
+        return "one"
+    elif n == 2:
+        return "two"
+    elif n > 2:
+        return "many"
 
 
+def largestDistance(a):
+    pts = [(a[i], a[i + 1]) for i in range(0, len(a), 2)]
+    return max([max(abs(pt1[1] - pt2[1]), abs(pt1[0] - pt2[0])) for pt1 in pts for pt2 in pts])
+
+            
+def deleteDigit(n):
+    return max([int(str(n)[:i] + str(n)[i + 1:]) for i in range(len(str(n)))])
 
 
+def matrixTrace(matrix):
+    # The 'trace' of a square matrix is defined as the sum of the elements on the main diagonal.
+    return sum([matrix[i][i] for i in range(len(matrix))])
 
+def countInversionsNaive(a):
+    # Two elements of the array a stored at positions i and j form an inversion if a[i] > a[j] and i < j.
+    inv = 0
+    for i in range(len(a)):
+        for j in range(len(a)):
+            if a[i] > a[j] and i < j:
+                inv += 1
+    return inv
 
 
 
