@@ -1602,11 +1602,16 @@ arrayElementsProduct = numpy.prod
 
 
 
+def quasifactorial(n):
+    if n == 1:
+        return 1
+    
+    else:
+        return (quasifactorial(n - 1) * n - 1)
 
 
 
-
-
+quasifactorial = q = lambda n: n and q(n - 1) * n - 1 or 1
 
 
 
