@@ -1586,11 +1586,18 @@ def countInversionsNaive(a):
     return inv
 
 
+def evenDigitsOnly(n):
+    return all([int(d) % 2 == 0 for d in str(n)])
 
 
+def arrayElementsProduct(inputArray):
+    a = 1
+    for i in inputArray:
+        a *= i
+    return a
 
 
-
+arrayElementsProduct = numpy.prod
 
 
 
