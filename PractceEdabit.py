@@ -1615,7 +1615,8 @@ quasifactorial = q = lambda n: n and q(n - 1) * n - 1 or 1
 
 
 
-
+def digitDistanceNumber(n):
+    return int(''.join([str(abs(int(str(n)[i]) - int(str(n)[i + 1]))) for i in range(len(str(n)) - 1)]))
 
 
 
