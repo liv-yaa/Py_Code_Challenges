@@ -1620,6 +1620,81 @@ def digitDistanceNumber(n):
 
 
 
+def directionOfReading(nums):   
+    # sq = []
+    for i in range(len(nums)):
+        i = ('0' * ((len(nums)) - len(nums[i])) +  str(nums[i])
+
+def directionOfReading(ns):
+    return [int(''.join([[('0' * (len(ns) - len(str(ns[i])))) + str(ns[i]) for i in range(len(ns))][j][i] for j in range(len(ns))])) for i in range(len(ns))]
+        
+
+
+from itertools import combinations 
+def fibonacciSum(n):
+    
+    def fib(m):
+        if m <= 1:
+            return m
+        else:
+            return fib(m - 1) + fib(m - 2)
+        
+    sq = []
+    for i in range(1, n//2): #not sure what this should be
+        sq.append(fib(i))
+    if n in sq:
+        return [n]
+        
+    ks = []
+    j = 2
+    while True:
+        if j > len(sq):
+            break
+        s = list(combinations(sq, j))
+        for k in s:
+            if sum(k) == n:
+                ks.append(k) # add to the possibilities
+                return k
+        j += 1
+        print('ks', ks)
+        print()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
