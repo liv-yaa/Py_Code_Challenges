@@ -1660,16 +1660,17 @@ def fibonacciSum(n):
         print()
 
 
-from itertools import combinations 
 def findSquareSide(x, y):
     pts = [(x[i], y[i]) for i in range(len(x))]    
-    ds = set([math.sqrt((c[0][0] - c[1][0])**2 + (c[0][1] - c[1][1])**2) for c in combinations(pts, 2)])
-    return min(ds) ** 2
+    return min([math.sqrt((c[0][0] - c[1][0])**2 + (c[0][1] - c[1][1])**2) for c in combinations(pts, 2)]) ** 2
 
 
+def alternatingSums(a):
 
-
-
+    w1 = sum([a[i] for i in range(len(a)) if i % 2 == 0])
+    w2 = sum([a[i] for i in range(len(a)) if i % 2 == 1])
+    
+    return [w1, w2]
 
 
 
