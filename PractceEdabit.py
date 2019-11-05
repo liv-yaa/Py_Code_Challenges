@@ -1673,10 +1673,23 @@ def alternatingSums(a):
     return [w1, w2]
 
 
+def bishopAndPawn(bishop, pawn):
+#     determine whether the bishop can capture the pawn in one move.
+    bx, by = ord(bishop[0]), int(bishop[1])
+    px, py = ord(pawn[0]), int(pawn[1])    
+    return abs(bx - px) == abs(by - py)
 
 
+def alphabetSubstring(s):
+    return s in 'abcdefghijklmnopqrstuvwxyz'
 
 
+def maxDivisor(left, right, divisor):
+    r = [i for i in range(left, right) if i % divisor == 0]
+    if r != []:
+        return max(r)
+    else:
+        return -1
 
 
 
