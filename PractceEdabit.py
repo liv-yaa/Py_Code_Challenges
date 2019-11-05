@@ -1701,18 +1701,54 @@ def arrayMinimumIndex(inputArray):
 
 
 
+# BAD
 
 
 
+def unusualDictionary(wordList):
+    # y = isLex('desert', 'dessert')
+    # print(sorted(wordList))
+    # out = sorted(wordList, key=clip)
+    # print(out)
+    sortedd = True
+    for i in range(len(wordList) - 1):
+        x, y = clip(wordList[i]), clip(wordList[i+1])
+        print('x', x, 'y', y)
+        if x > y:
+            sortedd = False
+            print('false1')
+        if clip(wordList[i]) == clip(wordList[i + 1]):
+            # print(wordList[i], wordList[i + 1])
+            if wordList[i] > wordList[i + 1]:
+                sortedd = False
+                print('false2')
+            elif wordList[i] < wordList[i + 1]:
+                sortedd = True
+                print('true now')
+            
+        
+    
+    return sortedd
+    # return out == wordList
+    
+        
+def clip(w):
+    #Check if the word has a space
+    x = w
+    if ' ' in w:
+        if w[:3] == 'to ':
+            x = w[3:]
+        if w[:4] == 'the ':
+            x = w[4:]
+        if w[:2] == 'a ':
+            x = w[2:]
+    # print('x', x)
+        
+    return x
 
 
-
-
-
-
-
-
-
+def makeArrayConsecutive2(s):
+    return len([i for i in range(sorted(s)[0], sorted(s)[-1] + 1) if i not in s])
 
 
 
