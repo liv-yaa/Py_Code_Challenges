@@ -1693,7 +1693,8 @@ def maxDivisor(left, right, divisor):
 
 
 
-
+def arrayMinimumIndex(inputArray):
+    return inputArray.index(min(inputArray))
 
 
 
