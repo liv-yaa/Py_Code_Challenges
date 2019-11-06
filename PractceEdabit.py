@@ -1697,12 +1697,7 @@ def arrayMinimumIndex(inputArray):
     return inputArray.index(min(inputArray))
 
 
-
-
-
-
 # BAD
-
 
 
 def unusualDictionary(wordList):
@@ -1751,8 +1746,24 @@ def makeArrayConsecutive2(s):
     return len([i for i in range(sorted(s)[0], sorted(s)[-1] + 1) if i not in s])
 
 
+def percentageGreen(green, total):
+    return (green / total) * 100
+
+def mySubstringByLength(inputString, start, length):
+    return inputString[start:start + length]
+
+def reachNextLevel(experience, threshold, reward):
+    return experience + reward >= threshold
+
+def pepEight2(line):
+    return len(line) < 80
 
 
+def firstMultiple(d, s):
+    while any(s%v for v in d):
+        # print([s%v for v in d], s)
+        s += 1
+    return s
 
 
 
