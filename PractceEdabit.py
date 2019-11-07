@@ -1765,6 +1765,9 @@ def firstMultiple(d, s):
         s += 1
     return s
 
+def rectangleArea(a, b):
+    return a * b
+
 
 
 
