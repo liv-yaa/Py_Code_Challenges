@@ -86,6 +86,72 @@ class Queue(object):
 
 
 
+# Alternative way to make a queue
+import collections
+dq = collections.deque()
+dq.append('hi')
+dq.pop()
+    # q.append(3)
+    # q.append(4)
+    # q.pop()
+    # print(q)
+
+
+
+def solve(H) :
+    s, i, m = [], 0, 0
+    while i < len(H):
+    	if not s or H[i] > H[s[-1]]:
+    		s.append(i)
+    		i += 1
+		else:
+			t = s.pop()
+			a = H[t] * ((i - s[-1] - 1) if s else i)
+			if a > m:
+				m = a
+
+	while s:
+		t = s.pop()
+		a = H[t] * ((i - s[-1] - 1) if s else i)
+		if a > m:
+			m = a
+
+	return m
+
+
+
+
+
+
+# Terminated due to timeout :(
+def primality(n):
+    facs = [i for i in range(1, n + 1) if n % i == 0]
+    print(facs)
+
+    if len(facs) == 2:
+        return 'Prime'
+    return 'Not prime'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
