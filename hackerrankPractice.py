@@ -99,24 +99,26 @@ dq.pop()
 
 
 def solve(H) :
-    s, i, m = [], 0, 0
-    while i < len(H):
-    	if not s or H[i] > H[s[-1]]:
-    		s.append(i)
-    		i += 1
-		else:
-			t = s.pop()
-			a = H[t] * ((i - s[-1] - 1) if s else i)
-			if a > m:
-				m = a
+    pass
+ #    s, i, m = [], 0, 0
+ #    while i < len(H):
+ #    	if not s or H[i] > H[s[-1]]:
+ #    		s.append(i)
+ #    		i += 1
+	# 	else:
 
-	while s:
-		t = s.pop()
-		a = H[t] * ((i - s[-1] - 1) if s else i)
-		if a > m:
-			m = a
+	# 		t = s.pop()
+	# 		a = H[t] * ((i - s[-1] - 1) if s else i)
+	# 		if a > m:
+	# 			m = a
 
-	return m
+	# while s:
+	# 	t = s.pop()
+	# 	a = H[t] * ((i - s[-1] - 1) if s else i)
+	# 	if a > m:
+	# 		m = a
+
+	# return m
 
 
 
@@ -265,12 +267,12 @@ def countSwaps(a):
             if a[i] > a[i+1]:
                 a[i], a[i + 1] = a[i + 1], a[i]
                 ct += 1
-    print(
-		f"""Array is sorted in {ct} swaps.  
-		First Element: {a[0]} 
-		Last Element: {a[-1]} 
-		""" 
-    )
+  #   print(
+		# f"""Array is sorted in {ct} swaps.  
+		# First Element: {a[0]} 
+		# Last Element: {a[-1]} 
+		# """ 
+  #   )
 
 
 #sorting-demo/quick.py
@@ -296,17 +298,6 @@ def quicksort(lst):
 #https://www.hackerrank.com/challenges/mark-and-toys/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=sorting&isFullScreen=true
 def maximumToys(prices, k):
     # HB lec - recursive quicksort
-    def quicksort(lst):
-        if len(lst) < 2: #base case
-            return lst
-
-		pivot = lst[int(len(lst) / 2)]
-
-		lo = [e for e in lst if e < pivot]
-		eq = [e for e in lst if e == pivot]
-		hi = [e for e in lst if e > pivot]
-        
-        return quicksort(lo) + eq + quicksort(hi)
 
     d = []
     for item in quicksort(prices):
@@ -384,7 +375,7 @@ class TreeNode(object):
 	def __repr__(self):
 		print(self.data, self.children)
 
-	def findDFS(self, data):
+	def find(self, data):
 		"""
 		Depth-first search for a node(DFS) - a STACK!
 		We search the children of the current node before the next 
@@ -395,15 +386,13 @@ class TreeNode(object):
 		# Initialze a list with values we need to visit
 		to_visit = [self]
 
-		while to_visit: # While we still have chilrent nodes
-			curr = to_visit.pop()
+        while to_visit:
+            current = to_visit.pop()
 
-			if curr == data:
-				return curr # Return the current TreeNode
+            if current.data == data:
+                return current
 
-			else:
-				# Add all of the current children to the list we want to visit
-				to_visit.extend(curr.children)
+            to_visit.extend(current.children)
 
 
 	def findBFS(self, data):
@@ -419,11 +408,95 @@ class TreeNode(object):
 		while to_visit:
 			curr = to_visit.pop(0) # Popping from the front makes it a queue
 
-			if curr.data = data:
+			if curr.data == data:
 				return curr
 
 			to_visit.extend(curr.children)
 
+
+class Tree(object):
+    """Tree."""
+
+    def __init__(self, root):
+        self.root = root
+
+    def __repr__(self):
+        """Reader-friendly representation."""
+
+        return "<Tree root={root}>".format(root=self.root)
+
+    def find_in_tree(self, data):
+        """Return node object with this data.
+
+        Start at root.
+        Return None if not found.
+        """
+
+        return self.root.findBFS(data)
+        # return self.root.findDFS(data)
+    	
+
+if __name__=='__main__':
+    # Make an example tree and search for things in it
+
+    res = TreeNode("r.txt", [])
+    mes = TreeNode("m.txt", [])
+    jan = TreeNode("jan/", [res, mes])
+    ser = TreeNode("ser.py", [])
+    jes = TreeNode("jes/", [ser])
+    use = TreeNode("Users/", [jan, jes])
+    root = TreeNode("/", [use])
+
+    tree = Tree(root)
+    print(tree)
+
+    print(tree.find_in_tree("ser.py")) # True - found it
+    print(tree.find_in_tree("s.css")) # Fasle - not here
+
+
+
+class Node:
+    """ Tree node from HackR https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=trees&isFullScreen=true"""
+    def __init__(self, info):
+        self.info = info
+        self.right = None
+        self.left = None
+        self.level = None
+
+    def __str__(self):
+        return str(self.info)
+
+
+    def height(root):
+        pass
+
+class BinarySearchTree:
+    """ BST from HackR https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=trees&isFullScreen=true"""
+    def __init__(self):
+        self.root = None
+
+    def create(self, val):
+        # Create the root if not yet exists
+                if self.root == None:
+            self.root = Node(val)
+        else:
+            curr = self.root
+         
+            while True:
+                if val < curr.info:
+                    if curr.left:
+                        curr = curr.left
+                    else:
+                        curr.left = Node(val)
+                        break
+                elif val > curr.info:
+                    if curr.right:
+                        curr = curr.right
+                    else:
+                        curr.right = Node(val)
+                        break
+                else:
+                    break
 
 
 
