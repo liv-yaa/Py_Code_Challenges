@@ -274,7 +274,7 @@ def countSwaps(a):
 		# """ 
   #   )
 
-
+# QUICKSORT O(nlogn)
 #sorting-demo/quick.py
 def quicksort(lst):
 	""" Quicksort from HB lecture
@@ -305,6 +305,47 @@ def maximumToys(prices, k):
             d.append(item)
     return len(d)
 
+
+
+"""
+# MERGESORT O(nlog(n))
+# Has two steps:
+    1. Break down everything into a list of one
+    2. Compare the frirst items of each pair of lists & interleave
+
+"""
+
+def merge_sort(lst):
+    """ Mergesort list and return result """
+
+    # 1; Break down everything into a list of one
+    if len(lst) < 2:
+        return lst 
+
+    mid = int(len(lst) / 2)
+    ls1 = merge_sort(lst[:mid]) # divide list in half
+    ls2 = merge_sort(lst[mid:]) # the other half
+
+    return make_merge(lst1, lst2)
+
+def make_merge(lst1, lst2):
+    """ """
+
+    # 2. Compare the first items of each pair of lists & interleave
+
+    result_list = []
+
+    while len(lst1) > 0 or len(lst2) > 0:
+        if lst1 == []:
+            result_list.append(lst2.pop(0))
+        elif lst2 == []:
+            result_list.append(lst1.pop(0))
+        elif lst1[0] < lst2[0]:
+            result_list.append(lst1.pop(0))
+        else:
+            result_list.append(lst2.pop(0))
+
+    return result_list
 
 
 
@@ -436,22 +477,22 @@ class Tree(object):
         # return self.root.findDFS(data)
     	
 
-if __name__=='__main__':
-    # Make an example tree and search for things in it
+# if __name__=='__main__':
+#     # Make an example tree and search for things in it
 
-    res = TreeNode("r.txt", [])
-    mes = TreeNode("m.txt", [])
-    jan = TreeNode("jan/", [res, mes])
-    ser = TreeNode("ser.py", [])
-    jes = TreeNode("jes/", [ser])
-    use = TreeNode("Users/", [jan, jes])
-    root = TreeNode("/", [use])
+#     res = TreeNode("r.txt", [])
+#     mes = TreeNode("m.txt", [])
+#     jan = TreeNode("jan/", [res, mes])
+#     ser = TreeNode("ser.py", [])
+#     jes = TreeNode("jes/", [ser])
+#     use = TreeNode("Users/", [jan, jes])
+#     root = TreeNode("/", [use])
 
-    tree = Tree(root)
-    print(tree)
+#     tree = Tree(root)
+#     print(tree)
 
-    print(tree.find_in_tree("ser.py")) # True - found it
-    print(tree.find_in_tree("s.css")) # Fasle - not here
+#     print(tree.find_in_tree("ser.py")) # True - found it
+#     print(tree.find_in_tree("s.css")) # Fasle - not here
 
 
 
@@ -498,6 +539,222 @@ class BinarySearchTree:
                 else:
                     break
 
+def height(root):
+    if root == None:
+        return -1
+    else:
+        return 1 + max ( height(root.left) , height(root.right))
+
+
+
+def findLCA(root, v1, v2):
+    """ 
+    https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/editorial?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=trees&isFullScreen=true
+    Find the least common ancestor 
+    case 1 : 
+        Both v1 and v2 are on the right of the current root
+    case 2 : 
+        Both v1 and v2 are on the left of the current root
+    case 3 (terminal case):
+        v1 and v2 are on diff subtrees or one of them is current root
+
+
+    """
+    # Make sure they are in the right order
+    if v1 > v2:
+        v1, v2 = v2, v1
+
+    # Traverse until terminal
+    while True:
+        if v1 < root.info and v2 < root.info:
+            root = root.left
+        elif v1 > root.info and v2 > root.info:
+            root = root.right
+        else:
+            return root
+
+
+# ** RECURSION 
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+
+# ** Linked Lists
+
+class SinglyLinkedListNode:
+    def __init__(self, node_data):
+        self.data = node_data
+        self.next = None
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def insert_node(self, node_data): 
+        node = SinglyLinkedListNode(node_data) #create a node
+
+        if not self.head:
+            self.head = node # Initialize the head node if empty
+
+        else:
+            self.tail.next = node # otherwise set pointer to point at new node
+
+        self.tail = node # update the tail to be the node
+
+    def print_singly_linked_list(node, sep, fptr):
+        while node:
+            fptr.write(str(node.data))
+
+            node = node.next
+
+            if node:
+                fptr.write(sep)
+
+    def print_list(self):
+        """Print all items in the list."""
+
+        current = self.head
+
+        while current is not None:
+            print(current.data)
+            current = current.next
+
+    def find(self, data):
+        """Does this data exist in our list?"""
+
+        current = self.head
+
+        while current is not None:
+            if current.data == data:
+                return True
+
+            current = current.next
+
+        return False
+
+    def insertNodeAtPosition(head, data, position):
+        node = head
+
+        # make the insertion at the head
+        if position = 0:
+            newNode = SinglyLinkedListNode(data)
+            newNode.next = head # make it point to previous head
+            return newNode
+
+        count = 1
+
+        # Breaks when we are at end and node.next = None
+        # or, when we get to the position
+        while count < position and node:
+            count += 1
+            node = node.next
+
+
+        # WE are now at the position we want
+        # `node` is the one we are 'bumping over'
+        newNode = SinglyLinkedListNode(data) # create new node
+        newNode.next = node.next # set next to this nodes next
+        node.next = newNode # update the pointer of the old one
+        
+        return head # 
+
+    def has_cycle(head):
+        # I did this HR prob!!! :D
+        #has_cycle has the following parameter(s):
+        # head: a pointer to a Node object that points to the head of a linked list
+        # A random linked list is generated at runtime and passed to your function.
+        
+        curr = head
+        seen = []
+        while curr:
+            seen.append(curr)
+            if curr.next in seen:
+                # Found a loop
+                return True
+            curr = curr.next
+            
+        return 
+
+
+    def FindMergeNode(headA, headB):
+        out = []
+        while headA:
+            out.append(headA)
+            headA = headA.next
+            
+        while headB:
+            if headB in out:
+                return headB.data
+            headB = headB.next
+        
+        return None
+        
+
+
+# Doubly linked list
+#https://www.hackerrank.com/challenges/insert-a-node-into-a-sorted-doubly-linked-list/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=linked-lists&isFullScreen=true
+
+class DoublyLinkedListNode:
+    def __init__(self, node_data):
+        self.data = node_data
+        self.next = None
+        self.prev = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def insert_node(self, node_data):
+        node = DoublyLinkedListNode(node_data)
+
+        if not self.head:
+            self.head = node
+
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+
+        self.tail = node
+
+
+    def print_doubly_linked_list(node, sep, fptr):
+        while node:
+            fptr.write(str(node.data))
+
+            node = node.next
+
+            if node:
+                fptr.write(sep)
+
+
+    def sortedInsert(head, data):
+        """ create a new DoublyLinkedListNode object having data value  and insert it into a sorted linked list while maintaining the sort.
+        """
+        # Create new node
+        n = DoublyLinkedListNode(data)
+
+        # If empty list
+        if head == None:
+            n.next = self.head
+            self.head.next = 
+            self.head = n
+
+        # At beginnig of list
+        elif head.tail == null:
+
+            pass
+
+        # At middle of list
+
+
+        # At end of list
 
 
 
@@ -508,6 +765,35 @@ class BinarySearchTree:
 
 
 
+# GREEDY ALGOS
+# Complete the getMinimumCost function below.
+def getMinimumCost(k, c):
+    c.sort(reverse=True)
+    cost = 0
+    frs = {i:0 for i in range(k)}
+
+    while True:
+        for f in frs:
+            if len(c) == 0:
+                return cost
+            p = c.pop(0)
+            pr = ((frs[f] + 1) * p)
+            cost += pr
+            frs[f] = frs[f] + 1
+
+
+
+# WROng
+def maxMin(k, arr):
+    minn = abs(arr[1] - arr[0])
+    print(minn)
+    for c in combinations(arr, k):
+        # print(c)
+        un = max(c) - min(c)
+        # print(un)
+        if un < minn:
+            minn = un
+    return minn
 
 
 
@@ -515,10 +801,110 @@ class BinarySearchTree:
 
 
 
+# Complete the maxMin function below.
+def maxMin(k, arr):
+    arr.sort()
+    return min(arr[i + k - 1] - arr[i] for i in range(0, len(arr) - k + 1))
 
 
 
+# Complete the pairs function below.
+def pairs(k, arr):
+    vals = {x : 1 for x in arr}
+    answer = 0
+    for c in arr:
+        try:
+            if vals[c - k]:
+                answer += 1
+        except:
+            continue
+    return answer
 
+
+## RECURSION
+
+# Works for small numbers - Complete the superDigit function below.
+def superDigit(n, k):
+
+    d = n * k
+    if d // 10 == 0:
+        return d
+
+    else:
+        s = sum([int(c) for c in str(d)])
+        print(s)
+        return superDigit(s, 1)
+
+
+        
+
+# Ways to make recursion faster:
+# - memoization
+# - dynamic programming - store result in array; when you call, check in your array if it already exists
+
+
+
+# Complete the hourglassSum function below.
+def hourglassSum(arr):
+    sums = []
+    for i in range(len(arr) - 2):
+        for j in range(len(arr) - 2):
+            sums.append(sum(arr[i][j:j + 3]) + arr[i + 1][j+1] + sum(arr[i + 2][j:j + 3]))
+    return max(sums)
+
+
+# Complete the rotLeft function below.
+def rotLeft(a, d):
+    # List slicing is O(k) where k is the slice size
+    # This would be appropriate where k << len(lst)
+    return a[d:] + a[:d]
+
+""" collections.deque()
+A deque is a double-ended queue. It can be used to add or 
+remove elements from both ends.
+
+O(1)
+
+Deques support thread safe, memory efficient appends and 
+pops from either side of the deque with approximately the 
+same  performance in either direction.
+
+You can do cool tasks with deque:
+
+    deq.rotate(-k)
+    # rotates the same as rotLeft function
+
+However, note that creating the copy of the list will be O(n) anyway.
+
+"""
+
+
+#Minimum Swaps 2 - https://www.hackerrank.com/challenges/minimum-swaps-2/editorial?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=arrays&isFullScreen=true
+# Editorial:
+    # The idea is that if  occupies  position,  occupies  position 
+    # and so on, then there will be some integer  which will occupy  position. 
+    # So, this forms a cycle.
+    # So, if any element i is not at its correct position, we shift it 
+    # to its correct position j, then shift j to its correct position k and so on.
+    # So, if  is the length of the cycle (number of elements in the cycle), 
+    # then it will require a minimum of len - 1 swaps to rearrange the elements of 
+    # the cycle to their correct positions.
+    # We find all such cycles and compute our answer.
+    #The correct positions of all the elements can be found by sorting the array 
+    # by value and keeping track of the old and new positions. 
+
+
+def minimumSwaps(arr):
+    swaps = 0
+    i = 0
+
+    while i < len(arr) - 1:
+        if arr[i] != i + 1:
+            arr[i], arr[arr[i] - 1] = arr[arr[i] - 1], arr[i]
+            swaps+= 1
+        else:
+            i += 1
+    return swaps
 
 
 
