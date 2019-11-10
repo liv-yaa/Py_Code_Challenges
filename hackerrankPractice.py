@@ -431,7 +431,8 @@ class TreeNode(object):
             current = to_visit.pop()
 
             if current.data == data:
-                return current
+                # return current
+                pass
 
             to_visit.extend(current.children)
 
@@ -518,7 +519,7 @@ class BinarySearchTree:
 
     def create(self, val):
         # Create the root if not yet exists
-                if self.root == None:
+        if self.root == None:
             self.root = Node(val)
         else:
             curr = self.root
@@ -641,7 +642,7 @@ class SinglyLinkedList:
         node = head
 
         # make the insertion at the head
-        if position = 0:
+        if position == 0:
             newNode = SinglyLinkedListNode(data)
             newNode.next = head # make it point to previous head
             return newNode
@@ -743,7 +744,7 @@ class DoublyLinkedList:
         # If empty list
         if head == None:
             n.next = self.head
-            self.head.next = 
+            self.head.next = n.next
             self.head = n
 
         # At beginnig of list
@@ -893,29 +894,84 @@ However, note that creating the copy of the list will be O(n) anyway.
     #The correct positions of all the elements can be found by sorting the array 
     # by value and keeping track of the old and new positions. 
 
-
+# Doesnt work for larger test cases
 def minimumSwaps(arr):
-    swaps = 0
-    i = 0
+    count = 0
 
-    while i < len(arr) - 1:
-        if arr[i] != i + 1:
-            arr[i], arr[arr[i] - 1] = arr[arr[i] - 1], arr[i]
-            swaps+= 1
-        else:
-            i += 1
-    return swaps
+    for i in range(len(arr)):
+        min_index = i 
+        for j in range(i + 1, len(A)):
+            if arr[min_index] > arr[j]:
+                min_index = j
+        if min_index > i:
+            arr[i], arr[min_index] = arr[min_index], arr[i]
+            count += 1
 
-
-
-
+    return count
 
 
+# Need to create graphs and return the number - 1
+
+# I was able to prove this with graph-theory. Might want to add that tag in :)
+
+# Create a graph with n vertices. Create an edge from node n_i to n_j if the element in position i should be in position j in the correct ordering. You will now have a graph consisting of several non-intersecting cycles. I argue that the minimum number of swaps needed to order the graph correctly is
+
+# M = sum (c in cycles) size(c) - 1
+# Take a second to convince yourself of that...if two items are in a cycle, one swap can just take care of them. If three items are in a cycle, you can swap a pair to put one in the right spot, and a two-cycle remains, etc. If n items are in a cycle, you need n-1 swaps. (This is always true even if you don't swap with immediate neighbors.)
+
+# Given that, you may now be able to see why your algorithm is optimal. If you do a swap and at least one item is in the right position, then it will always reduce the value of M by 1. For any cycle of length n, consider swapping an element into the correct spot, occupied by its neighbor. You now have a correctly ordered element, and a cycle of length n-1.
+
+# Since M is the minimum number of swaps, and your algorithm always reduces M by 1 for each swap, it must be optimal.
+
+#https://www.geeksforgeeks.org/minimum-number-swaps-required-sort-array/
+def minimumSwaps(arr):
+    arrpos = [[i, j] for i, j in enumerate(arr)] 
+    arrpos.sort(key=lambda it:it[1])
+    print(arrpos)
+    
+    # To keep track of visited elements.  
+    vis = {k : False for k in range(n)}
+    ans = 0
+
+    for i in range(n):
+        if vis[i] or arrpos[i][0] == i:
+            # Already at correct position
+            continue
+        
+        # Find num of nodes in this cycle and add it to ans
+        cycle_size = 0
+        j = i
+        while not vis[j]:
+            # mark node as viisted
+            vis[j] = True
+
+            # move to next node
+            j = arrpos[j][0]
+            cycle_size += 1
+
+        # Update answer by adding current cycle
+        if cycle_size > 0:
+            ans += (cycle_size - 1)
+
+    return ans
 
 
 
+# Dictionary best practices:
+# Use dict.get(key[, default]) to assign default values
+def low2():
+    nstd = {}
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        nstd[score] = nstd.get(score, []) + [name]
+    s = sorted(nstd.keys())
 
-
+    try:
+        for n in sorted(nstd[s[1]]):
+            print(n)
+    except:
+        print('error')
 
 
 
