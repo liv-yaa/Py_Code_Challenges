@@ -959,6 +959,10 @@ def minimumSwaps(arr):
 
 # Dictionary best practices:
 # Use dict.get(key[, default]) to assign default values
+# Use defaultdict() to initialize dict keys - another good pracitce
+#   d = defaultdict(lambda: 6)
+# 
+
 def low2():
     nstd = {}
     for _ in range(int(input())):
@@ -972,6 +976,61 @@ def low2():
             print(n)
     except:
         print('error')
+
+
+
+# Editorial
+def minion_game(S):
+    vs = 0
+    cs = 0
+    for i in range(len(S)):
+        # Possible words after is equal to len(S) - 1
+        if S[i] in 'AEIOU':
+            vs += len(S) - i
+        else:
+            cs += len(S) - i
+
+    if (cs > vs):
+        print('Stuart', cs)
+    elif vs > cs:
+        print('Kevin', vs)
+    else:
+        print('Draw')
+
+
+
+
+def nonDivisibleSubset(k, s):
+    # print the size of a maximal subset of s where the sum of any 2 numbers in s is not evenly divisible by k
+    cnt = [0] * k
+    for i in range(len(s)):
+        cnt[s[i] % k] += 1
+
+    ans = min(cnt[0], 1)
+    if k % 2 == 0:
+        ans += min(cnt[k // 2], 1)
+    for i in range(1, (k + 1) // 2):
+        ans += max(cnt[i], cnt[k - i])
+    return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
