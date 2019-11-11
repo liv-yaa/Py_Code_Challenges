@@ -1014,6 +1014,60 @@ def nonDivisibleSubset(k, s):
     return ans
 
 
+# Doesnt pass higher test cases
+def isValid(s):
+    d = {c:s.count(c) for c in s}
+    print(d)
+    print(len(set(d.values())) == 1)
+    l = list(d.values())
+    if len(set(l)) == 1:
+        return 'YES'
+
+    # Try to remove one character to make it valid
+    if len(set(l)) == 2: # has to be {1, 2} or {2, 3} etc
+        mx = max(l)
+        mn = min(l)
+        if l.count(mx) == 1 and mx - mn == 1:
+            return 'YES'
+    # try removing letters from dict
+    e = [v for v in d if d[v] == 1]
+    print('e', e)
+    try:
+        d.pop(e[0])
+        print(d)
+    except:
+        print('error')
+        return 'NO'
+
+    if len(set(d.values())) == 1:
+        return 'YES' 
+    return 'NO'
+
+
+
+
+def isValid(s):
+    dlist = []
+    clist = [] # Counts
+
+    for c in s:
+        if c not in dlist:
+            dlist.append(c)
+    for d in dlist:
+        count = s.count(d)
+        clist.append(count)
+    # print(clist)
+    key = clist[0]
+    flags = 0
+    for ct in clist:
+        if (key != ct):
+            flags += 1
+    if flags > 1:
+        return "NO"
+    else:
+        return "YES"
+
+
 
 
 
