@@ -1,6 +1,6 @@
 # Returns index of x in arr if present, else -1 
 def binarySearch (arr, l, r, x): 
-  
+    # O(log n) time and O(1) space
     # Check base case 
     if r >= l: 
   

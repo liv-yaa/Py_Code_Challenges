@@ -1069,16 +1069,72 @@ def isValid(s):
 
 
 
+# TIMED OUT Complete the minTime function below.
+def minTime(machines, goal):
+    ct = 0
+    d = 1
+    while True:
+        if d > 0:
+            for m in machines:
+                if d % m == 0:
+                    ct += 1
+        if ct >= goal:
+            return d
+
+        d += 1
 
 
 
+def bonAppetit(bill, k, b):
+    bill.pop(k)
+    g = sum(bill) // 2
+    if b != g:
+        print(b - g)
+    else:
+        print('Bon Appetit')
 
 
 
-
-
-
-
+# MYA interview question
+def isSurrounded(x, y, test_board):
+        
+    for i in range(1, len(test_board)):
+        for j in range(1, len(test_board[i])):
+            
+            if test_board[i][j] == 2:
+                try:
+                    # Check surr
+                    p1 = test_board[i - 1][j]
+                    p2 = test_board[i][j - 1]
+                    p3 = test_board[i][j + 1]
+                    p4 = test_board[i + 1][j]
+                    
+                    r = [p1 == 1 and p2 == 1 and p3 == 1 and p4 == 1]                    
+                    return all(r)
+                
+                except:
+                    print('error index')
+            
+            elif test_board[i][j] == 1:
+                try:
+                    # Check surr
+                    p1 = test_board[i - 1][j]
+                    p2 = test_board[i][j - 1]
+                    p3 = test_board[i][j + 1]
+                    p4 = test_board[i + 1][j]
+                    
+                    r = [p1 == 2 and p2 == 2 and p3 == 2 and p4 == 2]                    
+                    return all(r)
+                
+                except:
+                    print('error index')
+                    
+    return False
+    
+    
+    
+    
+isSurrounded(1, 2, test_board)
 
 
 
