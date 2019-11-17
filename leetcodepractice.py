@@ -96,14 +96,34 @@ def isPalindrome(self, x):
         return str(x) == str(x)[::-1]
 
 
+def balancedStringSplit(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """        
+        
+        rc, lc, res = 0,0,0
+        
+        for let in s:
+            if let == 'R':
+                rc += 1
+            else:
+                lc += 1
+                
+            if rc == lc:
+                res += 1
+                rc, lc = 0,0
+                
+        return res
 
 
 
 
 
-
-
-
+# Write your MySQL query statement below
+SELECT name, population, area 
+    FROM World
+        WHERE area > 3000000 or population > 25000000;
 
 
 
