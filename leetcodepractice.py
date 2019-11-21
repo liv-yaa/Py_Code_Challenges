@@ -128,16 +128,34 @@ SELECT name, population, area
 
 
 
+    
+def selfDividingNumbers(self, left, right):
+    """
+    :type left: int
+    :type right: int
+    :rtype: List[int]
+    
+    Runtime: O(m) * O(n) where m is range(left,right) and n is range(len(m))
+    """
+    return [m for m in range(left, right + 1) if '0' not in str(m) and all([m % int(d) == 0 for d in str(m)])]
 
 
 
 
 
 
+def hammingDistance(self, x: int, y: int) -> int:
+    return sum([c=='1' for c in bin(x^y)[2:]])
 
 
 
 
-
+def removeVowels(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        
+        return ''.join([c for c in S if c not in 'aeiou'])
 
 
