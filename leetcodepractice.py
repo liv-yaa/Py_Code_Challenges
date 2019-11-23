@@ -159,3 +159,85 @@ def removeVowels(self, S):
         return ''.join([c for c in S if c not in 'aeiou'])
 
 
+def defangIPaddr(self, address):
+    """
+    :type address: str
+    :rtype: str
+    """
+    
+    return address.replace('.', '[.]')
+
+
+def calculateTime(self, kb, word):
+        """
+        :type kb: str
+        :type word: str
+        :rtype: int
+        """
+        time = kb.index(word[0])
+        
+        for i in range(len(word) - 1):
+            x = kb.index(word[i])
+            y = kb.index(word[i + 1])
+            time += abs(x - y)
+            
+        return time
+
+
+def anagramMappings(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: List[int]
+        """
+        
+        return [B.index(it) for it in A]
+
+
+def uniqueOccurrences(self, arr):
+    """
+    :type arr: List[int]
+    :rtype: bool
+    """
+    x = [arr.count(n) for n in set(arr)]
+    return len(x) == len(set(x))
+
+
+def fixedPoint(self, A):
+    """
+    :type A: List[int]
+    :rtype: int
+    """
+    i = 0
+    while i < len(A):
+        if A[i] == i:
+            return i
+        i += 1
+    return -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
