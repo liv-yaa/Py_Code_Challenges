@@ -215,7 +215,17 @@ def fixedPoint(self, A):
         i += 1
     return -1
 
-
+def peakIndexInMountainArray(self, A):
+    """
+    :type A: List[int]
+    :rtype: int
+    
+    "Given that it is definetly a mountin...return the peak"
+    """
+    
+    for i in range(len(A)):
+        if A[i] > A[i + 1]:
+            return i
 
 
 
