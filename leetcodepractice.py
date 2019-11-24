@@ -227,9 +227,42 @@ def peakIndexInMountainArray(self, A):
         if A[i] > A[i + 1]:
             return i
 
+def highFive(self, items):
+    """
+    :type items: List[List[int]]
+    :rtype: List[List[int]]
+    """
+    sdic = {}
+    for i in range(len(items)):
+        sid = items[i][0]
+        sco = items[i][1]
+        
+        if sid not in sdic:
+            sdic[sid] = [sco]
+            
+        else:
+            c = sdic[sid]
+            c.append(sco)
+            sdic[sid] = c
+                
+    avs = []
+    for i in sdic:
+        av = sum(sorted(sdic[i])[-5:]) // 5            
+        avs.append([i, av])
+                
+    return avs
+        
+        
 
-
-
+def sumOfDigits(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        
+        if sum([int(d) for d in str(min(A))]) % 2 == 1:
+            return 0
+        return 1
 
 
 
