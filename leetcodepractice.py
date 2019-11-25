@@ -255,21 +255,58 @@ def highFive(self, items):
         
 
 def sumOfDigits(self, A):
-        """
-        :type A: List[int]
-        :rtype: int
-        """
+    """
+    :type A: List[int]
+    :rtype: int
+    """
+    
+    if sum([int(d) for d in str(min(A))]) % 2 == 1:
+        return 0
+    return 1
+
+
+def isArmstrong(self, N):
+    """
+    :type N: int
+    :rtype: bool
+    """     
+    return N == sum([int(d) ** len(str(N)) for d in str(N)])
         
-        if sum([int(d) for d in str(min(A))]) % 2 == 1:
+        
+def lastStoneWeight(self, stones):
+    """
+    :type stones: List[int]
+    :rtype: int
+    """
+    while True:
+        if len(stones) == 0:
             return 0
-        return 1
+        elif len(stones) == 1:
+            return stones[0]
+        else:
+            stones.sort()
+            x = stones.pop()
+            y = stones.pop()
+            if abs(x - y) != 0:
+                stones.append(abs(x - y))
 
 
-
-
-
-
-
+def findWords(self, words):
+    """
+    :type words: List[str]
+    :rtype: List[str]
+    """
+    okk = []
+    
+    for w in words:
+        o1 = [l for l in w if l.upper() in 'QWERTYUIOP']
+        o2 = [l for l in w if l.upper() in 'AASDFGHJKL']
+        o3 = [l for l in w if l.upper() in 'ZXCVBNM']
+        
+        if len(o1) == len(w) or len(o2) == len(w) or len(o3) == len(w):
+            okk.append(w)
+              
+    return okk
 
 
 
