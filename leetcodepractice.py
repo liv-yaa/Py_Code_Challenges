@@ -309,7 +309,19 @@ def findWords(self, words):
     return okk
 
 
-
+def sumEvenAfterQueries(self, A, queries):
+    """
+    :type A: List[int]
+    :type queries: List[List[int]]
+    :rtype: List[int]
+    """
+    out = []
+    for q in queries:
+        A[q[1]] = A[q[1]] + q[0]            
+        evens = [e for e in A if e % 2 == 0]
+        out.append(sum(evens))
+        
+    return out
 
 
 
