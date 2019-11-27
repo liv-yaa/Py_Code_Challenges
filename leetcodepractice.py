@@ -311,6 +311,7 @@ def findWords(self, words):
 
 def sumEvenAfterQueries(self, A, queries):
     """
+    Output limit exceeded
     :type A: List[int]
     :type queries: List[List[int]]
     :rtype: List[int]
@@ -322,6 +323,76 @@ def sumEvenAfterQueries(self, A, queries):
         out.append(sum(evens))
         
     return out
+
+
+def sumEvenAfterQueries(self, A, queries):
+
+	""" Looked up answer
+    :type A: List[int]
+    :type queries: List[List[int]]
+    :rtype: List[int]
+    """
+
+    out = []
+    sumNum = sum(map(lambda x : x if x % 2 == 0 else 0, A))
+
+    for i in queries:
+    	prv = A[i[1]]
+    	aft = A[i[1] + i[0]]
+
+    	if prv % 2 == 0 and aft % 2 == 0:
+    		sumNum = sumNum + i[0]
+
+		elif prv % 2 == 0 and aft % 2 != 0:
+			sumNum = sumNum - prv 
+
+		elif prv % 2 != 0 and aft % 2 == 0:
+			sumNum = sumNum + aft
+
+		else:
+			pass
+
+		out.append(sumNum)
+		A[i[1]] = A[i[1] + i[0]]
+
+	return out
+
+
+def heightChecker(self, heights: List[int]) -> int:
+	ctr = 0
+	for i, j in zip(heights, sorted(heights)):
+		if (i != j):
+			ctr += 1
+
+	return ctr
+
+def largestUniqueNumber(self, A):
+    """
+    :type A: List[int]
+    :rtype: int
+    """
+    
+    out = [n for n in A if A.count(n) == 1]
+
+    if out != []:
+        return max(out)
+    else:
+        return -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
