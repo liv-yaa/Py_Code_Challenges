@@ -46,7 +46,6 @@ def maxProfit(self, prices):
 	return pt 
 
 
-
 def containsDuplicate(self, nums):
         """
         :type nums: List[int]
@@ -86,6 +85,7 @@ def coinChange(coins: List[int], amount: int) -> int:
 			min_coins[i] = min(min_coins[i], min_coins[i - c] + 1)
 
 		return min_coins[-1] if min_coins[-1] != float('inf') else -1
+
 
 def isPalindrome(self, x):
         """
@@ -140,14 +140,8 @@ def selfDividingNumbers(self, left, right):
     return [m for m in range(left, right + 1) if '0' not in str(m) and all([m % int(d) == 0 for d in str(m)])]
 
 
-
-
-
-
-def hammingDistance(self, x: int, y: int) -> int:
-    return sum([c=='1' for c in bin(x^y)[2:]])
-
-
+def hammingDistance(self, x, y):
+	return sum([c=='1' for c in bin(x^y)[2:]])
 
 
 def removeVowels(self, S):
@@ -215,6 +209,7 @@ def fixedPoint(self, A):
         i += 1
     return -1
 
+
 def peakIndexInMountainArray(self, A):
     """
     :type A: List[int]
@@ -226,6 +221,7 @@ def peakIndexInMountainArray(self, A):
     for i in range(len(A)):
         if A[i] > A[i + 1]:
             return i
+
 
 def highFive(self, items):
     """
@@ -251,7 +247,6 @@ def highFive(self, items):
         avs.append([i, av])
                 
     return avs
-        
         
 
 def sumOfDigits(self, A):
@@ -366,6 +361,7 @@ def heightChecker(self, heights: List[int]) -> int:
 
 	return ctr
 
+
 def largestUniqueNumber(self, A):
     """
     :type A: List[int]
@@ -380,15 +376,100 @@ def largestUniqueNumber(self, A):
         return -1
 
 
+def minimumAbsDifference(self, arr):
+    """
+    Time Limit Exceeded
+
+    :type arr: List[int]
+    :rtype: List[List[int]]
+    """
+    out = []
+    mad = 1000000 # minimum absolute difference
+    for i in range(len(arr)):
+        for j in range(len(arr)):
+            if i != j:
+                if abs(arr[i] - arr[j]) < mad:
+                    mad = abs(arr[i] - arr[j])        
+    for a in arr:
+        for b in arr:
+            if a < b and (b - a) == mad:
+                out.append((a, b))
+                
+    return sorted(out)
 
 
 
+def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+	arr.sort()                                            # arrange-the array to make it easier to iterate
+	k = min(j-i for i,j in zip(arr,arr[1:]))              # find the minumum to compare
+	return [[i,j] for i,j in zip(arr,arr[1:]) if j-i ==k] # obtain result using one listComprehension
 
 
 
-
-
-
+def numRookCaptures(self, board):
+    """
+    :type board: List[List[str]]
+    :rtype: int
+    """
+    count = 0
+    for i in range(8):
+        for j in range(8):
+            if board[i][j] == 'R':
+                
+                # Try to go S:
+                x, y = i, j
+                while x <= 8:
+                    x += 1
+                    if  x == 8:
+                        break
+                    elif board[x][y] == 'B':
+                        break
+                    elif board[x][y] == 'p':
+                        count += 1
+                        break
+                        
+                # Try to go N:
+                x, y = i, j 
+                while x >= -1:
+                    x -= 1
+                    if x == -1:
+                        break
+                    elif board[x][y] == 'B':
+                        break
+                    elif board[x][y] == 'p':
+                        count += 1
+                        break
+                        
+                # Try to go E:
+                x, y = i, j 
+                while y <= 8:
+                    print(x, y, board[x][y])
+                    y += 1
+                    if y == 8:
+                        break
+                    elif board[x][y] == 'B':
+                        break
+                    elif board[x][y] == 'p':
+                        count += 1
+                        break
+                    
+                    
+                # Try to go W:
+                x, y = i, j 
+                while y >= -1:
+                    print(x, y, board[x][y])
+                    y -= 1
+                    if y == -1:
+                        break
+                    elif board[x][y] == 'B':
+                        break
+                    elif board[x][y] == 'p':
+                        count += 1
+                        break
+                    
+    return count
+            
+            
 
 
 
