@@ -488,7 +488,6 @@ def canThreePartsEqualSum(self, A):
     return False
 
 
-
 def canThreePartsEqualSum(self, A: List[int]) -> bool:
     if sum(A) % 3 != 0: return False
     res = sum(A) // 3
@@ -502,9 +501,6 @@ def canThreePartsEqualSum(self, A: List[int]) -> bool:
                 return True
             count = 0
     return False
-
-
-
 
 
 def uncommonFromSentences(self, A, B):
@@ -531,22 +527,133 @@ def isMajorityElement(self, nums, target):
     return nums.count(target) > len(nums) / 2
 
 
+def canPermutePalin(s):
+	counts = {}
+	for c in s:
+		if c not in counts:
+			counts[c] = 1
+		else:
+			counts[c] += 1
+	print("counts = ", counts)
+
+	flag_odd = False
+
+	for k, v in counts.items():
+		print(k, v)
+
+		if (v % 2 == 1):
+			if (flag_odd == True):
+				return False
+			flag_odd = True
+	return True
 
 
+def canPermutePalindrome(self, s: str) -> bool:
+    counts = {}
+    for c in s:
+        if c not in counts:
+            counts[c] = 1
+        else:
+            counts[c] += 1
+    # print("counts = ", counts)
+
+    flag_odd = False
+
+    for k, v in counts.items():
+        # print("k = ", k, " v = ", v)
+
+        if (v % 2 == 1):
+            if (flag_odd == True):
+                return False
+            flag_odd = True
+    return True
 
 
+def similarRGB(self, color):
+    """
+    :type color: str
+    :rtype: str
+
+    ROunding by component - i dont understand
+    """
+
+    def f(comp):
+    	q, r = divmod(int(comp, 16), 17)
+    	if r > 8:
+    		q += 1
+		return '{:02x}'.format(17 * q)
+
+	return '#' + f(color[1:3]) + f(color[3:5]) + f(color[5:])
 
 
+def averageOfLevels(self, root: TreeNode) -> List[float]:
+    def level(root, l, depth):
+        if root:
+            if len(l) <= depth:
+                l.append([])
+            l[depth].append(root.val)
+            level(root.left, l, depth+1)
+            level(root.right, l, depth+1)
+    s = []
+    level(root, s, 0)
+    return [sum(i)/len(i) for i in s]
 
 
+def intToRoman(self, num):
+    """
+    :type num: int
+    :rtype: str
+    """
+    
+    out = ''
+    if num >= 1000:
+        b4 = int(str(num)[-4])
+        print('b4', b4)
 
+        out += 'M' * b4
+        
+    
+    if num >= 100:
+        b3 = int(str(num)[-3])
+        print('b3', b3)
+        if b3 < 4:
+            out += 'C' * b3
+        elif b3 == 4:
+            out += 'CD'
+        elif 4 < b3 < 9:
+            out += 'D' + 'C' * (b3 - 5)
+        elif b3 == 9:
+            out += 'CM'
+            
+            
+    if num >= 10:
+        b2 = int(str(num)[-2])
+        print('b2', b2)
+        if b2 < 4:
+            out += 'X' * b2
+        elif b2 == 4:
+            out += 'XL'
+        elif 4 < b2 < 9:
+            out += 'L' + 'X' * (b2 - 5)
+        elif b2 == 9:
+            out += 'XC'
+    
+    # get ones place
+    b1 = int(str(num)[-1])
+    print('b1', b1)
 
-
-
-
-
-
-
+    # Dont have to handle 0 case
+    if b1 < 4:
+        out += 'I' * b1
+    elif b1 == 4:
+        out += 'IV'
+    elif 4 < b1 < 9:
+        out += 'V' + 'I' * (b1 - 5)
+    elif b1 == 9:
+        out += 'IX'
+    
+    
+    return out
 
 
 
