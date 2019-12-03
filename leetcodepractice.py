@@ -656,9 +656,65 @@ def intToRoman(self, num):
     return out
 
 
+class HitCounter(object):
+    """
+    # Your HitCounter object will be instantiated and called as such:
+    # obj = HitCounter()
+    # obj.hit(timestamp)
+    # param_2 = obj.getHits(timestamp)
+    """
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.timeHits = {0: 0} # Timestamp : total hits at that time stamp
+        
+
+    def hit(self, ts):
+        """
+        Record a hit.
+        @param timestamp - The current timestamp (in seconds granularity).
+        :type timestamp: int
+        :rtype: None
+        """        
+        # Increment dictionary
+        if ts in self.timeHits:
+            self.timeHits[ts] = self.timeHits[ts] + 1
+        else:
+            self.timeHits[ts] = 1
+        
+
+    def getHits(self, ts):
+        """
+        Return the number of hits in the past 5 minutes.
+        @param timestamp - The current timestamp (in seconds granularity).
+        :type timestamp: int
+        :rtype: int
+        """        
+        total = 0
+        for k, v in self.timeHits.items():
+            if ts - 300 < k <= ts:
+                total += v
+                
+        return total
 
 
-
+def moveZeroes(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: None Do not return anything, modify nums in-place instead.
+    
+    Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+    """
+    p = 0
+    while not all([n == 0 for n in nums[len(nums) - nums.count(0):]]):
+        if nums[p] == 0:
+            nums.append(nums.pop(p))
+        elif nums[p] != 0:
+            p += 1
+                        
+    return nums        
 
 
 
