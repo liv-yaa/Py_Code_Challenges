@@ -398,12 +398,10 @@ def minimumAbsDifference(self, arr):
     return sorted(out)
 
 
-
 def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
 	arr.sort()                                            # arrange-the array to make it easier to iterate
 	k = min(j-i for i,j in zip(arr,arr[1:]))              # find the minumum to compare
 	return [[i,j] for i,j in zip(arr,arr[1:]) if j-i ==k] # obtain result using one listComprehension
-
 
 
 def numRookCaptures(self, board):
@@ -469,11 +467,25 @@ def numRookCaptures(self, board):
                     
     return count
             
+
+def canThreePartsEqualSum(self, A):
+    """
+    Time limit exceeded
+
+    :type A: List[int]
+    :rtype: bool
+    Given an array A of integers, return true if and only if we can partition the array into three non-empty parts with equal sums.
+    
+    """
+    for i in range(len(A)):
+        for j in range(len(A)):
+            if sum(A[:i+1]) == sum(A[i+1:j]) == sum(A[j:len(A)]):
+                # print(sum(A[:i+1]), sum(A[i+1:j]), sum(A[j:len(A)]))
+                # print(i, j)
+                if len(A[:i+1]) != 0 and len(A[i+1:j]) != 0 and len(A[j:len(A)]) != 0:
+                    return True
             
-
-
-
-
+    return False
 
 
 
