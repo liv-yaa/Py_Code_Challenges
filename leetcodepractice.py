@@ -489,6 +489,62 @@ def canThreePartsEqualSum(self, A):
 
 
 
+def canThreePartsEqualSum(self, A: List[int]) -> bool:
+    if sum(A) % 3 != 0: return False
+    res = sum(A) // 3
+    count = 0
+    sign = 0
+    for i in range(len(A)):
+        count += A[i]
+        if count == res:
+            sign += 1
+            if sign == 3:
+                return True
+            count = 0
+    return False
+
+
+
+
+
+def uncommonFromSentences(self, A, B):
+    """
+    :type A: str
+    :type B: str
+    :rtype: List[str]
+    A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the other sentence. Return a list of all uncommon words. 
+    """
+    
+    c = A.split(" ") + B.split(' ')
+    return [w for w in c if c.count(w) == 1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
