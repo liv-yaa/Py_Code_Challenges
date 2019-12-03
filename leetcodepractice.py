@@ -519,7 +519,16 @@ def uncommonFromSentences(self, A, B):
     return [w for w in c if c.count(w) == 1]
 
 
-
+def isMajorityElement(self, nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: bool
+    
+    if target is an element that appears more than N/2 times in an array of length N.
+    """
+    
+    return nums.count(target) > len(nums) / 2
 
 
 
