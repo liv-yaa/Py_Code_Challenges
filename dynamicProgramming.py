@@ -1,5 +1,6 @@
 # Dyanmic Programming examples https://www.geeksforgeeks.org/dynamic-programming/
 
+
 def uglyNumbers(n):
 	"""
 	# **BRuTe WaY**
@@ -34,6 +35,7 @@ def uglyNumbers(n):
 		if isUgly(i):
 			count += 1
 	return i 
+
 
 def uglyNumbers2(n):
 	"""
@@ -103,22 +105,48 @@ def fibDynamic(n):
 	fibArr = [0, 1]
 	while len(fibArr) < n + 1:
 		fibArr.append(0)
-	# print(fibArr)
 	
 	if n <= 1:
 		return n 
 
 	else:
-		if fibArr[n - 1] == 0:
+		# Recurse until you get to a 1.
+		if fibArr[n - 1] == 0: # Start filling in the placeholder zeroes
 			fibArr[n - 1] = fibDynamic(n - 1)
 
 		if fibArr[n - 2] == 0:
 			fibArr[n - 2] = fibDynamic(n - 2)
 
+	# We got to 1! Now, time to sum up each layer of the recursion stack:
 	fibArr[n] = fibArr[n - 2] + fibArr[n - 1]
 	return fibArr[n]
 
 
+def catalan(n):
+	"""
+	Count the number of expressions containing n pairs of parentheses which are correctly matched. 
+	For n = 3, possible expressions are ((())), ()(()), ()()(), (())(), (()()).
+
+	This follows a special `catalan` sequence: [1, 1, 2, 5, 14, 42, 132, ...]
+	Recursive formula: catalan(n) is the sum of catalan(i) * catalan(n - i - 1)
+	>>> catalan(1)
+	1
+	>>> catalan(3)
+	5
+	>>> catalan(4)
+	14
+	>>> catalan(8)
+	1430
+
+	"""
+	if n <= 1:
+		return 1
+
+	res = 0
+	for i in range(n):
+		res += catalan(i) * catalan(n - i - 1)
+
+	return res
 
 
 
@@ -133,6 +161,14 @@ def fibDynamic(n):
 
 
 
+
+
+
+
+
+
+
+# def parenthesesProb(n)
 
 
 
