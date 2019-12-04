@@ -10,7 +10,7 @@ import sys
 
 # Complete the isBalanced function below.
 def isBalanced(s):
-    stack = []
+    stack = [] # Unresolved parens. When empty, all are resolved
     for c in s:
         if c == '(':
             stack.append(0)
@@ -40,6 +40,47 @@ def isBalanced(s):
         return 'YES'
     else:
         return 'NO'
+
+# leetcode sanswer
+def removeOuterParentheses(self, S: str) -> str:
+    stack       = []
+    res         = ""
+    outer_paren = None
+    
+    for i in range(len(S)):    
+      if S[i] == '(':
+        # check if we're at the outermost paren
+        if len(stack) == 0:
+          outer_paren = i
+        stack.append(S[i])
+      
+      elif S[i] == ')':
+        stack.pop()
+        
+        # empty stack ? we have reached an outer loop
+        if len(stack) == 0:
+          # pythonic substr, exclusive
+          res += S[outer_paren + 1 : i]
+          
+    return res
+
+# letcode ans
+def balancedStringSplit(self, s: str) -> int:
+    rc, lc, res = 0,0,0
+    for let in s:
+        if let == 'R':
+            rc += 1
+        else:
+            lc += 1
+
+        if rc == lc:
+            res += 1
+            rc, lc = 0,0 # reset
+
+    return res
+
+
+
 
 # Hackbright
 class Stack(object):

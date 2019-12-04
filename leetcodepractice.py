@@ -739,6 +739,7 @@ def firstUniqChar(self, s: str) -> int:
 
 def climbStairs(self, n):
     """
+    Time limit exceeded
     :type n: int
     :rtype: int
     You are climbing a stair case. It takes n steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -747,6 +748,68 @@ def climbStairs(self, n):
         return 1
     else:
         return self.climbStairs(n - 1) + self.climbStairs(n - 2)
+
+def climbStairs(self, n):
+    """
+    :type n: int
+    :rtype: int
+    pass
+    """
+    ways = [1, 1]
+    for i in range(2, n + 1):
+        ways.append(ways[-1] + ways[-2])
+                    
+    return ways[-1]
+
+
+
+def validPalindrome(self, s):
+    """
+    Time Limt Ex
+    :type s: str
+    :rtype: bool
+    """
+    
+    if s == s[::-1]:
+        return True
+    
+    for i in range(len(s)):
+        t = s[:i] + s[i + 1:]
+        # print(t)
+        if t == t[::-1]:
+            return True
+    
+    return False
+
+
+
+
+
+
+def validPalindrome(self, s: str) -> bool:
+    l, r = 0, len(s)-1
+    def isPalin(s):
+        return s==s[::-1] 
+    while l<r:
+        if s[l]!=s[r]:
+            return isPalin(s[l+1:r+1]) or isPalin(s[l:r])
+        l += 1
+        r -= 1
+    return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
