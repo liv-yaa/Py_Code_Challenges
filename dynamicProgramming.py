@@ -149,21 +149,77 @@ def catalan(n):
 	return res
 
 
+def bellNumber(n):
+	"""
+	Given a set of n elements, find num of ways to partition it
+	ex. given {1, 2}, it can be {{1, 2}} or {{1}, {2}}
+	Let S(n, k) be total number of partitions of n elements into k sets. 
+
+	>>> bellNumber(2)
+	2
+	>>> bellNumber(3)
+	5
+	"""
+
+	bell = [[0 for i in range(n + 1)] for j in range(n + 1)]
+
+	bell[0][0] = 1
+	for i in range(1, n + 1):
+		bell[i][0] = bell[i - 1][i - 1]
+
+		for j in range(1, i + 1):
+			bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
+
+	return bell[n][0]
+
+
+def coinChange(coins, amount):
+	""" 
+	c = 1::
+		i 
+		1 	[0, 1, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf]
+		... becomes ....
+		11  [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11] # The best number of `1` coins you need to make 0, 1, 2, .. 11
+
+	c = 2::
+		< skip 0 - 1 >
+		
+		i = 2: Success! Here, using a `2` coin for value 2 only counts 1 coin, 
+		which is less than 2 from the previous round, so boot it out:
+			[0, 1, 1, ......]
+		i = 3: Success! here, using a `2` coin + `1` is better than 3x `1` coins
+		i = 4: Success! here, using two `2` coins is better than four `1` coins
+		i = 5: Success: .....
+		i = 11: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6] # The best we can do for each value only using `1` and `2` coins
+
+
+	c = 5::
+		< skip 0 - 4 >
+		i = 5:
+			Success! Here, using one `5` coin is better than three smaller coins
+		i = 6, ... all success
+		i = 11: [0, 1, 1, 2, 2, 1, 2, 2, 3, 3, 2, 3]
 
 
 
 
+	>>> coinChange([1, 2, 5], 11)
+	3
+	>>> coinChange([2], 3)
+	-1
+	"""
 
+	if not amount: return 0
+	min_coins = [0] + [float('inf')] * amount
 
+	# Iterate through all coin values
+	for c in coins:
+		# Iterate through amounts it could be (dont waste time with amounts 0 < c)
+		for i in range(c, amount + 1):
+			# Check if adding a new coin minimizes the previous value
+			min_coins[i] = min(min_coins[i], min_coins[i - c] + 1)
 
-
-
-
-
-
-
-
-
+	return min_coins[-1] if min_coins[-1] != float('inf') else -1
 
 
 
