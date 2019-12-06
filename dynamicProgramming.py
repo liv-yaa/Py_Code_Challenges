@@ -222,23 +222,59 @@ def coinChange(coins, amount):
 	return min_coins[-1] if min_coins[-1] != float('inf') else -1
 
 
+def coinChange2(n):
+	"""
+	Uses a table instead, Construct table in a bottom up manner:
+
+	>>> coinChange2(4)
+	4
+	"""
+	coins = [1, 2, 3] # Coin types
+
+	table = [0 for k in range(n + 1)] # table[i] Will be storing the number of solutions for value i
+	table[0] = 1 # base case
+
+	# Pick all coins one by one and update all vals 
+	# after that index to reflect how we add this new coin type
+	for c in coins:
+		for j in range(c, n + 1):
+			table[j] = table[j] - table[j - c]
+
+
+def rotOranges(p, q, r, s):
+	"""
+	Calc the time it takes to rot all oranges
+	@args matrix m * n where cells in matrix have 0, 1, 2
+	A rotten orange at index [i, j] can rot other fresh oranges at indexes [i – 1, j], [i + 1, j], [i, j – 1], [i, j + 1] (up, down, left and right). 
+
+	"""
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def parenthesesProb(n)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
