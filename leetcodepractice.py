@@ -798,7 +798,17 @@ def validPalindrome(self, s: str) -> bool:
     return True
 
 
-
+def isRectangleOverlap(recA, recB):
+    """
+    :type rec1: List[int]
+    :type rec2: List[int]
+    :rtype: bool
+    Two rectangles overlap if the area of their intersection is positive.  To be clear, two rectangles that only touch at the corner or edges do not overlap. Given two (axis-aligned) rectangles, return whether they overlap.
+    """
+    
+    x1a, y1a, x2a, y2a = recA[0], recA[1], recA[2], recA[3]
+    x1b, y1b, x2b, y2b = recB[0], recB[1], recB[2], recB[3]
+    return (x2a - x1b > 0) and (y2a - y1b > 0) and (x1a - x2b < 0) and (y1a - y2b < 0)
 
 
 
