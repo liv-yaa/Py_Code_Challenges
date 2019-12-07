@@ -811,6 +811,187 @@ def isRectangleOverlap(recA, recB):
     return (x2a - x1b > 0) and (y2a - y1b > 0) and (x1a - x2b < 0) and (y1a - y2b < 0)
 
 
+class MyHashMap(object):
+    """
+    I used a dict which was not in the specs
+    # Your MyHashMap object will be instantiated and called as such:
+    # obj = MyHashMap()
+    # obj.put(key,value)
+    # param_2 = obj.get(key)
+    # obj.remove(key)
+    """
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.hashmap = {}
+        
+
+    def put(self, key, value):
+        """
+        value will always be non-negative.
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+        self.hashmap[key] = value
+        
+
+    def get(self, key):
+        """
+        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
+        :type key: int
+        :rtype: int
+        """
+        
+        if key in self.hashmap:
+            return self.hashmap[key]
+        else:
+            return -1
+        
+
+    def remove(self, key):
+        """
+        Removes the mapping of the specified value key if this map contains a mapping for the key
+        :type key: int
+        :rtype: None
+        """
+        if key in self.hashmap:
+            del self.hashmap[key]
+
+
+class ListNode:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.next = None
+
+class AnsHashMap:
+    def __init__(self):
+        self.size = 1000
+        self.hash_table = [None] * self.size
+
+    def put(self, key:int, value: int) -> None:
+        index = key % self.size
+
+        if self.hash_table[index] == None:
+            self.hash_table[index] = ListNode(key, value)
+        else:
+            curr_node = self.hash_table[index]
+            while True:
+                if curr_node.key == key:
+                    curr_node.value = value
+                    return
+                if curr_node.next == None:
+                    break 
+                curr_node = curr_node.next
+
+            curr_node.next = ListNode(key, value)
+
+
+    def get(self, key: int) -> int:
+        if self.hash_table[index] == None:
+            self.hash_table[index] = ListNode(key, value)
+
+
+def parens(s):
+    stack = []
+
+    for c in s:
+        if c == '(':
+            stack.append(0)
+        elif c == ')':
+            if len(stack) > 0 and stack[-1] == 0:
+                stack.pop()
+            else:
+                return False
+
+    if stack == []:
+        return True
+    else:
+        return False
+
+
+def parens2(s):
+    stack = []
+
+    for c in s:
+        if c =='(':
+            stack.append(0)
+        elif c == ')':
+            if len(stack) > 0 and stack[-1] == 0:
+                stack.pop()
+            else:
+                return False
+
+    if stack == []:
+        return True 
+    else:
+        return False
+
+
+def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int):
+    # https://leetcode.com/problems/flood-fill/discuss/444695/Readable-Python
+
+    def check_color(self, r, c):
+        if self.valid_pixel(r, c) and self.m[r][c] == self.old:
+            self.m[r][c] = self.new
+            self.stack.append((r, c))
+
+    def valid_pixel(self, r, c):
+        if (0 <= r <= self.r_max) and (0 <= c <= self.c_max):
+            return True
+        return False
+
+    if not image or not image[0] or newColor == image[sr][sc]:
+        return image
+
+    self.c_max = len(image[0]) - 1
+    self.r_max = len(image) - 1
+
+    self.m = image
+    self.old = self.m[sr][sc]
+    self.new = newColor
+    self.m[sr][sc] = self.new
+    self.stack = [(sr, sc)]
+    while self.stack:
+        r, c = self.stack.pop()
+        up = (r - 1, c)
+        dn = (r + 1, c)
+        lf = (r, c - 1)
+        ri = (r, c + 1)
+
+        for direction in [up, dn, lf, ri]:
+            self.check_color(*direction)
+
+    return self.m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
