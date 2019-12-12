@@ -968,19 +968,109 @@ def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int):
     return self.m
 
 
+def getKey(my_dict, value):
+    # Gets a key from the value
+
+    # kl = list(my_dict.keys())
+    # vl = list(my_dict.values())
+
+    # return kl[vl.index(value)]
+
+    for k, v in my_dict.items():
+        if v == value:
+            return k
+
+    return None
+
+
+
+def intersection(self, nums1, nums2):
+    """
+    :type nums1: List[int]
+    :type nums2: List[int]
+    :rtype: List[int]
+    """
+    inter = []
+    
+    for n in nums1:
+        if n in nums2:
+            if n not in inter:
+                inter.append(n)
+    for n in nums2:
+        if n in nums1:
+            if n not in inter:
+                inter.append(n)
+            
+    return inter
 
 
 
 
+def findShortestSubArray(self, nums):
+    if nums == []:
+        return 0
+    dic = {}
+    for n in nums:
+        if n not in dic:
+            dic[n] = 1
+        else:
+            dic[n] += 1
+
+    degree = max(dic.values())
+    if degree == 1:
+        return 1
+    else:
+        min_length = len(nums)
+        for keys in dic:
+            if dic[keys] == degree:
+                pos1 = nums.index(keys)
+                pos2 = len(nums) - nums[::-1].index(keys) - 1
+                if pos2 - pos1 + 1 < min_length:
+                    min_length = pos2 - pos1 + 1
+    return min_length
 
 
+    """ Looked up answer
+    :type A: List[int]
+    :type queries: List[List[int]]
+    :rtype: List[int]
+    """
 
+    return_list = []
+    sum_num = sum(map(lambda x : x if x%2==0 else 0,A))
+    for i in queries: 
+        prv = A[i[1]]
 
+        after = A[i[1]]+i[0]
 
+        if prv%2 == 0 and after%2 == 0:
+            sum_num = sum_num+i[0]
 
+        elif prv%2 == 0 and after%2 != 0:
+            sum_num = sum_num - prv
 
+        elif prv%2 != 0 and after%2 == 0:
+            sum_num = sum_num+after
 
+        else:
+            pass
+        return_list.append(sum_num)
+        A[i[1]] = A[i[1]]+i[0]
 
+    return return_list
+
+def singleNumber(self, nums):
+    """
+    Find the one number that does not appear twice
+    * Uses a stack * 
+    """
+    single = []
+    for n in nums:
+        if n not in single:
+            single.append(n)
+        else:
+            single.remove(n)
+    return single[0]
 
 
 
