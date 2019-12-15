@@ -1105,7 +1105,7 @@ def subarraySum(nums, k):
             prefix_dict[cur_sum] += 1
 
 
-def sumEvenAfterQueries(self, A, queries):
+def BADsumEvenAfterQueries(self, A, queries):
 
         """ Looked up answer
         :type A: List[int]
@@ -1121,8 +1121,45 @@ def sumEvenAfterQueries(self, A, queries):
         return out
 
 
+def sumEvenAfterQueries(self, A, queries):
+    eve = sum([A[i] for i in range(len(A)) if A[i] % 2 == 0])
+    m = []
 
+    for i in range(len(queries)):
+        if (A[queries[i][1]] % 2 == 0):
 
+            if (A[queries[i][0]] % 2 == 0):
+                eve += queries[i][0]
+            else:
+                eve -= A[queries[i][1]]
+            A[queries[i][1]] += queries[i][0]
+        else:
+            if (queries[i][0] % 2 == 0):
+                eve = eve  
+            else:
+                eve += (A[queries[i][1]] + queries[i][0])
+            A[queries[i][1] += queries[i][0]]
+        m.append(eve)
+    return m 
+
+def judgeCircle(self, moves):
+        """
+        :type moves: str
+        :rtype: bool
+        """
+        o = [0, 0] # origin
+        p = o[::] # position
+        for m in moves:
+            if m == 'R':
+                p[1] = p[1] + 1
+            if m == 'L':
+                p[1] = p[1] - 1
+            if m == 'U':
+                p[0] = p[0] + 1
+            if m == 'D':
+                p[0] = p[0] - 1
+                
+        return o == p
 
 
 
