@@ -1073,7 +1073,7 @@ def singleNumber(self, nums):
     return single[0]
 
 
-
+#Doing these: https://medium.com/better-programming/the-software-engineering-study-guide-for-interviews-53b42d82deb0
 def fizzBuzz(m):
     for n in range(1, m + 1):
         if n % 15 == 0:
@@ -1084,6 +1084,231 @@ def fizzBuzz(m):
             print('Buzz')
         else:
             print(n)
+
+
+def subarraySum(nums, k):
+    prefix_dict = {0:1}
+    cur_sum = 0
+    res = 0
+
+    for n in nums:
+        cur_sum += n
+        lookfor = cur_sum - k
+
+        if lookfor in prefix_dict:
+            res += prefix_dict[lookfor]
+
+        if cur_sum not in prefix_dict:
+            prefix_dict[cur_sum] = 1
+
+        else:
+            prefix_dict[cur_sum] += 1
+
+
+def sumEvenAfterQueries(self, A, queries):
+
+        """ Looked up answer
+        :type A: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        out = []
+        for i in range(len(queries)):
+            if queries[i][1] < len(A):
+                A[queries[i][1]] = A[queries[i][1]] + queries[i][0]
+            out.append(sum([e for e in A if e % 2 == 0]))
+                
+        return out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
