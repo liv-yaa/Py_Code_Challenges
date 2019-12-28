@@ -44,3 +44,17 @@ for d in range(1, l + 1):
         # Get all chunks of length d or lower
         chx = [ snum[i:i + d] for i in range(0, l, d) ]
         print('chx', chx)
+
+
+def generate_number(squad, n):
+    # TODO: complete
+    if n not in squad:
+        return n
+
+    # find any sums that add up to n
+    for i in range(1, 10):
+        for j in range(1, 10):
+            if i + j == n:
+                if int(str(i) + str(j)) not in squad:
+                    return int(str(i) + str(j))
+    return None
