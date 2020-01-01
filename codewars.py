@@ -58,3 +58,45 @@ def generate_number(squad, n):
                 if int(str(i) + str(j)) not in squad:
                     return int(str(i) + str(j))
     return None
+
+
+def upsidedown(x, y):
+	# An upside down number is an integer that appears the same when rotated 180 degrees, as illustrated below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
