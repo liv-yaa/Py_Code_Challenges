@@ -62,6 +62,16 @@ def generate_number(squad, n):
 
 def upsidedown(x, y):
 	# An upside down number is an integer that appears the same when rotated 180 degrees, as illustrated below.
+    ns = [1, 2, 6, 8, 9, 0]
+    up = [1, 5, 9, 8, 6, 0]
+    for n in range(int(x), int(y) + 1):
+        print(n)
+        if all([d in ns for d in str(n)]):
+        	print('n is true', n)
+	        if n in ns:
+	        	u = up[ns.idex(n)]
+	        	print('u', u)
+
 
 
 
