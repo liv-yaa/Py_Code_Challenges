@@ -36,6 +36,7 @@ def SimpleAdding(num):
 	"""
 	return sum([n for n in range(1, num + 1)])
 
+
 def twoSum(arr, S):
 	""" find all pairs of two integers in unsorted array that add up to S 
 	* Dont loop twce - O(n^ 2)
@@ -56,10 +57,29 @@ def twoSum(arr, S):
 	return sums 	
 
 
+def powerSet(arr):
+	""" The power set contains every possible combination of numbers. It also includes the empty set which contains no numbers from the original set.
+		There will be 2 ^ N possible combinations of this set 
+		Every element can either be in the set or not, so 2 * 2 * 2...=2 ^ N
+	
+	Algorithm:
+		1. Loop through 0 to 2 ^ N
+		2. Convert to binary
+		3. Use the binary to exclude (0) or include (1)
+	"""
+	pS = []
+	for i in range(2 ** len(arr)):
+		bi = format(i, '#05b')[2:]
+		pS.append([arr[j] for j in range(3) if bi[j] == '1'])
+
+	return pS
+
+
 
 if __name__ == "__main__":
 	""" if this were a module, use this format """
-	print(twoSum([3, 5, 2, -4, 8, 11], 7))
+	# print(twoSum([3, 5, 2, -4, 8, 11], 7))
+	print(powerSet([1, 2, 3]))
 
 
 
