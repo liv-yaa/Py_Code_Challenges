@@ -24,9 +24,9 @@ def LetterChanges(str):
 
 def betterLetterChanges(st):
 	letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW"
-    changes = "bcdEfghIjklmnOpqrstUvwxyzABCDEFGHIJKLMNOPQRSTUVWZ"
-    mapping = { k:v for (k, v) in zip(st + letters, st + changes)}
-    return ''.join([ mapping[c] for c in st ])
+	changes = "bcdEfghIjklmnOpqrstUvwxyzABCDEFGHIJKLMNOPQRSTUVWZ"
+	mapping = { k:v for (k, v) in zip(st + letters, st + changes)}
+	return ''.join([ mapping[c] for c in st ])
 
 
 def SimpleAdding(num): 
@@ -35,3 +35,52 @@ def SimpleAdding(num):
 	num <= 1000.
 	"""
 	return sum([n for n in range(1, num + 1)])
+
+def twoSum(arr, S):
+	""" find all pairs of two integers in unsorted array that add up to S 
+	* Dont loop twce - O(n^ 2)
+	* better - try to get O(n) time
+		* Use Hash Tables / Dictionary with constant lookup time
+	"""
+	sums = []
+	hAsh = {}
+
+	for a in arr:
+		# Check if x = S - a exists in the hash table
+		if S - a in hAsh:
+			sums.append((a, S - a))
+
+		# Add a to the hash table
+		hAsh[a] = a
+
+	return sums 	
+
+
+
+if __name__ == "__main__":
+	""" if this were a module, use this format """
+	print(twoSum([3, 5, 2, -4, 8, 11], 7))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
