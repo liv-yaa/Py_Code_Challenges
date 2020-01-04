@@ -38,7 +38,9 @@ def SimpleAdding(num):
 
 
 def twoSum(arr, S):
-	""" find all pairs of two integers in unsorted array that add up to S 
+	""" 
+	https://coderbyte.com/algorithm/two-sum-problem
+	Find all pairs of two integers in unsorted array that add up to S 
 	* Dont loop twce - O(n^ 2)
 	* better - try to get O(n) time
 		* Use Hash Tables / Dictionary with constant lookup time
@@ -66,6 +68,9 @@ def powerSet(arr):
 		1. Loop through 0 to 2 ^ N
 		2. Convert to binary
 		3. Use the binary to exclude (0) or include (1)
+
+	Run Time:
+		Best case is O(2^n) time which is very slow. But this is the best worst case.
 	"""
 	pS = []
 	for i in range(2 ** len(arr)):
@@ -75,11 +80,61 @@ def powerSet(arr):
 	return pS
 
 
+def patterns(st, al=[]):
+	""" 
+	https://coderbyte.com/algorithm/find-all-string-combinations-consisting-zero-one-wildcard
+	Print all possible combinations of a string of 0 & 1, where ? is a wildcard that is either 0 or 1
+	
+	Algo:
+		1. Call the fxn w/ the string & an empty set where we begin bushing 0's and 1's
+		2. Once we reach a ?, make a copy of each string set
+			for half append a 0, other half append a 1
+		3. Recursively call the function on smaller strings. Base case = break when string is empty
+
+	"""
+
+	# print('al', al, 'st', st)
+
+	if len(st) == 0: # base case
+		return al
+
+	if st[0] == '0' or st[0] == '1':
+		# Add the character to each string we have so far
+		for i in range(len(al)):
+			al[i] = al[i] + [int(st[0])]
+		# print('al', al)
+
+
+	if st[0] == '?':
+		# For a wildcard, make a copy of each string set
+		# For half of them append a 0 to the string, other half append 1 
+		# print('?')
+
+		# Get the first char from each item in al:
+		for j in range(len(al)):
+			temp = al[j][::]
+			# print('temp', temp)
+			al.append(temp)
+
+		# print('al', al)
+
+		for k in range(len(al)):
+			if k < len(al) / 2:
+				al[k].append(0)
+			else:
+				al[k].append(1)
+		# print('al now', al)
+
+	return patterns(st[1:], al)
+
+
+
 
 if __name__ == "__main__":
 	""" if this were a module, use this format """
 	# print(twoSum([3, 5, 2, -4, 8, 11], 7))
-	print(powerSet([1, 2, 3]))
+	# print(powerSet([1, 2, 3]))
+	print(patterns('?10??', [[1, 0], [0, 1]]))
 
 
 
