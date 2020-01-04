@@ -128,13 +128,39 @@ def patterns(st, al=[]):
 	return patterns(st[1:], al)
 
 
+def duplicates(arr):
+	""" 
+	DO THIS!! NOT COMPLETE!!
+	https://coderbyte.com/algorithm/find-duplicates-in-array-linear-time-v1
+	Find all duplicates in an array where the numbers 
+	are in the range of 0 to len(arr) - 1
+
+	Algorithm:
+		1. Loop through array
+		2. Search for array[abs(array[i])]
+			- if it is pos, set it to neg
+			- if it is neg, we found a duplicate!
+
+	"""
+	# dups = []
+	# print(arr)
+
+	# for i in range(len(arr)):
+	# 	a = arr[i]
+	# 	print('a', a)
+	# 	j = arr.index(abs(a))
+	# 	if i != j:
+	# 		print('j', j, 'arr[j]', arr[j])
+
 
 
 if __name__ == "__main__":
 	""" if this were a module, use this format """
 	# print(twoSum([3, 5, 2, -4, 8, 11], 7))
 	# print(powerSet([1, 2, 3]))
-	print(patterns('?10??', [[1, 0], [0, 1]]))
+	# print(patterns('?10??', [[1, 0], [0, 1]]))
+	print(duplicates([1, 2, 2, 3, 1]))
+
 
 
 
