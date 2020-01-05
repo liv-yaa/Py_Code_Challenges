@@ -29,6 +29,27 @@ class Solution(object):
 
     	return ''
         
+
+	def squareOfNWithBinarySearch(self, n):
+		""" Calculates the square root of n using binary search """
+
+		lo, hi = 0, x
+
+		while lo <= hi:
+			mid = (lo + hi) // 2
+
+			if mid * mid > x:
+				hi = mid - 1
+
+			elif mid * mid < x:
+				lo = mid + 1
+
+			else:
+				return mid
+
+		return hi # There is no perfect square, so just return the val on the left
+
+
 if __name__ == "__main__":
 	s = Solution()
 
@@ -36,3 +57,59 @@ if __name__ == "__main__":
 	print(s.gcdOfStrings("ABCABC", "ABC")) # "ABC"
 	print(s.gcdOfStrings("ABABAB", "ABAB")) # "AB"
 	print(s.gcdOfStrings("LEET", "CODE")) # ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
