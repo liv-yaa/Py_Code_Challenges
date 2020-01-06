@@ -50,6 +50,20 @@ class Solution(object):
 		return hi # There is no perfect square, so just return the val on the left
 
 
+	def heightChecker(self, heights):
+		"""
+		:type heights: List[int]
+		:rtype: int # The number of students not standing in the right positions
+		if they all want to stand in decreasing order
+		"""
+		return sum([1 for i in range(len(heights)) if heights[i] != sorted(heights)[i]])
+
+
+
+
+
+
+
 if __name__ == "__main__":
 	s = Solution()
 
@@ -57,6 +71,7 @@ if __name__ == "__main__":
 	print(s.gcdOfStrings("ABCABC", "ABC")) # "ABC"
 	print(s.gcdOfStrings("ABABAB", "ABAB")) # "AB"
 	print(s.gcdOfStrings("LEET", "CODE")) # ""
+
 
 
 
