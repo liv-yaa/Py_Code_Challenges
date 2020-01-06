@@ -143,15 +143,36 @@ keep enjoying our bites!
 
 
 def slice_and_dice(text):
-    """Get a list of words from the passed in text.
-       See the Bite description for step by step instructions"""
-    results = []
-    print('test')
+	"""Get a list of words from the passed in text.
+	Instructions:
+	1. Take the block of text provided and strip off the whitespace at both ends. 
+	2. Split the text by newline (\n).
+	3. Loop through lines, for each line:
+	strip off any leading spaces,
+	check if the first character is lowercase,
+	if so, split the line into words and get the last word,
+	strip the trailing dot (.) and exclamation mark (!) from this last word,
+	and finally add it to the results list.
+	Return the results list.
+
+	"""
+	results = []
+	for line in text.strip().splitlines():
+		line = line.lstrip()
+
+		if line[0] not in ascii_lowercase:
+			continue
+
+		words = line.split()
+		last_word_stripped = words[-1].rstrip('!.')
+		results.append(last_word_stripped)
+
+	return results
 
 
-
-
-
+if __name__ == '__main__':
+	r = slice_and_dice(text)
+	print(r)
 
 
 
