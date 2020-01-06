@@ -59,13 +59,15 @@ def heightChecker(heights):
 
 def power3(n):
 	"""  Check if n is a power of 3 """
-	print('n', n)
 	while (n % 3 == 0):
 		n /= 3
-		print(n)
 	return n == 1
 
-
+def power4(n):
+	"""  Check if n is a power of 3 """
+	while (n % 4  == 0):
+		n /= 4
+	return n == 1
 
 
 if __name__ == "__main__":
@@ -75,6 +77,7 @@ if __name__ == "__main__":
 	# print(gcdOfStrings("ABABAB", "ABAB")) # "AB"
 	# print(gcdOfStrings("LEET", "CODE")) # ""
 	print(power3(4), power3(144), power3(9), power3(81))
+	print(power4(4), power4(144), power4(9), power4(81))
 
 
 
