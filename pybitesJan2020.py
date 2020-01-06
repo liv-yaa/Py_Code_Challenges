@@ -98,7 +98,8 @@ class JSONParser:
 	def get_models(self, automaker, year):
 	    """Filter cars 'data' by 'automaker' and 'year',
 	       return a set of models (a 'set' to avoid duplicate models)"""
-	    pass
+	    # print('get_models!!!')
+	    return {'tests'}
 
 
 if __name__ == "__main__":
@@ -114,6 +115,10 @@ if __name__ == "__main__":
 	print(j.most_prolific_automaker(1999)) # 'Dodge'
 	print(j.most_prolific_automaker(2008)) # 'Toyota'
 	print(j.most_prolific_automaker(2013)) # 'Hyundai'
+
+	# print(j.most_prolific_automaker(1999)) # 'Dodge'
+	# print(j.most_prolific_automaker(2008)) # 'Toyota'
+	# print(j.most_prolific_automaker(2013)) # 'Hyundai'
 
 
 
