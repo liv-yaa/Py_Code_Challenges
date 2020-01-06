@@ -1,76 +1,81 @@
 # leetcodePracJan2020.py
 
-class Solution(object):
-    def findOcurrences(self, text, first, second):
-        """
-        :type text: str
-        :type first: str
-        :type second: str
-        :rtype: List[str]
-        """
-        s = text.split(" ")    
-        return [s[i + 2] for i in range(len(s) - 2) if s[i] == first and s[i + 1] == second]
+def findOcurrences(text, first, second):
+    """
+    :type text: str
+    :type first: str
+    :type second: str
+    :rtype: List[str]
+    """
+    s = text.split(" ")    
+    return [s[i + 2] for i in range(len(s) - 2) if s[i] == first and s[i + 1] == second]
+    
         
-            
-    def gcdOfStrings(self, str1, str2):
-    	""" For there to be a common divisor between two strings str1 and str2, the shorter string str1 would be a prefix in the longer string str2 since the divisor T is repeated mulitiple times to form the string. """
-    	l1, l2 = len(str1), len(str2)
+def gcdOfStrings(str1, str2):
+	""" For there to be a common divisor between two strings str1 and str2, the shorter string str1 would be a prefix in the longer string str2 since the divisor T is repeated mulitiple times to form the string. """
+	l1, l2 = len(str1), len(str2)
 
-    	if l2 > l1:
-			# Ensures the longer string is str1 and the shorter or equal string is s2
-			return self.gcdOfStrings(str2, str1)
-    	
-    	# See if str1 is a prefix of str2
-    	if str1[:l2] == str2:
-    		if l1 == l2:
-    			return str2
-    		else:
-    			return self.gcdOfStrings(str2, str1[l2:]) # Subtract the prefix
+	if l2 > l1:
+		# Ensures the longer string is str1 and the shorter or equal string is s2
+		return gcdOfStrings(str2, str1)
+	
+	# See if str1 is a prefix of str2
+	if str1[:l2] == str2:
+		if l1 == l2:
+			return str2
+		else:
+			return gcdOfStrings(str2, str1[l2:]) # Subtract the prefix
 
-    	return ''
-        
+	return ''
+    
 
-	def squareOfNWithBinarySearch(self, n):
-		""" Calculates the square root of n using binary search """
+def squareOfNWithBinarySearch(n):
+	""" Calculates the square root of n using binary search """
 
-		lo, hi = 0, x
+	lo, hi = 0, x
 
-		while lo <= hi:
-			mid = (lo + hi) // 2
+	while lo <= hi:
+		mid = (lo + hi) // 2
 
-			if mid * mid > x:
-				hi = mid - 1
+		if mid * mid > x:
+			hi = mid - 1
 
-			elif mid * mid < x:
-				lo = mid + 1
+		elif mid * mid < x:
+			lo = mid + 1
 
-			else:
-				return mid
+		else:
+			return mid
 
-		return hi # There is no perfect square, so just return the val on the left
-
-
-	def heightChecker(self, heights):
-		"""
-		:type heights: List[int]
-		:rtype: int # The number of students not standing in the right positions
-		if they all want to stand in decreasing order
-		"""
-		return sum([1 for i in range(len(heights)) if heights[i] != sorted(heights)[i]])
+	return hi # There is no perfect square, so just return the val on the left
 
 
+def heightChecker(heights):
+	"""
+	:type heights: List[int]
+	:rtype: int # The number of students not standing in the right positions
+	if they all want to stand in decreasing order
+	"""
+	return sum([1 for i in range(len(heights)) if heights[i] != sorted(heights)[i]])
 
+def power3(n):
+	"""  Check if n is a power of 3 """
+	print('n', n)
+	while (n % 3 == 0):
+		n /= 3
+		print(n)
+	return n == 1
 
 
 
 
 if __name__ == "__main__":
-	s = Solution()
 
-	# print(s.findOcurrences("alice is a good girl she is a good student", "a", "good"))
-	print(s.gcdOfStrings("ABCABC", "ABC")) # "ABC"
-	print(s.gcdOfStrings("ABABAB", "ABAB")) # "AB"
-	print(s.gcdOfStrings("LEET", "CODE")) # ""
+	# print(findOcurrences("alice is a good girl she is a good student", "a", "good"))
+	# print(gcdOfStrings("ABCABC", "ABC")) # "ABC"
+	# print(gcdOfStrings("ABABAB", "ABAB")) # "AB"
+	# print(gcdOfStrings("LEET", "CODE")) # ""
+	print(power3(4), power3(144), power3(9), power3(81))
+
 
 
 
