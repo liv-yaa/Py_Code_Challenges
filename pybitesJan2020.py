@@ -99,39 +99,40 @@ class JSONParser:
 	    """Filter cars 'data' by 'automaker' and 'year',
 	       return a set of models (a 'set' to avoid duplicate models)"""
 	    # print('get_models!!!')
-	    return {'tests'}
+	    # return {'tests'}
+
+	    s = set()
+	    for m in self.data:
+	    	if m['automaker'] == automaker and m['year'] == year:
+	    		s.add(str(m['model']))
+
+	    return s 
+
 
 
 if __name__ == "__main__":
+	# See testCars.py for full test suite
+	j = JSONParser()
+	print(j.get_models('Nissan', 2000))
+
+	models = j.get_models('Volkswagen', 2008)
+	print(models, len(models))
+
+
+
+
+
+
+
+
+
+
+# if __name__ == "__main__":
 	# STUCK - need to look up answers
 	# x = XMLParser()
 	# x.get_tree()
 	# x.get_movies()
 	# x.get_movie_longest_runtime()
-
-
-
-	j = JSONParser()
-	print(j.most_prolific_automaker(1999)) # 'Dodge'
-	print(j.most_prolific_automaker(2008)) # 'Toyota'
-	print(j.most_prolific_automaker(2013)) # 'Hyundai'
-
-	# print(j.most_prolific_automaker(1999)) # 'Dodge'
-	# print(j.most_prolific_automaker(2008)) # 'Toyota'
-	# print(j.most_prolific_automaker(2013)) # 'Hyundai'
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
