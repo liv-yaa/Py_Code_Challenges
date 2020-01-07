@@ -113,17 +113,25 @@ class NinjaBelts:
 
 
 #  [Collections Mod] Bite 45. Keep a Queue of last n items - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections import deque
 def my_queue(n=5):
-	return []
-	
-	# def append(m):
-	# 	q.append(m)
-	# 	print('appending m', m)
+	x = deque() # 'append', 'appendleft', 'clear', 'count', 'extend', 'extendleft', 'maxlen', 'pop', 'popleft', 'remove', 'reverse', 'rotate'
+	print(len(x))
+
+	def append(m):
+		print('?')
+
+
+	# if len(x) > n:
+	# 	print('?')
+	# 	x.pop(0)
+	return x
 
 
 if __name__ == '__main__':
 	mq = my_queue()
 	for i in range(10):
+		# print(dir(mq))
 		mq.append(i)
 		print((i, list(mq)))
 
