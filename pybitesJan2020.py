@@ -177,9 +177,11 @@ if __name__ == '__main__':
 
 
 # Bite 16. PyBites date generator ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+from datetime import datetime
+from datetime import timedelta 
 class DateGenerator:
-	from datetime import datetime
+	 
+
 
 	PYBITES_BORN = datetime(year=2016, month=12, day=19) # bday
 
@@ -191,40 +193,27 @@ class DateGenerator:
 				Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo.
 		 """
 
-		p = self.PYBITES_BORN
-		# print(p.year, p.month)
+		p = self.PYBITES_BORN # A datetime object
+		q = self.PYBITES_BORN # A datetime object
 
-		# Every year mark from bday
-		# while p.year < 2025:
-		# 	yield p
-		# 	p = p.replace(year=p.year + 1)
 
+		# Every year mark from bday			
 
 		# Every 100 days mark from bday
-		while p.year < 2020:
+		while p.year < 2020:			
+			p = p + timedelta(days=100)
+			q = q.replace(year=p.year + 1)
+			if p < q:
+				yield p
+			else:
+				yield q
 
-			yield p
-			# p = p.replace(day=(p.day + 1) % 31, 
-			# 				month=(p.month + 1) % 12,
-			# 				year=(p.year + 1))
-
-			print(p.month)
-
-			if p.month == 28:
-
-				upday = (p.day + 100)
-				upmonth = p.month
-				upyear = p.year
-
-			print(upday, upmonth, upyear)
-
-			break
 
 
 if __name__ == '__main__':
 	dg = DateGenerator()
 	for d in dg.gen_special_pybites_dates():
-		print(d)
+		print(d.year, d.month, d.day, d.hour, d.minute)
 		# next(d)
 		
 
