@@ -122,7 +122,7 @@ if __name__ == "__main__":
 	# print(models, len(models))
 
 
-# Bite 1105. Slice and dice ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Bite 105. Slice and dice ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 from string import ascii_lowercase
 
@@ -171,8 +171,65 @@ def slice_and_dice(text):
 
 
 if __name__ == '__main__':
-	r = slice_and_dice(text)
-	print(r)
+	# r = slice_and_dice(text)
+	# print(r)
+	pass
+
+
+# Bite 16. PyBites date generator ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+class DateGenerator:
+	from datetime import datetime
+
+	PYBITES_BORN = datetime(year=2016, month=12, day=19)
+
+
+	def gen_special_pybites_dates(self):
+		""" A Generator: the state of the function is remembered.
+			Every time you call next, it increments the state
+
+			* From docs: class `datetime.datetime` https://docs.python.org/3/library/datetime.html
+				A combination of a date and a time. 
+				Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo.
+		 """
+
+		p = self.PYBITES_BORN
+		print(p.year, p.month)
+		while p.year<4000:
+			yield p
+			p = p.replace(year=p.year + 1)
+
+if __name__ == '__main__':
+	dg = DateGenerator()
+	for d in dg.gen_special_pybites_dates():
+		print(d)
+		# next(d)
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
