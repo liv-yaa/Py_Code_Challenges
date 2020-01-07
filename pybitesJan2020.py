@@ -142,7 +142,8 @@ from collections import defaultdict
 class DefaultDict:
 	"""`defaultdict` - "dict subclass that calls a factory function to supply missing values "
 	
-	Powerful! You can avoid using dict.setdefault() with the defaultdict.append method:
+	Powerful! You can directly append to existing values with the defaultdict.append method,
+	and it even initializes values with a zero:
 
 		d = defaultdict(list)
 		for k, v in s:
@@ -167,12 +168,18 @@ class DefaultDict:
 	def group_names_by_country(self, data=data):
 		""" Take string and returns a defaultdict """
 		countries = defaultdict(list) # Provide an initial value for the dict object
-		# you code
-		print(countries)
+		
+		d = self.data.strip().split()[1:]
+		for l in d:
+			l = l.split(',')
+			countries[l[2]].append(l[1] + ' ' + l[0])
+
+		return countries
+
 
 if __name__ == '__main__':
 	dd = DefaultDict()
-	print(dd.group_names_by_country())
+	# print(dd.group_names_by_country())
 
 
 
