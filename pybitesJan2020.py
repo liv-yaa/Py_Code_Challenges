@@ -112,21 +112,10 @@ class NinjaBelts:
 # 	print(nb.get_total_points())
 
 
-#  [Collections Mod] Bite 45. Keep a Queue of last n items - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections Mod] Bite 45. Keep a Queue of last n items - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import deque
 def my_queue(n=5):
-	x = deque() # 'append', 'appendleft', 'clear', 'count', 'extend', 'extendleft', 'maxlen', 'pop', 'popleft', 'remove', 'reverse', 'rotate'
-	print(len(x))
-
-	def append(m):
-		print('?')
-
-
-	# if len(x) > n:
-	# 	print('?')
-	# 	x.pop(0)
-	return x
-
+	return deque(maxlen=n) # 'append', 'appendleft', 'clear', 'count', 'extend', 'extendleft', 'maxlen', 'pop', 'popleft', 'remove', 'reverse', 'rotate'
 
 if __name__ == '__main__':
 	mq = my_queue()
@@ -147,6 +136,12 @@ if __name__ == '__main__':
 	(8, [4, 5, 6, 7, 8])
 	(9, [5, 6, 7, 8, 9])
 	"""
+
+
+
+
+
+
 
 
 
