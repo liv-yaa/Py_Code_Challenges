@@ -69,7 +69,7 @@ class XMLParser:
 	# x.get_movie_longest_runtime()
 
 
-#  [Collections Mod] Bite 108. Loop over a dict of namedtuples calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections Mod] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 class NinjaBelts:
 	BeltStats = namedtuple('BeltStats', 'score ninjas') # typename, field_names
@@ -112,17 +112,17 @@ class NinjaBelts:
 # 	print(nb.get_total_points())
 
 
-#  [Collections Mod] Bite 45. Keep a Queue of last n items - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections Mod] Bite 45. Keep a Queue of last n items using `collections.deque` - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import deque
 def my_queue(n=5):
 	return deque(maxlen=n) # 'append', 'appendleft', 'clear', 'count', 'extend', 'extendleft', 'maxlen', 'pop', 'popleft', 'remove', 'reverse', 'rotate'
 
 if __name__ == '__main__':
 	mq = my_queue()
-	for i in range(10):
-		# print(dir(mq))
-		mq.append(i)
-		print((i, list(mq)))
+	# for i in range(10):
+	# 	# print(dir(mq))
+	# 	mq.append(i)
+	# 	print((i, list(mq)))
 
 	"""Queue size does not go beyond n int, this outputs:
 	(0, [0])
@@ -137,9 +137,42 @@ if __name__ == '__main__':
 	(9, [5, 6, 7, 8, 9])
 	"""
 
+#  [Collections Mod] Bite 180.Group names by country using `collections.defaultdict`  - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections import defaultdict
+class DefaultDict:
+	"""`defaultdict` - "dict subclass that calls a factory function to supply missing values "
+	
+	Powerful! You can avoid using dict.setdefault() with the defaultdict.append method:
 
+		d = defaultdict(list)
+		for k, v in s:
+			d[k].append(v)
+		
+		>>> d.items()
+		[('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
 
+	"""
+	data = """last_name,first_name,country_code
+		Watsham,Husain,ID
+		Harrold,Alphonso,BR
+		Apdell,Margo,CN
+		Tomblings,Deerdre,RU
+		Wasielewski,Sula,ID
+		Jeffry,Rudolph,TD
+		Brenston,Luke,SE
+		Parrett,Ines,CN
+		Braunle,Kermit,PL
+		Halbard,Davie,CN"""
 
+	def group_names_by_country(self, data=data):
+		""" Take string and returns a defaultdict """
+		countries = defaultdict(list) # Provide an initial value for the dict object
+		# you code
+		print(countries)
+
+if __name__ == '__main__':
+	dd = DefaultDict()
+	print(dd.group_names_by_country())
 
 
 
