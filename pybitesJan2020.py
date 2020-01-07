@@ -3,7 +3,7 @@
 
 # DATA FORMATS https://codechalleng.es/bites/paths/data-formats
 
-# Bite 38. Using ElementTree to parse XML: *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Collections Mod] Bite 38. Using ElementTree to parse XML: *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 import xml.etree.ElementTree as ET
 class XMLParser:
@@ -69,9 +69,63 @@ class XMLParser:
 	# x.get_movie_longest_runtime()
 
 
+#  [Collections Mod] Bite 108. Loop over a dict of namedtuples calculating a total score - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections import namedtuple
+class NinjaBelts:
+	BeltStats = namedtuple('BeltStats', 'score ninjas') # typename, field_names
+
+	ninja_belts = {'yellow': BeltStats(50, 11),
+	               'orange': BeltStats(100, 7),
+	               'green': BeltStats(175, 1),
+	               'blue': BeltStats(250, 5)} # Can have more belts
 
 
-# Bite 130. Analyzing basic JSON Car Data: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	def get_total_points(self, belts=ninja_belts):
+	    """
+
+	    ** What is a `namedtuple`? - a dict-like container from the Collections module
+	    ** More powerful than a dictionary because it is iterable ** (also unordered tho)
+
+	    Calculate the amount of points rewarded on PyBites given the
+	       ninja_belts dictionary, formula: belt score x belt owners (aka ninjas)
+	       (of course there are more points but let's keep it simple)
+
+	       Make your code generic so if we update ninja_belts to include
+	       more belts (which we do in the tests) it will still work.
+
+	       Ah and you can get score and ninjas from the namedtuple with nice
+	       attribute access: belt.score / belt.ninjas (reason why we get
+	       you familiar with namedtuple here, because we love them and use
+	       them all over the place!)
+
+	       Return the total number of points int from the function."""
+
+	    total = 0
+	    for k, v in belts.items():
+	    	print(k, v.score, v.ninjas)
+		
+		# return total
+
+
+if __name__ == '__main__':
+	nb = NinjaBelts()
+	print(nb.get_total_points())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# [Data Analysis] Bite 130. Analyzing basic JSON Car Data: - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 from collections import Counter
 import requests
@@ -122,61 +176,56 @@ if __name__ == "__main__":
 	# print(models, len(models))
 
 
-# Bite 105. Slice and dice ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [String Manip] Bite 105. Slice and dice - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 from string import ascii_lowercase
+class SliceDice:
 
-text = """
-One really nice feature of Python is polymorphism: using the same operation
-on different types of objects.
-Let's talk about an elegant feature: slicing.
-You can use this on a string as well as a list for example
-'pybites'[0:2] gives 'py'.
- The first value is inclusive and the last one is exclusive so
-here we grab indexes 0 and 1, the letter p and y.
-  When you have a 0 index you can leave it out so can write this as 'pybites'[:2]
-but here is the kicker: you can use this on a list too!
-['pybites', 'teaches', 'you', 'Python'][-2:] would gives ['you', 'Python']
-and now you know about slicing from the end as well :)
-keep enjoying our bites!
-"""
-
-
-def slice_and_dice(text):
-	"""Get a list of words from the passed in text.
-	Instructions:
-	1. Take the block of text provided and strip off the whitespace at both ends. 
-	2. Split the text by newline (\n).
-	3. Loop through lines, for each line:
-	strip off any leading spaces,
-	check if the first character is lowercase,
-	if so, split the line into words and get the last word,
-	strip the trailing dot (.) and exclamation mark (!) from this last word,
-	and finally add it to the results list.
-	Return the results list.
-
+	text = """
+	One really nice feature of Python is polymorphism: using the same operation
+	on different types of objects.
+	Let's talk about an elegant feature: slicing.
+	You can use this on a string as well as a list for example
+	'pybites'[0:2] gives 'py'.
+	 The first value is inclusive and the last one is exclusive so
+	here we grab indexes 0 and 1, the letter p and y.
+	  When you have a 0 index you can leave it out so can write this as 'pybites'[:2]
+	but here is the kicker: you can use this on a list too!
+	['pybites', 'teaches', 'you', 'Python'][-2:] would gives ['you', 'Python']
+	and now you know about slicing from the end as well :)
+	keep enjoying our bites!
 	"""
-	results = []
-	for line in text.strip().splitlines():
-		line = line.lstrip()
-
-		if line[0] not in ascii_lowercase:
-			continue
-
-		words = line.split()
-		last_word_stripped = words[-1].rstrip('!.')
-		results.append(last_word_stripped)
-
-	return results
 
 
-if __name__ == '__main__':
-	# r = slice_and_dice(text)
-	# print(r)
-	pass
+	def slice_and_dice(self, text):
+		"""Get a list of words from the passed in text.
+		Instructions:
+		1. Take the block of text provided and strip off the whitespace at both ends. 
+		2. Split the text by newline (\n).
+		3. Loop through lines, for each line:
+		strip off any leading spaces,
+		check if the first character is lowercase,
+		if so, split the line into words and get the last word,
+		strip the trailing dot (.) and exclamation mark (!) from this last word,
+		and finally add it to the results list.
+		Return the results list.
+
+		"""
+		results = []
+		for line in self.text.strip().splitlines():
+			line = line.lstrip()
+
+			if line[0] not in ascii_lowercase:
+				continue
+
+			words = line.split()
+			last_word_stripped = words[-1].rstrip('!.')
+			results.append(last_word_stripped)
+
+		return results
 
 
-# Bite 16. PyBites date generator ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Datetime Module] Bite 16. PyBites date generator - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from datetime import datetime
 from datetime import timedelta 
 class DateGenerator:
@@ -206,16 +255,35 @@ class DateGenerator:
 			if p < q:
 				yield p
 			else:
-				yield q
-
-
-
+				yield q # Not showing up
 if __name__ == '__main__':
 	dg = DateGenerator()
-	for d in dg.gen_special_pybites_dates():
-		print(d.year, d.month, d.day, d.hour, d.minute)
-		# next(d)
-		
+	# for d in dg.gen_special_pybites_dates():
+	# 	print(d.year, d.month, d.day, d.hour, d.minute)
+	# 	# next(d)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
