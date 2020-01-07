@@ -112,75 +112,33 @@ class NinjaBelts:
 # 	print(nb.get_total_points())
 
 
-#  [Collections Mod] Bite 109. Workout dict lookups and raising an exception - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class Workout:
-	WORKOUT_SCHEDULE = {'Friday': 'Shoulders',
-	                    'Monday': 'Chest+biceps',
-	                    'Saturday': 'Rest',
-	                    'Sunday': 'Rest',
-	                    'Thursday': 'Legs',
-	                    'Tuesday': 'Back+triceps',
-	                    'Wednesday': 'Core'}
-	REST, CHILL_OUT, TRAIN = 'Rest', 'Chill out!', 'Go train {}'
-	INVALID_DAY = 'Not a valid day'
-
-
-	def get_workout_motd(self, day):
-		"""First title case the passed in day argument
-		(so monday or MONDAY both result in Monday).
-
-		If day is not in WORKOUT_SCHEDULE, return INVALID_DAY
-
-		If day is in WORKOUT_SCHEDULE retrieve the value (workout)
-		and return the following:
-		- weekday, return TRAIN with the workout value interpolated
-		- weekend day (value 'Rest'), return CHILL_OUT
-
-		Examples:
-		- if day is Monday -> function returns 'Go train Chest+biceps'
-		- if day is Thursday -> function returns 'Go train Legs'
-		- if day is Saturday -> function returns 'Chill out!'
-		- if day is nonsense -> function returns 'Not a valid day'
-
-		Trivia: /etc/motd is a file on Unix-like systems that contains
-		a 'message of the day'
-		"""
-		# print(self.WORKOUT_SCHEDULE)
-		if len(day) > 0:
-			d = day[0].upper()
-			for i in range(1, len(day)):
-				d += day[i].lower()
-
-			# Check that d is valid
-			if d in self.WORKOUT_SCHEDULE.keys():
-				# print('OK')
-				return self.WORKOUT_SCHEDULE.get(d)
-			else:
-				return self.INVALID_DAY
-		else:
-
-			return self.INVALID_DAY
+#  [Collections Mod] Bite 45. Keep a Queue of last n items - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def my_queue(n=5):
+	return []
+	
+	# def append(m):
+	# 	q.append(m)
+	# 	print('appending m', m)
 
 
 if __name__ == '__main__':
-	w = Workout()
-	print(w.get_workout_motd('Monday'))
-	print(w.get_workout_motd('monday'))
-	print(w.get_workout_motd('Tuesday'))
-	print(w.get_workout_motd('TuEsday'))
-	print(w.get_workout_motd('Wednesday'))
-	print(w.get_workout_motd('wednesday'))
-	print(w.get_workout_motd('Thursday'))
-	print(w.get_workout_motd('Friday'))
-	print(w.get_workout_motd('Saturday')) # CHILL_OUT
-	print(w.get_workout_motd('Sunday')) # CHILL_OUT
-	print(w.get_workout_motd('')) # INVALID_DAY
-	print(w.get_workout_motd('monday3')) # INVALID_DAY
+	mq = my_queue()
+	for i in range(10):
+		mq.append(i)
+		print((i, list(mq)))
 
-
-
-
-
+	"""Queue size does not go beyond n int, this outputs:
+	(0, [0])
+	(1, [0, 1])
+	(2, [0, 1, 2])
+	(3, [0, 1, 2, 3])
+	(4, [0, 1, 2, 3, 4])
+	(5, [1, 2, 3, 4, 5])
+	(6, [2, 3, 4, 5, 6])
+	(7, [3, 4, 5, 6, 7])
+	(8, [4, 5, 6, 7, 8])
+	(9, [5, 6, 7, 8, 9])
+	"""
 
 
 
@@ -325,6 +283,67 @@ if __name__ == '__main__':
 
 
 
+
+#  Bite 109. Workout dict lookups and raising an exception - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class Workout:
+	WORKOUT_SCHEDULE = {'Friday': 'Shoulders',
+	                    'Monday': 'Chest+biceps',
+	                    'Saturday': 'Rest',
+	                    'Sunday': 'Rest',
+	                    'Thursday': 'Legs',
+	                    'Tuesday': 'Back+triceps',
+	                    'Wednesday': 'Core'}
+	REST, CHILL_OUT, TRAIN = 'Rest', 'Chill out!', 'Go train {}'
+	INVALID_DAY = 'Not a valid day'
+
+
+	def get_workout_motd(self, day):
+		"""First title case the passed in day argument
+		(so monday or MONDAY both result in Monday).
+
+		If day is not in WORKOUT_SCHEDULE, return INVALID_DAY
+
+		If day is in WORKOUT_SCHEDULE retrieve the value (workout)
+		and return the following:
+		- weekday, return TRAIN with the workout value interpolated
+		- weekend day (value 'Rest'), return CHILL_OUT
+
+		Examples:
+		- if day is Monday -> function returns 'Go train Chest+biceps'
+		- if day is Thursday -> function returns 'Go train Legs'
+		- if day is Saturday -> function returns 'Chill out!'
+		- if day is nonsense -> function returns 'Not a valid day'
+
+		Trivia: /etc/motd is a file on Unix-like systems that contains
+		a 'message of the day'
+		"""
+		# print(self.WORKOUT_SCHEDULE)
+		if len(day) > 0:
+			d = day[0].upper()
+			for i in range(1, len(day)):
+				d += day[i].lower()
+
+			# Check that d is valid
+			if d in self.WORKOUT_SCHEDULE.keys():
+				# print('OK')
+				return self.WORKOUT_SCHEDULE.get(d)			
+		else:
+
+			return self.INVALID_DAY
+if __name__ == '__main__':
+	w = Workout()
+	# print(w.get_workout_motd('Monday'))
+	# print(w.get_workout_motd('monday'))
+	# print(w.get_workout_motd('Tuesday'))
+	# print(w.get_workout_motd('TuEsday'))
+	# print(w.get_workout_motd('Wednesday'))
+	# print(w.get_workout_motd('wednesday'))
+	# print(w.get_workout_motd('Thursday'))
+	# print(w.get_workout_motd('Friday'))
+	# print(w.get_workout_motd('Saturday')) # CHILL_OUT
+	# print(w.get_workout_motd('Sunday')) # CHILL_OUT
+	# print(w.get_workout_motd('')) # INVALID_DAY
+	# print(w.get_workout_motd('monday3')) # INVALID_DAY
 
 
 
