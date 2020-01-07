@@ -69,7 +69,7 @@ class XMLParser:
 	# x.get_movie_longest_runtime()
 
 
-#  [Collections Mod] Bite 108. Loop over a dict of namedtuples calculating a total score - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections Mod] Bite 108. Loop over a dict of namedtuples calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 class NinjaBelts:
 	BeltStats = namedtuple('BeltStats', 'score ninjas') # typename, field_names
@@ -105,19 +105,47 @@ class NinjaBelts:
 		"""
 		total = 0
 		for k, v in belts.items():
-			# print(k, v.score, v.ninjas)
 			total += v.score * v.ninjas
-			# print(total)
 		return total
-
-
 if __name__ == '__main__':
 	nb = NinjaBelts()
 	print(nb.get_total_points())
 
 
+#  [Collections Mod] Bite 109. Workout dict lookups and raising an exception - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class Workout:
+	WORKOUT_SCHEDULE = {'Friday': 'Shoulders',
+	                    'Monday': 'Chest+biceps',
+	                    'Saturday': 'Rest',
+	                    'Sunday': 'Rest',
+	                    'Thursday': 'Legs',
+	                    'Tuesday': 'Back+triceps',
+	                    'Wednesday': 'Core'}
+	REST, CHILL_OUT, TRAIN = 'Rest', 'Chill out!', 'Go train {}'
+	INVALID_DAY = 'Not a valid day'
 
 
+	def get_workout_motd(self, day):
+	    """First title case the passed in day argument
+	       (so monday or MONDAY both result in Monday).
+
+	       If day is not in WORKOUT_SCHEDULE, return INVALID_DAY
+
+	       If day is in WORKOUT_SCHEDULE retrieve the value (workout)
+	       and return the following:
+	       - weekday, return TRAIN with the workout value interpolated
+	       - weekend day (value 'Rest'), return CHILL_OUT
+
+	       Examples:
+	       - if day is Monday -> function returns 'Go train Chest+biceps'
+	       - if day is Thursday -> function returns 'Go train Legs'
+	       - if day is Saturday -> function returns 'Chill out!'
+	       - if day is nonsense -> function returns 'Not a valid day'
+
+	       Trivia: /etc/motd is a file on Unix-like systems that contains
+	       a 'message of the day'
+	    """
+	    pass
 
 
 
