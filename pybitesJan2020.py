@@ -181,12 +181,10 @@ if __name__ == '__main__':
 class DateGenerator:
 	from datetime import datetime
 
-	PYBITES_BORN = datetime(year=2016, month=12, day=19)
-
+	PYBITES_BORN = datetime(year=2016, month=12, day=19) # bday
 
 	def gen_special_pybites_dates(self):
-		""" A Generator: the state of the function is remembered.
-			Every time you call next, it increments the state
+		""" * A Generator: the state of the function is remembered. Every time you call next, it increments the state
 
 			* From docs: class `datetime.datetime` https://docs.python.org/3/library/datetime.html
 				A combination of a date and a time. 
@@ -194,10 +192,34 @@ class DateGenerator:
 		 """
 
 		p = self.PYBITES_BORN
-		print(p.year, p.month)
-		while p.year<4000:
+		# print(p.year, p.month)
+
+		# Every year mark from bday
+		# while p.year < 2025:
+		# 	yield p
+		# 	p = p.replace(year=p.year + 1)
+
+
+		# Every 100 days mark from bday
+		while p.year < 2020:
+
 			yield p
-			p = p.replace(year=p.year + 1)
+			# p = p.replace(day=(p.day + 1) % 31, 
+			# 				month=(p.month + 1) % 12,
+			# 				year=(p.year + 1))
+
+			print(p.month)
+
+			if p.month == 28:
+
+				upday = (p.day + 100)
+				upmonth = p.month
+				upyear = p.year
+
+			print(upday, upmonth, upyear)
+
+			break
+
 
 if __name__ == '__main__':
 	dg = DateGenerator()
