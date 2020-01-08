@@ -269,19 +269,15 @@ class Stats:
 		returning a list of ints"""
 		# TODO 1: get the 186 ints from downloaded STATS file
 		# sd = statistics.mean([1, 2, 3])
-		print(data)
 		c = []
 		with open(data, 'r') as fh:
 			for line in fh:
 				n = None
 				try:
-					l = line.strip().split()
-					n = int(l[0])
-					# print(n)
+					n = int(line.strip().split()[0])
 				except:
 					print('error')
 				c.append(n)
-		print(len(c))
 		return c
 
 	def create_stats_report(self, data=None):
