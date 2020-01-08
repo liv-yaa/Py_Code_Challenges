@@ -247,29 +247,42 @@ class Stats:
 	    urlretrieve(os.path.join(S3, DATA), STATS)
 
 	STATS_OUTPUT = """
-	Basic statistics:
-	- count     : {count:7d}
-	- min       : {min_:7d}
-	- max       : {max_:7d}
-	- mean      : {mean:7.2f}
+		Basic statistics:
+		- count     : {count:7d}
+		- min       : {min_:7d}
+		- max       : {max_:7d}
+		- mean      : {mean:7.2f}
 
-	Population variance:
-	- pstdev    : {pstdev:7.2f}
-	- pvariance : {pvariance:7.2f}
+		Population variance:
+		- pstdev    : {pstdev:7.2f}
+		- pvariance : {pvariance:7.2f}
 
-	Estimated variance for sample:
-	- count     : {sample_count:7.2f}
-	- stdev     : {sample_stdev:7.2f}
-	- variance  : {sample_variance:7.2f}
-	"""
+		Estimated variance for sample:
+		- count     : {sample_count:7.2f}
+		- stdev     : {sample_stdev:7.2f}
+		- variance  : {sample_variance:7.2f}
+		"""
 
 
-	def get_all_line_counts(self, data):
-	    """Get all 186 line counts from the STATS file,
-	       returning a list of ints"""
-	    # TODO 1: get the 186 ints from downloaded STATS file
-	    pass
-
+	def get_all_line_counts(self, data: str = STATS) -> list:
+		"""Get all 186 line counts from the STATS file,
+		returning a list of ints"""
+		# TODO 1: get the 186 ints from downloaded STATS file
+		# sd = statistics.mean([1, 2, 3])
+		print(data)
+		c = []
+		with open(data, 'r') as fh:
+			for line in fh:
+				n = None
+				try:
+					l = line.strip().split()
+					n = int(l[0])
+					# print(n)
+				except:
+					print('error')
+				c.append(n)
+		print(len(c))
+		return c
 
 	def create_stats_report(self, data=None):
 	    if data is None:
@@ -297,7 +310,12 @@ class Stats:
 
 if __name__ == '__main__':
 	s = Stats()
-	print(s.TMP)
+	print(s.get_all_line_counts(s.STATS))
+
+
+
+
+
 
 # [String Manip] Bite 105. Slice and dice - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
