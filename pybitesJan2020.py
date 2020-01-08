@@ -3,7 +3,7 @@
 
 # DATA FORMATS https://codechalleng.es/bites/paths/data-formats
 
-# [Collections Mod] Bite 38. Using ElementTree to parse XML: *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Collections] Bite 38. Using ElementTree to parse XML: *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 import xml.etree.ElementTree as ET
 class XMLParser:
@@ -69,7 +69,7 @@ class XMLParser:
 	# x.get_movie_longest_runtime()
 
 
-#  [Collections Mod] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 class NinjaBelts:
 	BeltStats = namedtuple('BeltStats', 'score ninjas') # typename, field_names
@@ -112,7 +112,7 @@ class NinjaBelts:
 # 	print(nb.get_total_points())
 
 
-#  [Collections Mod] Bite 45. Keep a Queue of last n items using `collections.deque` - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections] Bite 45. Keep a Queue of last n items using `collections.deque` - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import deque
 def my_queue(n=5):
 	return deque(maxlen=n) # 'append', 'appendleft', 'clear', 'count', 'extend', 'extendleft', 'maxlen', 'pop', 'popleft', 'remove', 'reverse', 'rotate'
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 	(9, [5, 6, 7, 8, 9])
 	"""
 
-#  [Collections Mod] Bite 180.Group names by country using `collections.defaultdict`  - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  [Collections] Bite 180.Group names by country using `collections.defaultdict`  - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import defaultdict
 class DefaultDict:
 	"""`defaultdict` - "dict subclass that calls a factory function to supply missing values "
@@ -175,14 +175,11 @@ class DefaultDict:
 			countries[l[2]].append(l[1] + ' ' + l[0])
 
 		return countries
-
-
 if __name__ == '__main__':
 	dd = DefaultDict()
 	# print(dd.group_names_by_country())
 
-
-
+#  [Collections] Bite 4. Top tags using `collections.Counter`  - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -236,6 +233,71 @@ if __name__ == "__main__":
 	models = j.get_models('Volkswagen', 2008)
 	# print(models, len(models))
 
+# [Data Analysis] Bite 188. Get statistics from PyBites test code - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import os
+import statistics
+from urllib.request import urlretrieve
+class Stats:
+
+	TMP = os.getenv("TMP", "/tmp")
+	S3 = 'https://bites-data.s3.us-east-2.amazonaws.com/'
+	DATA = 'testfiles_number_loc.txt'
+	STATS = os.path.join(TMP, DATA)
+	if not os.path.isfile(STATS):
+	    urlretrieve(os.path.join(S3, DATA), STATS)
+
+	STATS_OUTPUT = """
+	Basic statistics:
+	- count     : {count:7d}
+	- min       : {min_:7d}
+	- max       : {max_:7d}
+	- mean      : {mean:7.2f}
+
+	Population variance:
+	- pstdev    : {pstdev:7.2f}
+	- pvariance : {pvariance:7.2f}
+
+	Estimated variance for sample:
+	- count     : {sample_count:7.2f}
+	- stdev     : {sample_stdev:7.2f}
+	- variance  : {sample_variance:7.2f}
+	"""
+
+
+	def get_all_line_counts(self, data):
+	    """Get all 186 line counts from the STATS file,
+	       returning a list of ints"""
+	    # TODO 1: get the 186 ints from downloaded STATS file
+	    pass
+
+
+	def create_stats_report(self, data=None):
+	    if data is None:
+	        # converting to a list in case a generator was returned
+	        data = list(get_all_line_counts())
+
+	    # taking a sample for the last section
+	    sample = list(data)[::2]
+
+	    # TODO 2: complete this dict, use data list and
+	    # for the last 3 sample_ variables, use sample list
+	    stats = dict(count=None,
+	                 min_=None,
+	                 max_=None,
+	                 mean=None,
+	                 pstdev=None,
+	                 pvariance=None,
+	                 sample_count=None,
+	                 sample_stdev=None,
+	                 sample_variance=None,
+	                 )
+
+	    return STATS_OUTPUT.format(**stats)
+
+
+if __name__ == '__main__':
+	s = Stats()
+	print(s.TMP)
 
 # [String Manip] Bite 105. Slice and dice - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -322,6 +384,8 @@ if __name__ == '__main__':
 	# for d in dg.gen_special_pybites_dates():
 	# 	print(d.year, d.month, d.day, d.hour, d.minute)
 	# 	# next(d)
+
+
 
 
 
