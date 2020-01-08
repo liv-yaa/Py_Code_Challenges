@@ -233,7 +233,7 @@ if __name__ == "__main__":
 	models = j.get_models('Volkswagen', 2008)
 	# print(models, len(models))
 
-# [Data Analysis] Bite 188. Get statistics from PyBites test code - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Data Analysis] Bite 188. Get statistics from PyBites test code - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import os
 import statistics
 from urllib.request import urlretrieve
@@ -263,7 +263,6 @@ class Stats:
 		- variance  : {sample_variance:7.2f}
 		"""
 
-
 	def get_all_line_counts(self, data: str = STATS) -> list:
 		"""Get all 186 line counts from the STATS file,
 		returning a list of ints"""
@@ -281,32 +280,41 @@ class Stats:
 		return c
 
 	def create_stats_report(self, data=None):
-	    if data is None:
-	        # converting to a list in case a generator was returned
-	        data = list(get_all_line_counts())
+		if data is None:
+			# converting to a list in case a generator was returned
+			data = list(self.get_all_line_counts())
 
-	    # taking a sample for the last section
-	    sample = list(data)[::2]
+		# taking a sample for the last section
+		sample = list(data)[::2]
 
-	    # TODO 2: complete this dict, use data list and
-	    # for the last 3 sample_ variables, use sample list
-	    stats = dict(count=None,
-	                 min_=None,
-	                 max_=None,
-	                 mean=None,
-	                 pstdev=None,
-	                 pvariance=None,
-	                 sample_count=None,
-	                 sample_stdev=None,
-	                 sample_variance=None,
-	                 )
+		# TODO 2: complete this dict, use data list and for the last 3 sample_ variables, use sample list
+		stats = dict(count=None,
+			min_=None,
+			max_=None,
+			mean=None,
+			pstdev=None,
+			pvariance=None,
+			sample_count=None,
+			sample_stdev=None,
+			sample_variance=None,
+			)
 
-	    return STATS_OUTPUT.format(**stats)
+		stats['count'] = len(data)
+		stats['min_'] = min(data)
+		stats['max_'] = max(data)
+		stats['mean'] = statistics.mean(data)
+		stats['pstdev'] = statistics.pstdev(data)
+		stats['pvariance'] = statistics.pvariance(data)
+		stats['sample_count'] = len(sample)
+		stats['sample_stdev'] = statistics.stdev(sample)
+		stats['sample_variance'] = statistics.variance(sample)
+
+		return self.STATS_OUTPUT.format(**stats)
 
 
 if __name__ == '__main__':
 	s = Stats()
-	print(s.get_all_line_counts(s.STATS))
+	print(s.create_stats_report())
 
 
 
