@@ -1,71 +1,6 @@
 # Following this! https://codechalleng.es/bites/paths
 
 
-# DATA FORMATS https://codechalleng.es/bites/paths/data-formats
-
-# [Collections] Bite 38. Using ElementTree to parse XML: *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-import xml.etree.ElementTree as ET
-class XMLParser:
-	"""
-	Parses XML using `ElementTree`:
-	The Element type is a flexible container object, designed to store hierarchical data structures in memory. 
-	The type can be described as a cross between a list and a dictionary.
-	https://docs.python.org/2/library/xml.etree.elementtree.html
-
-	"""
-	# from OMDB
-	xmlstring = '''<?xml version="1.0" encoding="UTF-8"?>
-	<root response="True">
-	<movie title="The Prestige" year="2006" rated="PG-13" released="20 Oct 2006" runtime="130 min" genre="Drama, Mystery, Sci-Fi" director="Christopher Nolan" />
-	<movie title="The Dark Knight" year="2008" rated="PG-13" released="18 Jul 2008" runtime="152 min" genre="Action, Crime, Drama" director="Christopher Nolan" />
-	<movie title="The Dark Knight Rises" year="2012" rated="PG-13" released="20 Jul 2012" runtime="164 min" genre="Action, Thriller" director="Christopher Nolan" />
-	<movie title="Dunkirk" year="2017" rated="PG-13" released="21 Jul 2017" runtime="106 min" genre="Action, Drama, History" director="Christopher Nolan" />
-	<movie title="Interstellar" year="2014" rated="PG-13" released="07 Nov 2014" runtime="169 min" genre="Adventure, Drama, Sci-Fi" director="Christopher Nolan"/>
-	</root>'''  # noqa E501
-
-	def get_tree(self):
-		""" Use ET.fromstring - this reads data from the string 
-
-		print(root, root.tag, root.attrib) # <Element 'root' at 0x107a3f910>, 'root', {'response': 'True'}
-		Children are nested, and we can access specific child nodes by index:
-		"""
-		# print('get_tree root')
-		root = ET.fromstring(self.xmlstring)
-		return root
-	
-	def get_movies(self):
-		"""Call get_tree and retrieve all movie titles, return a list or generator"""
-		# print('get_movies')
-		root = self.get_tree()
-		# print(root)
-
-		r = []
-		for c in root.iter(tag='movie'):
-			yield movie.attrib['title']
-
-
-	def _get_runtime(self, movie):
-		""" Helper fxn to extract minutes from runtime attribute """
-		return int(movie.attrib['runtime'].rstrip(' min'))
-
-	def get_movie_longest_runtime(self):
-		""" Call get_tree again and return the movie title for the movie with the longest
-		runtime in minutes, for latter consider adding a _get_runtime helper """
-		tree = self.get_tree()
-		movies = [(movie.attrib['title'], self._get_runtime(movie)) for movie in tree.iter(tag='movie')]
-		max_movie, max_runtime = max(movies, key=lambda m: m[1])
-		return max_movie
-
-
-if __name__ == "__main__":
-	# STUCK - need to look up answers
-	x = XMLParser()
-	# print(x.get_tree())
-	# print(x.get_movies())
-	print(x.get_movie_longest_runtime())
-
-
 #  [Collections] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 class NinjaBelts:
@@ -179,57 +114,6 @@ if __name__ == '__main__':
 #  [Collections] Bite 4. Top tags using `collections.Counter`  - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
-# [Data Analysis] Bite 130. Analyzing basic JSON Car Data: - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-from collections import Counter
-import requests
-class JSONParser:
-	""" Data analysis with basic car data """
-
-	CAR_DATA = 'https://bites-data.s3.us-east-2.amazonaws.com/cars.json'
-	with requests.Session() as s:
-	    data = s.get(CAR_DATA).json() # A list of dicts
-
-
-	# your turn:
-	def most_prolific_automaker(self, year):
-		# print(year)
-
-		c = Counter()
-
-		for d in self.data:
-			if d['year'] == year:
-				# print(d['year'])
-				# for k, v in d.items():
-				# 	print('k,v', k, v)
-				c.update([d['automaker']])
-		# print(c)
-		std = [str(k) for k, v in sorted(c.items(), key=lambda item:item[1])[::-1]]
-		# print('std', std)
-		return std[0]
-
-
-	def get_models(self, automaker, year):
-	    """Filter cars 'data' by 'automaker' and 'year',
-	       return a set of models (a 'set' to avoid duplicate models)"""
-	    # print('get_models!!!')
-	    # return {'tests'}
-
-	    s = set()
-	    for m in self.data:
-	    	if m['automaker'] == automaker and m['year'] == year:
-	    		s.add(str(m['model']))
-
-	    return s 
-if __name__ == "__main__":
-	# See testCars.py for full test suite
-	j = JSONParser()
-	# print(j.get_models('Nissan', 2000))
-
-	models = j.get_models('Volkswagen', 2008)
-	# print(models, len(models))
-
 # [Data Analysis] Bite 188. Get statistics from PyBites test code - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import os
 import statistics
@@ -310,6 +194,175 @@ class Stats:
 if __name__ == '__main__':
 	s = Stats()
 	# print(s.create_stats_report())
+
+# [Data Formats] Bite 38. Using ElementTree to parse XML: DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import xml.etree.ElementTree as ET
+class XMLParser:
+	"""
+	Parses XML using `ElementTree`:
+	The Element type is a flexible container object, designed to store hierarchical data structures in memory. 
+	The type can be described as a cross between a list and a dictionary.
+	https://docs.python.org/2/library/xml.etree.elementtree.html
+
+	"""
+	# from OMDB
+	xmlstring = '''<?xml version="1.0" encoding="UTF-8"?>
+	<root response="True">
+	<movie title="The Prestige" year="2006" rated="PG-13" released="20 Oct 2006" runtime="130 min" genre="Drama, Mystery, Sci-Fi" director="Christopher Nolan" />
+	<movie title="The Dark Knight" year="2008" rated="PG-13" released="18 Jul 2008" runtime="152 min" genre="Action, Crime, Drama" director="Christopher Nolan" />
+	<movie title="The Dark Knight Rises" year="2012" rated="PG-13" released="20 Jul 2012" runtime="164 min" genre="Action, Thriller" director="Christopher Nolan" />
+	<movie title="Dunkirk" year="2017" rated="PG-13" released="21 Jul 2017" runtime="106 min" genre="Action, Drama, History" director="Christopher Nolan" />
+	<movie title="Interstellar" year="2014" rated="PG-13" released="07 Nov 2014" runtime="169 min" genre="Adventure, Drama, Sci-Fi" director="Christopher Nolan"/>
+	</root>'''  # noqa E501
+
+	def get_tree(self):
+		""" Use ET.fromstring - this reads data from the string 
+
+		print(root, root.tag, root.attrib) # <Element 'root' at 0x107a3f910>, 'root', {'response': 'True'}
+		Children are nested, and we can access specific child nodes by index:
+		"""
+		# print('get_tree root')
+		root = ET.fromstring(self.xmlstring)
+		return root
+	
+	def get_movies(self):
+		"""Call get_tree and retrieve all movie titles, return a list or generator"""
+		# print('get_movies')
+		root = self.get_tree()
+		# print(root)
+
+		r = []
+		for c in root.iter(tag='movie'):
+			yield movie.attrib['title']
+
+
+	def _get_runtime(self, movie):
+		""" Helper fxn to extract minutes from runtime attribute """
+		return int(movie.attrib['runtime'].rstrip(' min'))
+
+	def get_movie_longest_runtime(self):
+		""" Call get_tree again and return the movie title for the movie with the longest
+		runtime in minutes, for latter consider adding a _get_runtime helper """
+		tree = self.get_tree()
+		movies = [(movie.attrib['title'], self._get_runtime(movie)) for movie in tree.iter(tag='movie')]
+		max_movie, max_runtime = max(movies, key=lambda m: m[1])
+		return max_movie
+if __name__ == "__main__":
+	# STUCK - need to look up answers
+	x = XMLParser()
+	# print(x.get_tree())
+	# print(x.get_movies())
+	print(x.get_movie_longest_runtime())
+
+# [Data Formats] Bite 130. Analyzing basic JSON Car Data: - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+from collections import Counter
+import requests
+class JSONParser:
+	""" Data analysis with basic car data """
+
+	CAR_DATA = 'https://bites-data.s3.us-east-2.amazonaws.com/cars.json'
+	with requests.Session() as s:
+	    data = s.get(CAR_DATA).json() # A list of dicts
+
+
+	# your turn:
+	def most_prolific_automaker(self, year):
+		# print(year)
+
+		c = Counter()
+
+		for d in self.data:
+			if d['year'] == year:
+				# print(d['year'])
+				# for k, v in d.items():
+				# 	print('k,v', k, v)
+				c.update([d['automaker']])
+		# print(c)
+		std = [str(k) for k, v in sorted(c.items(), key=lambda item:item[1])[::-1]]
+		# print('std', std)
+		return std[0]
+
+
+	def get_models(self, automaker, year):
+	    """Filter cars 'data' by 'automaker' and 'year',
+	       return a set of models (a 'set' to avoid duplicate models)"""
+	    # print('get_models!!!')
+	    # return {'tests'}
+
+	    s = set()
+	    for m in self.data:
+	    	if m['automaker'] == automaker and m['year'] == year:
+	    		s.add(str(m['model']))
+
+	    return s 
+if __name__ == "__main__":
+	# See testCars.py for full test suite
+	j = JSONParser()
+	# print(j.get_models('Nissan', 2000))
+
+	models = j.get_models('Volkswagen', 2008)
+	# print(models, len(models))
+
+# [Data Formats] Bite 13. Convert dict to namedtuple/json - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from collections import namedtuple
+from datetime import datetime
+import json
+
+class dictToJSON:
+	"""
+	From docs: " To convert a dictionary to a named tuple, use the double-star-operator (as described in Unpacking Argument Lists):"
+		>>> d = {'x': 11, 'y': 22}
+		>>> Point(**d)
+
+
+	assert nt.name == 'PyBites'
+	assert nt.founders[1] == 'Bob'
+	assert nt.tags[2] == 'Learn by Doing'
+	assert nt.started.year == 2016
+
+	assert nt.__class__.__base__ == tuple
+	assert hasattr(nt, '_asdict')
+	"""
+	blog = dict(name='PyBites',
+		founders=('Julian', 'Bob'),
+		started=datetime(year=2016, month=12, day=19),
+		tags=['Python', 'Code Challenges', 'Learn by Doing'],
+		location='Spain/Australia',
+		site='https://pybit.es')
+
+	# define namedtuple here
+	MyTuple = namedtuple('MyTuple', sorted(blog)) # Create a subclass of namedtuple by passing the keys of the dict:
+
+	def dict2nt(self, dict_):
+
+		# Create instances from this dict, or other dicts with matching keys
+		my_tuple = self.MyTuple(**dict_)
+
+		return my_tuple
+
+
+	def nt2json(self, nt):
+		pass
+
+if __name__ == "__main__":
+	dj = dictToJSON()
+	print(dj.dict2nt(dict_=dj.blog))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -401,11 +454,6 @@ if __name__ == '__main__':
 	# for d in dg.gen_special_pybites_dates():
 	# 	print(d.year, d.month, d.day, d.hour, d.minute)
 	# 	# next(d)
-
-
-
-
-
 
 
 #  Bite 109. Workout dict lookups and raising an exception - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
