@@ -29,10 +29,6 @@ class XMLParser:
 
 		print(root, root.tag, root.attrib) # <Element 'root' at 0x107a3f910>, 'root', {'response': 'True'}
 		Children are nested, and we can access specific child nodes by index:
-		root[0][1].text
-
-		Methods for finding elements:
-		Element.iter()
 		"""
 		# print('get_tree root')
 		root = ET.fromstring(self.xmlstring)
@@ -45,24 +41,29 @@ class XMLParser:
 		# print(root)
 
 		r = []
-		for c in root:
-			r.append(c.attrib['title'])
-		return r
+		for c in root.iter(tag='movie'):
+			yield movie.attrib['title']
+
+
+	def _get_runtime(self, movie):
+		""" Helper fxn to extract minutes from runtime attribute """
+		return int(movie.attrib['runtime'].rstrip(' min'))
 
 	def get_movie_longest_runtime(self):
-		"""Call get_tree again and return the movie title for the movie with the longest
-		runtime in minutes, for latter consider adding a _get_runtime helper"""
-		print('get_lrt')
-		r = self.get_tree()
-		m = self.get_movies()
-		print('r', r, 'm', m)
+		""" Call get_tree again and return the movie title for the movie with the longest
+		runtime in minutes, for latter consider adding a _get_runtime helper """
+		tree = self.get_tree()
+		movies = [(movie.attrib['title'], self._get_runtime(movie)) for movie in tree.iter(tag='movie')]
+		max_movie, max_runtime = max(movies, key=lambda m: m[1])
+		return max_movie
+
 
 if __name__ == "__main__":
 	# STUCK - need to look up answers
 	x = XMLParser()
 	# print(x.get_tree())
-	print(x.get_movies())
-	# x.get_movie_longest_runtime()
+	# print(x.get_movies())
+	print(x.get_movie_longest_runtime())
 
 
 #  [Collections] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
