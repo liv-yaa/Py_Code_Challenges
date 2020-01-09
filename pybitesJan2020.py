@@ -304,13 +304,11 @@ if __name__ == "__main__":
 	models = j.get_models('Volkswagen', 2008)
 	# print(models, len(models))
 
-# [Data Formats] Bite 13. Convert dict to namedtuple/json - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Data Formats] Bite 13. Convert dict to namedtuple/json - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 from datetime import datetime
 import json
-
 class dictToJSON:
-
 	blog = dict(name='PyBites',
 		founders=('Julian', 'Bob'),
 		started=datetime(year=2016, month=12, day=19),
@@ -354,38 +352,16 @@ class dictToJSON:
 				v = str(v)
 			j[data[0]] = v
 		return json.dumps(j)
-
 if __name__ == "__main__":
 	dj = dictToJSON()
-	natu = dj.dict2nt(dict_=dj.blog)
-	# print(natu)
-	jsn = dj.nt2json(nt=natu)
-	print(jsn)
-	print(jsn["name"])
+	# natu = dj.dict2nt(dict_=dj.blog)
+	# # print(natu)
+	# jsn = dj.nt2json(nt=natu)
+	# print(jsn)
+	# print(jsn["name"])
 	# print(jsn['founders'][0])
 	# print(jsn['tags'][0])
 	# print(jsn['started'][:4])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # [String Manip] Bite 105. Slice and dice - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -394,19 +370,19 @@ from string import ascii_lowercase
 class SliceDice:
 
 	text = """
-	One really nice feature of Python is polymorphism: using the same operation
-	on different types of objects.
-	Let's talk about an elegant feature: slicing.
-	You can use this on a string as well as a list for example
-	'pybites'[0:2] gives 'py'.
-	 The first value is inclusive and the last one is exclusive so
-	here we grab indexes 0 and 1, the letter p and y.
-	  When you have a 0 index you can leave it out so can write this as 'pybites'[:2]
-	but here is the kicker: you can use this on a list too!
-	['pybites', 'teaches', 'you', 'Python'][-2:] would gives ['you', 'Python']
-	and now you know about slicing from the end as well :)
-	keep enjoying our bites!
-	"""
+		One really nice feature of Python is polymorphism: using the same operation
+		on different types of objects.
+		Let's talk about an elegant feature: slicing.
+		You can use this on a string as well as a list for example
+		'pybites'[0:2] gives 'py'.
+		 The first value is inclusive and the last one is exclusive so
+		here we grab indexes 0 and 1, the letter p and y.
+		  When you have a 0 index you can leave it out so can write this as 'pybites'[:2]
+		but here is the kicker: you can use this on a list too!
+		['pybites', 'teaches', 'you', 'Python'][-2:] would gives ['you', 'Python']
+		and now you know about slicing from the end as well :)
+		keep enjoying our bites!
+		"""
 
 
 	def slice_and_dice(self, text):
@@ -438,11 +414,9 @@ class SliceDice:
 
 
 # [Datetime Module] Bite 16. PyBites date generator - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-from datetime import datetime
-from datetime import timedelta 
+from datetime import datetime, timedelta 
+from itertools import islice
 class DateGenerator:
-	 
-
 
 	PYBITES_BORN = datetime(year=2016, month=12, day=19) # bday
 
@@ -453,27 +427,19 @@ class DateGenerator:
 				A combination of a date and a time. 
 				Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo.
 		 """
-
-		p = self.PYBITES_BORN # A datetime object
-		q = self.PYBITES_BORN # A datetime object
-
-
 		# Every year mark from bday			
-
 		# Every 100 days mark from bday
-		while p.year < 2020:			
-			p = p + timedelta(days=100)
-			q = q.replace(year=p.year + 1)
-			if p < q:
-				yield p
-			else:
-				yield q # Not showing up
+		days = 0
+		while True:			
+			days += 1
+			if days % 100 == 0 or days % 365 == 0:
+				yield self.PYBITES_BORN + timedelta(days = days)
+
 if __name__ == '__main__':
 	dg = DateGenerator()
-	# for d in dg.gen_special_pybites_dates():
-	# 	print(d.year, d.month, d.day, d.hour, d.minute)
-	# 	# next(d)
-
+	# gen = dg.gen_special_pybites_dates()
+	# dates = list(islice(gen, 10))
+	# print(dates)
 
 #  Bite 109. Workout dict lookups and raising an exception - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Workout:
