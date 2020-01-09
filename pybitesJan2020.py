@@ -310,20 +310,7 @@ from datetime import datetime
 import json
 
 class dictToJSON:
-	"""
-	From docs: " To convert a dictionary to a named tuple, use the double-star-operator (as described in Unpacking Argument Lists):"
-		>>> d = {'x': 11, 'y': 22}
-		>>> Point(**d)
 
-
-	assert nt.name == 'PyBites'
-	assert nt.founders[1] == 'Bob'
-	assert nt.tags[2] == 'Learn by Doing'
-	assert nt.started.year == 2016
-
-	assert nt.__class__.__base__ == tuple
-	assert hasattr(nt, '_asdict')
-	"""
 	blog = dict(name='PyBites',
 		founders=('Julian', 'Bob'),
 		started=datetime(year=2016, month=12, day=19),
@@ -335,19 +322,54 @@ class dictToJSON:
 	MyTuple = namedtuple('MyTuple', sorted(blog)) # Create a subclass of namedtuple by passing the keys of the dict:
 
 	def dict2nt(self, dict_):
+		"""
+		From docs: " To convert a dictionary to a named tuple, use the double-star-operator (as described in Unpacking Argument Lists):"
+			>>> d = {'x': 11, 'y': 22}
+			>>> Point(**d)
+		assert nt.name == 'PyBites'
+		assert nt.founders[1] == 'Bob'
+		assert nt.tags[2] == 'Learn by Doing'
+		assert nt.started.year == 2016
 
+		assert nt.__class__.__base__ == tuple
+		assert hasattr(nt, '_asdict')
+		"""
 		# Create instances from this dict, or other dicts with matching keys
-		my_tuple = self.MyTuple(**dict_)
-
-		return my_tuple
+		return self.MyTuple(**dict_)
 
 
 	def nt2json(self, nt):
-		pass
+		"""
+		assert type(output) == str
+	    data = json.loads(output)
+	    assert data['name'] == 'PyBites'
+	    assert data['founders'][0] == 'Julian'
+	    assert data['tags'][0] == 'Python'
+	    assert data['started'][:4] == '2016'
+		"""
+		# Convert namedtuple to json
+		my_tuple = self.dict2nt(dict_=dj.blog)
+
+		j = {}
+		for data in my_tuple._asdict().items():
+			v = data[1]
+			if isinstance(v, datetime):
+				v = str(v)
+			j[data[0]] = v
+		return j
 
 if __name__ == "__main__":
 	dj = dictToJSON()
-	print(dj.dict2nt(dict_=dj.blog))
+	natu = dj.dict2nt(dict_=dj.blog)
+	# print(natu)
+	jsn = dj.nt2json(nt=natu)
+	# print(jsn)
+	print(jsn['name'])
+	print(jsn['founders'][0])
+	print(jsn['tags'][0])
+	print(jsn['started'][:4])
+
+
 
 
 
