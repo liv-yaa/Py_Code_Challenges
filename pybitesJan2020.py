@@ -464,8 +464,6 @@ class ZenReplace:
 				vows += 1
 			new_str.append(c)
 		return ''.join(new_str), vows
-
-
 if __name__ == '__main__':
 	z = ZenReplace()
 	print(z.strip_vowels())
