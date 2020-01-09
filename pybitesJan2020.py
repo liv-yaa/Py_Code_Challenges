@@ -347,27 +347,24 @@ class dictToJSON:
 	    assert data['tags'][0] == 'Python'
 	    assert data['started'][:4] == '2016'
 		"""
-		# Convert namedtuple to json
-		my_tuple = self.dict2nt(dict_=dj.blog)
-
 		j = {}
-		for data in my_tuple._asdict().items():
+		for data in nt._asdict().items():
 			v = data[1]
 			if isinstance(v, datetime):
 				v = str(v)
 			j[data[0]] = v
-		return j
+		return json.dumps(j)
 
 if __name__ == "__main__":
 	dj = dictToJSON()
 	natu = dj.dict2nt(dict_=dj.blog)
 	# print(natu)
 	jsn = dj.nt2json(nt=natu)
-	# print(jsn)
-	print(jsn['name'])
-	print(jsn['founders'][0])
-	print(jsn['tags'][0])
-	print(jsn['started'][:4])
+	print(jsn)
+	print(jsn["name"])
+	# print(jsn['founders'][0])
+	# print(jsn['tags'][0])
+	# print(jsn['started'][:4])
 
 
 
