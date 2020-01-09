@@ -454,16 +454,16 @@ class ZenReplace:
 		The str/int types in the function defintion above are part
 		of Python's new type hinting:
 		https://docs.python.org/3/library/typing.html"""
-		reps = 0
-		out = ''
-		for line in text.strip().split('\n'):
-			for v in self.vowels:
-				line = line.replace(v, '*')
-			# print(line)
-			out += line + '\n'
+		new_str = []
+		chars = list(text)
+		vows = 0
 
-
-		return (out, out.count('*'))
+		for c in chars:
+			if c.lower() in self.vowels:
+				c = '*'
+				vows += 1
+			new_str.append(c)
+		return ''.join(new_str), vows
 
 
 if __name__ == '__main__':
