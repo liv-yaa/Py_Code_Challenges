@@ -252,7 +252,7 @@ if __name__ == "__main__":
 	x = XMLParser()
 	# print(x.get_tree())
 	# print(x.get_movies())
-	print(x.get_movie_longest_runtime())
+	# print(x.get_movie_longest_runtime())
 
 # [Data Formats] Bite 130. Analyzing basic JSON Car Data: - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -301,7 +301,7 @@ if __name__ == "__main__":
 	j = JSONParser()
 	# print(j.get_models('Nissan', 2000))
 
-	models = j.get_models('Volkswagen', 2008)
+	# models = j.get_models('Volkswagen', 2008)
 	# print(models, len(models))
 
 # [Data Formats] Bite 13. Convert dict to namedtuple/json - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -365,7 +365,6 @@ if __name__ == "__main__":
 
 
 # [String Manip] Bite 105. Slice and dice - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 from string import ascii_lowercase
 class SliceDice:
 
@@ -412,7 +411,7 @@ class SliceDice:
 
 		return results
 
-# [String Manip] Bite 106. Strip out vowels and count the number of replacements - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [String Manip] Bite 106. Strip out vowels and count the number of replacements - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from typing import Tuple
 class ZenReplace:
 	text = """
@@ -466,10 +465,9 @@ class ZenReplace:
 		return ''.join(new_str), vows
 if __name__ == '__main__':
 	z = ZenReplace()
-	print(z.strip_vowels())
+	# print(z.strip_vowels())
 
-
-# [Datetime Module] Bite 16. PyBites date generator - *NOT DONE* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Datetime Module] Bite 16. PyBites date generator - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from datetime import datetime, timedelta 
 from itertools import islice
 class DateGenerator:
@@ -558,10 +556,44 @@ if __name__ == '__main__':
 	# print(w.get_workout_motd('monday3')) # INVALID_DAY
 
 
+# [Web Scraping] Bite 55. Get the latest game releases from Steam's RSS feed - Not DONE
+from collections import namedtuple
+from pprint import pprint
+import feedparser # PyPi "parse RSS feeds in Python" - had to install with pip3
+class GameScraper:
+	FEED_URL = "https://bites-data.s3.us-east-2.amazonaws.com/steam_gaming.xml"
+	Game = namedtuple('Game', 'title link')
+
+	def get_games(self):
+		"""Parses Steam's RSS feed and returns a list of Game namedtuples
+			pull out the names of the games in the feed as well as their URLs. 
+			Use the Game namedtuple provided.
+
+			How to add feilds to a namedtuple?
+		"""
+		# print(self.Game)
+		# print(feedparser, dir(feedparser))
+		d = feedparser.parse(self.FEED_URL)
+		for e in d['entries']:
+			# pprint(e['title'])
+			ti = e['title'].split(' - ')[1].strip()
+			if ',' in ti:
+				ti = ti[:ti.index(', ')]
+			# print(ti)
+
+			li = e['link']
+			# print(li)
+
+			self.Game.title = ti
+			self.Game.link = li 
+
+		print(self.Game._fields)
 
 
 
-
+if __name__ == '__main__':
+	gs = GameScraper()
+	gs.get_games()
 
 
 
