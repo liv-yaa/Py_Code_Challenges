@@ -1,5 +1,5 @@
 # Following this! https://codechalleng.es/bites/paths
-
+# ===================================================
 
 #  [Collections] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
@@ -39,10 +39,9 @@ class NinjaBelts:
 		for k, v in belts.items():
 			total += v.score * v.ninjas
 		return total
-# if __name__ == '__main__':
-# 	nb = NinjaBelts()
-# 	print(nb.get_total_points())
-
+if __name__ == '__main__':
+	nb = NinjaBelts()
+	# print(nb.get_total_points())
 
 #  [Collections] Bite 45. Keep a Queue of last n items using `collections.deque` - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import deque
@@ -207,13 +206,13 @@ class XMLParser:
 	"""
 	# from OMDB
 	xmlstring = '''<?xml version="1.0" encoding="UTF-8"?>
-	<root response="True">
-	<movie title="The Prestige" year="2006" rated="PG-13" released="20 Oct 2006" runtime="130 min" genre="Drama, Mystery, Sci-Fi" director="Christopher Nolan" />
-	<movie title="The Dark Knight" year="2008" rated="PG-13" released="18 Jul 2008" runtime="152 min" genre="Action, Crime, Drama" director="Christopher Nolan" />
-	<movie title="The Dark Knight Rises" year="2012" rated="PG-13" released="20 Jul 2012" runtime="164 min" genre="Action, Thriller" director="Christopher Nolan" />
-	<movie title="Dunkirk" year="2017" rated="PG-13" released="21 Jul 2017" runtime="106 min" genre="Action, Drama, History" director="Christopher Nolan" />
-	<movie title="Interstellar" year="2014" rated="PG-13" released="07 Nov 2014" runtime="169 min" genre="Adventure, Drama, Sci-Fi" director="Christopher Nolan"/>
-	</root>'''  # noqa E501
+		<root response="True">
+		<movie title="The Prestige" year="2006" rated="PG-13" released="20 Oct 2006" runtime="130 min" genre="Drama, Mystery, Sci-Fi" director="Christopher Nolan" />
+		<movie title="The Dark Knight" year="2008" rated="PG-13" released="18 Jul 2008" runtime="152 min" genre="Action, Crime, Drama" director="Christopher Nolan" />
+		<movie title="The Dark Knight Rises" year="2012" rated="PG-13" released="20 Jul 2012" runtime="164 min" genre="Action, Thriller" director="Christopher Nolan" />
+		<movie title="Dunkirk" year="2017" rated="PG-13" released="21 Jul 2017" runtime="106 min" genre="Action, Drama, History" director="Christopher Nolan" />
+		<movie title="Interstellar" year="2014" rated="PG-13" released="07 Nov 2014" runtime="169 min" genre="Adventure, Drama, Sci-Fi" director="Christopher Nolan"/>
+		</root>'''  # noqa E501
 
 	def get_tree(self):
 		""" Use ET.fromstring - this reads data from the string 
@@ -255,7 +254,6 @@ if __name__ == "__main__":
 	# print(x.get_movie_longest_runtime())
 
 # [Data Formats] Bite 130. Analyzing basic JSON Car Data: - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 from collections import Counter
 import requests
 class JSONParser:
@@ -263,46 +261,25 @@ class JSONParser:
 
 	CAR_DATA = 'https://bites-data.s3.us-east-2.amazonaws.com/cars.json'
 	with requests.Session() as s:
-	    data = s.get(CAR_DATA).json() # A list of dicts
-
-
-	# your turn:
-	def most_prolific_automaker(self, year):
-		# print(year)
-
+		data = s.get(CAR_DATA).json() # A list of dicts
 		c = Counter()
-
-		for d in self.data:
-			if d['year'] == year:
-				# print(d['year'])
-				# for k, v in d.items():
-				# 	print('k,v', k, v)
-				c.update([d['automaker']])
-		# print(c)
-		std = [str(k) for k, v in sorted(c.items(), key=lambda item:item[1])[::-1]]
-		# print('std', std)
-		return std[0]
-
+		# for d in self.data:
+		# 	if d['year'] == year:
+		# 		c.update([d['automaker']])
+		# return [str(k) for k, v in sorted(c.items(), key=lambda item:item[1])[::-1]][0]
 
 	def get_models(self, automaker, year):
 	    """Filter cars 'data' by 'automaker' and 'year',
 	       return a set of models (a 'set' to avoid duplicate models)"""
-	    # print('get_models!!!')
-	    # return {'tests'}
-
 	    s = set()
 	    for m in self.data:
 	    	if m['automaker'] == automaker and m['year'] == year:
 	    		s.add(str(m['model']))
-
 	    return s 
 if __name__ == "__main__":
 	# See testCars.py for full test suite
 	j = JSONParser()
-	# print(j.get_models('Nissan', 2000))
-
 	# models = j.get_models('Volkswagen', 2008)
-	# print(models, len(models))
 
 # [Data Formats] Bite 13. Convert dict to namedtuple/json - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
@@ -354,15 +331,15 @@ class dictToJSON:
 		return json.dumps(j)
 if __name__ == "__main__":
 	dj = dictToJSON()
+	# print(dj.MyTuple, dj.MyTuple._fields, dj.MyTuple._fields[1]) # Prints location
 	# natu = dj.dict2nt(dict_=dj.blog)
-	# # print(natu)
+	# print(natu)
 	# jsn = dj.nt2json(nt=natu)
 	# print(jsn)
 	# print(jsn["name"])
 	# print(jsn['founders'][0])
 	# print(jsn['tags'][0])
 	# print(jsn['started'][:4])
-
 
 # [String Manip] Bite 105. Slice and dice - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from string import ascii_lowercase
@@ -555,45 +532,96 @@ if __name__ == '__main__':
 	# print(w.get_workout_motd('')) # INVALID_DAY
 	# print(w.get_workout_motd('monday3')) # INVALID_DAY
 
-
-# [Web Scraping] Bite 55. Get the latest game releases from Steam's RSS feed - Not DONE
+# [Web Scraping] Bite 55. Get the latest game releases from Steam's RSS feed - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
 from pprint import pprint
 import feedparser # PyPi "parse RSS feeds in Python" - had to install with pip3
 class GameScraper:
 	FEED_URL = "https://bites-data.s3.us-east-2.amazonaws.com/steam_gaming.xml"
+	# Create a subclass of namedtuple by passing the keys of the dict
+	# Now we have the ability to create custom Game objects, with fields `title` and `link`
 	Game = namedtuple('Game', 'title link')
 
 	def get_games(self):
-		"""Parses Steam's RSS feed and returns a list of Game namedtuples
-			pull out the names of the games in the feed as well as their URLs. 
-			Use the Game namedtuple provided.
-
-			How to add feilds to a namedtuple?
+		""" Parses Steam's RSS feed and returns a list of Game namedtuples, pull out the names of the games in the feed as well as their URLs. 
+			Use the Game namedtuple provided. Return a list of `Game` namedtuples
 		"""
-		# print(self.Game)
-		# print(feedparser, dir(feedparser))
-		d = feedparser.parse(self.FEED_URL)
-		for e in d['entries']:
-			# pprint(e['title'])
-			ti = e['title'].split(' - ')[1].strip()
-			if ',' in ti:
-				ti = ti[:ti.index(', ')]
-			# print(ti)
+		out = [] 
+		for e in feedparser.parse(self.FEED_URL)['entries']:
+			# Create a Game namedtuple instance and add it to the dictionary
+			out.append(self.Game(e['title'], e['link']))
+		
+		return out
+if __name__ == '__main__':
+	gs = GameScraper()
+	# pprint(gs.get_games())
+""" 
+	Decorator : 
+	===========
+		A Py object that is used to modify a function, method, or class definition
+		The decorator is passed to the original object being defined and returns a 
+		modified object, which is then bound to the name in the definition.
 
-			li = e['link']
-			# print(li)
+		Syntax:
 
-			self.Game.title = ti
-			self.Game.link = li 
+			@mydecorator
+			def my_function(args):
+				...
 
-		print(self.Game._fields)
+		is the same as:
+
+			def my_function(args):
+				...
+			>>> my_function = mydecorator(my_function)
+
+
+		Decorators can:
+		- Be stacked to run inside out
+
+		Common uses:
+		- Caching
+		- Access checks in web frameworks (like Flask!)
+"""
+# [Decorators & Context Managers] Bite 218. Create a sandwich decorator - SUPER CLOSE NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+from functools import wraps # @wraps is to preserve the original func's docstring
+
+UPPER_SLICE = "=== Upper bread slice ==="
+LOWER_SLICE = "=== Lower bread slice ==="
+
+ingredients = ['bacon', 'lettuce', 'tomato']
+
+
+def sandwich(func):
+	""" A *decorator* that prints UPPER_SLICE and LOWER_SLICE before and after 
+	calling the function (func) that is passed in
+	"""
+	@wraps(func)
+	def wrapped(*args, **kwargs):
+		res = func(*args, **kwargs)
+		# print('res', res)
+
+		# print(func, res, UPPER_SLICE, LOWER_SLICE)
+		wrap = UPPER_SLICE + '\n' + res + '\n' + LOWER_SLICE
+		return wrap
+
+	return wrapped
+
+
+@sandwich
+def add_ingredients(ingredients):
+	""" A function that is passed to the decorator, sandwich.
+		Takes a list of ingredients. All it does is return ingredients as a string.
+	"""
+	# print(' / '.join(ingredients))
+
+	return ' / '.join(ingredients)
+
 
 
 
 if __name__ == '__main__':
-	gs = GameScraper()
-	gs.get_games()
+	print(add_ingredients(ingredients))
 
 
 
