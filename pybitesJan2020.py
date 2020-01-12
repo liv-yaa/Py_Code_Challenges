@@ -1,5 +1,6 @@
 # Following this! https://codechalleng.es/bites/paths
 # ===================================================
+# ===================================================
 
 #  [Collections] Bite 108. Loop over a dict of `collections.namedtuples`, calculating a total score - DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from collections import namedtuple
@@ -582,15 +583,12 @@ if __name__ == '__main__':
 		- Caching
 		- Access checks in web frameworks (like Flask!)
 """
-# [Decorators & Context Managers] Bite 218. Create a sandwich decorator - SUPER CLOSE NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# [Decorators] Bite 218. Create a sandwich decorator - SUPER CLOSE NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 from functools import wraps # @wraps is to preserve the original func's docstring
-
 UPPER_SLICE = "=== Upper bread slice ==="
 LOWER_SLICE = "=== Lower bread slice ==="
-
 ingredients = ['bacon', 'lettuce', 'tomato']
-
 
 def sandwich(func):
 	""" A *decorator* that prints UPPER_SLICE and LOWER_SLICE before and after 
@@ -607,7 +605,6 @@ def sandwich(func):
 
 	return wrapped
 
-
 @sandwich
 def add_ingredients(ingredients):
 	""" A function that is passed to the decorator, sandwich.
@@ -617,17 +614,67 @@ def add_ingredients(ingredients):
 
 	return ' / '.join(ingredients)
 
+if __name__ == '__main__':
+	# print(add_ingredients(ingredients))
+	pass
+
+# [Decorators] Bite 22. Write a decorator with argument - NOT DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# <p><strong>I code ...</strong></p>
+
+# from functools import wraps
+
+
+def make_html(element, func):
+	""" Decorator that wraps html in tags 
+		- is a callable
+		- takes a callable (element - takes get_text)
+		- returns a callable (wrapped)
+
+	"""
+	# @wraps(func)
+	def wrapper(*args, **kwargs):
+	# 	# Element is a callable
+	# 	# print('args', *args, **kwargs)
+		# print(type(element))
+		# return func
+		print('test', func)
+
+	return wrapper
+	# return 
+
+
+# make_html(make_html(get_text(text)))
+
+# Not changing
+# @make_html(element='p')
+# @make_html(element='strong')
+# def get_text(text='I code with PyBites'):
+# 	return text
+
+# Demo
+def trace(func):
+	def wrapper(*args, **kwargs):
+		print('test', *args, **kwargs)
+		return func(*args, kwargs)
+	return wrapper
+
+@trace
+def get_text(text='I code with PyBites'):
+	return type(text)
+
+
+
+
+
+
 
 
 
 if __name__ == '__main__':
-	print(add_ingredients(ingredients))
 
-
-
-
-
-
+	print(get_text())
+	# assert get_text() == '<p><strong>I code with PyBites</strong></p>'
 
 
 
