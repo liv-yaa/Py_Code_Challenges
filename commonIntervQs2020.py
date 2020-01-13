@@ -30,7 +30,7 @@ Arrays!
 		- 
 
 	Questions:
-		How do you find the missing number in a given integer array of 1 to 100? (solution)
+		Find the missing number in a given integer array of 1 to 100
 		How do you find the duplicate number on a given integer array? (solution)
 		How do you find the largest and smallest number in an unsorted integer array? (solution)
 		How do you find all pairs of an integer array whose sum is equal to a given number? (solution)
@@ -41,6 +41,26 @@ Arrays!
 		How do you reverse an array in place in Java? (solution)
 		How are duplicates removed from an array without using any library? (solution)
 """
+
+
+def missing_num_array(arr):
+	# Find the missing number in a given integer array of 1 to 100
+	return arr
+
+
+
+
+
+if __name__=='__main__':
+	from random import randint
+	for r in range(4):
+		ran = randint(1, 101)
+		print(ran)
+		ar = [i for i in range(1, ran)] + [i for i in range(ran + 1, 101)]
+		print(missing_num_array(ar))
+
+
+
 
 
 """
@@ -132,22 +152,90 @@ Binary Tree!
 Algorithms:
 	- What is time complexity of an algorithm?
 		Time complexity specifies the ratio of time to the input (asymptotic approximation)
+	- Practical times to use recursive algo?
+		Linked Lists, reversing String, calculating Fibonacci series, 
+		reversing linkedList, tree traversal, QuickSort
 
 SQL:
+	- What is SQL injection?
+		A security vulnerability - an intruder can inject SQL code, mess up your queries or steal!
+	- What is the difference between an inner join and a left join in SQL? (answer)
+		Inner join: 
+			Collects all matching records 'overlap' of left and right tables
+		Outer join: (can be left or right) 
+			Collects all matching records from left table and just matching records from right
+
 	- Write SQL query to find second highest salary in employee table? (solution)
 		SELECT MAX(Salary) FROM Employee WHERE Salary NOT IN (SELECT MAX(Salary) FROM Employee)
 
 
-Bitwise:
+Bitwise, Operators:
+	- What is 1 XOR 1? 0 XOR 0?
+		0
+		Because they are the same, this operator returns zero.
+	- What is 1 XOR 0? 0 XOR 1?
+		1
+		Because they are not the same, this operator returns one.
+
+	- What is difference between & and && operator?
+		& is a bitwise operator while && is a logical operator (only usable on boolean values)
+
 	- How do you find if a number is a power of two, without using arithmetic operator?
 		return (x & (x - 1)) == 0
 
 
 Command line / UNIX
+
 	- How do you find a  running Java process on UNIX? (command)
 		You can use the combination of 'ps' and 'grep' command to find any process running on UNIX machine.
-		ps -ef | grep "myApp"
+			ps -ef | grep "myApp"
 
+	- How do you find large files in UNIX  e.g. more than 1GB? (command)
+			find . - type f -size +1G -print
+
+	- What is the shell script? 
+		A shell script is set of shell commands with some programming constructs e.g. if and for loop, which allow you to automate some repetitive task.
+
+Testing
+	- Why create a Mock object?
+		A powerful tool for creating automated unit tests. Sets up realistic object to test on.
+	- Can you describe three different kinds of testing that might be performed on an application before it goes live?
+		unit testing, integration testing and smoke testing.
+	- Unit testing is?
+		Testing individual functions' functionality (JUnit, Unittest, Jenkins for continuous testing)
+
+
+OOP
+	- What is an Immutable class?
+		If state cannot be changed once created (must be totally copied)
+		Ex. String 
+
+	- What is the difference between a class and an object? (detailed answer)
+		A class is a blueprint on which objects are created.
+		A class has code and behavior but an object has state and behavior
+
+	- What is the dfference between an interface and an abstract class?
+		An interface is the purest form of abstraction with nothing concrete in place
+		An abstract class is a combination of some abstraction and concrete things
+
+	- What is the difference between composition, aggregation, and association? (detailed answer)
+		Association means two objects are related to each other but can exist without each other, 
+		Composition is a form of association where one object is composed of multiple objects, but they only exists together e.g. human body is the composition of organs, individual organs cannot live they only useful in the body. 
+		Aggregation is a collection of object e.g. city is an aggregation of citizens.
+
+Other:
+	- What is a strongly typed programming language?
+		Java
+		The compiler cannot handle multiple data types
+	- What is a weakly typed programming language?
+		Python, Perl
+		ex. you can store a numeric string in a number type
+	- What is heap and stack in a process? 
+		Heap:
+		Stack: 
+	- What is the relationship between threads and processes?
+		A process can have multiple threads 
+		but a thread always belongs to a single process. 
 
 """
 
