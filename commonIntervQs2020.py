@@ -1,6 +1,4 @@
-"""
-Common interview questions
-# From hackernoon https://hackernoon.com/50-data-structure-and-algorithms-interview-questions-for-programmers-b4b1ac61f5b0
+""" ** Common interview questions From hackernoon https://hackernoon.com/50-data-structure-and-algorithms-interview-questions-for-programmers-b4b1ac61f5b0
 
 All Data Structures:
 	- Array
@@ -16,7 +14,6 @@ Other Topics:
 	- Bitwise
 	- Command line / UNIX
 
-
 """
 
 """
@@ -30,9 +27,6 @@ Arrays!
 		- 
 
 	Questions:
-		Find the missing number in a given integer array of 1 to 100
-		How do you find the duplicate number on a given integer array? (solution)
-		How do you find the largest and smallest number in an unsorted integer array? (solution)
 		How do you find all pairs of an integer array whose sum is equal to a given number? (solution)
 		How do you find duplicate numbers in an array if it contains multiple duplicates? (solution)
 		How are duplicates removed from a given array in Java? (solution)
@@ -42,26 +36,103 @@ Arrays!
 		How are duplicates removed from an array without using any library? (solution)
 """
 
+class Arrays:
 
-def missing_num_array(arr):
-	# Find the missing number in a given integer array of 1 to 100
-	return arr
+	def missing_num_array_sum2(self, arr):
+		""" 
+		Find the missing number in a given integer array of 1 to 100.
+		`Algorithm 1. ` - O(n)
+			Calculate the sum of the array
+			Iterate through n's 1-100, subtracting from sum. return what is left.
+		"""
+		s = sum(arr)
+		for n in range(1, 101):
+			s -= n
+		return -(s)
+
+	def missing_num_array_sum1(self, arr):
+		""" 
+		Find the missing number in a given integer array of 1 to 100.
+		`Algorithm 1. ` - O(n)
+			Calculate the sum of the array
+			Iterate through n's 1-100, subtracting from sum. return what is left.
+		"""
+		n = len(arr)
+		total = (n + 1) * (n + 2) / 2
+		return int(total - sum(arr))
+
+	def missing_num_array_xor(self, a):
+		""" 
+		Find the missing number in a given integer array of 1 to 100.
+		`Algorithm 3. ` - O(n)
+			XOR all the array elements, let the result of XOR be X1.
+			XOR all nums from 1 to n, let XOR be X2
+			XOR of X1 and X2 gives the missing number.
+		"""
+		n = len(a)
+		x1 = a[0]
+		x2 = 1
+
+		for i in range(1, n):
+			x1 = x1 ^ a[i]
+			# print(x1)
+
+		for i in range(2, n + 2):
+			x2 = x2 ^ i
+
+		return x1 ^ x2
+
+	def find_dup_num_array(self, a, n):
+		"""
+		Find the duplicate number on a given integer array 
+
+		Best - O(n)
+		"""
+
+		sm = sum(a)
+		for i in range(1, n + 1):
+			sm -= i 
+		return sm
+
+	def find_two_dup_num_array(self, arr):
+		"""
+		Find two duplicate numbers on a given integer array 
+
+		Best if you use a count dictionary - O(n)
+		"""
+		size = len(arr)
+		count = [0] * size
+		# print()
 
 
+		for i in range(0, size):
+			if count[arr[i]] == 1:
+				print(arr[i], end = ' ')
+			else:
+				count[arr[i]] = count[arr[i]] + 1
 
-
+	def find_al_sum_pairs(self, arr, n):
+		""" Find all pair whos sum is equal to n """
+		return n
 
 if __name__=='__main__':
-	from random import randint
-	for r in range(4):
-		ran = randint(1, 101)
-		print(ran)
-		ar = [i for i in range(1, ran)] + [i for i in range(ran + 1, 101)]
-		print(missing_num_array(ar))
+	from random import randint, shuffle
+	ay = Arrays()
 
+	# for r in range(4):
+	# 	ran = randint(1, 101)
+	# 	print('ran', ran)
+	# 	ar = [i for i in range(1, ran)] + [i for i in range(ran + 1, 101)]
+	# 	print(ay.missing_num_array_sum1(ar))
+	# 	print(ay.missing_num_array_sum2(ar))
+	# 	print(ay.missing_num_array_xor(ar))
 
+	# 	ar = sorted([i for i in range(1, 101)] + [ran])
+	# 	# print(ar)
+	# 	print(ay.find_dup_num_array(ar, 100))
+	# 	print(ay.find_two_dup_num_array(arr=[1, 2, 2, 3, 4, 4, 5, 6]))
 
-
+	print(ay.find_al_sum_pairs([1, 2, 4, 5, 7, 8], 9))
 
 """
 LinkedList!
