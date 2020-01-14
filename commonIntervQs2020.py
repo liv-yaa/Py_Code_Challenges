@@ -35,7 +35,8 @@ Arrays!
 		How do you reverse an array in place in Java? (solution)
 		How are duplicates removed from an array without using any library? (solution)
 """
-
+from itertools import combinations, permutations
+from copy import deepcopy
 class Arrays:
 
 	def missing_num_array_sum2(self, arr):
@@ -145,7 +146,6 @@ class Arrays:
 				break
 		return possible
 
-
 	def getBest(self, prev, curr):
 		# Return the minimum element from the range [prev, MAX]
 		# such that it differs in at most 1 digit with cur
@@ -172,11 +172,34 @@ class Arrays:
 
 		return -1 # If we can't fine any number less than or equal to 1
 
+	def printCombinations(self, a, m):
+		# You can cahnge the sign +/- of any element.
+		# Print all combinations of array elements such that their sum is divisible by m.
+		a = [ 3, 5, 6, 8 ] 
+		all_inds = []
+		for l in range(len(a) + 1):
+			all_inds.extend(list(combinations([_ for _ in range(len(a))], l)))
+				
+		bs = []
+		for ind in all_inds:
+			b = deepcopy(a)
+			for i in ind:
+				b[i] = -b[i]
+			if sum(b) % m == 0:
+				bs.append(b)
+
+		return bs
+
+
+
+
+
+
+
 
 if __name__=='__main__':
 	from random import randint, shuffle
 	ay = Arrays()
-
 	# for r in range(4):
 	# 	ran = randint(1, 101)
 	# 	print('ran', ran)
@@ -189,12 +212,12 @@ if __name__=='__main__':
 	# 	# print(ar)
 	# 	print(ay.find_dup_num_array(ar, 100))
 	# 	print(ay.find_two_dup_num_array(arr=[1, 2, 2, 3, 4, 4, 5, 6]))
-
 	# print(ay.find_al_sum_pairs([1, 2, 4, 4, 5, 7, 8], 9))
-	# arr = [4, 2, 4, 5, 2, 3, 1] 
-	# ay.printRepeating(arr) 
-	arr = [1095, 1094, 1095]
-	print(ay.makeListNondecreasing(arr))
+	# ay.printRepeating(arr=[4, 2, 4, 5, 2, 3, 1] ) 
+	# print(ay.makeListNondecreasing(arr=[1095, 1094, 1095]))
+	
+	print(ay.printCombinations(a=[ 3, 5, 6, 8 ] , m=5) )
+
 
 
 """
