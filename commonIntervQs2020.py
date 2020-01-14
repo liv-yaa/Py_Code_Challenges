@@ -111,9 +111,67 @@ class Arrays:
 			else:
 				count[arr[i]] = count[arr[i]] + 1
 
-	def find_al_sum_pairs(self, arr, n):
+	def find_al_sum_pairs(self, arr, sum):
 		""" Find all pair whos sum is equal to n """
-		return n
+		m = [0] * 100 # A general purpose map to store counts of all values in arr
+		for i in range(0, len(arr)):
+			m[arr[i]]
+			m[arr[i]] += 1
+		print(m)
+
+	def printRepeating(self, arr):
+		# print all repeating elements
+		count = [0] * len(arr)
+		for i in range(len(arr)):
+			if count[arr[i]] == 1:
+				print(arr[i], end = ' ')
+			else:
+				count[arr[i]] = count[arr[i]] + 1
+
+	def makeListNondecreasing(self, arr):
+		# Overall gaol: Make list nondecreasing by changing only one digit from the array
+		# Function to get the nondecreasing list
+		myList = [0]
+		possible = True # Flag to start by assuming it is possible to make list nondecreasing
+		print(myList)
+
+		for i in range(len(arr)):
+ 			# to fill myList, call helper function 'getBest' with last item 
+ 			# of myList as prev and arr[i] as curr:
+			myList.append(self.getBest(myList[-1], arr[i]))
+
+			if myList[-1] == -1: # We were not able to find it
+				possible = False
+				break
+		return possible
+
+
+	def getBest(self, prev, curr):
+		# Return the minimum element from the range [prev, MAX]
+		# such that it differs in at most 1 digit with cur
+		DIGITS = 4
+		MIN = 1000
+		MAX = 9999
+		maximum = max(MIN, prev)
+
+		for i in range(maximum, MAX + 1):
+			# Count the number of different digits
+			cnt = 0
+			# a = i;
+			# b = curr
+
+			for k in range(DIGITS):
+				if (i % 10 != curr % 10):
+					cnt += 1
+				# Eliminate the last digits in both numbers:
+				i //= 10
+				curr //= 10
+
+			if cnt == 0 or cnt == 1:
+				return i # We found at most one different digit
+
+		return -1 # If we can't fine any number less than or equal to 1
+
 
 if __name__=='__main__':
 	from random import randint, shuffle
@@ -132,7 +190,12 @@ if __name__=='__main__':
 	# 	print(ay.find_dup_num_array(ar, 100))
 	# 	print(ay.find_two_dup_num_array(arr=[1, 2, 2, 3, 4, 4, 5, 6]))
 
-	print(ay.find_al_sum_pairs([1, 2, 4, 5, 7, 8], 9))
+	# print(ay.find_al_sum_pairs([1, 2, 4, 4, 5, 7, 8], 9))
+	# arr = [4, 2, 4, 5, 2, 3, 1] 
+	# ay.printRepeating(arr) 
+	arr = [1095, 1094, 1095]
+	print(ay.makeListNondecreasing(arr))
+
 
 """
 LinkedList!
