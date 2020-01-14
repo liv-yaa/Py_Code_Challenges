@@ -37,6 +37,7 @@ Arrays!
 """
 from itertools import combinations, permutations
 from copy import deepcopy
+from math import pow
 class Arrays:
 
 	def missing_num_array_sum2(self, arr):
@@ -172,10 +173,34 @@ class Arrays:
 
 		return -1 # If we can't fine any number less than or equal to 1
 
+	def getPowerSet(self, mySet):
+		""" Uses binary combinations to fill in the powerset """
+		powSet = []
+		l = len(mySet)
+		
+		# Run binary numbers 00..0 to 11..1
+		for bi in range(int(pow(2, l))):
+			bs = "{0:b}".format(bi).zfill(l)
+			powSet.append([mySet[i] for i in range(l) if bs[i] == '1'])
+		
+		return powSet
+
+
+
+
+
+
+
+
+
+
+
 	def printCombinations(self, a, m):
+		""" uses POWER SET 
 		# You can cahnge the sign +/- of any element.
 		# Print all combinations of array elements such that their sum is divisible by m.
-		a = [ 3, 5, 6, 8 ] 
+		"""
+		
 		all_inds = []
 		for l in range(len(a) + 1):
 			all_inds.extend(list(combinations([_ for _ in range(len(a))], l)))
@@ -215,8 +240,8 @@ if __name__=='__main__':
 	# print(ay.find_al_sum_pairs([1, 2, 4, 4, 5, 7, 8], 9))
 	# ay.printRepeating(arr=[4, 2, 4, 5, 2, 3, 1] ) 
 	# print(ay.makeListNondecreasing(arr=[1095, 1094, 1095]))
-	
-	print(ay.printCombinations(a=[ 3, 5, 6, 8 ] , m=5) )
+	print(ay.getPowerSet(mySet=['a', 'b', 'c']))
+	# print(ay.printCombinations(a=[ 3, 5, 6, 8 ] , m=5) )
 
 
 
