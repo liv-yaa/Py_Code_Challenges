@@ -5,15 +5,17 @@
 # import random
 # import re
 # import sys
+from itertools import permutations
 
-def convertCost(matrix, const):
-	""" Takes a matrix and returns the cost of converting it to the magic constant 
-		If not possible, return None
-
+def is_magic(mat):
+	""" Determines if a linear list representing a matrix `mat` is magic 
+		Rows, columns, and diagonals
 	"""
-	return 1
+	rs = set([sum(mat[i]) for i in range(3)])
+	cs = set([sum([mat[j][i] for j in range(3)]) for i in range(3)])
+	ds = set([sum([mat[0][0], mat[1][1], mat[2][2]]), sum([mat[0][2], mat[1][1], mat[2][0]])])
 
-
+	return rs == cs == ds
 
 def formingMagicSquare(s):
 	""" Def of MagicSquare:
@@ -22,21 +24,28 @@ def formingMagicSquare(s):
 		You will be given a  matrix  of integers in the inclusive range [1-9]. 
 		* We can convert any digit  to any other digit  in the range  at cost of |a-b|. 
 		Convert it into a magic square at minimal cost. Print this cost on a new line.
+
+
+		Algo:
+			1. Find all possible 3x3 magic square
+			2. Compute cost of changing s into a known magic square
 	"""
-	# Create a dict that takes the 
-	cost_dict = {}
 
-	for i in range(3, 28):
-		cost_dict[i] = convertCost(s, i)
+	# There are 8 magic squares - check all permutations of [1-9]
 
-	return cost_dict
+	all_perms = []
+
+	print(is_magic(s))
+
+	return all_perms
 
 
 if __name__ == '__main__':
-	s = [[4, 9, 2], [3, 5, 7], [8, 1, 5]]
-	print(formingMagicSquare(s))
+	s1 = [[4, 9, 2], [3, 5, 7], [8, 1, 5]]
+	print(formingMagicSquare(s1))
 
-
+	s2 = [[0, 0, 0], [1, 1, 7], [8, 1, 5]]
+	print(formingMagicSquare(s2))
 
 
 
