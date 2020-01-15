@@ -15,7 +15,9 @@ def is_magic(mat):
 	cs = set([sum([mat[j][i] for j in range(3)]) for i in range(3)])
 	ds = set([sum([mat[0][0], mat[1][1], mat[2][2]]), sum([mat[0][2], mat[1][1], mat[2][0]])])
 
-	return rs == cs == ds
+	# print(rs, cs, ds)    /s
+
+	return len(rs) == 1 and len(cs) == 1 and len(ds) == 1
 
 def formingMagicSquare(s):
 	""" Def of MagicSquare:
@@ -33,19 +35,30 @@ def formingMagicSquare(s):
 
 	# There are 8 magic squares - check all permutations of [1-9]
 
-	all_perms = []
 
-	print(is_magic(s))
+	# print(s, is_magic(s))
 
-	return all_perms
+	all_magic_perms = []
+
+	for p in permutations(range(1, 10)):
+		lp = list(p)
+		mp = [lp[:3], lp[3:6], lp[6:]]
+
+		if is_magic(mp):
+			print(mp)
+
+	return all_magic_perms
+
+
+
 
 
 if __name__ == '__main__':
 	s1 = [[4, 9, 2], [3, 5, 7], [8, 1, 5]]
-	print(formingMagicSquare(s1))
+	formingMagicSquare(s1)
 
-	s2 = [[0, 0, 0], [1, 1, 7], [8, 1, 5]]
-	print(formingMagicSquare(s2))
+	s2 = [[5, 3, 4], [1, 5, 8], [6, 4, 2]]
+	# print(formingMagicSquare(s2))
 
 
 
