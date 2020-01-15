@@ -185,16 +185,6 @@ class Arrays:
 		
 		return powSet
 
-
-
-
-
-
-
-
-
-
-
 	def printCombinations(self, a, m):
 		""" uses POWER SET 
 		# You can cahnge the sign +/- of any element.
@@ -215,7 +205,7 @@ class Arrays:
 
 		return bs
 
-
+	
 
 
 
