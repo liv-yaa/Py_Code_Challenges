@@ -210,6 +210,36 @@ class ArrayMethods:
 
 		return bs
 
+	def binarySearch(self, arr, l, r, x):
+		""" RECURSIVE
+				- Takes arr, an *ordered* array, left, right, and x(the target)
+				- Returns the recursive call to smaller and 
+				smaller 'windows' (between l & r)
+
+			O(log n) time and O(1) space
+
+		"""
+		# Check base case
+		if r >= l:
+
+			mid = l + (r - l) // 2 + 1 # Get a discrete (arbitrary) midpoint
+
+			# if element is @ the middle itself, we are done
+			if arr[mid] == x:
+				return mid
+
+			# If element is smaller / larger than mid, we move window:
+			elif arr[mid] > x:
+				# recurse on left subarray
+				return self.binarySearch(arr, l, mid - 1, x)
+			else:
+				# recurse on right subarray
+				return self.binarySearch(arr, mid + 1, r, x)
+		else:
+			# When l and r 'cross over', we know element x is not present
+			# in the array
+			return -1
+
 if __name__=='__main__':
 	from random import randint, shuffle
 	ay = ArrayMethods()
@@ -230,6 +260,10 @@ if __name__=='__main__':
 	# print(ay.makeListNondecreasing(arr=[1095, 1094, 1095]))
 	# print(ay.getPowerSet(mySet=['a', 'b', 'c']))
 	# print(ay.printCombinations(a=[ 3, 5, 6, 8 ] , m=5) )
+
+	# arr = [2, 3, 4, 10, 40]
+	# r = len(arr) - 1
+	# print(ay.binarySearch(arr=arr, l=0, r=r, x=10))
 """
 Node:
     a concept that carries on for Tree, LList, and Map
@@ -238,10 +272,7 @@ Node:
     	- for Tree, has self.left, self.right 
     	- for Graph, has 
     	- For Map, has self.child1, self.child2, ...
-
-
 """
-
 
 """
 LinkedList!
@@ -270,6 +301,11 @@ LinkedList!
 		How do you find the sum of two linked lists using Stack? (solution)
 
 """
+class LLNode:
+	def __init__(self, data):
+		self.left = None
+		self.right = None
+		self.data = data
 
 """
 Trees!
@@ -287,7 +323,6 @@ Trees!
 		- Post-order traversal
 		- In-order traversal 
 
-
 	Questions:
 		How is a binary search tree implemented? (solution)
 		How do you perform preorder traversal in a given binary tree? (solution)
@@ -298,63 +333,61 @@ Trees!
 		How do you traverse a binary tree in postorder traversal without recursion? (solution)
 		How are all leaves of a binary search tree printed? (solution)
 		How do you count a number of leaf nodes in a given binary tree? (solution)
-		How do you perform a binary search in a given array? (solution)
+		* How do you perform a binary search in a given array? (solution)
 
 """
-class TreeMethods:
+class TreeNode(object):
+	"""Node in a tree."""
 
-	def binarySearch(self, arr, l, r, x):
-		""" RECURSIVE
-				- Takes arr, an *ordered* array, left, right, and x(the target)
-				- Returns the recursive call to smaller and 
-				smaller 'windows' (between l & r)
+	def __init__(self, data, children):
+		self.data = data
+		self.children = children
 
-			O(log n) time and O(1) space
+	def __repr__(self):
+		return "<Node {data}>".format(data=self.data)
 
+	def find(self, data):
+		""" Return a node object with this data 
+		Start wherever you are (self.)
+		Return None is not foundn
 		"""
-		# return arr, l, r, x
 
-		# Check base case
-		if r >= l:
+		to_visit = [self]
 
-			mid = l + (r - l) / 2 # Get the midpoint
+		while to_visit:
+			current = to_visit.pop()
 
-			# if element is @ the middle itself, we are done
-			if arr[mid] = x:
-				return mid
+			if current.data == data:
+				return current
 
-			# If element is smaller / larger than mid, we move window:
-			elif arr[mid] > x:
-				
-				# recurse on left subarray
-				return self.binarySearch(arr, l, mid - 1, x)
-
-			else:
-				
-				# recurse on right subarray
-				return self.binarySearch(arr, mid + 1, r, x)
-
-		else:
-			# When l and r 'cross over', we know element x is not present
-			# in the array
-			return -1
+			to_visit.extend(current.children)
 
 
+class Tree(object):
+	""" Tree """
+	def __init__(self, root):
+		self.root = root
 
-
-
-
-
-
-
-
+	def find_in_tree(self, data):
+		# Uses TreeNode method to find the data
+		return self.root.find(data)
 
 if __name__=='__main__':
-	tm = TreeMethods()
-	
-	arr = [2, 3, 4, 10, 40]
-	r = len(arr) - 1
-	print(tm.binarySearch(arr=arr, l=0, r=r, x=10))
+	# tm = TreeMethods()
+
+	# Create lots of TreeNodes, make an example tree, & search for things in it
+	resume = TreeNode("resume.txt", []) 
+	recipes = TreeNode("recipes.txt", [])
+	jane = TreeNode("jane/", [resume, recipes])
+	server = TreeNode("server.py", [])
+	jessica = TreeNode("jessica/", [server])
+	users = TreeNode("Users/", [jane, jessica])
+	root = TreeNode("/", [users])
+
+	tree = Tree(root)
+	print("server.py = ", tree.find_in_tree("server.py"))  # should find
+	print("style.css = ", tree.find_in_tree("style.css"))  # should not find
+
 
 """
 Maps!
