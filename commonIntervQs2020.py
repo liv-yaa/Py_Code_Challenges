@@ -1,4 +1,5 @@
-""" ** Common interview questions From hackernoon https://hackernoon.com/50-data-structure-and-algorithms-interview-questions-for-programmers-b4b1ac61f5b0
+""" ** Common interview questions - prepping for Nylas, Figma, Plenty Jan 2020
+https://hackernoon.com/50-data-structure-and-algorithms-interview-questions-for-programmers-b4b1ac61f5b0
 
 All Data Structures:
 	- Array
@@ -17,7 +18,7 @@ Other Topics:
 """
 
 """
-Arrays!
+Arrays! - common problems: 
 	Features:
 		- Linear (1D) data structure
 		- Size is fixed, storage is contiguous
@@ -33,7 +34,7 @@ Arrays!
 		How is an integer array sorted in place using the quicksort algorithm? (solution)
 		How do you remove duplicates from an array in place? (solution)
 		How do you reverse an array in place in Java? (solution)
-		How are duplicates removed from an array without using any library? (solution)
+		How are duplicates removed from an array without using any library? (solution) 
 """
 from itertools import combinations, permutations
 from copy import deepcopy
@@ -204,13 +205,6 @@ class Arrays:
 				bs.append(b)
 
 		return bs
-
-	
-
-
-
-
-
 
 if __name__=='__main__':
 	from random import randint, shuffle
