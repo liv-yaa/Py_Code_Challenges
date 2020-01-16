@@ -4,10 +4,14 @@ https://hackernoon.com/50-data-structure-and-algorithms-interview-questions-for-
 All Data Structures:
 	- Array
 	- LinkedList
+	- Tree
+	- Graph
+	- Map
 	- Vector
 	- Matrix
 	- DataFrame (Table)
 	- Lists 
+	- 
 
 Other Topics:
 	- SQL
@@ -39,7 +43,7 @@ Arrays! - common problems:
 from itertools import combinations, permutations
 from copy import deepcopy
 from math import pow
-class Arrays:
+class ArrayMethods:
 
 	def missing_num_array_sum2(self, arr):
 		""" 
@@ -208,7 +212,7 @@ class Arrays:
 
 if __name__=='__main__':
 	from random import randint, shuffle
-	ay = Arrays()
+	ay = ArrayMethods()
 	# for r in range(4):
 	# 	ran = randint(1, 101)
 	# 	print('ran', ran)
@@ -224,9 +228,19 @@ if __name__=='__main__':
 	# print(ay.find_al_sum_pairs([1, 2, 4, 4, 5, 7, 8], 9))
 	# ay.printRepeating(arr=[4, 2, 4, 5, 2, 3, 1] ) 
 	# print(ay.makeListNondecreasing(arr=[1095, 1094, 1095]))
-	print(ay.getPowerSet(mySet=['a', 'b', 'c']))
+	# print(ay.getPowerSet(mySet=['a', 'b', 'c']))
 	# print(ay.printCombinations(a=[ 3, 5, 6, 8 ] , m=5) )
+"""
+Node:
+    a concept that carries on for Tree, LList, and Map
+    - as self.data
+    	- For LinkedList, only has self.next
+    	- for Tree, has self.left, self.right 
+    	- for Graph, has 
+    	- For Map, has self.child1, self.child2, ...
 
+
+"""
 
 
 """
@@ -257,6 +271,101 @@ LinkedList!
 
 """
 
+"""
+Trees!
+	- Heirarchical data
+	- First node is Root Node
+	- Each node has at most two child nodes
+	- Every other node is associated with one parent
+	- Binary Search tree = An ordered binary tree, where the value of all nodes in the left tree are less than or equal to node and values of all nodes in right subtree is greater than or equal to the node (e.g. root). It's an important data structure and can be used to represent a sorted structure.
+	- 'size'
+	- 'depth'
+	- 'leaf'
+	- 'node'
+	- Traversal:
+		- Pre-order traversal
+		- Post-order traversal
+		- In-order traversal 
+
+
+	Questions:
+		How is a binary search tree implemented? (solution)
+		How do you perform preorder traversal in a given binary tree? (solution)
+		How do you traverse a given binary tree in preorder without recursion? (solution)
+		How do you perform an inorder traversal in a given binary tree? (solution)
+		How do you print all nodes of a given binary tree using inorder traversal without recursion? (solution)
+		How do you implement a postorder traversal algorithm? (solution)
+		How do you traverse a binary tree in postorder traversal without recursion? (solution)
+		How are all leaves of a binary search tree printed? (solution)
+		How do you count a number of leaf nodes in a given binary tree? (solution)
+		How do you perform a binary search in a given array? (solution)
+
+"""
+class TreeMethods:
+
+	def binarySearch(self, arr, l, r, x):
+		""" RECURSIVE
+				- Takes arr, an *ordered* array, left, right, and x(the target)
+				- Returns the recursive call to smaller and 
+				smaller 'windows' (between l & r)
+
+			O(log n) time and O(1) space
+
+		"""
+		# return arr, l, r, x
+
+		# Check base case
+		if r >= l:
+
+			mid = l + (r - l) / 2 # Get the midpoint
+
+			# if element is @ the middle itself, we are done
+			if arr[mid] = x:
+				return mid
+
+			# If element is smaller / larger than mid, we move window:
+			elif arr[mid] > x:
+				
+				# recurse on left subarray
+				return self.binarySearch(arr, l, mid - 1, x)
+
+			else:
+				
+				# recurse on right subarray
+				return self.binarySearch(arr, mid + 1, r, x)
+
+		else:
+			# When l and r 'cross over', we know element x is not present
+			# in the array
+			return -1
+
+
+
+
+
+
+
+
+
+
+
+if __name__=='__main__':
+	tm = TreeMethods()
+	
+	arr = [2, 3, 4, 10, 40]
+	r = len(arr) - 1
+	print(tm.binarySearch(arr=arr, l=0, r=r, x=10))
+
+"""
+Maps!
+	Features:
+		- 
+
+
+	Questions:
+		- Recursive data structure == know recursion!
+		- 
+"""
 
 """
 Strings!
@@ -283,36 +392,6 @@ Strings!
 
 """
 
-"""
-Binary Tree!
-	Features:
-		- Heirarchical data
-		- Each node has at most two child nodes
-		- Binary Search tree - 
-			An ordered binary tree, where the value of all nodes in the left tree are less than or equal to node and values of all nodes in right subtree is greater than or equal to the node (e.g. root). It's an important data structure and can be used to represent a sorted structure.
-		- 'size'
-		- 'depth'
-		- 'leaf'
-		- 'node'
-		- Traversal:
-			- Pre-order traversal
-			- Post-order traversal
-			- In-order traversal 
-
-
-	Questions:
-		How is a binary search tree implemented? (solution)
-		How do you perform preorder traversal in a given binary tree? (solution)
-		How do you traverse a given binary tree in preorder without recursion? (solution)
-		How do you perform an inorder traversal in a given binary tree? (solution)
-		How do you print all nodes of a given binary tree using inorder traversal without recursion? (solution)
-		How do you implement a postorder traversal algorithm? (solution)
-		How do you traverse a binary tree in postorder traversal without recursion? (solution)
-		How are all leaves of a binary search tree printed? (solution)
-		How do you count a number of leaf nodes in a given binary tree? (solution)
-		How do you perform a binary search in a given array? (solution)
-
-"""
 
 """
 Algorithms:
