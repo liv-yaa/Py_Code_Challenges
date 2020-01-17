@@ -55,8 +55,18 @@ class PrimeGen:
 		
 
 
-	def getNextPrime(self, flags, p):
-		# Return the smallest prime number greater than prime `p`  
+	def getNextPrime(self, p):
+		""" Return the smallest prime number greater than prime `p`  
+			>>> pg = PrimeGen()
+			>>> pg.getNextPrime(0)
+			2
+			>>> pg.getNextPrime(2)
+			3
+			>>> pg.getNextPrime(6)
+			7
+			>>> pg.getNextPrime(16)
+			17
+		"""
 		if p <= 1:
 			return 2
 
@@ -64,10 +74,10 @@ class PrimeGen:
 		found = False
 
 		# Loop continuously until isPrime returns True 
-		while (not found):
+		while True:
 			prime += 1
 
-			if isPrime(prime):
+			if self.isPrime(prime):
 				found = True
 
 		return prime
