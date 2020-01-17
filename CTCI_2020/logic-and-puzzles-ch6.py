@@ -1,5 +1,6 @@
 # Ctci Logic & Puzzles (ch 6, p117)
 import math
+import unittest
 
 class PrimeGen:
 	def sieve_of_e(self, max_num):
@@ -83,18 +84,42 @@ class PrimeGen:
 		return prime
 
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+""" 6.1 Pill Bottle """
+
+def pill_bottle(bottles):
+	# Determine which pill bottle contains heavy pills.
+	pills = []
+	for i, bottle in enumerate(bottles):
+		pills += [bottle.pill()] * i
+
+	print(pills)
+
+	weight = sum(pills) # Use the scale one time
+	index = (weight - 190) * 10
+	return int(index + 0.1)
+class Bottle():
+	def __init__(self, pill_weight=1.0):
+		self.pill_weight = pill_weight
+
+	def pill(self):
+		return self.pill_weight
+
+
+
+class Test(unittest.TestCase):
+  def test_pill_bottle(self):
+    bottles = [Bottle(), Bottle(), Bottle(), Bottle(), Bottle(),
+               Bottle(), Bottle(), Bottle(), Bottle(), Bottle(),
+               Bottle(), Bottle(), Bottle(), Bottle(), Bottle(1.1),
+               Bottle(), Bottle(), Bottle(), Bottle(), Bottle()]
+    self.assertEqual(pill_bottle(bottles), 14)
+# if __name__ == "__main__":
+# 	unittest.main()
 
 
 
 
-
-
-
-
-
+""" 6.2 Basketball """
 
 
 
