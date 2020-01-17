@@ -42,7 +42,8 @@ Arrays! - common problems:
 """
 from itertools import combinations, permutations
 from copy import deepcopy
-from math import pow
+import math
+
 class ArrayMethods:
 
 	def missing_num_array_sum2(self, arr):
@@ -210,36 +211,66 @@ class ArrayMethods:
 
 		return bs
 
-	def binarySearch(self, arr, l, r, x):
-		""" RECURSIVE
-				- Takes arr, an *ordered* array, left, right, and x(the target)
-				- Returns the recursive call to smaller and 
-				smaller 'windows' (between l & r)
+	def dynamicArray(self, n, queries):
+		# Followed complicated instructions to process queries https://www.hackerrank.com/challenges/dynamic-array/problem?isFullScreen=true
+		seqList = [[]] * n 
+		lastAns = 0
+		las = []
 
-			O(log n) time and O(1) space
+		for q in queries:
+			x, y = q[1], q[2]
+			idx = (x ^ lastAns) % n
+			seq = seqList[idx]
 
+			if q[0] == 1:
+				seqList[idx] = seq + [y]
+
+			elif q[0] == 2:
+				lastAns = seq[y % len(seq)]
+				las.append(lastAns)
+		return las
+
+	def leftRot(arr, d):
+		return arr[d:] + arr[:d]
+
+	def is_magic(m):
+		""" Determines if a linear list representing a matrix `mat` is magic 
+		Rows, columns, and diagonals
 		"""
-		# Check base case
-		if r >= l:
+		mat = [m[:3], m[3:6], m[6:]]
+		rs = set([sum(mat[i]) for i in range(3)])
+		cs = set([sum([mat[j][i] for j in range(3)]) for i in range(3)])
+		ds = set([sum([mat[0][0], mat[1][1], mat[2][2]]), sum([mat[0][2], mat[1][1], mat[2][0]])])
 
-			mid = l + (r - l) // 2 + 1 # Get a discrete (arbitrary) midpoint
+		# print(rs, cs, ds)    /s
 
-			# if element is @ the middle itself, we are done
-			if arr[mid] == x:
-				return mid
+		return len(rs) == 1 and len(cs) == 1 and len(ds) == 1
 
-			# If element is smaller / larger than mid, we move window:
-			elif arr[mid] > x:
-				# recurse on left subarray
-				return self.binarySearch(arr, l, mid - 1, x)
-			else:
-				# recurse on right subarray
-				return self.binarySearch(arr, mid + 1, r, x)
-		else:
-			# When l and r 'cross over', we know element x is not present
-			# in the array
-			return -1
 
+	def formingMagicSquare(arr):
+		""" Def of MagicSquare:
+			An  `n x n ` matrix of distinct positive integers from  to  where the sum of any row, column, 
+			or diagonal of length  is always equal to the same number: the magic constant.
+			You will be given a  matrix  of integers in the inclusive range [1-9]. 
+			* We can convert any digit  to any other digit  in the range  at cost of |a-b|. 
+			Convert it into a magic square at minimal cost. Print this cost on a new line.
+
+
+			Algo:
+				1. Find all possible 3x3 magic square
+				2. Compute cost of changing s into a known magic square
+		"""
+
+		# There are 8 magic squares - check all permutations of [1-9]
+		magic = [list(p) for p in permutations(range(1, 10)) if is_magic(p)]
+
+		mini = 2**64
+		for brr in magic:
+			diff = 0
+			for i, j in zip(arr, brr):
+				diff += abs(i - j)
+			mini = min(diff, mini)
+		return mini
 if __name__=='__main__':
 	from random import randint, shuffle
 	ay = ArrayMethods()
@@ -264,6 +295,15 @@ if __name__=='__main__':
 	# arr = [2, 3, 4, 10, 40]
 	# r = len(arr) - 1
 	# print(ay.binarySearch(arr=arr, l=0, r=r, x=10))
+	# s1 = [4, 9, 2, 3, 5, 7, 8, 1, 5]
+	# print(formingMagicSquare(s1)) # 1
+
+	# s2 = [4, 8, 2, 4, 5, 7, 6, 1, 6]
+	# print(formingMagicSquare(s2))
+
+
+
+
 """
 Node:
     a concept that carries on for Tree, LList, and Map
@@ -273,6 +313,9 @@ Node:
     	- for Graph, has 
     	- For Map, has self.child1, self.child2, ...
 """
+
+
+
 
 """
 LinkedList!
@@ -307,6 +350,9 @@ class LLNode:
 		self.right = None
 		self.data = data
 
+
+
+
 """
 Trees!
 	- Heirarchical data
@@ -334,7 +380,6 @@ Trees!
 		How are all leaves of a binary search tree printed? (solution)
 		How do you count a number of leaf nodes in a given binary tree? (solution)
 		* How do you perform a binary search in a given array? (solution)
-
 """
 class TreeNode(object):
 	"""Node in a tree."""
@@ -361,8 +406,6 @@ class TreeNode(object):
 				return current
 
 			to_visit.extend(current.children)
-
-
 class Tree(object):
 	""" Tree """
 	def __init__(self, root):
@@ -371,7 +414,6 @@ class Tree(object):
 	def find_in_tree(self, data):
 		# Uses TreeNode method to find the data
 		return self.root.find(data)
-
 if __name__=='__main__':
 	# tm = TreeMethods()
 
@@ -385,8 +427,8 @@ if __name__=='__main__':
 	root = TreeNode("/", [users])
 
 	tree = Tree(root)
-	print("server.py = ", tree.find_in_tree("server.py"))  # should find
-	print("style.css = ", tree.find_in_tree("style.css"))  # should not find
+	# print("server.py = ", tree.find_in_tree("server.py"))  # should find
+	# print("style.css = ", tree.find_in_tree("style.css"))  # should not find
 
 
 """
@@ -399,6 +441,10 @@ Maps!
 		- Recursive data structure == know recursion!
 		- 
 """
+
+
+
+
 
 """
 Strings!
@@ -424,6 +470,45 @@ Strings!
 		How do you check if a given string is a palindrome? (solution)
 
 """
+class Strings:
+	def reverse_list(self, lst):
+		# Write a function that takes a list of characters and reverses the letters 
+		## ** in place **
+		left = 0
+		right = len(lst) - 1
+
+		while left < right:
+			# Swap, move toward middle:
+
+			lst[left], lst[right] = lst[right], lst[left]
+
+			left += 1
+			right -= 1
+
+		return lst
+
+
+if __name__=='__main__':
+	s = Strings()
+	print(s.reverse_list(['a', 'b', 'c']))
+
+
+
+
+
+"""
+Stacks!
+	Features:
+		- An array or linkedList
+		- methods: push, pop, delete, print
+
+	Questions:
+		
+"""
+class Stack:
+	pass
+
+
 
 
 """
@@ -433,7 +518,74 @@ Algorithms:
 	- Practical times to use recursive algo?
 		Linked Lists, reversing String, calculating Fibonacci series, 
 		reversing linkedList, tree traversal, QuickSort
+"""
+class Algos:
+	
+	def binarySearch(self, arr, l, r, x):
+		""" RECURSIVE
+				- Takes arr, an *ordered* array, left, right, and x(the target)
+				- Returns the recursive call to smaller and 
+				smaller 'windows' (between l & r)
 
+			O(log n) time and O(1) space
+
+		"""
+		# Check base case
+		if r >= l:
+
+			mid = l + (r - l) // 2 + 1 # Get a discrete (arbitrary) midpoint
+
+			# if element is @ the middle itself, we are done
+			if arr[mid] == x:
+				return mid
+
+			# If element is smaller / larger than mid, we move window:
+			elif arr[mid] > x:
+				# recurse on left subarray
+				return self.binarySearch(arr, l, mid - 1, x)
+			else:
+				# recurse on right subarray
+				return self.binarySearch(arr, mid + 1, r, x)
+		else:
+			# When l and r 'cross over', we know element x is not present
+			# in the array
+			return -1
+
+	# *** Practice this from cake.py!!
+	# def mergeSort(lst):
+	# 	"""
+	# 	https://www.interviewcake.com/article/python/logarithms?course=fc1&section=algorithmic-thinking
+	# 	"""
+
+	# 	# Base case: lists w/ 0 or 1 elements are sorted
+	# 	if len(lst) < 2:
+	# 		return lst
+
+	# 	# Step 1: Divide list in half
+	# 	mid_idx = len(lst) / 2
+	# 	left = lst[:mid_idx]
+	# 	right = lst[mid_idx:]
+
+	# 	# Step 2: Sort each half
+	# 	sorted_left = mergeSort(left)
+	# 	sorted_right = mergeSort(right)
+
+	# 	# Step 3: Merge the sorted halves
+	# 	sorted_list = []
+	# 	curr_left = 0
+	# 	curr_right = 0
+
+	# 	while len(sorted_list) < len(left) ...
+
+
+
+
+
+
+
+
+
+"""
 SQL:
 	- What is SQL injection?
 		A security vulnerability - an intruder can inject SQL code, mess up your queries or steal!
