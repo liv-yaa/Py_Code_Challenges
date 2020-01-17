@@ -78,7 +78,7 @@ class PrimeGen:
 			prime += 1
 
 			if self.isPrime(prime):
-				found = True
+				return prime
 
 		return prime
 
