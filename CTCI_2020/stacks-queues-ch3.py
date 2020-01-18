@@ -1,4 +1,69 @@
 # Stacks & Queues Ch3 : Interview Questions
+# Base class:
+class Queue:
+	""" A basic Queue example ... 
+		
+		>>> q = Queue()
+		>>> print(q.get_min_element())
+		Empty queue
+		>>> q.push(1)
+		[1]
+		>>> q.push(2)
+		[1, 2]
+		>>> q.push(0)
+		[1, 2, 0]
+		>>> q.size()
+		3
+		>>> print(str(q))
+		[1, 2, 0]
+		>>> q.get_min_element()
+		0
+		>>> q.pop()
+		[2, 0]
+
+	"""
+
+	def __init__(self):
+		# Constructor creates a list
+		self.queue = []
+	
+	def __repr__(self):
+		# Constructor creates a list
+		return str(self.queue)
+	
+	def push(self, data):
+		# Might check to avoid duplicate entries?
+		self.queue.append(data)
+		print(self.queue)
+
+	def pop(self):
+		# Remove last elem from queue
+		if len(self.queue) > 0:
+			self.queue.pop(0)
+			print(self.queue)
+		else:
+			print('Illegal')
+
+	def size(self):
+		# Get the size of the queue
+		return len(self.queue)
+
+	"""
+	3.2 queue Min: How would you design a queue which, in addition to push and pop, has a function min
+	which returns the minimum eiement? Push, pop and min should ail operate in 0(1) time.
+	"""
+	def get_min_element(self):
+		sz = self.size()
+		if sz > 0:
+			mn = self.queue[0]
+			for i in range(1, sz):
+				if self.queue[i] < mn:
+					mn = self.queue[i]
+
+		else:
+			return 'Empty queue' 
+		return mn
+
 
 # Base class:
 class Stack:
