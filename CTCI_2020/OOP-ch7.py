@@ -343,7 +343,7 @@ class Jukebox:
 	Jukebox queue []
 	>>> j.add_to_queue(Song('hit me', 'brit'))
 	>>> print(j)
-	Jukebox queue [hit me by brit played: False]
+	Jukebox queue [Song Object hit me{ by: brit } played: False]
 	>>> j.get_next_song()
 	"""
 	def __init__(self):
@@ -362,16 +362,9 @@ class Jukebox:
 	def get_next_song(self):
 		if self.queue:
 			s = self.queue.pop(0)
-			print(s)
+			# print(s)
 			s.play() # Should 
-			print(s) # Print the string representation of the Song
-
-
-	# def play(self, title):
-	# 	# Play a song, then pop it off the front of the queue
-	# 	print('playing song...', title)
-
-	# 	
+			# print(s) # Print the string representation of the Song
 
 class Song:	
 	""" 
@@ -384,13 +377,12 @@ class Song:
 	"""
 	def __init__(self, title, artist):
 		self.title = title
-		self.artist = artist
+		self.artist = Artist(artist)
 		self.played = False
-		# print(self)
 
 	def __repr__(self):
 		# String rep of a Song
-		return 'Song Object' + ' ' + str(self.title) + ' by ' + str(self.artist) + ' played: ' + str(self.played)
+		return 'Song Object' + ' ' + str(self.title) + str(self.artist) + ' played: ' + str(self.played)
 
 	def play(self):
 		""" Plays the song """
@@ -398,9 +390,34 @@ class Song:
 
 
 class Artist:
-	pass
+	""" Artist object 
+	>>> a = Artist('Picasso')
+	>>> print(a)
+	{ by: Picasso }
+	>>> sl = [Song('SongTitle1', 'Picasso'), Song('SongTitle2', 'Picasso'), Song('SongTitle1', 'Not Picasso')]
+	>>> a.add_song_list_to_artist(sl)
+	>>>
+	# >>> a.get_artist_songs()
+	# {Song Object SongTitle1{ by: Picasso } played: False, Song Object SongTitle1{ by: Not Picasso } played: False, Song Object SongTitle2{ by: Picasso } played: False}	
+	"""
+	def __init__(self, artist_name):
+		self.artist_name = artist_name
 
+		# Artist has their songs available!
+		self.songs = set()
+	
+	def __repr__(self):
+		# String rep of a Artist
+		return '{ by: ' + str(self.artist_name) + ' }'
 
+	def add_song_list_to_artist(self, song_list):
+		for s in song_list:
+			# print(s)
+			self.songs.add(s)
+
+	def get_artist_songs(self):
+		# Returns the set of songs!
+		return self.songs
 
 
 if __name__ == "__main__":
