@@ -1,5 +1,33 @@
 # OOP-ch7.py
 
+""" key terms review:
+"""
+class ThreeMethodTypes:
+	""" 1. INSTANCE , CLASS, and STATIC METHODS
+	"""
+	# Define a class attribute:
+	name = 'Raggety'
+
+	def instance_method(self):
+		# Creates an instance attriute through keyword 'self'
+		self.lastname = 'LastInTheClass'
+		print(self.lastname)
+
+	@classmethod
+	def class_method(cls):
+		# Accesses a class attribute through keyword cls
+		cls.name = 'Classy'
+		print(cls.name)
+
+	@staticmethod # * Does not take 'cls' or 'self'!
+	def factorial(number):
+		if number == 0:
+			return 1
+		else:
+			return number * ThreeMethodTypes.factorial(number - 1)
+
+	
+
 """ 
 Good Design Patterns - APPROACH:
 
@@ -41,7 +69,6 @@ Good Design Patterns - APPROACH:
 					return BlackjackGame()
 
 		- ex. many Tables made from the class blueprint
-
 
 """
 
@@ -198,15 +225,16 @@ class CallCenter2:
 		r = '\n'.join([str(x) for x in self.respondents])
 		m = '\n'.join([str(x) for x in self.managers])
 		d = str(self.director)
-		return f"""
-{r}
+		return 
+		f"""
+			{r}
 
-{m}
+			{m}
 
-{d}
+			{d}
 
-{self.respondent_queue}
-			"""
+			{self.respondent_queue}
+		"""
 	def route_respondent(self, respondent):
 		if len(self.call_queue):
 			respondent.take_call(self.call_queue.pop(0))
@@ -232,7 +260,6 @@ class Call2:
 
 	def apologize(self):
 		self.employee = None
-
 
 class Employee2:
 	def __init__(self, name, manager):
