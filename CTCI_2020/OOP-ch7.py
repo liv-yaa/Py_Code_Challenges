@@ -16,6 +16,7 @@ class ThreeMethodTypes:
 
 	>>> print(tmt.factorial(4))
 	24
+
 	"""
 	# Define a class attribute:
 	name = 'Raggety'
@@ -435,19 +436,32 @@ class Artist:
 	{ by: Picasso }
 	>>> sl = [Song('SongTitle1', 'Picasso'), Song('SongTitle2', 'Picasso'), Song('SongTitle1', 'Not Picasso')]
 	>>> a.add_song_list_to_artist(sl)
-	>>>
-	# >>> a.get_artist_songs()
-	# {Song Object SongTitle1{ by: Picasso } played: False, Song Object SongTitle1{ by: Not Picasso } played: False, Song Object SongTitle2{ by: Picasso } played: False}	
+	
+	>>> a.change_artist_genre('Pop')
+	>>> print(a.artist_genre)
+	Pop
+
+	>>> a.list_all_genres()
+	['Pop', 'Hip Hop', 'Rock', 'Folk']
 	"""
+	artist_genre = None
+
 	def __init__(self, artist_name):
 		self.artist_name = artist_name
-
-		# Artist has their songs available!
 		self.songs = set()
 	
 	def __repr__(self):
 		# String rep of a Artist
 		return '{ by: ' + str(self.artist_name) + ' }'
+
+	@staticmethod
+	def list_all_genres():
+		return ['Pop', 'Hip Hop', 'Rock', 'Folk']
+
+
+	@classmethod
+	def change_artist_genre(cls, newGenre):
+		cls.artist_genre = newGenre
 
 	def add_song_list_to_artist(self, song_list):
 		for s in song_list:
@@ -458,6 +472,7 @@ class Artist:
 		# Returns the set of songs!
 		return self.songs
 
+	
 
 if __name__ == "__main__":
 	import doctest
