@@ -117,19 +117,80 @@ def is_substring_ordered(sub, st):
 	
 	return sub in st
 
-	
-
-
 
 def string_rotation(s1, s2):
 	"""
 	1.9 String Rotation
 	Assume you have a method is_substring which checks if one word is a substring of another. 
 	Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one
-	call to isSubs t rin g [e.g., "wate r bottle " is a rotation oP'erbottlewat"),
+	call to  is_substring_ordered [e.g., "water bottle " is a rotation 'erbottlewat"),
 	Hints: #34, #88,#W4 
+	>>> string_rotation("ABCD", "CDAB") # rotate 1 right
+	True
+	>>> string_rotation("waterbottle", "waterbottle") # rotate 0
+	True
+	>>> string_rotation("waterbottle", "aterbottlew") # rotate 1 left
+	True
+	>>> string_rotation("waterbottle", "terbottlewa") # rotate 2 left
+	True
+	>>> string_rotation("waterbottle", "erbottlewat") # rotate 3 left
+	True
+	>>> string_rotation("waterbottle", "ewaterbottl") # rotate 1 right
+	True
+	>>> string_rotation("", "") # rotate 0
+	True
+	>>> string_rotation("b", "a")
+	False
+	>>> string_rotation("ba", "abb")
+	False
+	>>> string_rotation("banana", "ananb")
+	False
+	>>> string_rotation("ABCD", "ACBD")
+	False
 	"""
-	pass # Not done!
+	# iterate through all rotations of s2 and see if they match s1:
+	# print('s2', s2)
+	if s1 == s2:
+		return True
+	
+	for i in range(len(s2)):
+		if s2[i + 1:] + s2[:i + 1] == s1:
+			return True
+	return False
+
+
+def string_rotation2(s1, s2):
+
+	"""
+	An elegant answer - wow.
+	>>> string_rotation2("ABCD", "CDAB") # rotate 1 right
+	True
+	>>> string_rotation2("waterbottle", "waterbottle") # rotate 0
+	True
+	>>> string_rotation2("waterbottle", "aterbottlew") # rotate 1 left
+	True
+	>>> string_rotation2("waterbottle", "terbottlewa") # rotate 2 left
+	True
+	>>> string_rotation2("waterbottle", "erbottlewat") # rotate 3 left
+	True
+	>>> string_rotation2("waterbottle", "ewaterbottl") # rotate 1 right
+	True
+	>>> string_rotation2("", "") # rotate 0
+	True
+	>>> string_rotation2("b", "a")
+	False
+	>>> string_rotation2("ba", "abb")
+	False
+	>>> string_rotation2("banana", "ananb")
+	False
+	>>> string_rotation2("ABCD", "ACBD")
+	False
+	"""
+	if len(s1) != len(s2):
+		return False
+
+	temp = s1 + s1
+	return temp.count(s2) > 0
 
 
 
