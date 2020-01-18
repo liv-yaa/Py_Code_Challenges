@@ -69,17 +69,13 @@ def zero_matrix(mat):
 	[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 0, 1, 1, 0], [1, 0, 1, 1, 0]]
 	"""
 	# keep track of the rows & cols that have zeroes:
-	rows0 = set()
+	rows0 = set([i for i, row in enumerate(mat) if not all(row)])
 	cols0 = set()
 	for i in range(len(mat)): # rows
 		for j in range(len(mat[i])): # cols
 			elem = mat[i][j]
 			if elem == 0:
-				# print('zero at i', i, 'j', j)
-				rows0.add(i)
 				cols0.add(j)
-
-	# print('cols0', cols0, 'rows0', rows0)
 
 	# Edit the entire column for all columns:
 	for c in cols0:
@@ -88,10 +84,56 @@ def zero_matrix(mat):
 
 	# Edit the row for all rows:
 	for r in rows0:
-		for j in range(len(mat[0])):
-			mat[r][j] = 0
+		mat[r] = [0] * len(mat[0])
 
 	return mat
+
+def zero_matrix2(mat):
+	""" A few improvements:
+		- Use 'in' or '~all' operator instead of iterating through each item
+		- Use 'zip' to switch between rows and columns
+		- Use comprehension, generators,
+		- Make changes in place
+
+	>>> zero_matrix2([[0, 1, 1], [1, 1, 1]])
+	[[0, 0, 0], [0, 1, 1]]
+	>>> zero_matrix2([[1, 1], [1, 1]])
+	[[1, 1], [1, 1]]
+	>>> zero_matrix2([[1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]])
+	[[0, 0, 0, 0, 0], [1, 0, 1, 1, 1], [1, 0, 1, 1, 1]]
+	>>> zero_matrix2([[1, 0, 1, 1, 1], [1, 1, 1, 1, 0], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]])
+	[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 0, 1, 1, 0], [1, 0, 1, 1, 0]]
+	"""
+	def locate_zero_rows(matrix: list) -> list:
+		""" Given an NxM matrix, find rows that contain a zero """
+		return [i for i, row in enumerate(matrix) if not all(row)]
+
+	def locate_zero_cols(matrix: list) -> list:
+		""" Given an NxM matrix, find cols that contain a zero 	
+			zip() function for `parallel iteration`
+				https://realpython.com/python-zip-function/
+				Creates an iterator that aggregates elements from two or more iterables
+				into tuples ex: zip([1, 1], [2, 2]) -> [(1, 2), (1, 2)]
+
+		"""
+		return locate_zero_rows(zip(*matrix)) # zips up the matrix the opposite way
+
+	def zero_out(matrix):
+		"""Given an NxM matrix zero out all rows and columns that contain at least one zero."""
+		zero_rows = locate_zero_rows(matrix)
+		zero_cols = locate_zero_cols(matrix)
+
+		# print(zero_rows, zero_cols)
+
+		for row in zero_rows:
+			matrix[row] = [0] * len(matrix[0]) # num columns
+		for col in zero_cols:
+			for row in matrix:
+				row[col] = 0
+
+		return matrix
+
+	return zero_out(mat)
 
 
 # 1.9
