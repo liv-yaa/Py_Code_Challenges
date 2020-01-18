@@ -57,12 +57,6 @@ Hints: «51,0100
 column are set to 0.
 Hints: #17, #74, #102
 """
-"""
-1.9 String Rotation; Assume you have a method isSubs t rin g which checks if one word is a substring
-of another. Given two strings, si and s2, write code to check if s2 is a rotation of si using only one
-call to isSubs t rin g [e.g., "wate r bottle " is a rotation oP'erbottlewat"),
-Hints: #34, #88,#W4 
-"""
 
 def is_substring(sub, st):
 	""" Checks if a string 'sub' is a substring of string 'st'
@@ -80,7 +74,6 @@ def is_substring(sub, st):
 		False
 
 	"""
-
 	if len(sub) > len(st):
 		# print('flipping')
 		return is_substring(st, sub)
@@ -102,6 +95,42 @@ def is_substring(sub, st):
 	# return if no chars have been turned negative.
 	# An empty substring is also True
 	return True
+
+def is_substring_ordered(sub, st):
+	""" Checks if a string 'sub' is an ordered substring of string 'st'
+		>>> is_substring_ordered('abs', 'crabs')
+		True
+		>>> is_substring_ordered('crabbs', 'abbs')
+		True
+		>>> is_substring_ordered('crabbs', 'basb')
+		False
+		>>> is_substring_ordered('', 'bruh')
+		True
+		>>> is_substring_ordered('xx', '')
+		True
+		>>> is_substring_ordered('ba', 'bruh')
+		False
+
+	"""
+	if len(st) < len(sub):
+		return is_substring_ordered(st, sub)
+	
+	return sub in st
+
+	
+
+
+
+def string_rotation(s1, s2):
+	"""
+	1.9 String Rotation
+	Assume you have a method is_substring which checks if one word is a substring of another. 
+	Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one
+	call to isSubs t rin g [e.g., "wate r bottle " is a rotation oP'erbottlewat"),
+	Hints: #34, #88,#W4 
+	"""
+	pass # Not done!
+
 
 
 if __name__ == "__main__":
