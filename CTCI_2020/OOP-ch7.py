@@ -4,6 +4,18 @@
 """
 class ThreeMethodTypes:
 	""" 1. INSTANCE , CLASS, and STATIC METHODS
+
+	>>> tmt = ThreeMethodTypes()
+	
+	>>> print('class name', tmt.name)
+	class name Raggety
+
+	>>> tmt.instance_method()
+	>>> print('instance name', tmt.lastname)
+	instance name LastInTheClass
+
+	>>> print(tmt.factorial(4))
+	24
 	"""
 	# Define a class attribute:
 	name = 'Raggety'
@@ -11,7 +23,7 @@ class ThreeMethodTypes:
 	def instance_method(self):
 		# Creates an instance attriute through keyword 'self'
 		self.lastname = 'LastInTheClass'
-		print(self.lastname)
+		# print(self.lastname)
 
 	@classmethod
 	def class_method(cls):
@@ -26,7 +38,7 @@ class ThreeMethodTypes:
 		else:
 			return number * ThreeMethodTypes.factorial(number - 1)
 
-	
+
 
 """ 
 Good Design Patterns - APPROACH:
