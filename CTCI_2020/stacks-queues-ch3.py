@@ -1,15 +1,113 @@
-# Stacks & Queues Ch3
+# Stacks & Queues Ch3 : Interview Questions
 
-""" 
-Interview Questions
-3.1 Three in One: Describe how you could use a single array to implement three stacks.
-Hints: #2, #12, #38, #58
-"""
-"""
-3.2 Stack Min: How would you design a stack which, in addition to push and pop, has a function min
-which returns the minimum eiement? Push, pop and min should ail operate in 0(1 ) time.
-Hints: #27, #59, #78
-"""
+# Base class:
+class Stack:
+	""" A basic Stack example ... 
+		
+		>>> s = Stack()
+		>>> print(s.get_min_element())
+		Empty stack
+		>>> s.push(1)
+		[1]
+		>>> s.push(2)
+		[1, 2]
+		>>> s.push(0)
+		[1, 2, 0]
+		>>> s.size()
+		3
+		>>> print(str(s))
+		[1, 2, 0]
+		>>> s.get_min_element()
+		0
+
+	"""
+
+	def __init__(self):
+		# Constructor creates a list
+		self.stack = []
+	
+	def __repr__(self):
+		# Constructor creates a list
+		return str(self.stack)
+	
+	def push(self, data):
+		# Might heck to avoid duplicate entries?
+		self.stack.append(data)
+		print(self.stack)
+
+	def pop(self):
+		# Remove last elem from stack
+		if len(self.stack) > 0:
+			self.stack.pop()
+		else:
+			print('Illegal')
+
+	def size(self):
+		# Get the size of the stack
+		return len(self.stack)
+
+	"""
+	3.2 Stack Min: How would you design a stack which, in addition to push and pop, has a function min
+	which returns the minimum eiement? Push, pop and min should ail operate in 0(1) time.
+	"""
+	def get_min_element(self):
+
+		
+		sz = self.size()
+		# print(self.stack, sz)
+		if sz > 0:
+			mn = self.stack[0]
+			for i in range(1, sz):
+				if self.stack[i] < mn:
+					mn = self.stack[i]
+
+		else:
+			return 'Empty stack' 
+		return mn
+
+
+	
+# 3.1	Three in One: Describe how you could use a single array to implement three stacks.
+class ThreeStacks():
+	""" 
+	Hints: 
+	#12 - We could simulate three stacks in an array by just allocating the first third of the array to
+		the first stack, the second third to the second stack, and the final third to the third stack.
+		One might actually be much bigger than the others, though. Can we be more flexible with the divisions? 
+		If you want to allow for flexible divisions, you can shift stacks around. Can you ensure that all available capacity is used? 
+	#58 - Try thinking about the array as circular, such that the end of the array "wraps around" to the start of thearray
+	# >>> three_in_one()
+
+	"""
+	def __init__(self):
+		self.array = [None, None, None]
+		self.current = [0, 1, 2]
+
+	def push(self, item, stack_number):
+		if not stack_number in [0, 1, 2]:
+			raise Exception("Bad stack number")
+		
+		while len(self.array) <= self.current[stack_number]:
+			self.array += [None] * len(self.array)
+		
+		self.array[self.current[stack_number]] = item
+		self.current[stack_number] += 3
+
+	def pop(self, stack_number):
+		if not stack_number in [0, 1, 2]:
+			raise Exception("Bad stack number")
+		
+		if self.current[stack_number] > 3:
+			self.current[stack_number] -= 3
+		
+		item = self.array[self.current[stack_number]]
+		self.array[self.current[stack_number]] = None
+		return item
+
+
+
+
+
 """
 3.3 Stack of Plates: Imagine a (literal) stack of plates. If the stack gets too high, it might topple.
 Therefore, in real life, we would likely start a new stack when the previous stack exceeds some
@@ -42,3 +140,10 @@ and dequeueCat.You may use the built-in LinkedLis t data structure.
 Hints: #22, #56, #63 
 
 """
+
+
+
+
+if __name__ == "__main__":
+	import doctest
+	doctest.testmod()

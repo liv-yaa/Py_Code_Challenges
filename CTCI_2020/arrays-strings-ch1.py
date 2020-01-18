@@ -47,13 +47,32 @@ of repeated characters. For example, the string aabcccccaaa would become a2blc5a
 the original string. You can assume the string has only uppercase and lowercase letters (a - z).
 Hints: #92, if 110
 """
-"""
-1.7 Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
-bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
-Hints: «51,0100
-"""
 
 
+# 1.7 - Can't figure out
+def rotate_matrix(mat):
+	"""
+	# Cant figure out
+	Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
+	bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+	>>> rotate_matrix([[]]) # 1x1
+	[[], []]
+	>>> rotate_matrix([[0, 0, 1, 1,], [0, 0, 1, 1], [3, 3, 2, 2], [3, 3, 2, 2]]) # 2 px by 2 px
+	
+	# >>> rotate_matrix([[1, 2], [0, 0], [0, 0]]) # 
+	
+	"""
+	width = len(mat[0])
+	heigt = len(mat)
+
+	for i in range(len(mat) - 2):
+		for j in range(len(mat[i])):
+			pass
+
+	return mat
+
+
+# 1.8
 def zero_matrix(mat):
 	"""
 	1.8 Zero Matrix: Write an algorithm such that if an element in an M x N matrix is 0, 
@@ -135,10 +154,9 @@ def zero_matrix2(mat):
 
 	return zero_out(mat)
 
-
 # 1.9
 def is_substring(sub, st):
-	""" Checks if a string 'sub' is a substring of string 'st'
+	""" Checks if a string 'sub' is a permutation of string 'st'
 		>>> is_substring('abs', 'crabs')
 		True
 		>>> is_substring('crabbs', 'abbs')
@@ -151,15 +169,24 @@ def is_substring(sub, st):
 		True
 		>>> is_substring('ba', 'bruh')
 		False
-
+	>>> is_substring('sub', 'bus')
+	True
+	>>> is_substring('busses', 'sbs')
+	True
+	>>> is_substring('', 'bus')
+	True
+	>>> is_substring('sub', '')
+	True
+	>>> is_substring('sub', 'ccdb') # Characters are mutually exclusive 
+	False
+	>>> is_substring('subxxx', 'xccdb')
+	False
 	"""
 	if len(sub) > len(st):
-		# print('flipping')
-		return is_substring(st, sub)
+		return is_substring(st, sub)		# 'flipping'
 
 	# Create a dict to store the counts of all characters in substring
 	sub_dict = { c: sub.count(c) for c in sub }
-	# print(sub_dict)
 
 	# Ensure that all characters in sub have the same or less frequency as their count in st.
 	# Iterate through sub, and if the freq is bad, turn .
@@ -167,11 +194,10 @@ def is_substring(sub, st):
 		f_sub = sub_dict[sub[i]]
 		f_st = st.count(sub[i])
 
-
 		if f_sub > f_st:
 			return False
 
-	# return if no chars have been turned negative.
+	# return if no char counts are hi
 	# An empty substring is also True
 	return True
 
@@ -268,8 +294,6 @@ def string_rotation2(s1, s2):
 
 	temp = s1 + s1
 	return temp.count(s2) > 0
-
-
 
 if __name__ == "__main__":
 	import doctest
