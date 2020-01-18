@@ -93,13 +93,12 @@ class DeckOfCards:
 		""" Pops off the top card """
 		return self.deck.pop()
 
-
 class Blackjack(DeckOfCards):
 	""" For a game of Blackjack, subclass the data structure of Deck of Cards to implement blackjack. 
 	copied https://github.com/w-hat/ctci-solutions/blob/master/ch-07-object-oriented-design/01-deck-of-cards.py
-	>>> bj = Blackjack()
+	# >>> bj = Blackjack()
 	[1 of Spades, 2 of Spades, 3 of Spades, 4 of Spades, 5 of Spades, 6 of Spades, 7 of Spades, 8 of Spades, 9 of Spades, 10 of Spades, 11 of Spades, 12 of Spades, 13 of Spades, 1 of Clubs, 2 of Clubs, 3 of Clubs, 4 of Clubs, 5 of Clubs, 6 of Clubs, 7 of Clubs, 8 of Clubs, 9 of Clubs, 10 of Clubs, 11 of Clubs, 12 of Clubs, 13 of Clubs, 1 of Diamonds, 2 of Diamonds, 3 of Diamonds, 4 of Diamonds, 5 of Diamonds, 6 of Diamonds, 7 of Diamonds, 8 of Diamonds, 9 of Diamonds, 10 of Diamonds, 11 of Diamonds, 12 of Diamonds, 13 of Diamonds, 1 of Hearts, 2 of Hearts, 3 of Hearts, 4 of Hearts, 5 of Hearts, 6 of Hearts, 7 of Hearts, 8 of Hearts, 9 of Hearts, 10 of Hearts, 11 of Hearts, 12 of Hearts, 13 of Hearts]
-	>>> bj.give_value()
+	# >>> bj.give_value()
 	"""
 	trans = {''}
 	def give_value(self):
@@ -116,6 +115,56 @@ class Blackjack(DeckOfCards):
 				v += 10
 				aces -= 1
 		return v
+
+
+# 7.2 Demo a Call Center
+class Employee:
+	""" 
+	Base class representing one employee
+	# >>> e = Employee('respondent')
+	# >>> e = Employee('manager')
+	# >>> e = Employee('director')
+	"""
+
+	def __init__(self, empType, empNumber):
+		self.empType = empType
+		self.empNumber = empNumber
+		# print(self.empType)
+
+	def __repr__(self):
+		return str(self.empType) + str(self.empNumber)
+
+
+class Company:
+	""" Assigns a call to the first available employee (there are 3 types)
+		# >>> c = Company(10) Ex. random but [director0, manager1, manager2, respondent3, respondent4, manager5, director6, respondent7, director8, manager9]
+		>>> c = Company(10)
+	"""
+	ETYPES = ['respondent', 'manager', 'director']
+	# SIZE = 10
+
+	def __init__(self, size):
+		self.all_employees = {t : [] for t in ['respondent', 'manager', 'director']}
+		self.size = size
+		self.build(size=self.size)
+		print('test', self.all_employees)
+
+	def build(self, size):
+		# Randomly build up a dict of employees, given company size
+		for i in range(size):
+			# Get a random type of employee
+			rand_type = self.ETYPES[random.randint(0, 2)]
+
+			if rand_type != -1:
+				# Create an employee and add it to the company dictionary
+				self.all_employees.get(rand_type, []).append(Employee(rand_type, i))
+
+	# def dispatchCall(self):
+	# 	""" Assigns a call to the first available employee (there are 3 types) 
+	# 	>>> dispatchCall()
+		
+	# 	"""
+	# 	pass
 
 
 
