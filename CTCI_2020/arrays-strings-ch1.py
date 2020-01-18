@@ -52,12 +52,49 @@ Hints: #92, if 110
 bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
 Hints: «51,0100
 """
-"""
-1.8 Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
-column are set to 0.
-Hints: #17, #74, #102
-"""
 
+
+def zero_matrix(mat):
+	"""
+	1.8 Zero Matrix: Write an algorithm such that if an element in an M x N matrix is 0, 
+	its entire row and column are set to 0 in place. Hints: #17, #74, #102
+
+	>>> zero_matrix([[0, 1, 1], [1, 1, 1]])
+	[[0, 0, 0], [0, 1, 1]]
+	>>> zero_matrix([[1, 1], [1, 1]])
+	[[1, 1], [1, 1]]
+	>>> zero_matrix([[1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]])
+	[[0, 0, 0, 0, 0], [1, 0, 1, 1, 1], [1, 0, 1, 1, 1]]
+	>>> zero_matrix([[1, 0, 1, 1, 1], [1, 1, 1, 1, 0], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]])
+	[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 0, 1, 1, 0], [1, 0, 1, 1, 0]]
+	"""
+	# keep track of the rows & cols that have zeroes:
+	rows0 = set()
+	cols0 = set()
+	for i in range(len(mat)): # rows
+		for j in range(len(mat[i])): # cols
+			elem = mat[i][j]
+			if elem == 0:
+				# print('zero at i', i, 'j', j)
+				rows0.add(i)
+				cols0.add(j)
+
+	# print('cols0', cols0, 'rows0', rows0)
+
+	# Edit the entire column for all columns:
+	for c in cols0:
+		for i in range(len(mat)):
+			mat[i][c] = 0
+
+	# Edit the row for all rows:
+	for r in rows0:
+		for j in range(len(mat[0])):
+			mat[r][j] = 0
+
+	return mat
+
+
+# 1.9
 def is_substring(sub, st):
 	""" Checks if a string 'sub' is a substring of string 'st'
 		>>> is_substring('abs', 'crabs')
@@ -117,7 +154,6 @@ def is_substring_ordered(sub, st):
 	
 	return sub in st
 
-
 def string_rotation(s1, s2):
 	"""
 	1.9 String Rotation
@@ -157,7 +193,6 @@ def string_rotation(s1, s2):
 		if s2[i + 1:] + s2[:i + 1] == s1:
 			return True
 	return False
-
 
 def string_rotation2(s1, s2):
 
