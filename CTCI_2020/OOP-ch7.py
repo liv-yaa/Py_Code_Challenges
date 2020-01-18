@@ -117,37 +117,33 @@ class Blackjack(DeckOfCards):
 		return v
 
 
-# 7.2 Demo a Call Center
+# 7.2 Design a Call Center
 class Employee:
 	""" 
 	Base class representing one employee
-	# >>> e = Employee('respondent')
-	# >>> e = Employee('manager')
-	# >>> e = Employee('director')
+	>>> e = Employee('respondent', 1)
+	>>> e = Employee('manager', 2)
+	>>> e = Employee('director', 3)
 	"""
 
 	def __init__(self, empType, empNumber):
 		self.empType = empType
 		self.empNumber = empNumber
-		# print(self.empType)
 
 	def __repr__(self):
 		return str(self.empType) + str(self.empNumber)
 
-
 class Company:
 	""" Assigns a call to the first available employee (there are 3 types)
-		# >>> c = Company(10) Ex. random but [director0, manager1, manager2, respondent3, respondent4, manager5, director6, respondent7, director8, manager9]
-		>>> c = Company(10)
+		# >>> c = Company(10) 
+		# >>> c.dispatchCall()
 	"""
 	ETYPES = ['respondent', 'manager', 'director']
-	# SIZE = 10
 
 	def __init__(self, size):
-		self.all_employees = {t : [] for t in ['respondent', 'manager', 'director']}
+		self.all_employees = {t : [] for t in self.ETYPES}
 		self.size = size
 		self.build(size=self.size)
-		print('test', self.all_employees)
 
 	def build(self, size):
 		# Randomly build up a dict of employees, given company size
@@ -159,13 +155,250 @@ class Company:
 				# Create an employee and add it to the company dictionary
 				self.all_employees.get(rand_type, []).append(Employee(rand_type, i))
 
-	# def dispatchCall(self):
-	# 	""" Assigns a call to the first available employee (there are 3 types) 
-	# 	>>> dispatchCall()
-		
-	# 	"""
-	# 	pass
+	def dispatchCall(self):
+		""" Assigns a call to the first available employee (there are 3 types) 		
+		"""
+		# self.all_employees['respondent'] = []
+		e = self.all_employees.get('respondent')
+		m = self.all_employees.get('manager')
+		r = self.all_employees.get('director')
 
+		if e != [] and e != -1:
+			# First, get the respondents
+			return e[0]
+
+		elif m != [] and m != -1:
+			# If respondent does not exist, get the managers
+			return m[0]
+		elif r != [] and r != -1:
+			# If neither respondents nor managers exist, get the directors
+			return r[0]
+		else:
+			return 'No one exists'
+
+
+# Note, this solution uses a Queue of Employee objects, who each have a manager.
+# The call goes up the chain of command! https://github.com/w-hat/ctci-solutions/blob/master/ch-07-object-oriented-design/02-call-center.py
+
+class CallCenter2:
+	def __init__(self, respondents, managers, director):
+		self.respondents = respondents
+		self.managers = managers
+		self.director = director
+		
+		self.respondent_queue = []
+		self.call_queue = []
+
+		for respondent in respondents:
+			respondent.callcenter = self
+			if not respondent.call:
+				self.respondent_queue.append(respondent)
+
+	def __repr__(self):
+		r = '\n'.join([str(x) for x in self.respondents])
+		m = '\n'.join([str(x) for x in self.managers])
+		d = str(self.director)
+		return f"""
+{r}
+
+{m}
+
+{d}
+
+{self.respondent_queue}
+			"""
+	def route_respondent(self, respondent):
+		if len(self.call_queue):
+			respondent.take_call(self.call_queue.pop(0))
+		else:
+			self.respondent_queue.append(respondent)
+
+	def route_call(self, call):
+		if len(self.respondent_queue):
+			self.respondent_queue.pop(0).take_call(call)
+
+		else:
+			self.call_queue.append(call)
+
+class Call2:
+	def __init__(self, issue):
+		self.issue = issue
+		self.employee = None
+
+	def resolve(self, handled):
+		if handled:
+			self.issue = None
+		self.employee.finish_call(handled)
+
+	def apologize(self):
+		self.employee = None
+
+
+class Employee2:
+	def __init__(self, name, manager):
+		self.name, self.manager = name, manager
+		self.call = None
+
+	def __repr__(self):
+		return 'Employee name: ' + str(self.name)
+
+	def take_call(self, call):
+		if self.call:
+			self.escalate(call)
+		else:
+			self.call = call
+			self.call.employee = self
+
+	def escalate(self, call):
+		if self.manager:
+			self.manager.take_call(call)
+		else:
+			call.apologize()
+
+	def finish_call(self, handled=True):
+		if not handled:
+			if self.manager:
+				self.manager.take_call(self.call)
+			else:
+				call.apologize()
+		self.call = None
+
+class Respondent2(Employee2):
+	def __repr__(self):
+		return 'ERespondent: ' + str(self.name) + ' (m: ' + str(self.manager.name) + ') '
+
+	def finish_call(self, handled=True):
+		super(Respondent2, self).finish_call(handled)
+		self.callcenter.route_respondent(self)
+
+class Manager2(Employee2):
+	def __repr__(self):
+		return 'EManager: ' + str(self.name) + ' (man: ' + str(self.manager.name) + ') '
+
+
+class Director2(Employee2):
+	def __repr__(self):
+		return 'EDirector: ' + str(self.name)
+
+	def __init__(self, name):
+		super(Director2, self).__init__(name, None)
+
+
+# import unittest
+# class Test(unittest.TestCase):
+#   def test_call_center(self):
+#     lashaun = Director2("Lashaun")
+#     juan = Manager2("Juan", lashaun)
+#     sally = Manager2("Sally", lashaun)
+#     boris = Respondent2("Boris", juan)
+#     sam = Respondent2("Sam", juan)
+#     jordan = Respondent2("Jordan", sally)
+#     casey = Respondent2("Casey", sally)
+#     center = CallCenter2([boris, sam, jordan, casey], [juan, sally], lashaun)
+#     print(center)
+#     # print(center.director) # Lashaun
+
+#     # Take some calls:
+#     call1 = Call2("The toilet")
+#     call2 = Call2("The webpage")
+#     call3 = Call2("The email")
+#     call4 = Call2("The lizard")
+#     call5 = Call2("The cloudy weather")
+#     call6 = Call2("The noise")
+#     self.assertEqual(len(center.respondent_queue), 4)
+#     # print(center.respondent_queue)
+#     center.route_call(call1)
+#     center.route_call(call2)
+#     self.assertEqual(len(center.respondent_queue), 2)
+#     center.route_call(call3)
+#     center.route_call(call4)
+#     center.route_call(call5)
+#     center.route_call(call6)
+#     print(center.respondent_queue)
+
+#     self.assertEqual(center.call_queue, [call5, call6])
+#     # call1.resolve(True)
+#     # self.assertEqual(call1.issue, None)
+#     # self.assertEqual(center.call_queue, [call6])
+#     # self.assertEqual(sally.call, None)
+#     # self.assertEqual(lashaun.call, None)
+#     # call4.resolve(False)
+#     # self.assertEqual(sally.call, call4)
+#     # call4.resolve(False)
+#     # self.assertEqual(sally.call, None)
+#     # self.assertEqual(lashaun.call, call4)
+#     # call4.resolve(True)
+#     # self.assertEqual(lashaun.call, None)
+#     # call6.resolve(True)
+#     # self.assertEqual(center.respondent_queue, [casey])
+
+
+""" """
+
+class Jukebox:
+	""" 
+	Class represenging a Jukebox. Stores a queue of songs. Takes titles to play and plays them.
+	>>> j = Jukebox()
+	>>> print(j)
+	Jukebox queue []
+	>>> j.add_to_queue(Song('hit me', 'brit'))
+	>>> print(j)
+	Jukebox queue [hit me by brit played: False]
+	>>> j.get_next_song()
+	"""
+	def __init__(self):
+		# Initialize a song queue to handle incoming songs
+		self.queue = []
+
+	def __repr__(self):
+		# String rep
+		return 'Jukebox queue ' + str(self.queue)
+
+	def add_to_queue(self, song):
+		# Adds a Song object to the queue
+		# print('Adding Song to queue')
+		self.queue.append(song)
+
+	def get_next_song(self):
+		if self.queue:
+			s = self.queue.pop(0)
+			print(s)
+			s.play() # Should 
+			print(s) # Print the string representation of the Song
+
+
+	# def play(self, title):
+	# 	# Play a song, then pop it off the front of the queue
+	# 	print('playing song...', title)
+
+	# 	
+
+class Song:	
+	""" 
+	# >>> son = Song('baby', 'elvis')
+	# >>> print(son)
+	# baby by elvis played: False
+	# >>> son.play()
+	# >>> print(son.played)
+	# True
+	"""
+	def __init__(self, title, artist):
+		self.title = title
+		self.artist = artist
+		self.played = False
+		# print(self)
+
+	def __repr__(self):
+		# String rep of a Song
+		return 'Song Object' + ' ' + str(self.title) + ' by ' + str(self.artist) + ' played: ' + str(self.played)
+
+	def play(self):
+		""" Plays the song """
+		self.played = True
+
+
+class Artist:
+	pass
 
 
 
@@ -173,6 +406,8 @@ class Company:
 if __name__ == "__main__":
 	import doctest
 	doctest.testmod()
+	# unittest.main()
+
 
 
 
