@@ -373,61 +373,72 @@ class Director2(Employee2):
 #     # self.assertEqual(center.respondent_queue, [casey])
 
 
-""" """
+
 
 class Jukebox:
 	""" 
 	Class represenging a Jukebox. Stores a queue of songs. Takes titles to play and plays them.
-	>>> j = Jukebox()
+	>>> song1 = Song("Just Dance", "8598742398723498")
+	>>> song2 = Song("When You Wish Upon a Beard", "9879834759827209384")
+	>>> j = Jukebox([song1, song2])
 	>>> print(j)
-	Jukebox queue []
-	>>> j.add_to_queue(Song('hit me', 'brit'))
+	{'Just Dance': Song Object Just Dance{ by: 8598742398723498 } played: False, 'When You Wish Upon a Beard': Song Object When You Wish Upon a Beard{ by: 9879834759827209384 } played: False}
+	>>> song3 = Song('Pepperoni', '35')
+	>>> j.add_to_dict(song3)
 	>>> print(j)
-	Jukebox queue [Song Object hit me{ by: brit } played: False]
-	>>> j.get_next_song()
+	{'Just Dance': Song Object Just Dance{ by: 8598742398723498 } played: False, 'When You Wish Upon a Beard': Song Object When You Wish Upon a Beard{ by: 9879834759827209384 } played: False, 'Pepperoni': Song Object Pepperoni{ by: 35 } played: False}
+	
 	"""
-	def __init__(self):
-		# Initialize a song queue to handle incoming songs
-		self.queue = []
+	def __init__(self, songs):
+		# Initialize a song dictionary to store all songs in the jukebox
+		self.songs = {}
+		for song in songs:
+			# Set the key as the title and value as song object
+			self.songs[song.title] = song
+		# Initialize this flag
+		self.playing = None
 
 	def __repr__(self):
 		# String rep
-		return 'Jukebox queue ' + str(self.queue)
+		return str(self.songs)
 
-	def add_to_queue(self, song):
+	def add_to_dict(self, song):
 		# Adds a Song object to the queue
 		# print('Adding Song to queue')
-		self.queue.append(song)
+		self.songs[song.title] = song
 
-	def get_next_song(self):
-		if self.queue:
-			s = self.queue.pop(0)
-			# print(s)
-			s.play() # Should 
-			# print(s) # Print the string representation of the Song
+	def play_song(self, title):
+		if self.playing:
+			self.stop_song()
+		self.playing = self.songs[title]
+		self.playing.play()
 
 class Song:	
 	""" 
-	# >>> son = Song('baby', 'elvis')
-	# >>> print(son)
-	# baby by elvis played: False
-	# >>> son.play()
-	# >>> print(son.played)
-	# True
+	>>> son = Song('baby', 'elvis', 'dataa')
+	>>> print(son)
+	Song Object baby{ by: elvis } data: dataa
+	>>> son.play()
+	>>> print(son.is_playing)
+	True
 	"""
-	def __init__(self, title, artist):
+	def __init__(self, title, artist, data):
 		self.title = title
 		self.artist = Artist(artist)
-		self.played = False
+		self.data = data
+		self.play_count = 0
 
 	def __repr__(self):
 		# String rep of a Song
-		return 'Song Object' + ' ' + str(self.title) + str(self.artist) + ' played: ' + str(self.played)
+		return 'Song Object' + ' ' + str(self.title) + str(self.artist) + ' data: ' + str(self.data)
 
 	def play(self):
 		""" Plays the song """
-		self.played = True
+		self.is_playing = True
+		self.play_count += 1
 
+	def stop(self):
+		self.is_playing = False
 
 class Artist:
 	""" Artist object 
@@ -472,7 +483,8 @@ class Artist:
 		# Returns the set of songs!
 		return self.songs
 
-	
+
+
 
 if __name__ == "__main__":
 	import doctest
