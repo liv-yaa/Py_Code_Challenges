@@ -195,7 +195,7 @@ class DoublyLinkedList:
 			while curr.next:
 				curr=curr.next
 
-			#Then add to the end.
+			# Then add to the end by linking both pointers.
 			curr.next = new_node
 			new_node.prev = curr
 
@@ -203,19 +203,22 @@ class DoublyLinkedList:
 
 
 	def insert_at_start(self, data):
+		""" The main diff between this and the other insert method
+			is that you have to keep track of the head
+
+			Tip: Set the pointers first, then overrider the self.head name!
+		 """
 		nn = DLNode(data)
 
-		
 		if self.head == None:   # empty list
 			self.head = nn
 		else:                   # Nonempty list
-			old_head = self.head
+			# Start with the pointers first
+			nn.next = self.head
+			self.head.prev = nn
+
+			# Finally, set the head itslef.
 			self.head = nn
-			old_head.prev = self.head # Set the pointers
-			self.head.next = old_head
-
-			
-
 
 
 		self.printLL()
