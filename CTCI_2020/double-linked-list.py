@@ -130,14 +130,7 @@ class LinkedList:
 
 
 class DLNode:
-	"""Doubly linked list node 
-		
-		Pros: can searched & traversed in both directions
-				Insertion & deletion are easier to implement in DLNode
-
-		Cons: need more memory space to store extra reference for each node
-				More steps needed to perform insert/delete operations
-	"""
+	
 
 	def __init__(self, data):
 		self.data = data
@@ -158,21 +151,117 @@ class DLNode:
 
 		print(f'{curr.data} :: pv {curr.prev} :: nx {curr.next}')
 
+	def search_for_data(self, data):
+		print('searching for ', data)
+		curr = self
+		while curr.next:
+			if curr.data == data:
+				return curr
+
+			else:
+				curr = curr.next
+		return 'Not Found'
+
+
+class DoublyLinkedList:
+	"""Doubly linked list 
+		
+		Diffs to reg linked list : we do not need a tail because we have the 
+		ability to find any item in O(1) time!
+
+	"""
+
+	def __init__(self):
+		""" Empty list """
+		self.head = None
+
+	def printLL(self):
+		if self.head:
+			self.head.print_all()
+		else:
+			print('[]')
+
+
+	def insert_at_end(self, data):
+		""" Inserts a new node to the end """
+		new_node = DLNode(data)
+		if self.head == None: # empty list
+			self.head = new_node
+
+		elif self.head != None: # 1 or more more items in list
+			# Start at head and traverse until we get to the end
+
+			curr = self.head
+			while curr.next:
+				curr=curr.next
+
+			#Then add to the end.
+			curr.next = new_node
+			new_node.prev = curr
+
+		self.printLL()
+
+
+	def insert_at_start(self, data):
+		nn = DLNode(data)
+
+		
+		if self.head == None:   # empty list
+			self.head = nn
+		else:                   # Nonempty list
+			old_head = self.head
+			self.head = nn
+			old_head.prev = self.head # Set the pointers
+			self.head.next = old_head
+
+			
+
+
+
+		self.printLL()
+
+
+
+
 if __name__ == '__main__':
-	dl0 = DLNode('0') # Head
+
+	DLL = DoublyLinkedList()
+	# DLL.printLL()
+	# DLL.insert_at_end(99)
+	# DLL.insert_at_end(88)
+	# DLL.insert_at_end(77)
+	# DLL.insert_at_end(66)
+
+	DLL.insert_at_start(188)
+	DLL.insert_at_start(177)
+	DLL.insert_at_start(166)
+
+
+
+
+
+	# dl0 = DLNode('0') # Head
+	# # dl0.print_all()
+	# # print(dl0.next, dl0.prev)
+
+	# dl1 = DLNode('1') # 0 -> 1
+	# dl0.next = dl1
+	# dl1.prev = dl0
+
+
+	# dl2 = DLNode('2') # 0 -> 1 -> 2
+	# dl1.next = dl2
+	# dl2.prev = dl1
+
+	# dl3 = DLNode('3') # 0 -> 1 -> 2
+	# dl2.next = dl3
+	# dl3.prev = dl2
+
 	# dl0.print_all()
-	# print(dl0.next, dl0.prev)
 
-	dl1 = DLNode('1') # 0 -> 1
-	dl0.next = dl1
-	dl1.prev = dl0
+	# print(dl0.search_for_data('2'))
 
 
-	dl2 = DLNode('2') # 0 -> 1 -> 2
-	dl1.next = dl2
-	dl2.prev = dl1
-
-	dl0.print_all()
 
 
 
