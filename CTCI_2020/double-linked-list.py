@@ -108,29 +108,72 @@ class LinkedList:
 		
 
 
+# if __name__ == '__main__':
+	# ll = LinkedList()
+	# # print(ll, 'head', ll.head)
+
+	# ll.append_node(1)
+	# ll.append_node(2)
+	# ll.append_node(3)
+
+	# ll.print_LList()
+
+
+
+
+
+
+
+
+
+
+
+
+class DLNode:
+	"""Doubly linked list node 
+		
+		Pros: can searched & traversed in both directions
+				Insertion & deletion are easier to implement in DLNode
+
+		Cons: need more memory space to store extra reference for each node
+				More steps needed to perform insert/delete operations
+	"""
+
+	def __init__(self, data):
+		self.data = data
+		self.prev = None
+		self.next = None
+
+	def __repr__(self):
+		return f'Node {self.data}'
+
+	def print_all(self):
+		print(f'Printing all starting with {self.data}')
+
+		curr = self
+
+		while curr.next:
+			print(f'{curr.data} :: pv {curr.prev} :: nx {curr.next}')
+			curr = curr.next
+
+		print(f'{curr.data} :: pv {curr.prev} :: nx {curr.next}')
+
 if __name__ == '__main__':
-	ll = LinkedList()
-	# print(ll, 'head', ll.head)
+	dl0 = DLNode('0') # Head
+	# dl0.print_all()
+	# print(dl0.next, dl0.prev)
 
-	ll.append_node(1)
-	ll.append_node(2)
-	ll.append_node(3)
-
-	ll.print_LList()
-
+	dl1 = DLNode('1') # 0 -> 1
+	dl0.next = dl1
+	dl1.prev = dl0
 
 
+	dl2 = DLNode('2') # 0 -> 1 -> 2
+	dl1.next = dl2
+	dl2.prev = dl1
 
+	dl0.print_all()
 
-
-
-
-
-
-
-
-# class DLNode:
-# 	pass
 
 
 
