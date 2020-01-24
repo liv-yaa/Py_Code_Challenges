@@ -6,21 +6,47 @@ Interview Questions
 cannot use additional data structures?
 Hints: #44, #117, #132
 """
-"""
-1.2 Check Permutation: Given two strings, write a method to decide if one is a permutation of the
-other.
-Hints: ft , #84, #122, #131
-"""
-"""
-1.3 URLify: Write a method to replace all spaces in a string with '%20'. You may assume that the string
-has sufficient space at the end to hold the additional characters, and that you are given the "true"
-length of the string. (Note: If implementing in Java, please use a character array so that you can
-perform this operation in place.)
-EXAMPLE
-Input: "Mr 3ohn Smit h 13
-Output: "Mr%203ohn%20Smith"
-Hints: #53,0118
-"""
+
+
+# 1.2 - Done
+def is_permutation(s1, s2):
+	"""
+	1.2 Check Permutation: Given two strings, write a method to decide if one is a permutation of the
+	other.
+	>>> is_permutation('sis', 'ssi')
+	True
+	>>> is_permutation('iss', 'ssi')
+	True
+	>>> is_permutation('', 'ssi')
+	False
+	>>> is_permutation('', '')
+	True
+	"""
+	if s1 == s2:
+		return True
+
+	if s1 == '' or s2 == '':
+		return False 
+
+	cd1 = {i : s1.count(i) for i in s1}
+	cd2 = {i : s2.count(i) for i in s2}
+
+	return cd1 == cd2
+
+# 1.3 - Not done
+def urlify(s):
+	"""
+	URLify: Write a method to replace all spaces in a string with '%20'. IN PLACE
+
+	>>> urlify('dlk 26')
+	dlk%2026
+	>>> urlify('Mr 3ohn Smit h 13')
+	Mr%203ohn%20Smith
+
+	"""
+	return s.strip().replace(' ', '%20')
+
+
 """
 1.4 Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation
 is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
@@ -43,7 +69,7 @@ Hints: #23, #97, it 130
 
 
 
-# 1.6
+# 1.6 - DONE
 def string_compress(string):
 	"""
 	1.6 String Compression: Implement a method to perform basic string compression using the counts
@@ -273,7 +299,7 @@ def is_substring(sub, st):
 	sub_dict = { c: sub.count(c) for c in sub }
 
 	# Ensure that all characters in sub have the same or less frequency as their count in st.
-	# Iterate through sub, and if the freq is bad, turn .
+	# Iterate through sub, and if any one freq is greater, return 'False' right away!
 	for i in range(len(sub)):
 		f_sub = sub_dict[sub[i]]
 		f_st = st.count(sub[i])
