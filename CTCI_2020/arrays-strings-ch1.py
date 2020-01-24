@@ -40,16 +40,73 @@ pale , bal e - > tru e
 pale , bak e - > fals e
 Hints: #23, #97, it 130
 """
-"""
-1.6 String Compression: Implement a method to perform basic string compression using the counts
-of repeated characters. For example, the string aabcccccaaa would become a2blc5a3, If the
-"compressed" string would not become smaller than the original string, your method should return
-the original string. You can assume the string has only uppercase and lowercase letters (a - z).
-Hints: #92, if 110
-"""
 
 
-# 1.7 - Can't figure out
+
+# 1.6
+def string_compress(string):
+	"""
+	1.6 String Compression: Implement a method to perform basic string compression using the counts
+	of repeated characters. For example, the string aabcccccaaa would become a2blc5a3, 
+	If the "compressed" string would not become smaller than the original string, your method 
+	should return the original string. 
+	You can assume the string has only uppercase and lowercase letters (a - z).
+
+	>>> string_compress('')
+	''
+	>>> string_compress('eeeeeee')
+	'7e'
+	>>> string_compress('rroobbeerrttt')
+	'2r2o2b2e2r3t'
+	>>> string_compress('rroobbeerrt')
+	'rroobbeerrt'
+	>>> string_compress('oolivia')
+	'oolivia'
+
+	"""
+
+	compressed = ''
+
+	i = 0		
+	curr = []       # Set up a set for the chunk
+	ct = 0			# Set up a counter for the chunk
+
+	if len(string) > 0:
+		while i < len(string):
+			
+			curr.append(string[i]) # Get first item and add to set
+
+			if len(set(curr)) > 1:
+
+				chunk = curr[:-1]
+				
+				if len(chunk) > 1:
+					compressed += str(len(chunk)) + chunk[0]
+				else:
+					compressed += chunk[0]
+
+				del curr[:-1]
+
+			i += 1
+
+		if len(curr) > 1:
+			compressed += str(len(curr)) + curr[0]
+		else:
+			compressed += curr[0]
+
+	if len(compressed) < len(string): 
+		return compressed
+	else:
+
+		return string
+
+
+
+
+
+
+
+# 1.7 - Done
 def rotate_matrix(mat):
 	"""
 	Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
@@ -76,12 +133,11 @@ def rotate_matrix(mat):
 		for j in range(len(mat[i])):
 			innerArray = [mat[j][i]] + innerArray
 		results.append(innerArray)
-		# print(innerArray)
 
 	return results
 
 
-# 1.8
+# 1.8 - Done
 def zero_matrix(mat):
 	"""
 	1.8 Zero Matrix: Write an algorithm such that if an element in an M x N matrix is 0, 
@@ -163,7 +219,7 @@ def zero_matrix2(mat):
 
 	return zero_out(mat)
 
-# 1.9
+# 1.9 - Done
 def is_substring(sub, st):
 	""" Checks if a string 'sub' is a permutation of string 'st'
 		>>> is_substring('abs', 'crabs')
@@ -231,6 +287,7 @@ def is_substring_ordered(sub, st):
 	
 	return sub in st
 
+# 1.10 - Done
 def string_rotation(s1, s2):
 	"""
 	1.9 String Rotation
