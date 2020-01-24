@@ -69,39 +69,58 @@ def string_compress(string):
 
 	i = 0		
 	curr = []       # Set up a set for the chunk
-	ct = 0			# Set up a counter for the chunk
 
 	if len(string) > 0:
 		while i < len(string):
-			
 			curr.append(string[i]) # Get first item and add to set
 
 			if len(set(curr)) > 1:
-
 				chunk = curr[:-1]
 				
 				if len(chunk) > 1:
-					compressed += str(len(chunk)) + chunk[0]
-				else:
-					compressed += chunk[0]
-
+					compressed += str(len(chunk))
+				compressed += chunk[0]
+				
 				del curr[:-1]
-
+			
 			i += 1
 
 		if len(curr) > 1:
-			compressed += str(len(curr)) + curr[0]
-		else:
-			compressed += curr[0]
+			compressed += str(len(curr))
+		compressed += curr[0]
 
 	if len(compressed) < len(string): 
 		return compressed
-	else:
-
-		return string
+	return string
 
 
+def string_compress2(s):
+	""" Better answer 
+	>>> string_compress2('')
+	''
+	>>> string_compress2('eeeeeee')
+	'7e'
+	>>> string_compress2('rroobbeerrttt')
+	'2r2o2b2e2r3t'
+	>>> string_compress2('rroobbeerrt')
+	'rroobbeerrt'
+	>>> string_compress2('oolivia')
+	'oolivia'
 
+
+	"""
+	compressed = []
+	ct = 0
+
+	for i in range(len(s)):
+		if i != 0 and s[i] != s[i - 1]:
+			compressed.append(str(ct) + s[i - 1])
+			ct = 0
+		ct += 1
+	if s != '':
+		compressed.append(str(ct) + s[-1])
+
+	return min(s, ''.join(compressed), key=len)
 
 
 
