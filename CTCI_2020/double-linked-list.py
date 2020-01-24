@@ -221,7 +221,35 @@ class DoublyLinkedList:
 			self.head = nn
 
 
-		self.printLL()
+		# self.printLL()
+
+
+	def insert_before_x(self, data, x):
+		""" Traverses through Doubly Linked List to find x.
+			Then, adds a new node just before 
+		"""
+		if self.head == None:
+			return 'List is empty'
+
+		else:
+			nn = DLNode(data)
+			curr = self.head
+			while curr.next:
+
+				if curr.next == x:
+					# Found it!
+					# Set the pointers so that nn is behind curr.next...
+					curr.next.prev = nn
+					nn.next = curr.next
+
+					# ...and nn is in front of curr
+					curr.next = nn
+					nn.prev = curr
+
+				curr = curr.next
+			return 'X not found'
+
+				
 
 
 
@@ -236,8 +264,10 @@ if __name__ == '__main__':
 	# DLL.insert_at_end(66)
 
 	DLL.insert_at_start(188)
-	DLL.insert_at_start(177)
-	DLL.insert_at_start(166)
+	# DLL.insert_at_start(177)
+	# DLL.insert_at_start(166)
+	DLL.insert_before_x(166, 155)
+	DLL.printLL()
 
 
 

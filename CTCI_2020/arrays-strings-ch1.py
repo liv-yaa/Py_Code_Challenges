@@ -52,24 +52,33 @@ Hints: #92, if 110
 # 1.7 - Can't figure out
 def rotate_matrix(mat):
 	"""
-	# Cant figure out
 	Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
 	bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+
+		first row of source ------> last column of destination
+		second row of source ------> last but-one column of destination
+		so ... on
+		last row of source ------> first column of destination
+
 	>>> rotate_matrix([[]]) # 1x1
-	[[], []]
+	[[]]
 	>>> rotate_matrix([[0, 0, 1, 1,], [0, 0, 1, 1], [3, 3, 2, 2], [3, 3, 2, 2]]) # 2 px by 2 px
-	
-	# >>> rotate_matrix([[1, 2], [0, 0], [0, 0]]) # 
+	[[3, 3, 0, 0], [3, 3, 0, 0], [2, 2, 1, 1], [2, 2, 1, 1]]
+	>>> rotate_matrix([[1, 2, 3], [0, 0, 0], [0, 0, 0]])
+	[[0, 0, 1], [0, 0, 2], [0, 0, 3]]
 	
 	"""
-	width = len(mat[0])
-	heigt = len(mat)
+	results = []
+	n = len(mat)
 
-	for i in range(len(mat) - 2):
+	for i in range(n):
+		innerArray = []
 		for j in range(len(mat[i])):
-			pass
+			innerArray = [mat[j][i]] + innerArray
+		results.append(innerArray)
+		# print(innerArray)
 
-	return mat
+	return results
 
 
 # 1.8

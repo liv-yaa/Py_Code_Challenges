@@ -119,11 +119,6 @@ class Node:
 				to_visit.extend(curr.children)
 
 
-
-
-
-
-# She said these make Things more complicated
 class Tree:
 	""" Class representing a Tree
 
@@ -164,14 +159,7 @@ class Tree:
 			list_nodes_recursive(child)
 
 
-
-
-
-
-
-
-
-class BinaryNode():
+class BinaryNode:
 	""" A Binary Search node for trees or graphs
 
 		# Create root node:
@@ -204,7 +192,7 @@ class BinaryNode():
 	def insert(self, data):
 		# Suppose the parent is 'self ' - the root
 		# We want to add one child - new node with data
-		# * Recursively * 
+		# * Recursively *  - with each recursive step, update the self.
 		# Compare the value ' data ' of a new node with the 
 			# parent node ' self.data ' 
 			# and decides where to add it to the tree
@@ -233,8 +221,13 @@ class BinaryNode():
 					print('recursive, both branches are full', self.left, self.right)
 					self.right.insert(data)
 		else:
-			# If self.data == None, set self.data to new data
+			# If self.data == None, or self.data == data, set self.data to new data
 			# We are creating the head with the root?
+
+
+
+			# Why: when we initialize the list, we set self but not self.data
+			# SO it has an 'empty head'?
 			self.data = data
 
 
@@ -280,20 +273,20 @@ class BinaryNode():
 		if self.right:
 			self.right.PrintTree()
 
-if __name__ == "__main__":
+	# if __name__ == "__main__":
 
-	apple = BinaryNode("apple")
-	ghost = BinaryNode("ghost")
-	fence = BinaryNode("fence", apple, ghost)
-	just = BinaryNode('just')
-	jackal = BinaryNode("jackal", fence, just)
-	zebra = BinaryNode("zebra")
-	pencil = BinaryNode("pencil", None, zebra)
-	mystic = BinaryNode("mystic")
-	pluto = BinaryNode("nerd", mystic, pencil)
-	money = BinaryNode("money", jackal, pluto)
+	# apple = BinaryNode("apple")
+	# ghost = BinaryNode("ghost")
+	# fence = BinaryNode("fence", apple, ghost)
+	# just = BinaryNode('just')
+	# jackal = BinaryNode("jackal", fence, just)
+	# zebra = BinaryNode("zebra")
+	# pencil = BinaryNode("pencil", None, zebra)
+	# mystic = BinaryNode("mystic")
+	# pluto = BinaryNode("nerd", mystic, pencil)
+	# money = BinaryNode("money", jackal, pluto)
 
-	print(money.find("nerd"))
+	# print(money.find("nerd"))
 
 	# root = BinaryNode(12)
 	# print(root)
@@ -321,7 +314,7 @@ if __name__ == "__main__":
 	# print("style.css = ", tree.find_in_tree("style.css")) # will not find
 
 
-class Traversals:
+class TreeTraversals:
 	"""
 	Traversals:
 	- In order traversal
@@ -383,12 +376,38 @@ class Traversals:
 
 
 
+class GraphNode:
+
+	def __init__(self, name, children=None):
+		self.name = name
+		self.children = children
+
+	def __repr__(self):
+		return f'{self.name}- c:{self.children}'
+
+
+
+class Graph:
+	""" Graph class must be used b/c you might not necessarily 
+		reach all the nodes from a single GraphNode
+	"""
+
+	def __init__(self, nodes=[]):
+		self.nodes = nodes
+
+	def __repr__(self):
+		return f'ndz:{self.nodes}'
 
 
 
 
 
+if __name__ == "__main__":
+	gn = GraphNode('gn')
+	print(gn)
 
+	g = Graph()
+	print(g)
 
 
 
