@@ -54,5 +54,18 @@ def text_align(thickness):
 	for i in range(thickness):
 	    print(((c*(thickness-i-1)).rjust(thickness)+c+(c*(thickness-i-1)).ljust(thickness)).rjust(thickness*6))
 
+
+def is_leap(year):    
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return False
+    elif year % 4 == 0:
+        return True
+    return False
+
+
+
 if __name__ == '__main__':
     text_align(9)
+	print(is_leap(2100))
