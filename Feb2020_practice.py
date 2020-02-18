@@ -66,6 +66,13 @@ def is_leap(year):
 
 
 
+def captain_room():
+	pass
+
+
+
 if __name__ == '__main__':
-    text_align(9)
-	print(is_leap(2100))
+	# text_align(9)
+	# print(is_leap(2100))
+
+	print(captain_room())
