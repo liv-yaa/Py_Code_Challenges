@@ -122,37 +122,24 @@ def captain_room():
 	print(roomList)
 
 
-
-
-
-
-# Enter your code here. Read input from STDIN. Print output to STDOUT
-
+# https://www.hackerrank.com/challenges/calendar-module/problem?isFullScreen=true
 import calendar
 
 def dayOnDate(gd):
-    # Given a date `gd`, find which day is on that date.
-    DZ = [
-        'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'
-    ]
+    """ Given a date `gd`, find which day is on that date. """
+    DAYS = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
     gd = gd.split(' ')
-    mo, da, yr = gd[0], gd[1], gd[2]
-    # print(mo, da, yr)
 
-    c = calendar.TextCalendar(firstweekday=3).formatmonth(int(yr), int(mo)).split('\n')[1:]
-    print(c)
+    if len(gd) > 2:
+        c = list(calendar.Calendar().itermonthdays2(int(gd[2]), int(gd[0])))
+        for it in c:
+            if it[0] == int(gd[1]):
+                return DAYS[it[1]]
+    return None
 
-    # Find '1'
-
-
-    for row in c:     
-        print(row) 
-        # look for our day in it.
-        # if ' ' + da in row or da + ' ' in row:
-        #     print('found da')
-
-        r = row.split()
-        print('r', r)
+if __name__ == '__main__':
+    givenDate = input()
+    print(dayOnDate(givenDate))
 
 
 
