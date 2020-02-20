@@ -136,32 +136,23 @@ def dayOnDate(gd):
         'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'
     ]
     gd = gd.split(' ')
-    mo, da, yr = int(gd[0]), int(gd[1]), int(gd[2])
+    mo, da, yr = gd[0], gd[1], gd[2]
     # print(mo, da, yr)
 
-    c = calendar.TextCalendar(firstweekday=6).formatmonth(yr, mo, w=4).split('\n')
-    # print(c)
+    c = calendar.TextCalendar(firstweekday=3).formatmonth(int(yr), int(mo)).split('\n')[1:]
+    print(c)
 
-    # look for the day in the month
-    da = ' ' + str(da) + ' '
-    print('da', da)
-    for row in c:
-        row = '  ' + row + '  '
-        print('row', row)
-        
+    # Find '1'
+
+
+    for row in c:     
+        print(row) 
         # look for our day in it.
-        if da in row:
-            print('found da')
+        # if ' ' + da in row or da + ' ' in row:
+        #     print('found da')
 
-
-
-
-
-            
-if __name__ == '__main__':
-    # givenDate = input()
-    givenDate = "04 30 2000"
-    dayOnDate(givenDate)
+        r = row.split()
+        print('r', r)
 
 
 
