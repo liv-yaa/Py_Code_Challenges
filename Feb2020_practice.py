@@ -142,6 +142,15 @@ if __name__ == '__main__':
     print(dayOnDate(givenDate))
 
 
+# https://www.hackerrank.com/challenges/capitalize
+def capitalizeName(s):
+    """ Ensure that first, last name are capitalized """
+    names = s.split(' ')
+    for i in range(len(names)):
+        n = names[i]
+        if n != '':
+            names[i] = n[0].upper() + n[1:]
+    return ' '.join(names)
 
 
 
@@ -187,11 +196,9 @@ if __name__ == '__main__':
 
 
 
+# if __name__ == '__main__':
+# 	# text_align(9)
+# 	# print(is_leap(2100))
 
 
-if __name__ == '__main__':
-	# text_align(9)
-	# print(is_leap(2100))
-
-
-	print(captain_room())
+# 	print(captain_room())
