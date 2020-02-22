@@ -1,6 +1,8 @@
 // reviewing javascript
 'use strict';
 
+// 'use strict';
+
 
 // const x = 8
 
@@ -12,19 +14,40 @@
 //     console.log('Cool');
 // }
 
+// process.stdin.resume();
+// process.stdin.setEncoding('utf-8');
 
+// let inputString = '';
+// let currentLine = 0;
+
+// process.stdin.on('data', inputStdin => {
+//     inputString += inputStdin;
+// });
+
+// process.stdin.on('end', _ => {
+//     inputString = inputString.trim().split('\n').map(string => {
+//         return string.trim();
+//     });
+//     main();
+// });
+
+// function readLine() {
+//     return inputString[currentLine++];
+// }
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
 
-let inputString = '';
-let currentLine = 0;
+let inputString = ''; // initialize 
+let currentLine = 0;  // initialize 
 
 process.stdin.on('data', inputStdin => {
+    // An async function that handles input from Stdin, adding it to inputString as it is encountered
     inputString += inputStdin;
 });
 
 process.stdin.on('end', _ => {
+    // An async function that gets the input string, trims it, and then calls main()
     inputString = inputString.trim().split('\n').map(string => {
         return string.trim();
     });
@@ -33,6 +56,7 @@ process.stdin.on('end', _ => {
 });
 
 function readLine() {
+    // function that returns the current line and increments it
     return inputString[currentLine++];
 }
 
@@ -51,6 +75,10 @@ function greeting(parameterVariable) {
     
 }
 
+// function greeting(parameterVariable) {
+//     console.log('Hello, World');
+// }
+
 
 function main() {
     const parameterVariable = readLine();
@@ -59,15 +87,18 @@ function main() {
 }
 
 
-
+// function main() {
+//     const parameterVariable = readLine();
+//     greeting(parameterVariable);
+// }
 
 
 
 // Number Data Type:
-var firstVar = 1.5e5; 
+var firstVar = 1.5e5; //
 
 // String Data Type:
-var secondVar = 'Hello'; 
+var secondVar = 'Hello';
 
 // Boolean Data Type:
 var thirdVar = true; 
@@ -107,6 +138,13 @@ var actress = {
     firstMovie: "Satisfaction"
 };
 
+// var actress = {
+//     firstName: "Julia",
+//     lastName: "Roberts",
+//     dateOfBirth: "3k3k3";
+//     nationality: "slthe"
+// };
+
 for (var property in actress) {
     console.log("actress." + property + " = " + actress[property]);
 }
@@ -122,10 +160,24 @@ function main(input) {
     } while (i <= input);
 }
 
+// function main(input) {
+//     var i = 1;
+
+//     do {
+//         process.stdout.write(i + ' ');
+
+//         i ++ ;
+//     } while (i <= input);
+// }
+
 
 for (var property in actress) {
     console.log("actress." + property + " = " + actress[property]);
 }
+
+// for (var property in actress) {
+//     console.log("actress" + property + ' = ' + actress[property]);
+// }
 
 // Objects!
 class Monster {
@@ -135,6 +187,14 @@ class Monster {
         this.description = description;
     }
 }
+
+// class Monster {
+//     constructor(name, home, description) {
+//         this.name = name;
+//         this.home = home;
+//         this description = description;
+//     }
+// }
 
 function main(input) {
     var monster = new Monster(input[0], input[1], input[2]);
@@ -148,19 +208,59 @@ function main(input) {
     }
 }
 
+// function main(input) {
+//     var monster = new Monster(input[0], input[1], input[2]);
+
+//     console.log(monster);
+
+//     for (let property in monster) {
+//         console.log(property + ": " + monster[property]); // For loops use 'let' to define inner variable name!!
+//     }
+// }
+
 // Split the words read as input into an array of words
 var array = input.split(new RegExp("[ \n]+"));
+
+// var array = input.split(new RegExp("[ \n]+"));
+
+
 
 // Print each Key-Value pair in the map
 for (let info of actress) {
     console.log(info);
 }
 
+// for (let info of actress) {
+//     console.log(info);
+// }
+
+
 // Print each Key and Value as "Key: Value"
 console.log();
 for (let info of actress) {
     console.log(info[0] + ": " + info[1]);
 }
+
+// console.log();
+// for (let info of actress) {
+//     console.log(info[0] + ": " + info[1]);
+// }
+
+// function vowelsAndConsts(s) {
+//     const vowels = 'aeiou';
+//     var constss = '';
+
+//     for (var i = 0; i < s.length; i ++) {
+//         if (vowels.includes(s[i])) {
+//             console.log(s[i]);
+//         }
+//         else {
+//             consonants += s[i] + '\n';
+//         }
+//     }
+
+//     console.log(consonants.trim());
+// }
 
 // Loop only once
 function vowelsAndConsonants(s) {
