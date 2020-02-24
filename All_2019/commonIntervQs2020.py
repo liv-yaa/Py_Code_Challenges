@@ -58,6 +58,12 @@ class ArrayMethods:
 			s -= n
 		return -(s)
 
+	# def missing_num_array_sum2(self, arr):
+	# 	s = sum(arr)
+	# 	for n in range(1, 101):
+	# 		s -= n
+	# 	return -(s)
+
 	def missing_num_array_sum1(self, arr):
 		""" 
 		Find the missing number in a given integer array of 1 to 100.
@@ -68,6 +74,13 @@ class ArrayMethods:
 		n = len(arr)
 		total = (n + 1) * (n + 2) / 2
 		return int(total - sum(arr))
+
+
+		# n = len(arr)
+		# total = (n + 1) * (n + 2) / 2
+		# return int(total - sum(arr))
+
+
 
 	def missing_num_array_xor(self, a):
 		""" 
@@ -90,17 +103,42 @@ class ArrayMethods:
 
 		return x1 ^ x2
 
+
+		## 
+
+		# n = len(a)
+		# x1 = a[0]
+		# x2 = 1
+
+		# for i in range(1, n):
+		# 	x1 = x1 ^ a[i]
+		# 	print(x1)
+
+		# for i in range(2, n + 2):
+		# 	x2 = x2 ^ i
+
+		# return x1 ^ x2 
+
+
 	def find_dup_num_array(self, a, n):
 		"""
 		Find the duplicate number on a given integer array 
 
+		where a is the array and n is the maximum number? OR the lenght. ..?
+
 		Best - O(n)
+
 		"""
 
-		sm = sum(a)
+		sm = sum(a)  # get sum of all items in a
+
+		# Go through all items in list, subtracting from the sum
 		for i in range(1, n + 1):
 			sm -= i 
-		return sm
+		return sm # Final value wil be the number you know is a duplicate
+
+
+
 
 	def find_two_dup_num_array(self, arr):
 		"""
@@ -120,21 +158,40 @@ class ArrayMethods:
 				count[arr[i]] = count[arr[i]] + 1
 
 	def find_al_sum_pairs(self, arr, sum):
-		""" Find all pair whos sum is equal to n """
+		""" Find all pair whos sum is equal to n
+
+		 """
 		m = [0] * 100 # A general purpose map to store counts of all values in arr
 		for i in range(0, len(arr)):
+
+			# Interesting syntax, you get the value, then you are able to add one to it:
 			m[arr[i]]
 			m[arr[i]] += 1
 		print(m)
 
+
+
+
 	def printRepeating(self, arr):
 		# print all repeating elements
-		count = [0] * len(arr)
-		for i in range(len(arr)):
+
+		# DUmmylist
+		count = [0] * len(arr) 
+
+		# Iter through items in the array and add to hte respective 
+		for i in range(len(arr)): 
 			if count[arr[i]] == 1:
 				print(arr[i], end = ' ')
 			else:
 				count[arr[i]] = count[arr[i]] + 1
+
+
+		# count = [0] * len(arr)
+		# for i in range(len(arr)):
+		# 	if count[arr[i]] == 1:
+		# 		print(arr[i], end= ' ')
+		# 	else:
+		# 		count[arr[i]] = count[arr[i]] + 1
 
 	def makeListNondecreasing(self, arr):
 		# Overall gaol: Make list nondecreasing by changing only one digit from the array
@@ -152,6 +209,19 @@ class ArrayMethods:
 				possible = False
 				break
 		return possible
+
+		# ##
+		# myList = [0]
+		# possible = True
+
+		# for i in range(len(arr)):
+		# 	myList.append(self.getBest(myList[-1], arr[i]))
+
+		# 	if myList[-1] == -1:
+		# 		possible = False
+		# 		break
+
+		# return possible
 
 	def getBest(self, prev, curr):
 		# Return the minimum element from the range [prev, MAX]
@@ -179,6 +249,37 @@ class ArrayMethods:
 
 		return -1 # If we can't fine any number less than or equal to 1
 
+
+		# Get minimum element from the range [prev, MAX]
+		# Such that it differs in at most 1 digit with cur
+
+		# DIGITS = 4
+		# MIN = 1000
+		# MAX = 9999
+		# maximum = max(MIN, prev)
+
+		# for i in range(maximum, MAX + 1):
+		# 	# Count the number of different digits
+		# 	cnt = 0
+		# 	a = i
+		# 	b = curr
+
+		# 	for k in range(DIGITS):
+		# 		if (i % 10 != curr % 10): 
+		# 			cnt += 1
+
+		# 		# ELmimniate teh last digits in both nubers
+
+		# 		i //= 10
+		# 		curr //= 10
+
+		# 	if cnt == 0 or cnt == 1:
+		# 		# WE found at least one different digit
+		# 		return 1
+		# return -1  # fi we didnt find any nubmer less that or equal to 1
+
+
+
 	def getPowerSet(self, mySet):
 		""" Uses binary combinations to fill in the powerset """
 		powSet = []
@@ -190,6 +291,18 @@ class ArrayMethods:
 			powSet.append([mySet[i] for i in range(l) if bs[i] == '1'])
 		
 		return powSet
+
+
+		# Get power set 
+
+		# powSet = []
+		# l = len(mySet)
+
+		# for bi in range(int(pow(2, l))):
+		# 	bs = "{0:b}".format(bi).zfill(l)
+		# 	powSet.append([mySet[i] for i in range(l) if bs[i] == '1'])
+
+		# return powSet
 
 	def printCombinations(self, a, m):
 		""" uses POWER SET 
@@ -210,6 +323,9 @@ class ArrayMethods:
 				bs.append(b)
 
 		return bs
+
+		
+		
 
 	def dynamicArray(self, n, queries):
 		# Followed complicated instructions to process queries https://www.hackerrank.com/challenges/dynamic-array/problem?isFullScreen=true
