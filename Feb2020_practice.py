@@ -153,6 +153,236 @@ def capitalizeName(s):
     return ' '.join(names)
 
 
+def exceptions():
+    # https://www.hackerrank.com/challenges/exceptions/problem?isFullScreen=true
+
+    l = int(input())
+    for _ in range(l):
+        a, b = input().split()
+        try:
+            print(int(a) // int(b))
+        except (ZeroDivisionError, ValueError) as e:
+            print('Error Code:', e)
+
+
+import re
+def isValidRegex(string):
+    # Check if a string is a valid regex or not
+    # https://www.hackerrank.com/rest/contests/master/challenges/incorrect-regex/hackers/tssads/download_solution
+
+    t = int(input())
+    for _ in range(t):
+        try:
+            re.compile(input()) # Cool trick (from re library) - use the .compile function to throw an error if the thing is not a regex!
+            print(True)
+        except re.error:
+            print(False)
+
+
+
+
+"""
+`reduce`
+    - a function that applies a function of 2 args
+    cumulatively on a list of objects in succession from left to right
+    to reduct it to one value 
+
+        from functools import reduce
+
+        reduce(lambda x, y: x + y, [1, 2, 3])
+        >>> 6
+        (because 1 + 2 = 3, 3 + 3 = 6)
+
+    - You can also define an initial value
+
+        reduce(lambda x, y: x + y, [1, 2, 3], -3)
+        >>> 6
+        (because -3 + 1 = -2, -2 + 2 = 0, 0 + 3 = 3)
+        (really just equivalent to adding a value to beginning of list)
+
+    - You can import functions to 
+        from fractions import gcd
+        reduce(gcd, [2, 4, 8], 3)
+        >>> 1
+
+    https://www.hackerrank.com/challenges/reduce-function/problem?isFullScreen=true&h_r=next-challenge&h_v=zen
+
+"""
+# The Fractions module provides support for rational number arithmetic.
+    # f = Fraction(numerator=0, denominator=1)
+    # https://docs.python.org/2/library/fractions.html
+
+from fractions import Fraction
+from functools import reduce
+
+def product(fracs):
+    t = reduce(lambda x, y: x * y, fracs)    
+    return t.numerator, t.denominator
+
+if __name__ == '__main__':
+    fracs = []
+    for _ in range(int(input())):
+        fracs.append(Fraction(*map(int, input().split())))
+    result = product(fracs)
+    print(*result)
+
+
+
+
+
+
+
+
+"""
+itertools.combinations(iterable, r)
+
+    This tool returns the  length subsequences of elements from the input iterable.
+
+    Combinations are emitted in lexicographic sorted order. So, if the input iterable is sorted, the combination tuples will be produced in sorted order
+
+"""
+from itertools import combinations
+def sortedComs():
+    #Your task is to print all possible size k combinations of the string in lexicographic sorted order.
+    x, y = input().split()
+    for l in range(1, int(y) + 1):
+        sc = [sorted(com) for com in sorted(list(combinations(x, l)))]
+        for item in sorted(sc):
+            print(''.join(item))
+
+
+"""
+itertools.combinations_with_replacement(iterable, r)
+
+    This tool returns  length subsequences of elements from the input iterable allowing individual elements to be repeated more than once.
+    Combinations are emitted in lexicographic sorted order. So, if the input iterable is sorted, the combination tuples will be produced in sorted order
+
+"""
+from itertools import combinations_with_replacement
+def sortedComs():
+    #Your task is to print all possible size k combinations of the string in lexicographic sorted order.
+    x, y = input().split()
+    for item in sorted([sorted(o) for o in sorted(combinations_with_replacement(x, int(y)))]):
+        print(''.join(item))
+    
+
+
+
+from itertools import groupby
+def charCtsString():
+    # https://www.hackerrank.com/challenges/compress-the-string/problem?isFullScreen=true
+    st = input()
+    a = [] # a list to store tuples (n, ct)
+    i = 1 # the index in st
+    ct = 1 # Count 
+
+    while i < len(st):
+        if st[i] == st[i - 1]:
+            ct += 1
+        else:
+            a.append((ct, int(st[i - 1])))
+            ct = 1
+        i += 1
+
+    a.append((ct, int(st[i - 1])))
+
+    for x in a:
+        print(x, end=' ')
+
+
+from itertools import combinations
+def probability(ln, elems, k):
+    # Select any k integers with a uniform probability from the list
+    # Find prob that at least one will contain 'a'
+    ais = [i for i in range(ln) if elems[i] == 'a']
+    c = list(combinations([i for i in range(ln)], k))
+    return sum([1 for com in c if (set(com) & set(ais)) != set()]) / len(c)
+
+
+
+from itertools import product
+def maximizeFunc():
+    """
+    https://www.hackerrank.com/challenges/maximize-it/problem?isFullScreen=true
+        For f(X) = X^2,
+        Given a list of lists,
+        pick one value from the list so that the value is maximized.
+        S = [f(X1) + f(X2) + ... + f(Xk)] * M
+
+        Where Xi is the element picked from the ith list.
+    """
+    k, m = [int(u) for u in input().split()]
+    lsts = [sorted([(int(x) ** 2) % m for x in input().split()[1:]]) for _ in range(k)]
+    return max([sum(t) % m for t in itertools.product(*lsts)])
+
+
+
+"""
+re
+    re.findall()
+
+        - Returns all Non-overlapping patterns in a string as a 
+        list of strings
+
+            >>> import re
+            >>> re.findall(r'\w','http://www.hackerrank.com/')
+            ['h', 't', 't', 'p', 'w', 'w', 'w', 'h', 'a', 'c', 'k', 'e', 'r', 'r', 'a', 'n', 'k', 'c', 'o', 'm']
+
+        
+    re.finditer()
+
+        - Returns an iterator yielding MatchObject instances over
+        all non-overlapping matches for the `re` pattern in the string
+
+            >>> import re
+            >>> re.finditer(r'\w','http://www.hackerrank.com/')
+            <callable-iterator object at 0x0266C790>
+            >>> map(lambda x: x.group(),re.finditer(r'\w','http://www.hackerrank.com/'))
+            ['h', 't', 't', 'p', 'w', 'w', 'w', 'h', 'a', 'c', 'k', 'e', 'r', 'r', 'a', 'n', 'k', 'c', 'o', 'm']
+
+
+"""
+
+import re
+def findAllRegex():
+    # Given S, a string consisting of chars/symbols 
+    # Find all substrings that contain 2 or more vowels, that lie between 2 consonants
+    # Print matched substrings in order of occurance on separate lines
+    # If no match found, print -1
+    # S = input().strip()
+    vows = 'AEIOUaeiou'
+    cons = 'QWRTYPSDFGHJKLZXCVBNMqwrtypsdfghjklzxcvbnm'
+
+    m = re.finditer(r'[^AEIOUaeiou +\-]([AEIOUaeiou]{2,})(?=[^AEIOUaeiou +\-])', input().strip())
+
+    # print(list(m))
+
+    found = 0
+    for mm in m:
+        print(mm.group(1))
+        found = 1
+
+    if found == 0:
+        print('-1')
+
+
+import re
+def reStartEnd():
+    """
+    start() & end()
+    These expressions return the indices of the start and end of the substring matched by the group.
+
+    Given string S, find the indices of the start and end of string k in S. 
+    """
+    S = input()
+    k = input()
+    p = r'(?=%s)' % k
+
+    if not re.search(p, S):
+        print((-1, -1))
+
+    for i in re.finditer(p, S):
+        print((i.start(), i.start() + len(k) - 1))
 
 
 
@@ -180,25 +410,9 @@ def capitalizeName(s):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# def findAllRegex():
+#     return input()
 
 # if __name__ == '__main__':
-# 	# text_align(9)
-# 	# print(is_leap(2100))
+#     print(findAllRegex())
 
-
-# 	print(captain_room())
